@@ -2,3 +2,4 @@
 /.recommenders/
 /.settings/
 /.classpath/
+dir_to_ignore/target
