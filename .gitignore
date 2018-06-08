@@ -3,3 +3,8 @@
 /.settings/
 /.classpath/
 dir_to_ignore/target
+.DS_Store
+*.class
+*.class
+*.lst
+/target/
