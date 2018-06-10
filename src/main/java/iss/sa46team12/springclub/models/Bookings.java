@@ -27,8 +27,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "bookings")
 public class Bookings {
 	
-	//private static final String CONFIRMED = "CONFIRMED";
-	//private static final String CANCELLED = "CANCELLED";
+	public static final String CONFIRMED = "CONFIRMED";
+	public static final String CANCELLED = "CANCELLED";
 	
 	/**Attributes for Booking**/
 	@Id
@@ -107,6 +107,50 @@ public class Bookings {
 	public String toString() {
 		return "Bookings [bookingid=" + bookingid + ", transactiontime=" + transactiontime + ", userid=" + userid
 				+ ", total=" + total + ", status=" + status + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + bookingid;
+		result = prime * result + ((bookings == null) ? 0 : bookings.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + total;
+		result = prime * result + ((transactiontime == null) ? 0 : transactiontime.hashCode());
+		result = prime * result + userid;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bookings other = (Bookings) obj;
+		if (bookingid != other.bookingid)
+			return false;
+		if (bookings == null) {
+			if (other.bookings != null)
+				return false;
+		} else if (!bookings.equals(other.bookings))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (total != other.total)
+			return false;
+		if (transactiontime == null) {
+			if (other.transactiontime != null)
+				return false;
+		} else if (!transactiontime.equals(other.transactiontime))
+			return false;
+		if (userid != other.userid)
+			return false;
+		return true;
 	}
 	
 }
