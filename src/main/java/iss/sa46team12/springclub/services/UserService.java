@@ -1,5 +1,9 @@
 package iss.sa46team12.springclub.services;
 
-public class UserService {
+import iss.sa46team12.springclub.models.User;
+
+public interface UserService {
+
+	User findUserById(Integer id);	
 
 }

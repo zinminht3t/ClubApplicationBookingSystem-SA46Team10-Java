@@ -11,33 +11,33 @@ import javax.persistence.Table;
 public class User{
 
 	@Id
-	private int userid;
-	private String fullname;
+	private Integer userId;
+	private String fullName;
 	private String email;
 	private String nric;
-	private Date dateofbirth;
+	private Date dateOfBirth;
 	private String address;
 	private String gender;
-	private String contactno;
+	private String contactNo;
 	private String password;
 	private String role;
 	
 	
 	public int getUserid() {
-		return userid;
+		return userId;
 	}
 
 	public void setUserid(int userid) {
-		this.userid = userid;
+		this.userId = userid;
 	}
 
 
 	public String getFullname(){
-		return fullname;
+		return fullName;
 	}
 
 	public void setFullname(String fullname){
-		this.fullname=fullname;
+		this.fullName=fullname;
 	}
 
 	public String getEmail(){
@@ -57,11 +57,11 @@ public class User{
 	}
 
 	public java.util.Date getDateofbirth(){
-		return dateofbirth;
+		return dateOfBirth;
 	}
 
 	public void setDateofbirth(java.util.Date dateofbirth){
-		this.dateofbirth=dateofbirth;
+		this.dateOfBirth=dateofbirth;
 	}
 
 	public String getAddress(){
@@ -81,11 +81,11 @@ public class User{
 	}
 
 	public String getContactno(){
-		return contactno;
+		return contactNo;
 	}
 
 	public void setContactno(String contactno){
-		this.contactno=contactno;
+		this.contactNo=contactno;
 	}
 
 	public String getPassword(){
