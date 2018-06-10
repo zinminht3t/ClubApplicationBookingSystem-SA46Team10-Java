@@ -1,8 +1,11 @@
 package iss.sa46team12.springclub.models;
 
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * BookingId class
@@ -10,65 +13,65 @@ import javax.persistence.Embeddable;
  * @version $Revision: 1.0
  */
 @Embeddable
-public class BookingId {
+public class BookingId implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**Attributes for BookingId**/
-	@Column(name = "bookingid")
-	private int bookingId;
-	@Column(name = "facilityid")
-	private int facilityId;
-	@Column(name = "timeslotid")
-	private int timeslotId;
-	public int getBookingId() {
-		return bookingId;
-	}
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "bookingid",  referencedColumnName="bookingid")
+	private Bookings booking;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="facilityid")
+	private Facility facility;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="timeslotid")
+	private Timeslots timeslots;
+		
+	
 	/**Constructor**/
-	public BookingId(int bookingId, int facilityId, int timeslotId) {
+	public BookingId(Bookings booking, Facility facility, Timeslots timeslots) {
 		super();
-		this.bookingId = bookingId;
-		this.facilityId = facilityId;
-		this.timeslotId = timeslotId;
+		this.booking = booking;
+		this.facility = facility;
+		this.timeslots = timeslots;
 	}
+
 	/**Getters / Setters**/
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
+	public Bookings getBooking() {
+		return booking;
 	}
-	public int getFacilityId() {
-		return facilityId;
+
+
+	public void setBooking(Bookings booking) {
+		this.booking = booking;
 	}
-	public void setFacilityId(int facilityId) {
-		this.facilityId = facilityId;
+
+
+	public Facility getFacility() {
+		return facility;
 	}
-	public int getTimeslotId() {
-		return timeslotId;
+
+
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
-	public void setTimeslotId(int timeslotId) {
-		this.timeslotId = timeslotId;
+
+
+	public Timeslots getTimeslots() {
+		return timeslots;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + bookingId;
-		result = prime * result + facilityId;
-		result = prime * result + timeslotId;
-		return result;
+
+
+	public void setTimeslots(Timeslots timeslots) {
+		this.timeslots = timeslots;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BookingId other = (BookingId) obj;
-		if (bookingId != other.bookingId)
-			return false;
-		if (facilityId != other.facilityId)
-			return false;
-		if (timeslotId != other.timeslotId)
-			return false;
-		return true;
-	}
+	
 }
-//For git

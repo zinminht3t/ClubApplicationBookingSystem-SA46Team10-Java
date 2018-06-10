@@ -5,14 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 /**
@@ -20,17 +13,15 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @version $Revision: 1.0
  */
+
 @Entity
 @Table(name = "bookingdetails")
 public class BookingDetails {
 	/**Attributes for BookingDetails**/
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "bookingId")
-	private int bookingId;
 	
-	//@EmbeddedId
-	//private BookingId bookingId;
+	@EmbeddedId
+	private BookingId bookingCompositeId;
+	
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
@@ -38,43 +29,20 @@ public class BookingDetails {
 	@Column(name = "bookingprice")
 	private double bookingprice;
 	public BookingId getBookingId() {
-		return bookingId;
+		return bookingCompositeId;
 	}
-	
-	/*Reverse Mapping*/
-	@ManyToOne
-	@JoinColumn(name = "bookingid")
-	private Bookings booking;
-	
-	/** *                        ***/
-	/* Facility Mapping code here */
-	/* *                        * */
-	/***                        ***/
-	
-	@ManyToOne
-	@JoinColumn(name="timeslotid")
-	private Timeslots timeslots;
-	
 	
 	
 	/**Constructor**/
-	public BookingDetails(BookingId bookingId, LocalDateTime bookingdate, double bookingprice, Bookings booking, Timeslots timeslot) {
+	public BookingDetails(BookingId bookingId, LocalDateTime bookingdate, double bookingprice) {
 		super();
-		this.bookingId = bookingId;
+		this.bookingCompositeId = bookingId;
 		this.bookingdate = bookingdate;
 		this.bookingprice = bookingprice;
-		this.booking = booking;
-		this.timeslots = timeslot;
 	}
 	/**Getter / Setter**/
-	public Timeslots getTimeslot() {
-		return timeslots;
-	}
-	public void setTimeslot(Timeslots timeslot) {
-		this.timeslots = timeslot;
-	}
 	public void setBookingId(BookingId bookingId) {
-		this.bookingId = bookingId;
+		this.bookingCompositeId = bookingId;
 	}
 	public LocalDateTime getBookingdate() {
 		return bookingdate;
@@ -89,16 +57,10 @@ public class BookingDetails {
 		this.bookingprice = bookingprice;
 	}
 	
-	public Bookings getBooking() {
-		return booking;
-	}
-	public void setBooking(Bookings booking) {
-		this.booking = booking;
-	}
 	@Override
 	public String toString() {
-		return "BookingDetails [bookingId=" + bookingId + ", bookingdate=" + bookingdate + ", bookingprice="
-				+ bookingprice + ", booking=" + booking + "]";
+		return "BookingDetails [bookingId=" + bookingCompositeId + ", bookingdate=" + bookingdate + ", bookingprice="
+				+ bookingprice + "]";
 	}
 }
 //For git update

@@ -26,7 +26,7 @@ public class Timeslots {
 	@Column (name ="time")
 	private int time;
 	/** Mapping **/
-	@OneToMany(mappedBy="timeslots", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="bookingCompositeId.timeslots", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
 	
 	public List<BookingDetails> getBookingdetails() {

@@ -13,8 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -46,8 +44,8 @@ public class Bookings {
 	@Column(name = "status")
 	private String status;
 	/*Mapping*/
-	@OneToMany(mappedBy="booking", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<BookingDetails> bookingEvents = new ArrayList<BookingDetails>();
+	@OneToMany(mappedBy="bookingCompositeId.booking", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<BookingDetails> bookingEvents;
 	
 	/**Constructor to Initialize Booking model object**/
 	public Bookings() {
