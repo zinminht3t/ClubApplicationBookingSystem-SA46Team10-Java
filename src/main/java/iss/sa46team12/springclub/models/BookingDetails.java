@@ -93,3 +93,4 @@ public class BookingDetails {
 				+ bookingprice + ", booking=" + booking + "]";
 	}
 }
+//For git update
