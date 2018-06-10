@@ -59,7 +59,7 @@ public class Bookings {
 		this.userid = userid;
 		this.total = total;
 		this.status = status;
-		this.bookingEvents.addAll(bookingEvents);
+		this.bookingEvents.addAll(bookings);
 	}
 	/**Getter Setters**/
 	public int getBookingid() {
@@ -98,7 +98,7 @@ public class Bookings {
 	}
 	
 	public void setBookings(ArrayList<BookingDetails> bookings) {
-		this.bookingEvents.addAll(bookingEvents);
+		this.bookingEvents.addAll(bookings);
 	}
 	/**To String**/
 	@Override

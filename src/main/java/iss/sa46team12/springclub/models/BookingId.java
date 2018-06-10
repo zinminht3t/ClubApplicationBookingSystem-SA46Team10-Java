@@ -27,12 +27,12 @@ public class BookingId implements Serializable{
 	
 	
 	@ManyToOne
-	@JoinColumn(name="facilityid")
+	@JoinColumn(name="facilityid",  referencedColumnName="facilityid")
 	private Facility facility;
 	
 	
 	@ManyToOne
-	@JoinColumn(name="timeslotid")
+	@JoinColumn(name="timeslotid",  referencedColumnName="timeslotid")
 	private Timeslots timeslots;
 		
 	

@@ -1,7 +1,13 @@
 package iss.sa46team12.springclub.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +21,10 @@ public class Facility {
 	private String remark;
 	private String imagePath;
 	private boolean active = true;
+	
+	@OneToMany(mappedBy="bookingCompositeId.facility", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<BookingDetails> bookingEvents;
+	
 	
 	//Constructors
 	public Facility() {
@@ -30,6 +40,22 @@ public class Facility {
 		this.imagePath = imagePath;
 		this.active = active;
 		
+	}
+	
+	public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active, ArrayList<BookingDetails> bookingEvents) {
+		this(facilityID, facilityName, court, remark, imagePath, active);
+		this.bookingEvents.addAll(bookingEvents);
+	}
+	
+	
+	
+
+	public List<BookingDetails> getBookingEvents() {
+		return bookingEvents;
+	}
+
+	public void setBookingEvents(List<BookingDetails> bookingEvents) {
+		this.bookingEvents = bookingEvents;
 	}
 
 	//Getters & Setters
