@@ -45,19 +45,19 @@ public class Facility {
 	
 	public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active, ArrayList<BookingDetails> bookingEvents) {
 		this(facilityID, facilityName, court, remark, imagePath, active);
-		this.bookingEvents.addAll(bookingEvents);
+//		this.bookingEvents.addAll(bookingEvents);
 	}
 	
-	
-	
-
-	public List<BookingDetails> getBookingEvents() {
-		return bookingEvents;
-	}
-
-	public void setBookingEvents(List<BookingDetails> bookingEvents) {
-		this.bookingEvents = bookingEvents;
-	}
+//	
+//	
+//
+//	public List<BookingDetails> getBookingEvents() {
+//		return bookingEvents;
+//	}
+//
+//	public void setBookingEvents(List<BookingDetails> bookingEvents) {
+//		this.bookingEvents = bookingEvents;
+//	}
 
 	//Getters & Setters
 	public int getFacilityID() {
