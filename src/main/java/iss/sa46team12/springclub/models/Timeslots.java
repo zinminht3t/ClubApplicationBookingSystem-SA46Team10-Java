@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /**
  * Timeslot class
  *
@@ -26,12 +28,13 @@ public class Timeslots {
 	@Column (name ="time")
 	private int time;
 	/** Mapping **/
+	@JsonManagedReference
 	@OneToMany(mappedBy="timeslots", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
 	
-	public List<BookingDetails> getBookingdetails() {
-		return (new ArrayList<BookingDetails> (bookingdetails));
-	}
+//	public List<BookingDetails> getBookingdetails() {
+//		return (new ArrayList<BookingDetails> (bookingdetails));
+//	}
 	/** Constructor **/
 	public Timeslots() {
 		super();

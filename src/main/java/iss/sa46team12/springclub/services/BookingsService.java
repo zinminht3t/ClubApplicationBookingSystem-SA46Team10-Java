@@ -8,6 +8,8 @@ public interface BookingsService {
 
 	ArrayList<Bookings> getAllBookings();
 	
+	ArrayList<Bookings> findAllConfirmedBookings();
+	
 	Bookings findBooking(Integer bookingid);
 	
 	Bookings createBooking(Bookings booking);

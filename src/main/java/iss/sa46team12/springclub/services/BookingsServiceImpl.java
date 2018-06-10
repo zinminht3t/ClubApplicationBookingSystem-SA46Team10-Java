@@ -21,6 +21,15 @@ public class BookingsServiceImpl implements BookingsService {
 
 		return (ArrayList<Bookings>) bookingsRepository.findAll();
 	}
+	
+
+	@Override
+	@Transactional
+	public ArrayList<Bookings> findAllConfirmedBookings() {
+		// TODO Auto-generated method stub
+		return bookingsRepository.findAllConfirmedBookings();
+	}
+
 
 	@Override
 	@Transactional
