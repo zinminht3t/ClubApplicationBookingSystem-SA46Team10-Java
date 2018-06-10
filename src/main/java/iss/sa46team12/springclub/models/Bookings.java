@@ -35,7 +35,7 @@ public class Bookings {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bookingid")
 	private int bookingid;
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "transactiontime")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime transactiontime;
@@ -46,8 +46,8 @@ public class Bookings {
 	@Column(name = "status")
 	private String status;
 	/*Mapping*/
-	@OneToMany(mappedBy="bookings", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<BookingDetails> bookings;
+	@OneToMany(mappedBy="booking", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<BookingDetails> bookingEvents = new ArrayList<BookingDetails>();
 	
 	/**Constructor to Initialize Booking model object**/
 	public Bookings() {
@@ -61,7 +61,7 @@ public class Bookings {
 		this.userid = userid;
 		this.total = total;
 		this.status = status;
-		this.bookings.addAll(bookings);
+		this.bookingEvents.addAll(bookingEvents);
 	}
 	/**Getter Setters**/
 	public int getBookingid() {
@@ -96,10 +96,11 @@ public class Bookings {
 	}
 	
 	public List<BookingDetails> getBookings() {
-		return (new ArrayList<BookingDetails>(bookings));
+		return (new ArrayList<BookingDetails>(bookingEvents));
 	}
+	
 	public void setBookings(ArrayList<BookingDetails> bookings) {
-		this.bookings.addAll(bookings);
+		this.bookingEvents.addAll(bookingEvents);
 	}
 	/**To String**/
 	@Override

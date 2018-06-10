@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -21,9 +24,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "bookingdetails")
 public class BookingDetails {
 	/**Attributes for BookingDetails**/
-	@EmbeddedId
-	private BookingId bookingId;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "bookingId")
+	private int bookingId;
+	
+	//@EmbeddedId
+	//private BookingId bookingId;
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime bookingdate;
@@ -45,7 +53,7 @@ public class BookingDetails {
 	
 	@ManyToOne
 	@JoinColumn(name="timeslotid")
-	private Timeslots timeslot;
+	private Timeslots timeslots;
 	
 	
 	
@@ -56,14 +64,14 @@ public class BookingDetails {
 		this.bookingdate = bookingdate;
 		this.bookingprice = bookingprice;
 		this.booking = booking;
-		this.timeslot = timeslot;
+		this.timeslots = timeslot;
 	}
 	/**Getter / Setter**/
 	public Timeslots getTimeslot() {
-		return timeslot;
+		return timeslots;
 	}
 	public void setTimeslot(Timeslots timeslot) {
-		this.timeslot = timeslot;
+		this.timeslots = timeslot;
 	}
 	public void setBookingId(BookingId bookingId) {
 		this.bookingId = bookingId;
