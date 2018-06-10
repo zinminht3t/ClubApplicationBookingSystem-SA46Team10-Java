@@ -12,23 +12,21 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * BookingDetails class
  *
  * @version $Revision: 1.0
  */
+
 @Entity
 @IdClass(BookingId.class)
 @Table(name = "bookingdetails")
 public class BookingDetails {
 	/**Attributes for BookingDetails**/
-	
 	 
    @Id
    @Column(insertable = false, updatable = false)
@@ -40,8 +38,6 @@ public class BookingDetails {
    @Column(insertable = false, updatable = false)
    private int timeslotid;
    
-
-//	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime bookingdate;
@@ -54,10 +50,6 @@ public class BookingDetails {
 	@JoinColumn(name = "bookingid")
 	private Bookings booking;
 	
-	/** *                        ***/
-	/* Facility Mapping code here */
-	/* *                        * */
-	/***                        ***/
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="timeslotid")
@@ -68,14 +60,12 @@ public class BookingDetails {
 	@JoinColumn(name="facilityid")
 	private Facility facilities;
 	
-	
-	
-	
 	/**Constructor to Initialize Booking model object**/
 	public BookingDetails() {
 	}
 	
 	/**Constructor**/
+
 	public BookingDetails(int bookingId, LocalDateTime bookingdate, Facility facilities, double bookingprice, Bookings booking, Timeslots timeslot) {
 		super();
 		this.bookingid = bookingId;
@@ -104,27 +94,26 @@ public class BookingDetails {
 	public void setBookingId(int bookingId) {
 		this.bookingid = bookingId;
 	}
+	
 	public LocalDateTime getBookingdate() {
 		return bookingdate;
 	}
+	
 	public void setBookingdate(LocalDateTime bookingdate) {
 		this.bookingdate = bookingdate;
 	}
+	
 	public double getBookingprice() {
 		return bookingprice;
 	}
+	
 	public void setBookingprice(double bookingprice) {
 		this.bookingprice = bookingprice;
 	}
 	
-	public Bookings getBooking() {
-		return booking;
-	}
-	public void setBooking(Bookings booking) {
-		this.booking = booking;
-	}
 	@Override
 	public String toString() {
+
 		return "BookingDetails [bookingId=" + bookingid + ", bookingdate=" + bookingdate + ", bookingprice="
 				+ bookingprice + ", booking=" + booking + "]";
 	}
@@ -181,5 +170,3 @@ public class BookingDetails {
 	
 	
 }
-
-//For git update

@@ -17,8 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,8 +32,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "bookings")
 public class Bookings {
 	
-	public static final String CONFIRMED = "CONFIRMED";
-	public static final String CANCELLED = "CANCELLED";
+	//private static final String CONFIRMED = "CONFIRMED";
+	//private static final String CANCELLED = "CANCELLED";
 	
 	/**Attributes for Booking**/
 	
@@ -125,15 +123,11 @@ public class Bookings {
 		this.bookingEvents.addAll(bookings);
 	}
 	/**To String**/
+
 //	@Override
 //	public String toString() {
 //		return "Bookings [bookingid=" + bookingid + ", transactiontime=" + transactiontime + ", userid=" + userid
 //				+ ", total=" + total + ", status=" + status + "]";
 //	}
 	
-	
-	
-	
-	
 }
-//For Git Update

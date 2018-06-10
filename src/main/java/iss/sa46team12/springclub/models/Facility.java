@@ -1,5 +1,6 @@
 package iss.sa46team12.springclub.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class Facility {
 	@JsonManagedReference
 	@OneToMany(mappedBy="facilities", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
-	
+
 	//Constructors
 	public Facility() {
 		super();
@@ -40,6 +41,22 @@ public class Facility {
 		this.remark = remark;
 		this.imagePath = imagePath;
 		this.active = active;
+	}
+	
+	public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active, ArrayList<BookingDetails> bookingEvents) {
+		this(facilityID, facilityName, court, remark, imagePath, active);
+		this.bookingEvents.addAll(bookingEvents);
+	}
+	
+	
+	
+
+	public List<BookingDetails> getBookingEvents() {
+		return bookingEvents;
+	}
+
+	public void setBookingEvents(List<BookingDetails> bookingEvents) {
+		this.bookingEvents = bookingEvents;
 	}
 
 	//Getters & Setters
@@ -151,10 +168,5 @@ public class Facility {
 			return false;
 		return true;
 	}
-	
-	
-
-	
-	
 	
 }
