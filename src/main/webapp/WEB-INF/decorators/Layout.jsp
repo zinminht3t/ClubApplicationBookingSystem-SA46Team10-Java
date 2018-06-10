@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
+<<<<<<< HEAD
 <head>
 <%@include file="Header.jsp"%>
 <dec:head/>
@@ -24,11 +25,21 @@
 			</td>
 		</tr>
 	</table>
+=======
+	<head>
+		<%@include file="Header.jsp"%>
+		<link rel="STYLESHEET" type="text/css" href="${ss}" />
+		<link rel="stylesheet" href="css/Layout.css">
+		<dec:head />
+	</head>
+>>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject
 	
-	<!-- ======== Footer ======== -->
-				<div id="footer" align="center">
-				  <hr>
-					<small> &copy; ISS NUS SA42 2016 </small>
-				</div>
-</body>
+	<body id="top">
+		<dec:body />
+	</body>
+	
+	<footer>
+		<%@include file="Footer.jsp"%>
+	</footer>
+
 </html>
