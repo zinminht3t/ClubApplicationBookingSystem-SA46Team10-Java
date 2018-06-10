@@ -8,3 +8,4 @@ dir_to_ignore/target
 *.class
 *.lst
 /target/
+*.MF
