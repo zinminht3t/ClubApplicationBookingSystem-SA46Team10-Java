@@ -1,7 +1,11 @@
 package iss.sa46team12.springclub.controllers;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +51,8 @@ public class RegisterController {
 			
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@ModelAttribute @Valid User users, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpServletRequest request, 
+	        HttpServletResponse response) {
 
 		ModelAndView mav = new ModelAndView();
 		
@@ -59,8 +64,18 @@ public class RegisterController {
 		
 		users.setGender("Male");
 		
-		//Temporary PlaceHolder
-		Date date = new Date();
+		String dayOfBirth = request.getParameter("dayOfBirth");
+		String monthOfBirth = request.getParameter("monthOfBirth");
+		String yearOfBirth = request.getParameter("yearOfBirth");
+		
+		int day = Integer.parseInt(dayOfBirth);
+		int month = Integer.parseInt(monthOfBirth);		
+		int year = Integer.parseInt(yearOfBirth);
+		
+        Calendar cal = new GregorianCalendar(year, month-1, day);
+        Date date = cal.getTime();   
+        
+//        Date date = new Date();
 		users.setDateofbirth(date);
 		
 		users.setRole("Member");

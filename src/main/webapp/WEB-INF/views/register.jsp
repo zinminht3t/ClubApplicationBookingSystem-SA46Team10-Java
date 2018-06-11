@@ -89,13 +89,13 @@
 						<h4>Date of Birth</h4>
 						<div class="input-group">
 							<div class="col-third">
-								<input type="text" placeholder="DD" required />
+								<input type="text" placeholder="DD" required name="dayOfBirth"/>								
 							</div>
 							<div class="col-third">
-								<input type="text" placeholder="MM" required />
+								<input type="text" placeholder="MM" required name="monthOfBirth"/>
 							</div>
 							<div class="col-third">
-								<input type="text" placeholder="YYYY" required />
+								<input type="text" placeholder="YYYY" required name="yearOfBirth"/>
 							</div>
 						</div>
 					</div>
