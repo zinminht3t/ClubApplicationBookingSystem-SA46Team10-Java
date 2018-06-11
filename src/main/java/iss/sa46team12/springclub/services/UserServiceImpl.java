@@ -20,4 +20,9 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findOne(userId);
 	}
 
+	@Transactional
+	public User authenticate(String user, String pwd) {
+		User u = userRepository.findUserbyEmailPwd(user, pwd);
+		return u;
+	}
 }
