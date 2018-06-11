@@ -16,5 +16,4 @@ public interface BookingsRepository extends JpaRepository<Bookings, Integer> {
 	//Custom SQL Operations here
 	@Query("SELECT b from Bookings b WHERE b.status = 'CONFIRMED'")
 	ArrayList<Bookings> findAllConfirmedBookings();
-	
 }

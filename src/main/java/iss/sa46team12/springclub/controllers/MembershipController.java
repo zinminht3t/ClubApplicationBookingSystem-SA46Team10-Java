@@ -16,10 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MembershipController {
 
-	//, method = RequestMethod.GET
 	@RequestMapping(value = "/membership")
 	public String logic(Model model) {
-		//model.addAttribute("user", new User());
 		return "membership";
 	}
 

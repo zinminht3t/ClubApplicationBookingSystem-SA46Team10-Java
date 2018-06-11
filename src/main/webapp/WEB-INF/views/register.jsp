@@ -33,6 +33,7 @@
 				<h4>Account</h4>
 				<div class="input-group input-group-icon">
 					<form:input path="fullname" type="text" placeholder="Full Name" />
+					<form:errors path="fullname" cssStyle="color: red;" />
 					<div class="input-icon">
 						<i class="fa fa-user"></i>
 					</div>
@@ -102,8 +103,7 @@
 
 			<div class="row">
 				<h4>Package</h4>
-				<div class="input-group1">
-
+				<div class="input-group">
 					<c:set var="selectedPackage" value="${selectedPackage}" />
 					<c:choose>
 						<c:when test="${selectedPackage eq 'selectedPackage2'}">
@@ -184,7 +184,7 @@
 				</div>
 			</div>
 
-			<div style="text-align: center">
+			<div class="row" style="text-align: center">
 				<input type="submit" value="Submit"/>
 			</div>	
 
