@@ -1,20 +1,52 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div>
-	<h1 align="right">
-		<spring:message code="title.application" />
-	</h1>
-	<h2>
-		<c:if test="${not empty sessionScope.USERSESSION}">
-			<spring:message code="caption.user" /> :
-<c:out value="${sessionScope.USERSESSION.user.name}" /> ;
-<spring:message code="caption.role" /> :
-<c:forEach var="role" items="${sessionScope.USERSESSION.user.roleSet}">
- ${role.roleId} ;
-</c:forEach>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/Home.css">
+<!-- A grey horizontal navbar that becomes vertical on small screens -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark navbar-fixed-top navbar-static-top" style="height: 50px; position: fixed; width: 100%; top: 0; z-index: 100; padding-top: 0; padding-bottom:0;'">
+        <!-- Brand -->
+        <a class="navbar-brand" href="${contextPath}/">
+            <img src="Images/WhatsappImage.jpeg" width="40px" height="40px">
+        </a>
 
-		</c:if>
-	</h2>
-</div>
 
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon justify-content-end"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-fixed-top navbar-collapse justify-content-end" id="collapsibleNavbar" >
+        <!-- if logic here for admin -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="${contextPath}/#top" id="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${contextPath}/#aboutus">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${contextPath}/facilities">Facilities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${contextPath}/membership">Membership</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contactus">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                <a class="btn btn-outline-success" href="${contextPath}/login">Login</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </nav>
 

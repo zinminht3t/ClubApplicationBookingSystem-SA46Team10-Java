@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%-- 
 <c:url value="/logout" var="logout" />
 <ul>
 	<c:if test="${sessionScope.USERSESSION.user.roleSet.size() gt 0}">
@@ -58,4 +58,4 @@
 	</c:if>
 
 </ul>
-
+ --%>
