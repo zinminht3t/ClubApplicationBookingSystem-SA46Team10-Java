@@ -6,7 +6,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import iss.sa46team12.springclub.models.User;
-
 @Component
 public class UserValidator implements Validator {
 
@@ -27,7 +26,6 @@ public class UserValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "address", "Address cannot be empty");
 		
 		//System.out.println(u.toString());
-
 	}
 
 }
