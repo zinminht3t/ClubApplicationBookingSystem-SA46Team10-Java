@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 
@@ -25,9 +26,18 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.22.2/sweetalert2.all.js"></script>
 </head>
 <body>
+
+	<c:choose>
+		<c:when test="${not empty showNotification}">
+			<script>
+				swal('Profile Updated', 'Your Profile has been successfully updated', 'success')
+			</script>
+		</c:when>
+	</c:choose>
 
 	<div class="row" style="margin-top: 100px;">
 
@@ -66,9 +76,12 @@
 							<h3>Edit Profile</h3>
 							<hr>
 							<form:form method="POST" id="user" modelAttribute="userProfile"
-								action="${pageContext.request.contextPath}/user/profile/edit/${userProfile.userId}">
+								action="${pageContext.request.contextPath}/user/edit">
 
 								<div class="row">
+									<form:errors path="fullname" cssStyle="color: red;" />
+									<form:errors path="nric" cssStyle="color: red;" />
+									<form:errors path="contactno" cssStyle="color: red;" />
 									<h4>Account</h4>
 									<div class="input-group input-group-icon">
 										<form:input path="fullname" type="text"
@@ -144,7 +157,7 @@
 							<h3>Change Password</h3>
 							<hr>
 							<form:form method="POST" id="changeUserPassword"
-								commandName="changeUserPassword" action="e.html">
+								commandName="changeUserPassword" action="${pageContext.request.contextPath}/user/password">
 
 								<h4>Password</h4>
 								<div class="input-group input-group-icon">
@@ -154,19 +167,22 @@
 										<i class="fa fa-key"></i>
 									</div>
 								</div>
+								<form:errors path="password" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
-									<form:input path="password" type="password"
+									<form:input path="newpassword" type="password"
 										placeholder="New Password" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
 								</div>
+								<form:errors path="newpassword" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
-									<input type="password" placeholder="Confirm Password" />
+									<input type="password" path="confirmpassword" placeholder="Confirm Password" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
 								</div>
+								<form:errors path="confirmpassword" cssStyle="color: red;" />
 
 								<div style="text-align: center">
 									<input type="submit" value="Change Password"

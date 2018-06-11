@@ -1,39 +1,31 @@
 package iss.sa46team12.springclub.services;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation;
+import org.springframework.transaction.annotation.Transactional;
+
+import iss.sa46team12.springclub.models.User;
+import iss.sa46team12.springclub.repositories.UserRepository;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-	public boolean validateuser(String user, String password) {
-		// if method to see if user role is active
-		return user.equalsIgnoreCase("frm db") && password.equals("frm db too");
-	}
 	
-	public String checkuserrole(int id) {
-//		if("some method to check ID .admin") {
-//			return "member";
-//		}
-//		else
-		return "admin";
-	}
-
-	@Override
-	public String showloginpg() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String handleloginrequest() {
-		// TODO Auto-generated method stub
-		@RequestParam
-		return null;
-	}
-
-	@Override
-	public String checkuserrole() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Resource
+//	UserRepository userRepository;
+//	
+//	@Override
+//	@Transactional
+//	public User validateuser(String user, String password) {
+//		// if method to see if user role is active
+////		return user.equalsIgnoreCase("jayden") && password.equals("plswork");
+//		User u = userRepository.findUserbyEmailPwd(user, password);
+//		return u;
+//	}
 	
+//	@Override
+//	@Transactional
+//	public String checkuserrole(String user) {
+//		return userRepository.findRoleByEmail(user);
+//	}
+
 }

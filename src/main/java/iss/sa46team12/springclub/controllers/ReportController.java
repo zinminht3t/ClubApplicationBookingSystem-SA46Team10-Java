@@ -16,9 +16,14 @@ public class ReportController {
 	ReportService rService;
 	
 	@RequestMapping(value = "/reports", method = RequestMethod.GET)
-	public String home() {
+	public String load() {		
 		return "reports";
 	}
+	
+//	@GetMapping("/reports")
+//	public int getMaleNum() {
+//		return rService.
+//	}
 	
 	/*@RequestMapping(value = "/userprofile", method = RequestMethod.GET)
 	public ModelAndView listAll() {

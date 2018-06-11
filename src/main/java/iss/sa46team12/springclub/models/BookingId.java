@@ -11,6 +11,7 @@ public class BookingId implements Serializable {
    private int bookingid;
    private int facilityid;
    private int timeslotid;
+ 
 
 /**
  * BookingId class

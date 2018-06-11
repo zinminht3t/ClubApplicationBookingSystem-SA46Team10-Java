@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import iss.sa46team12.springclub.models.*;
 import iss.sa46team12.springclub.repositories.BookingsRepository;
 import iss.sa46team12.springclub.repositories.FacilityRepository;
+import iss.sa46team12.springclub.repositories.ReportRepository;
 import iss.sa46team12.springclub.repositories.UserRepository;
 
 @Service

@@ -27,7 +27,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Table(name = "bookingdetails")
 public class BookingDetails {
 	/**Attributes for BookingDetails**/
-	 
    @Id
    @Column(insertable = false, updatable = false)
    private int bookingid;
@@ -37,14 +36,14 @@ public class BookingDetails {
    @Id
    @Column(insertable = false, updatable = false)
    private int timeslotid;
-   
+	
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime bookingdate;
 	@Column(name = "bookingprice")
 	private double bookingprice;
 	
-	/*Reverse Mapping*/
+	/*Reverse Mapping */
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "bookingid")
@@ -65,7 +64,6 @@ public class BookingDetails {
 	}
 	
 	/**Constructor**/
-
 	public BookingDetails(int bookingId, LocalDateTime bookingdate, Facility facilities, double bookingprice, Bookings booking, Timeslots timeslot) {
 		super();
 		this.bookingid = bookingId;
@@ -74,11 +72,61 @@ public class BookingDetails {
 		this.booking = booking;
 		this.facilities=facilities;
 		this.timeslots = timeslot;
-	}
+			}
+
 	/**Getter / Setter**/
+	
 	public Timeslots getTimeslot() {
 		return timeslots;
 	}
+	public int getBookingid() {
+		return bookingid;
+	}
+
+	public void setBookingid(int bookingid) {
+		this.bookingid = bookingid;
+	}
+
+	public int getFacilityid() {
+		return facilityid;
+	}
+
+	public void setFacilityid(int facilityid) {
+		this.facilityid = facilityid;
+	}
+
+	public int getTimeslotid() {
+		return timeslotid;
+	}
+
+	public void setTimeslotid(int timeslotid) {
+		this.timeslotid = timeslotid;
+	}
+
+	public Bookings getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Bookings booking) {
+		this.booking = booking;
+	}
+
+	public Timeslots getTimeslots() {
+		return timeslots;
+	}
+
+	public void setTimeslots(Timeslots timeslots) {
+		this.timeslots = timeslots;
+	}
+
+	public Facility getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(Facility facilities) {
+		this.facilities = facilities;
+	}
+
 	public void setTimeslot(Timeslots timeslot) {
 		this.timeslots = timeslot;
 	}
@@ -110,6 +158,7 @@ public class BookingDetails {
 	public void setBookingprice(double bookingprice) {
 		this.bookingprice = bookingprice;
 	}
+	
 	
 	@Override
 	public String toString() {
@@ -167,6 +216,5 @@ public class BookingDetails {
 			return false;
 		return true;
 	}
-	
 	
 }
