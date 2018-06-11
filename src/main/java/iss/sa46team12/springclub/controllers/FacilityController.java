@@ -55,14 +55,13 @@ public class FacilityController {
 	@RequestMapping(value = "/edit/{name}", method = RequestMethod.GET)
 	public ModelAndView editFacilityPage(@PathVariable String name) {
 		ModelAndView mav = new ModelAndView("FacilityFormEdit");
-		mav.addObject("facility", facService.findFacilityByName(name));
+		//mav.addObject("facility", facService.findFacilityByName(name));
 		return mav;
 	}
 
 	@RequestMapping(value = "/edit/{name}", method = RequestMethod.POST)
 	public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, @PathVariable String name,
-			BindingResult result, final RedirectAttributes redirectAttributes) {
-		System.out.println("facility"+facility.toString());
+			BindingResult result, final RedirectAttributes redirectAttributes) {		
 		if (result.hasErrors())
 			return new ModelAndView("StudentFormEdit");
 		facService.editFacility(facility);
