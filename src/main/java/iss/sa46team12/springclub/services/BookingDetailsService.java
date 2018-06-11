@@ -6,6 +6,5 @@ import iss.sa46team12.springclub.models.BookingDetails;
 
 public interface BookingDetailsService {
 
-	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate();
-	//LocalDateTime bdate, 
+	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid);
 }
