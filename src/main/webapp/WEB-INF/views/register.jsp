@@ -183,7 +183,7 @@
 				</div>
 			</div>
 
-			<div style="text-align: center">
+			<div class="row" style="text-align: center">
 				<input type="submit" value="Submit"/>
 			</div>	
 
