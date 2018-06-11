@@ -1,6 +1,8 @@
 package iss.sa46team12.springclub.services;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -15,12 +17,13 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 
 	@Resource
 	BookingDetailsRepository bookingDetails;
-	@Override
 	
+	@Override
 	@Transactional
-	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid) {
+	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid, Date bdate) {
 		
-		return bookingDetails.findAllConfirmedBookingsByCourtAndDate(fid);
+		return bookingDetails.findAllConfirmedBookingsByCourtAndDate(fid, bdate);
+
 	}
 
 }

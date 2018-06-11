@@ -27,6 +27,7 @@
 						<td>${bookingDetailsList.facilityid}</td>
 						<td>${bookingDetailsList.timeslotid}</td>
 						<td>${bookingDetailsList.getTimeslot().time}</td>
+						<td>${bookingDetailsList.bookingdate}</td>
 					</tr>
 					
 				</c:forEach>
