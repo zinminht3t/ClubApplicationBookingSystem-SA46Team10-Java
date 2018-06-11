@@ -1,10 +1,16 @@
 package iss.sa46team12.springclub.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +28,9 @@ public class User{
 	private String password;
 	private String role;
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy="users", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Bookings> bookings;
 	
 	public int getUserid() {
 		return userId;
@@ -103,4 +112,7 @@ public class User{
 	public void setRole(String role){
 		this.role=role;
 	}
+
+	
+	
 }
