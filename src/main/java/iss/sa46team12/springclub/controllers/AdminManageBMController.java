@@ -23,10 +23,9 @@ import iss.sa46team12.springclub.services.UserService;
 @RestController
 @XmlRootElement
 
-public class AdminManageBMController {
+//keep this class for obtaining JSON of list of confirmed bookings
 
-//	@Autowired
-//	UserService uService;
+public class AdminManageBMController {
 	
 	@Autowired
 	BookingsService bookingService;
@@ -37,18 +36,8 @@ public class AdminManageBMController {
         System.out.println("==== in greeting ====");
         ArrayList<Bookings> cfmBookingList = new ArrayList<Bookings>();
         cfmBookingList = bookingService.findAllConfirmedBookings();
-//        Bookings b = bookingService.findBooking(1);
         
         return cfmBookingList;
     }
-    
-//    public ArrayList<User> us() {
-//        System.out.println("==== in greeting ====");
-//        User user = uService.findUserById(1);
-//        ArrayList<User> list = new ArrayList<User>();
-//        list= uService.getAllUsers();
-//        
-//        return list;
-//    }
 
 }
