@@ -20,7 +20,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 	@Transactional
 	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate() {
 		
-		return bookingDetails.findAllConfirmedBookingsByCourtAndDate();
+		///return bookingDetails.findAllConfirmedBookingsByCourtAndDate();
 		//LocalDateTime bdate, 
 	}
 
