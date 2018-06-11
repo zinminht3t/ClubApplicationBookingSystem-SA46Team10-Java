@@ -21,5 +21,5 @@ public interface UserService {
 	
 	ArrayList<User> getAllUsers();
 	
-//	User authenticate(String uname, String pwd);
+	User authenticate(String uname, String pwd);
 }

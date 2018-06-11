@@ -25,6 +25,8 @@ public class AdminController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
 	FacilityService facService;
 
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
