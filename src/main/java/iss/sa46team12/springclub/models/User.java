@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -19,6 +21,7 @@ public class User {
 	private String email;
 	@Column(name = "nric")
 	private String nric;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dateofbirth")
 	private Date dateofbirth;
 	@Column(name = "address")
