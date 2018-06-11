@@ -30,7 +30,7 @@ public class RegisterController {
 	@Autowired
 	private UserValidator uValidator;
 	
-	@InitBinder("users")
+	@InitBinder("user")
 	private void initUserBinder(WebDataBinder binder) {
 		binder.addValidators(uValidator);
 	}
@@ -39,20 +39,22 @@ public class RegisterController {
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.GET)
 	public ModelAndView logic(@PathVariable String selectedPackage, Model model) {
 		
-		ModelAndView mav = new ModelAndView("register", "users", new User());
+		ModelAndView mav = new ModelAndView("register", "user", new User());
 		model.addAttribute("packageSelected", selectedPackage);
 		return mav;
 	}
 	
 			
-	@RequestMapping(value = "/register/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@ModelAttribute @Valid User users, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 
+		ModelAndView mav = new ModelAndView();
+		
 		if (result.hasErrors())
 			return new ModelAndView("register");
 
-		ModelAndView mav = new ModelAndView();
+		
 		String message = "New user " + users.getUserId() + " was successfully created.";
 		
 		users.setGender("Male");
