@@ -17,27 +17,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import iss.sa46team12.springclub.models.Users;
-import iss.sa46team12.springclub.services.UsersService;
+import iss.sa46team12.springclub.models.User;
+import iss.sa46team12.springclub.services.UserService;
 
 @Controller
 public class RegisterController {
 	
 	@Autowired
-	private UsersService uService;
+	private UserService uService;
 	
 
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.GET)
 	public ModelAndView logic(@PathVariable String selectedPackage, Model model) {
 		
-		ModelAndView mav = new ModelAndView("register", "users", new Users());
+		ModelAndView mav = new ModelAndView("register", "users", new User());
 		model.addAttribute("packageSelected", selectedPackage);
 		return mav;
 	}
 	
 			
 	@RequestMapping(value = "/register/create", method = RequestMethod.POST)
-	public ModelAndView createNewUser(@ModelAttribute @Valid Users users, BindingResult result,
+	public ModelAndView createNewUser(@ModelAttribute @Valid User users, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors())
