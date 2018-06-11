@@ -1,0 +1,50 @@
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+h1 {
+	margin: .67em 0;
+	text-align: center;
+	font-size: 3em;
+}
+
+h4,
+ {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+.row {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.col-xs-12 {
+	width: 100%;
+}
+
+table {
+	background-color: transparent;
+}
+
+th {
+	text-align: center;
+	background-color: black;
+	color: white;
+}
+
+td {
+	padding-left: 10px;
+}
+
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}

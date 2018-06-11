@@ -33,6 +33,7 @@
 				<h4>Account</h4>
 				<div class="input-group input-group-icon">
 					<form:input path="fullname" type="text" placeholder="Full Name" />
+					<form:errors path="fullname" cssStyle="color: red;" />
 					<div class="input-icon">
 						<i class="fa fa-user"></i>
 					</div>
