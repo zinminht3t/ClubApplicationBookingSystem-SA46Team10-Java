@@ -102,8 +102,7 @@
 
 			<div class="row">
 				<h4>Package</h4>
-				<div class="input-group1">
-
+				<div class="input-group">
 					<c:set var="selectedPackage" value="${selectedPackage}" />
 					<c:choose>
 						<c:when test="${selectedPackage eq 'selectedPackage2'}">
