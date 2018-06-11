@@ -1,5 +1,9 @@
 package iss.sa46team12.springclub.repositories;
 
-public class UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import iss.sa46team12.springclub.models.User;
+
+public interface UserRepository extends JpaRepository<User, String> {
 
 }

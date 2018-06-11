@@ -80,14 +80,6 @@ public class Facility {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
-
-	@Override
-	public String toString() {
-		return "Facility [facilityID=" + facilityID + ", facilityName=" + facilityName + ", court=" + court
-				+ ", remark=" + remark + ", images=" + imagePath + ", active=" + active + "]";
-	}
-
-	
 	
 	
 }

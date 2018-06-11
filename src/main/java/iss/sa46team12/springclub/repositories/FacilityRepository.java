@@ -10,10 +10,6 @@ import iss.sa46team12.springclub.models.Facility;
 public interface FacilityRepository extends JpaRepository<Facility, String> {
 
 	
-
-	
-	
-	
 }
 
 

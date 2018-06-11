@@ -1,5 +1,18 @@
 package iss.sa46team12.springclub.services;
 
-public class UserService {
+import java.util.ArrayList;
+
+import iss.sa46team12.springclub.models.User;
+
+public interface UserService {
+
+	ArrayList<User> findAllUsers();
+	
+	//User findUserByNric(String nric);		
+
+	User editUser(User u);
+
+	ArrayList<User> findUserByCriteria(User user);
+
 
 }

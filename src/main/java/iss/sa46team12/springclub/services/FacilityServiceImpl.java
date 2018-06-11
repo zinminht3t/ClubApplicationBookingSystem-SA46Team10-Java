@@ -24,19 +24,15 @@ public class FacilityServiceImpl implements FacilityService {
 		
 	@Override
 	@Transactional
-	public Facility findFacilityByName(String name) {
-		System.out.println("Facility Name"+name);
-		Facility facility = facrepo.findOne(name);
-		System.out.println(facility.toString());
+	public Facility findFacilityByName(String name) {		
+		Facility facility = facrepo.findOne(name);	
 		return facility;
 	}
 
 	@Override
 	@Transactional
-	public Facility findFacilityById(String id) {
-		System.out.println("Facility ID"+id);
+	public Facility findFacilityById(String id) {	
 		Facility facility = facrepo.findOne(id);
-		System.out.println(facility.toString());
 		return facility;
 	}
 
