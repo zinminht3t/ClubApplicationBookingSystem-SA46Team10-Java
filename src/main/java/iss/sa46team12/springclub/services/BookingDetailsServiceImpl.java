@@ -22,6 +22,8 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 		
 		///return bookingDetails.findAllConfirmedBookingsByCourtAndDate();
 		//LocalDateTime bdate, 
+		//Temporary Added null
+		return null;
 	}
 
 }

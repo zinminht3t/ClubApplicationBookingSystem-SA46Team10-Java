@@ -18,6 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import iss.sa46team12.springclub.models.BookingDetails;
+import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Maintenance;
 
 /**
@@ -42,7 +43,7 @@ public class CalendarTile {
 		return this.bookingsList;
 	}
 	
-	public void setBookingList(ArrayList<Bookings> list){
+	public void setBookingList(ArrayList<BookingDetails> list){
 		this.bookingsList=list;
 	}
 	
