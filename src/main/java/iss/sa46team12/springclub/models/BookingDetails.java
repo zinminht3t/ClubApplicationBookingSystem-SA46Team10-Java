@@ -2,7 +2,6 @@ package iss.sa46team12.springclub.models;
 
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -40,8 +39,8 @@ public class BookingDetails {
    private int timeslotid;
 	
 	@Column(name = "bookingdate")
-	@DateTimeFormat(pattern = "yyyy/mm/dd")
-	private Date bookingdate;
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	private LocalDateTime bookingdate;
 	@Column(name = "bookingprice")
 	private double bookingprice;
 	
@@ -66,7 +65,7 @@ public class BookingDetails {
 	}
 	
 	/**Constructor**/
-	public BookingDetails(int bookingId, Date bookingdate, Facility facilities, double bookingprice, Bookings booking, Timeslots timeslot) {
+	public BookingDetails(int bookingId, LocalDateTime bookingdate, Facility facilities, double bookingprice, Bookings booking, Timeslots timeslot) {
 		super();
 		this.bookingid = bookingId;
 		this.bookingdate = bookingdate;
@@ -145,11 +144,11 @@ public class BookingDetails {
 		this.bookingid = bookingId;
 	}
 	
-	public Date getBookingdate() {
+	public LocalDateTime getBookingdate() {
 		return bookingdate;
 	}
 	
-	public void setBookingdate(Date bookingdate) {
+	public void setBookingdate(LocalDateTime bookingdate) {
 		this.bookingdate = bookingdate;
 	}
 	

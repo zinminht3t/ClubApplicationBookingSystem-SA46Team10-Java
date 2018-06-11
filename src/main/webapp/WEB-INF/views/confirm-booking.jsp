@@ -15,7 +15,7 @@
 			   <th>FacilityID</th>
 			   <th>TimeslotID</th>
 			   <th>time</th>
-			   <th></th>			   
+			   <th>			   
 			   
 			</tr>
 		</thead>

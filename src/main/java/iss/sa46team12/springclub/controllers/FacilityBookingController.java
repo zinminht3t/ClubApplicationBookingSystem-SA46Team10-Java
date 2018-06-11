@@ -2,10 +2,9 @@ package iss.sa46team12.springclub.controllers;
 
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +23,14 @@ public class FacilityBookingController {
 	BookingDetailsService bookingDetailsService;
 	
 	@RequestMapping(value = "/confirm-booking", method = RequestMethod.GET)
-	public ModelAndView listAll() throws ParseException {
+	public ModelAndView listAll() {
 		ModelAndView mav = new ModelAndView("confirm-booking");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-		ArrayList<BookingDetails> bookingDetailsList = bookingDetailsService.findAllConfirmedBookingsByCourtAndDate(1, sdf.parse(sdf.format(new Date(2018-06-13))));
+		String str = "2018-06-14 00:00";
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+		ArrayList<BookingDetails> bookingDetailsList = bookingDetailsService.findAllConfirmedBookingsByCourtAndDate(1 , dateTime);
 		mav.addObject("bookingDetailsList", bookingDetailsList);
+		
 		return mav;
 	}
 }
