@@ -42,7 +42,7 @@
                     <a class="nav-link" href="#contactus">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                <a class="btn btn-outline-success" href="${contextPath}/login">Login</a>
+                <a class="btn btn-outline-success" href="${contextPath}/login/user">Login</a>
                 </li>
             </ul>
         </div>

@@ -11,11 +11,8 @@ import iss.sa46team12.springclub.repositories.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 	
-
-	
 	@Resource
 	UserRepository userRepository;
-
 	
 	@Override
 	@Transactional
@@ -66,4 +63,10 @@ public class UserServiceImpl implements UserService{
 //		User u = userRepository.findUserbyEmailPwd(user, pwd);
 //		return u;
 //	}
+	
+	@Transactional
+	public User authenticate(String uname, String pwd) {
+		User u = userRepository.findUserByNamePwd(uname, pwd);
+		return u;
+	}
 }
