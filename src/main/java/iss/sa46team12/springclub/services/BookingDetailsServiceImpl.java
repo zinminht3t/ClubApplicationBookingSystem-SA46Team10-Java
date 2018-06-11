@@ -1,8 +1,7 @@
 package iss.sa46team12.springclub.services;
 
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -17,13 +16,12 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 
 	@Resource
 	BookingDetailsRepository bookingDetails;
-	
 	@Override
 	@Transactional
-	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid, Date bdate) {
+	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate() {
 		
-		return bookingDetails.findAllConfirmedBookingsByCourtAndDate(fid, bdate);
-
+		return bookingDetails.findAllConfirmedBookingsByCourtAndDate();
+		//LocalDateTime bdate, 
 	}
 
 }
