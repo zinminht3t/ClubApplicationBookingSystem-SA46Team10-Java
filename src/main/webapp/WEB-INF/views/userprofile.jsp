@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -63,8 +65,8 @@
 
 							<h3>Edit Profile</h3>
 							<hr>
-							<form:form method="POST" id="users" commandName="userProfile"
-								action="e.html">
+							<form:form method="POST" id="user" modelAttribute="userProfile"
+								action="${pageContext.request.contextPath}/user/profile/edit/${userProfile.userId}">
 
 								<div class="row">
 									<h4>Account</h4>
@@ -106,7 +108,10 @@
 									<div class="col-half">
 										<h4>Date of Birth</h4>
 										<div class="input-group input-group-icon">
-											<form:input path="dateofbirth" type="date" placeholder="Date" />
+											<fmt:formatDate value="${userProfile.dateofbirth}"
+												var="dateString" pattern="yyyy-MM-dd" />
+											<form:input path="dateofbirth" type="date"
+												value="${dateString}" placeholder="Date" />
 											<div class="input-icon">
 												<i class="fa fa-calendar"></i>
 											</div>
@@ -116,10 +121,10 @@
 										<h4>Gender</h4>
 										<div class="input-group">
 											<form:radiobutton name="gender" path="gender"
-												id="gender-male" value="male"/>
+												id="gender-male" value="male" />
 											<label for="gender-male">Male</label>
 											<form:radiobutton name="gender" path="gender"
-												id="gender-female" value="female"/>
+												id="gender-female" value="female" />
 											<label for="gender-female">Female</label>
 										</div>
 									</div>
@@ -138,8 +143,8 @@
 						<div class="col-md-5 col-sm-12">
 							<h3>Change Password</h3>
 							<hr>
-							<form:form method="POST" id="changeUserPassword" commandName="changeUserPassword"
-								action="e.html">
+							<form:form method="POST" id="changeUserPassword"
+								commandName="changeUserPassword" action="e.html">
 
 								<h4>Password</h4>
 								<div class="input-group input-group-icon">
