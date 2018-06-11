@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import iss.sa46team12.springclub.models.BookingDetails;
 
 public interface BookingDetailsRepository extends JpaRepository<BookingDetails, Integer> {
-	@Query("SELECT 	b from Bookings b WHERE b.status = 'CONFIRMED' AND b.bookingdate = :bdate AND b.facilityid = :fid")
-	ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(@Param("bdate") LocalDateTime bdate, @Param("fid") Integer fid );
+	//@Query("SELECT 	b from BookingDetails b WHERE b.status = 'CONFIRMED'")
+	//ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate();
+	//@Param("bdate") LocalDateTime bdate,
 }
