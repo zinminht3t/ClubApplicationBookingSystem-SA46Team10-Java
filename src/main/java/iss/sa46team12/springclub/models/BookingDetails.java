@@ -5,92 +5,167 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * BookingDetails class
  *
  * @version $Revision: 1.0
  */
+
 @Entity
+@IdClass(BookingId.class)
 @Table(name = "bookingdetails")
 public class BookingDetails {
 	/**Attributes for BookingDetails**/
-	@EmbeddedId
-	private BookingId bookingId;
-	@Temporal(TemporalType.TIMESTAMP)
+   @Id
+   @Column(insertable = false, updatable = false)
+   private int bookingid;
+   @Id
+   @Column(insertable = false, updatable = false)
+   private int facilityid;
+   @Id
+   @Column(insertable = false, updatable = false)
+   private int timeslotid;
+	
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime bookingdate;
 	@Column(name = "bookingprice")
 	private double bookingprice;
-	public BookingId getBookingId() {
-		return bookingId;
-	}
 	
-	/*Reverse Mapping*/
+	/*Reverse Mapping */
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "bookingid")
 	private Bookings booking;
 	
-	/** *                        ***/
-	/* Facility Mapping code here */
-	/* *                        * */
-	/***                        ***/
-	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="timeslotid")
-	private Timeslots timeslot;
+	private Timeslots timeslots;
 	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="facilityid")
+	private Facility facilities;
 	
+	/**Constructor to Initialize Booking model object**/
+	public BookingDetails() {
+	}
 	
 	/**Constructor**/
-	public BookingDetails(BookingId bookingId, LocalDateTime bookingdate, double bookingprice, Bookings booking, Timeslots timeslot) {
+	public BookingDetails(int bookingId, LocalDateTime bookingdate, Facility facilities, double bookingprice, Bookings booking, Timeslots timeslot) {
 		super();
-		this.bookingId = bookingId;
+		this.bookingid = bookingId;
 		this.bookingdate = bookingdate;
 		this.bookingprice = bookingprice;
 		this.booking = booking;
-		this.timeslot = timeslot;
-	}
+		this.facilities=facilities;
+		this.timeslots = timeslot;
+			}
+
 	/**Getter / Setter**/
 	public Timeslots getTimeslot() {
-		return timeslot;
+		return timeslots;
 	}
 	public void setTimeslot(Timeslots timeslot) {
-		this.timeslot = timeslot;
+		this.timeslots = timeslot;
 	}
-	public void setBookingId(BookingId bookingId) {
-		this.bookingId = bookingId;
+	
+	public Facility getFacility() {
+		return facilities;
 	}
+	public void setFacility(Facility facility) {
+		this.facilities = facility;
+	}
+	
+	
+	public void setBookingId(int bookingId) {
+		this.bookingid = bookingId;
+	}
+	
 	public LocalDateTime getBookingdate() {
 		return bookingdate;
 	}
+	
 	public void setBookingdate(LocalDateTime bookingdate) {
 		this.bookingdate = bookingdate;
 	}
+	
 	public double getBookingprice() {
 		return bookingprice;
 	}
+	
 	public void setBookingprice(double bookingprice) {
 		this.bookingprice = bookingprice;
 	}
 	
-	public Bookings getBooking() {
-		return booking;
-	}
-	public void setBooking(Bookings booking) {
-		this.booking = booking;
-	}
+	
 	@Override
 	public String toString() {
-		return "BookingDetails [bookingId=" + bookingId + ", bookingdate=" + bookingdate + ", bookingprice="
+
+		return "BookingDetails [bookingId=" + bookingid + ", bookingdate=" + bookingdate + ", bookingprice="
 				+ bookingprice + ", booking=" + booking + "]";
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((booking == null) ? 0 : booking.hashCode());
+		result = prime * result + ((bookingdate == null) ? 0 : bookingdate.hashCode());
+		result = prime * result + bookingid;
+		long temp;
+		temp = Double.doubleToLongBits(bookingprice);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + facilityid;
+		result = prime * result + timeslotid;
+		result = prime * result + ((timeslots == null) ? 0 : timeslots.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookingDetails other = (BookingDetails) obj;
+		if (booking == null) {
+			if (other.booking != null)
+				return false;
+		} else if (!booking.equals(other.booking))
+			return false;
+		if (bookingdate == null) {
+			if (other.bookingdate != null)
+				return false;
+		} else if (!bookingdate.equals(other.bookingdate))
+			return false;
+		if (bookingid != other.bookingid)
+			return false;
+		if (Double.doubleToLongBits(bookingprice) != Double.doubleToLongBits(other.bookingprice))
+			return false;
+		if (facilityid != other.facilityid)
+			return false;
+		if (timeslotid != other.timeslotid)
+			return false;
+		if (timeslots == null) {
+			if (other.timeslots != null)
+				return false;
+		} else if (!timeslots.equals(other.timeslots))
+			return false;
+		return true;
+	}
+	
 }
-//For git update

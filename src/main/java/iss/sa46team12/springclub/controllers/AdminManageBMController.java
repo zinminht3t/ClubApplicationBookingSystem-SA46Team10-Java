@@ -1,5 +1,7 @@
 package iss.sa46team12.springclub.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -7,24 +9,46 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
+import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Greeting;
+import iss.sa46team12.springclub.models.User;
+import iss.sa46team12.springclub.services.BookingsService;
+import iss.sa46team12.springclub.services.FacilityService;
+import iss.sa46team12.springclub.services.UserService;
 
 @RestController
 @XmlRootElement
 
 public class AdminManageBMController {
 
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-
+//	@Autowired
+//	UserService uService;
+	
+	@Autowired
+	BookingsService bookingService;
+	
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value="/admin/manageBM",method = RequestMethod.GET)
-    public Greeting greeting(@RequestParam(required=false, defaultValue="World") String name) {
+    public List<Bookings> getBookingList() {
         System.out.println("==== in greeting ====");
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+        ArrayList<Bookings> cfmBookingList = new ArrayList<Bookings>();
+        cfmBookingList = bookingService.findAllConfirmedBookings();
+//        Bookings b = bookingService.findBooking(1);
+        
+        return cfmBookingList;
     }
+    
+//    public ArrayList<User> us() {
+//        System.out.println("==== in greeting ====");
+//        User user = uService.findUserById(1);
+//        ArrayList<User> list = new ArrayList<User>();
+//        list= uService.getAllUsers();
+//        
+//        return list;
+//    }
 
 }

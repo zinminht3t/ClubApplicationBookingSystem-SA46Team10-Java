@@ -11,12 +11,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Bookings class
@@ -31,23 +34,33 @@ public class Bookings {
 	//private static final String CANCELLED = "CANCELLED";
 	
 	/**Attributes for Booking**/
+	
+	/**for pri key**/
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "bookingid")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookingid;
-	@Temporal(TemporalType.TIMESTAMP)
+    
+
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="userid")
+	private User users;
+	
+	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "transactiontime")
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private LocalDateTime transactiontime;
-	@Column(name = "userid")
-	private int userid;
 	@Column(name = "total")
 	private int total;
 	@Column(name = "status")
 	private String status;
+	
+	
 	/*Mapping*/
-	@OneToMany(mappedBy="bookings", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<BookingDetails> bookings;
+	@JsonManagedReference
+	@OneToMany(mappedBy="booking", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<BookingDetails> bookingEvents = new ArrayList<BookingDetails>();
 	
 	/**Constructor to Initialize Booking model object**/
 	public Bookings() {
@@ -55,13 +68,13 @@ public class Bookings {
 	public Bookings(int bookingid) {
 		this.bookingid = bookingid;
 	}	
-	public Bookings(int bookingid, LocalDateTime transactiontime, int userid, int total, String status, ArrayList<BookingDetails> bookings) {
+	public Bookings(int bookingid, LocalDateTime transactiontime, User user, int total, String status, ArrayList<BookingDetails> bookings) {
 		this.bookingid = bookingid;
 		this.transactiontime = transactiontime;
-		this.userid = userid;
+		this.users = user;
 		this.total = total;
 		this.status = status;
-		this.bookings.addAll(bookings);
+		this.bookingEvents.addAll(bookings);
 	}
 	/**Getter Setters**/
 	public int getBookingid() {
@@ -76,12 +89,14 @@ public class Bookings {
 	public void setTransactiontime(LocalDateTime transactiontime) {
 		this.transactiontime = transactiontime;
 	}
-	public int getUserid() {
-		return userid;
+	
+	public User getUser() {
+		return users;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUser(User user) {
+		this.users = user;
 	}
+	
 	public int getTotal() {
 		return total;
 	}
@@ -96,17 +111,18 @@ public class Bookings {
 	}
 	
 	public List<BookingDetails> getBookings() {
-		return (new ArrayList<BookingDetails>(bookings));
-	}
-	public void setBookings(ArrayList<BookingDetails> bookings) {
-		this.bookings.addAll(bookings);
-	}
-	/**To String**/
-	@Override
-	public String toString() {
-		return "Bookings [bookingid=" + bookingid + ", transactiontime=" + transactiontime + ", userid=" + userid
-				+ ", total=" + total + ", status=" + status + "]";
+		return (new ArrayList<BookingDetails>(bookingEvents));
 	}
 	
+	public void setBookings(ArrayList<BookingDetails> bookings) {
+		this.bookingEvents.addAll(bookings);
+	}
+	/**To String**/
+
+//	@Override
+//	public String toString() {
+//		return "Bookings [bookingid=" + bookingid + ", transactiontime=" + transactiontime + ", userid=" + userid
+//				+ ", total=" + total + ", status=" + status + "]";
+//	}
+	
 }
-//For Git Update

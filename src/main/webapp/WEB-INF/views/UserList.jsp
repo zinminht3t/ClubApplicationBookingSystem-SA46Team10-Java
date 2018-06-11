@@ -50,7 +50,7 @@
 				<tfoot>
 					<c:forEach var="user" items="${userlist}">
 						<tr class="listRecord">
-							<td>${user.userid}</td>
+							<td>${user.userId}</td>
 							<td>${user.fullname}</td>
 							<td>${user.nric}</td>
 							<td><fmt:formatDate pattern="dd-MM-yyyy" value="${user.dateofbirth}"/></td>

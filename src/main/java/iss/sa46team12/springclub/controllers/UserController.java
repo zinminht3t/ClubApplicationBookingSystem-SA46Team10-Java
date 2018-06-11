@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.controllers;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.models.User;
-import iss.sa46team12.springclub.services.UserService; 
+import iss.sa46team12.springclub.services.UserService;
 
 @RequestMapping("/admin/user")
 @Controller
@@ -23,19 +24,19 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	 
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView listAll() {
 		ModelAndView mav = new ModelAndView("UserList");
-		ArrayList<User> userlist = userService.findAllUsers();		
+		ArrayList<User> userlist = userService.findAllUsers();
 		mav.addObject("userlist", userlist);
 		return mav;
-	}	
+	}
 
 	@RequestMapping(value = "/edit/{nric}", method = RequestMethod.GET)
 	public ModelAndView editUserPage(@PathVariable String nric) {
 		ModelAndView mav = new ModelAndView("UserFormEdit");
-		//mav.addObject("user", userService.findUserByNric(nric));
+		// mav.addObject("user", userService.findUserByNric(nric));
 		return mav;
 	}
 
@@ -46,8 +47,36 @@ public class UserController {
 			return new ModelAndView("UserFormEdit");
 		userService.editUser(user);
 		ModelAndView mav = new ModelAndView("redirect:/admin/user/edit");
-		String message = "User" + user.getUserid() + " was successfully updated.";		
+		String message = "User" + user.getUserId() + " was successfully updated.";		
 		return mav;
 	}
-	
+
 }
+// package iss.sa46team12.springclub.controllers;
+// import java.util.ArrayList;
+//
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.RequestMethod;
+// import org.springframework.web.servlet.ModelAndView;
+//
+// import iss.sa46team12.springclub.models.User;
+// import iss.sa46team12.springclub.services.UserService;
+//
+//
+// @RequestMapping(value="/user")
+// @Controller
+// public class UserController {
+//
+// @Autowired
+// UserService uService;
+//
+// @RequestMapping(value = "/userprofile", method = RequestMethod.GET)
+// public ModelAndView listAll() {
+// ModelAndView mav = new ModelAndView("UserProfile");
+// User userProfile = uService.findUserById(1);
+// mav.addObject("userProfile", userProfile);
+// return mav;
+// }
+// }
