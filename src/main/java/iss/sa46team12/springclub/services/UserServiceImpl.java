@@ -11,14 +11,29 @@ import iss.sa46team12.springclub.repositories.UserRepository;
 public class UserServiceImpl implements UserService{
 	
 
+	
 	@Resource
 	UserRepository userRepository;
+	
+	@Override
+	@Transactional
+	public User createUser(User users) {
+		return userRepository.saveAndFlush(users);
+	}
 	
 	@Override
 	@Transactional
 	public User findUserById(Integer userId) {
 		return userRepository.findOne(userId);
 	}
+
+	@Override
+	@Transactional
+	public ArrayList<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return (ArrayList<User>) userRepository.findAll();	
+	}
+	
 
 	@Transactional
 	public User authenticate(String user, String pwd) {
