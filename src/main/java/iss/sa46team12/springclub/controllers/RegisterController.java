@@ -1,8 +1,6 @@
 package iss.sa46team12.springclub.controllers;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -10,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +19,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.UserService;
+import iss.sa46team12.springclub.validators.UserValidator;
 
 @Controller
 public class RegisterController {
 	
 	@Autowired
 	private UserService uService;
+	
+	@Autowired
+	private UserValidator uValidator;
+	
+	@InitBinder("users")
+	private void initUserBinder(WebDataBinder binder) {
+		binder.addValidators(uValidator);
+	}
 	
 
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.GET)

@@ -34,7 +34,7 @@
 
 					<div class="pricing-plan">
 						<img src="image/Membership-Gold.png" alt="" class="pricing-img">
-						<h2 class="pricing-header">3 Year Membership</h2>
+						<h2 class="pricing-header">3 Years Membership</h2>
 						<ul class="pricing-features">
 							<li class="pricing-features-item">Personal Chauffeur</li>
 							<li class="pricing-features-item">Access to Booking Private
