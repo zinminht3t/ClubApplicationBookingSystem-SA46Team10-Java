@@ -37,11 +37,11 @@ public class LoginController {
 		
 		UserSession us = new UserSession();
 		User u = usersvc.authenticate(user.getEmail(), user.getPassword());
-			if (u.getNric() != null) {
-				
+			if (u != null) {
 				us.setUser(u);
 				// PUT CODE FOR SETTING SESSION ID
 				us.setSessionId(session.getId());
+				session.setAttribute("returnpage", mav);
 				
 				if(u.getRole().equals("admin") && u.isActive() == (true)) {
 					session.setAttribute("Role", "admin");
@@ -52,6 +52,8 @@ public class LoginController {
 				if(u.getRole().equals("member") && u.isActive() == true){
 					session.setAttribute("Role", "member");
 					session.setAttribute("UserID", u.getUserId());
+//					mav = (ModelAndView) session.getAttribute("returnpage");
+					//session.getAttribute
 					mav = new ModelAndView("redirect:/facilities");
 				}
 				else {

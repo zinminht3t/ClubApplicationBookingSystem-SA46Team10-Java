@@ -1,5 +1,6 @@
 package iss.sa46team12.springclub.repositories;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,4 +25,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	@Query("SELECT Count(u) from User u where gender = 'female'")
 	int countFemaleUsers();
+	
+//	@Query("SELECT u.* FROM User u INNER JOIN Subscription s ON u.userid=s.userid where s.expirydate=:date")
+//	ArrayList <User> findUserByDate(@Param("date") Date date);
 }

@@ -58,12 +58,9 @@ public class RegisterController {
 		
 		if (result.hasErrors())
 			return new ModelAndView("register");
-
 		
 		String message = "New user " + users.getUserId() + " was successfully created.";
-		
-		users.setGender("Male");
-		
+
 		String dayOfBirth = request.getParameter("dayOfBirth");
 		String monthOfBirth = request.getParameter("monthOfBirth");
 		String yearOfBirth = request.getParameter("yearOfBirth");
@@ -75,13 +72,17 @@ public class RegisterController {
         Calendar cal = new GregorianCalendar(year, month-1, day);
         Date date = cal.getTime();   
         
-//        Date date = new Date();
 		users.setDateofbirth(date);
 		
 		users.setRole("Member");
 		users.setActive(true);
 		
 		uService.createUser(users);
+		
+		String chosenPackage = request.getParameter("chosen-package");
+		
+		System.out.println(chosenPackage);
+		
 		mav.setViewName("redirect:/");
 
 		redirectAttributes.addFlashAttribute("message", message);
