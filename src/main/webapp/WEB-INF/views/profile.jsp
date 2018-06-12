@@ -256,7 +256,7 @@
 										Membership</h5>
 
 									<c:choose>
-										<c:when test="${dayleft < 0}">
+										<c:when test="${dayleft <= 0}">
 											<h6 class="card-subtitle mb-2 text-danger">Your account
 												has already been expired! Please Renew!</h6>
 										</c:when>

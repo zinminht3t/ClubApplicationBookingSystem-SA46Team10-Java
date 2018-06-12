@@ -33,14 +33,14 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 	@Override
 	@Transactional
 	public ArrayList<Subscription> findUserByDate(Date date) {
-		ArrayList<Subscription> getuserbydate = facrepo.findByDate(date);
+		ArrayList<Subscription> getuserbydate = srepo.findByDate(date);
 		return getuserbydate;
 	}
 	
 	@Override
 	@Transactional
 	public ArrayList<Subscription> findall(){
-		return (ArrayList<Subscription>) facrepo.findAll();
+		return (ArrayList<Subscription>) srepo.findAll();
 	}
 
 	

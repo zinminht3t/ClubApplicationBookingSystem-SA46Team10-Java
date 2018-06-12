@@ -183,7 +183,7 @@ public class UserController {
 		newSub.setPackageid(1);
 		newSub.setUserid(userid);
 
-		if (sp.getPackageyears() == "1 Year") {
+		if (sp.getPackageyears().equals("1 Year")) {
 			newSub.setPackageid(selectedPackage);
 			Calendar nc = Calendar.getInstance();
 			nc.setTime(newSub.getJoindate());
