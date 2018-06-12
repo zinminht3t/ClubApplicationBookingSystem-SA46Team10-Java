@@ -6,4 +6,6 @@ public interface SubscriptionService {
 
 	Subscription findActiveSubscription(int i);
 
+	Subscription createSubscription(Subscription newSub);
+
 }

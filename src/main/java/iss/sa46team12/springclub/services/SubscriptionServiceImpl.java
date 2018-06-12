@@ -18,7 +18,14 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 	@Override
 	@Transactional
 	public Subscription findActiveSubscription(int i) {
-		return srepo.findOne(1);
+		return srepo.findActiveSubscription(1);
+	}
+
+	@Override
+	@Transactional
+	public Subscription createSubscription(Subscription newSub) {
+		return srepo.saveAndFlush(newSub);
+		
 	}
 	
 	

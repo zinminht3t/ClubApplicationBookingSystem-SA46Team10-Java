@@ -12,4 +12,6 @@ public interface SubscriptionPackageService {
 	
 	ArrayList<SubscriptionPackage> findActiveSubscriptionPackages();
 
+	SubscriptionPackage findPackage(int packageid);
+
 }
