@@ -10,9 +10,13 @@ public interface UserService {
 
 	ArrayList<User> findAllUsers();
 	
+<<<<<<< HEAD
 	User findByEmail(String uname);
 	
 	//User findUserByNric(String nric);		
+=======
+//	User findUserByNric(String nric);		
+>>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject
 
 	User editUser(User u);
 
