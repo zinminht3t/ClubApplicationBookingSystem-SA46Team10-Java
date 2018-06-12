@@ -12,11 +12,11 @@ public interface ReportService {
 	ArrayList<Facility> findAllFacilities();	
 	Facility findFacilityByName(String name);
 	Facility findFacilityById(String id);	
-	Facility createFacility(Facility fac);
-	Facility editFacility(Facility fac);
 	ArrayList<Facility> findFacilityByCriteria(Facility facility);
 	
 	//users
+	int findNumOfMales();
+	int findNumOfFemales();
 	User findUserById(Integer id);		
 	ArrayList<User> getAllUsers();
 	
@@ -27,6 +27,4 @@ public interface ReportService {
 	Bookings createBooking(Bookings booking);
 	Bookings changeBooking(Bookings booking);
 	void removeBooking(Bookings booking);
-	int findNumOfMales();
-	
 }

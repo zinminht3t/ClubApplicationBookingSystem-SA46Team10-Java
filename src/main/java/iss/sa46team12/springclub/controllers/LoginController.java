@@ -54,6 +54,7 @@ public class LoginController {
 					session.setAttribute("UserID", u.getUserId());
 //					mav = (ModelAndView) session.getAttribute("returnpage");
 					//session.getAttribute
+					mav = new ModelAndView("redirect:/facilities");
 				}
 				else {
 					mav = new ModelAndView("login","errormsg", "Your Account Has Expired. Please Register Again.");
