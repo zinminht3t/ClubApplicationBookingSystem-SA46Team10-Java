@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -17,16 +18,20 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Facility {
 	
 	@Id
+	@Column(name = "facilityid")
 	private int facilityID ;
+	@Column(name = "facilityname")
 	private String facilityName;
 	private String court;
 	private String remark;
+	@Column(name = "imagepath")
 	private String imagePath;
 	private boolean active = true;
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy="facilities", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
+	
 
 	//Constructors
 	public Facility() {

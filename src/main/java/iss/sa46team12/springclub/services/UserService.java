@@ -9,7 +9,7 @@ public interface UserService {
 
 	ArrayList<User> findAllUsers();
 	
-	//User findUserByNric(String nric);		
+//	User findUserByNric(String nric);		
 
 	User editUser(User u);
 

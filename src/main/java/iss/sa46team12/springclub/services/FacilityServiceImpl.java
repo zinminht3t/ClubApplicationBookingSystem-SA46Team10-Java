@@ -21,25 +21,24 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findAllFacilities() {
 		return (ArrayList<Facility>) facrepo.findAll();	
 		}
-		
+	
+//	@Override
+//	@Transactional
+//	public Facility findFacilityByName(String name) {		
+//		Facility facility = facrepo.findOne(name);	
+//		return facility;
+//	}
+	
 	@Override
 	@Transactional
-	public Facility findFacilityByName(String name) {		
-		Facility facility = facrepo.findOne(name);	
-		return facility;
+	public Facility findFacilityById(Integer fid) {
+		return facrepo.findOne(fid);		 
 	}
-
+	
 	@Override
 	@Transactional
-	public Facility findFacilityById(String id) {	
-		Facility facility = facrepo.findOne(id);
-		return facility;
-	}
-
-	@Override
-	@Transactional
-	public Facility createFacility(Facility fac) {
-		return facrepo.saveAndFlush(fac);
+	public Facility createFacility(Facility f) {
+		return facrepo.saveAndFlush(f);
 	}
 
 	@Override
@@ -53,5 +52,4 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findFacilityByCriteria(Facility facility) {
 		return null;
 	}
-
 }

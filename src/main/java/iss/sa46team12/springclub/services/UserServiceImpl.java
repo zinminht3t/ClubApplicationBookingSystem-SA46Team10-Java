@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
 //	@Override
 //	@Transactional
 //	public User findUserByNric(String nric) {
-//		User user = urepo.findOne(nric);		 
+//		User user = userRepository.findOne(nric);		 
 //		return user;
 //	}	
 	
