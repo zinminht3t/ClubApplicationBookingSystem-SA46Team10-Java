@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,11 @@ public class AdminController {
 	
 	@Autowired
 	FacilityService facService;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String adminhome() {
+		return "admin";
+	}
 
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public ModelAndView listAll() {
