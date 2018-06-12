@@ -23,6 +23,7 @@ public class Facility {
 	@Column(name = "facilityname")
 	private String facilityName;
 	private String court;
+	private Double price;
 	private String remark;
 	@Column(name = "imagepath")
 	private String imagePath;
@@ -37,21 +38,24 @@ public class Facility {
 	public Facility() {
 		super();
 	}
-	
-	public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active) {
+		
+	public Facility(int facilityID, String facilityName, String court, Double price, String remark, String imagePath,
+			boolean active) {
 		super();
 		this.facilityID = facilityID;
 		this.facilityName = facilityName;
 		this.court = court;
+		this.price = price;
 		this.remark = remark;
 		this.imagePath = imagePath;
 		this.active = active;
 	}
-	
-	public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active, ArrayList<BookingDetails> bookingEvents) {
-		this(facilityID, facilityName, court, remark, imagePath, active);
+
+
+	//public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active, ArrayList<BookingDetails> bookingEvents) {
+		//this(facilityID, facilityName, court, remark, imagePath, active);
 //		this.bookingEvents.addAll(bookingEvents);
-	}
+//	}
 	
 //	
 //	
@@ -88,6 +92,14 @@ public class Facility {
 	public void setCourt(String court) {
 		this.court = court;
 	}
+	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
 	public boolean isActive() {
 		return active;
@@ -113,10 +125,11 @@ public class Facility {
 		this.imagePath = imagePath;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Facility [facilityID=" + facilityID + ", facilityName=" + facilityName + ", court=" + court
-				+ ", remark=" + remark + ", images=" + imagePath + ", active=" + active + "]";
+		return "Facility [facilityID=" + facilityID + ", facilityName=" + facilityName + ", court=" + court + ", price="
+				+ price + ", remark=" + remark + ", imagePath=" + imagePath + ", active=" + active + "]";
 	}
 
 	@Override

@@ -45,6 +45,11 @@
 				<td><form:errors path="court" cssStyle="color: red;" /></td>
 			</tr>
 			<tr>
+				<td><spring:message code="Price" /></td>
+				<td><form:input path="price" />
+				<td><form:errors path="price" cssStyle="color: red;" /></td>
+			</tr>			
+			<tr>
 				<td><spring:message code="Remark" /></td>
 				<td><form:input path="remark" /></td>
 				<td><form:errors path="remark" cssStyle="color: red;" /></td>
