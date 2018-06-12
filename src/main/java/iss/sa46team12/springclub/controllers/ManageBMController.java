@@ -23,7 +23,7 @@ import iss.sa46team12.springclub.services.MaintenanceService;
 
 //controller class for admin to manage bookings and maintenances
 
-@RequestMapping("/admin/bm")
+@RequestMapping("/admin")
 @Controller
 public class ManageBMController {
 
@@ -41,12 +41,45 @@ public class ManageBMController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/calendar2", method = RequestMethod.GET)
-	public ModelAndView listAllCfmMaintenances() {
-		ModelAndView mav = new ModelAndView("adminCalendar2");
+//	@RequestMapping(value = "/calendar2", method = RequestMethod.GET)
+//	public ModelAndView listAllCfmMaintenances() {
+//		ModelAndView mav = new ModelAndView("adminCalendar2");
+//		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();		
+//		mav.addObject("maintenanceList", maintenanceList);
+//		return mav;
+//	}
+	
+//	@RequestMapping(value = "/calendar/maintenance", method = RequestMethod.GET)
+//	public ModelAndView addMaintenance() {
+//        return new ModelAndView("maintenance","maintenance", new Maintenance());
+//
+//	}
+	
+	@RequestMapping(value = "/calendar/maintenance/list", method = RequestMethod.GET)
+	public ModelAndView flistAll() {
+		ModelAndView mav = new ModelAndView("MaintenanceList");
 		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();		
 		mav.addObject("maintenanceList", maintenanceList);
 		return mav;
 	}
 	
+	@RequestMapping(value = "/calendar/maintenance/create", method = RequestMethod.GET)
+	public ModelAndView newMaintenancePage() {
+		ModelAndView mav = new ModelAndView("MaintenanceFormNew", "maintenance", new Maintenance());
+		return mav;
+	}
+
+	@RequestMapping(value = "/calendar/maintenance/create", method = RequestMethod.POST)
+	public ModelAndView createNewMaintenance(@ModelAttribute @Valid Maintenance maintenance, BindingResult result,
+			final RedirectAttributes redirectAttributes) {
+		if (result.hasErrors())
+			return new ModelAndView("MaintenanceFormNew");
+		ModelAndView mav = new ModelAndView();
+		
+		maintenanceService.createMaintenance(maintenance);
+		String message = "New maintenance " + maintenance.getMaintenanceid() + " was successfully created.";
+		mav.setViewName("redirect:/admin/maintenance/list");
+		return mav;
+	}
+
 }
