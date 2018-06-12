@@ -102,10 +102,9 @@
 					<div class="col-half">
 						<h4>Gender</h4>
 						<div class="input-group">
-							<input type="radio" name="gender" value="male" id="gender-male"
-								checked="true" /> <label for="gender-male">Male</label> <input
-								type="radio" name="gender" value="female" id="gender-female" />
-							<label for="gender-female">Female</label>
+							<form:radiobutton path="gender" value="Male" label="Male" /> 							
+							<form:radiobutton path="gender" value="Female" label="Female"/>
+							<form:errors path="gender" cssStyle="color: red;" />
 						</div>
 					</div>
 				</div>
