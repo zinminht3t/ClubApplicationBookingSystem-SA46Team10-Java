@@ -21,4 +21,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("SELECT Count(u) from User u where gender = 'male'")
 	int countMaleUsers();
+	
+	@Query("SELECT Count(u) from User u where gender = 'female'")
+	int countFemaleUsers();
 }

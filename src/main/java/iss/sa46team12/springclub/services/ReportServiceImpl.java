@@ -43,18 +43,6 @@ public class ReportServiceImpl implements ReportService {
 		System.out.println(facility.toString());
 		return facility;
 	}
-
-	@Override
-	@Transactional
-	public Facility createFacility(Facility fac) {
-		return facrepo.saveAndFlush(fac);
-	}
-
-	@Override
-	@Transactional
-	public Facility editFacility(Facility fac) {
-		return facrepo.saveAndFlush(fac);
-	}
 	
 	@Override
 	@Transactional
@@ -70,6 +58,12 @@ public class ReportServiceImpl implements ReportService {
 	@Transactional
 	public int findNumOfMales() {
 		return userRepository.countMaleUsers();
+	}
+	
+	@Override
+	@Transactional
+	public int findNumOfFemales() {
+		return userRepository.countFemaleUsers();
 	}
 	
 	@Override
