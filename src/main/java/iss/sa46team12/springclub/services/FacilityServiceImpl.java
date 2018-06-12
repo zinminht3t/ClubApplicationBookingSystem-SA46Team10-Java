@@ -54,12 +54,14 @@ public class FacilityServiceImpl implements FacilityService {
 	}
 
 	@Override
+	@Transactional
 	public ArrayList<String> findAllDistinctFacilityName() {
 		// TODO Auto-generated method stub
 		return (ArrayList<String>) facrepo.findAllDistinctFacilityName();	
 	}
 
 	@Override
+	@Transactional
 	public ArrayList<String> findAllDistinctFacilityCourt() {
 		// TODO Auto-generated method stub
 		return (ArrayList<String>) facrepo.findAllDistinctFacilityCourt();	

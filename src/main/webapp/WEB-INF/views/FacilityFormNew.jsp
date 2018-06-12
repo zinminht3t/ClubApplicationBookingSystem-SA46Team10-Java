@@ -49,7 +49,6 @@
 						</div>
 					</div>
 
-
 					<div class="form-group">
 						<label class="control-label col-md-4">Court</label>
 						<div class="col-md-8">
@@ -57,6 +56,16 @@
 							<form:input path="court" type="text"
 								placeholder="Enter the court number" />
 							<form:errors path="court" cssClass="help-block" element="em" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-md-4">Price</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							<form:input path="price" type="text"
+								placeholder="Enter the price" />
+							<form:errors path="price" cssClass="help-block" element="em" />
 						</div>
 					</div>
 
@@ -114,4 +123,3 @@
 </body>
 
 </html>
-

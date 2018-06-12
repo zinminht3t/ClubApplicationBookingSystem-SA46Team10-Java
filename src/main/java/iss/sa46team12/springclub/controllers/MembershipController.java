@@ -40,7 +40,6 @@ public class MembershipController {
 		model.addAttribute("oneYear", price1Year);
 		model.addAttribute("threeYears", price3Years);
 			
-		
 		return "membership";
 	}
 

@@ -6,8 +6,7 @@
 <<<<<<< HEAD
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-=======
->>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -41,6 +40,7 @@
 							<th><spring:message code="ID" /></th>
 							<th><spring:message code="Name" /></th>
 							<th><spring:message code="Court" /></th>
+							<th><spring:message code="Price" /></th>
 							<th><spring:message code="Remark" /></th>
 							<th><spring:message code="Image Path" /></th>
 							<th><spring:message code="Active" /></th>
@@ -53,6 +53,7 @@
 								<td>${facility.facilityID}</td>
 								<td>${facility.facilityName}</td>
 								<td>${facility.court}</td>
+								<td>${facility.price}</td>
 								<td>${facility.remark}</td>
 								<td>${facility.imagePath}</td>
 								<td>

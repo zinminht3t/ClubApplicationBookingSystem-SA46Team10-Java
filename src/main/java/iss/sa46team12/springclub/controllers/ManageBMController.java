@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.controllers;
 
 import java.text.SimpleDateFormat;
@@ -49,7 +50,7 @@ public class ManageBMController {
 	
 	@InitBinder
     public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         sdf.setLenient(true);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
@@ -61,20 +62,6 @@ public class ManageBMController {
 		mav.addObject("bookingList", bookingList);
 		return mav;
 	}
-	
-//	@RequestMapping(value = "/calendar2", method = RequestMethod.GET)
-//	public ModelAndView listAllCfmMaintenances() {
-//		ModelAndView mav = new ModelAndView("adminCalendar2");
-//		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();		
-//		mav.addObject("maintenanceList", maintenanceList);
-//		return mav;
-//	}
-	
-//	@RequestMapping(value = "/calendar/maintenance", method = RequestMethod.GET)
-//	public ModelAndView addMaintenance() {
-//        return new ModelAndView("maintenance","maintenance", new Maintenance());
-//
-//	}
 	
 	@RequestMapping(value = "/calendar/maintenance/list", method = RequestMethod.GET)
 	public ModelAndView flistAll() {
@@ -112,9 +99,6 @@ public class ManageBMController {
 		String selCourtName=request.getParameter("courtName");
 		String startTimeSlot=request.getParameter("timeslotsName_start");
 		String endTimeSlot=request.getParameter("timeslotsName_end");
-//		startTimeSlot="1000";
-//		end
-        //do a facility search based on params gotten
         
 		Integer facilityID = facilityService.findByFacilityCourt(selFacilityName, selCourtName);
 		Facility f= facilityService.findFacilityById(facilityID);
@@ -129,22 +113,6 @@ public class ManageBMController {
 		maintenanceService.createMaintenance(maintenance);
 		String message = "New maintenance " + maintenance.getMaintenanceid() + " was successfully created.";
 		mav.setViewName("redirect:/admin/calendar/maintenance/list");
-		return mav;
-	}
-	
-	@RequestMapping(value = "/calendar/maintenance/selectFacilityPopup", method = RequestMethod.GET)
-	public ModelAndView showFacilitiesOptions() {
-		ModelAndView mav = new ModelAndView("selectFacilityPopup");
-		ArrayList<Facility> facilityList = facilityService.findAllFacilities();		
-		mav.addObject("facilityList", facilityList);
-		return mav;
-	}
-	
-	@RequestMapping(value = "/calendar/maintenance/selectTimeslotPopup", method = RequestMethod.GET)
-	public ModelAndView showTimeslotOptions() {
-		ModelAndView mav = new ModelAndView("selectTimeslotPopup");
-		ArrayList<Timeslots> timeslotsList = timeslotService.getAllTimeslots();		
-		mav.addObject("timeslotsList", timeslotsList);
 		return mav;
 	}
 

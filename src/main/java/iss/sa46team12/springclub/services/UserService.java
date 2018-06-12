@@ -10,6 +10,10 @@ public interface UserService {
 
 	ArrayList<User> findAllUsers();
 	
+	User findByEmail(String uname);
+	
+	//User findUserByNric(String nric);		
+
 //	User findUserByNric(String nric);		
 
 	User editUser(User u);
@@ -24,5 +28,5 @@ public interface UserService {
 	
 	User authenticate(String uname, String pwd);
 	
-//	ArrayList<User> getAllUserByDate(Date date);
+//	ArrayList<User> findUserByDate(Date date);
 }

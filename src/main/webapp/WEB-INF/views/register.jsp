@@ -46,7 +46,7 @@
 						</div>
 					</div>
 					<div class="input-group input-group-icon">
-						<form:input path="contactno" type="text"
+						<form:input path="contactno" type="number"
 							placeholder="Phone Number" />
 						<form:errors path="contactno" cssStyle="color: red;" />
 						<div class="input-icon">
@@ -118,21 +118,21 @@
 								<input type="radio" name="chosen-package" value="package1"
 									id="chosen-package-1" />
 								<label for="chosen-package-1"><span>1 Year
-										Membership $250</span></label>
+										Membership ${oneYear}</span></label>
 								<input type="radio" name="chosen-package" value="package2"
 									id="chosen-package-2" checked="true" />
 								<label for="chosen-package-2"> <span>3 Years
-										Membership $500</span></label>
+										Membership ${threeYears}</span></label>
 							</c:when>
 							<c:otherwise>
 								<input type="radio" name="chosen-package" value="package1"
 									id="chosen-package-1" checked="true" />
 								<label for="chosen-package-1"><span>1 Year
-										Membership $250</span></label>
+										Membership ${oneYear}</span></label>
 								<input type="radio" name="chosen-package" value="package2"
 									id="chosen-package-2" />
 								<label for="chosen-package-2"> <span>3 Years
-										Membership $500</span></label>
+										Membership ${threeYears}</span></label>
 							</c:otherwise>
 						</c:choose>
 					</div>

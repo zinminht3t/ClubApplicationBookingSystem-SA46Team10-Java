@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "subscriptions")
 public class Subscription {
@@ -13,7 +15,9 @@ public class Subscription {
 	private int subid;
 
 	private int userid;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date joindate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date expirydate;
 	private int packageid;
 	private Boolean active;
