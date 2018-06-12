@@ -88,59 +88,62 @@ public class Maintenance {
 		this.active = active;
 	}
 	/**Getter Setters**/
-	public int getMaintenanceId() {
+
+	public int getMaintenanceid() {
 		return maintenanceid;
 	}
-	public void setMaintenanceId(int maintenanceid) {
+
+	public void setMaintenanceid(int maintenanceid) {
 		this.maintenanceid = maintenanceid;
 	}
-	
-	public Facility getFacility() {
-		return this.facilities;
+
+	public Timeslots getTimeslots_start() {
+		return timeslots_start;
 	}
-	
-	public void setFacility(Facility f) {
-		this.facilities=f;
+
+	public void setTimeslots_start(Timeslots timeslots_start) {
+		this.timeslots_start = timeslots_start;
 	}
-	
-	public Date getStartDate() {
-		return this.startdate;
+
+	public Timeslots getTimeslots_end() {
+		return timeslots_end;
 	}
-	
-	public void setStartDate(Date startDate) {
-	    this.startdate=startDate;
+
+	public void setTimeslots_end(Timeslots timeslots_end) {
+		this.timeslots_end = timeslots_end;
 	}
-	
-	public Date getEndDate() {
-		return this.enddate;
+
+	public Facility getFacilities() {
+		return facilities;
 	}
-	
-	public void setEndDate(Date endDate) {
-	    this.enddate=endDate;
+
+	public void setFacilities(Facility facilities) {
+		this.facilities = facilities;
 	}
-	
-	public Timeslots getStartTimeSlot() {
-		return this.timeslots_start;
+
+	public Date getStartdate() {
+		return startdate;
 	}
-	
-	public void setStartTimeSlot(Timeslots timeslot) {
-		this.timeslots_start=timeslot;
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
 	}
-	
-	public Timeslots getEndTimeSlot() {
-		return this.timeslots_end;
+
+	public Date getEnddate() {
+		return enddate;
 	}
-	
-	public void setEndTimeSlot(Timeslots timeslot) {
-		this.timeslots_end=timeslot;
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
 	}
-	
-	public boolean getActiveStatus() {
-		return this.active;
+
+	public boolean isActive() {
+		return active;
 	}
-	
-	public void setActiveState(boolean active) {
-		this.active=active;
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
+
 	
 }
