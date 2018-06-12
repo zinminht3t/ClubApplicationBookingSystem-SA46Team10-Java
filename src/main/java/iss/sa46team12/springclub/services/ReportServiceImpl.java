@@ -30,14 +30,14 @@ public class ReportServiceImpl implements ReportService {
 	@Transactional
 	public Facility findFacilityByName(String name) {
 		System.out.println("Facility Name"+name);
-		Facility facility = facrepo.findOne(name);
+		Facility facility = facrepo.findOneByName(name);
 		System.out.println(facility.toString());
 		return facility;
 	}
 
 	@Override
 	@Transactional
-	public Facility findFacilityById(String id) {
+	public Facility findFacilityById(int id) {
 		System.out.println("Facility ID"+id);
 		Facility facility = facrepo.findOne(id);
 		System.out.println(facility.toString());
