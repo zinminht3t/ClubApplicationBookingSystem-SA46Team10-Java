@@ -46,7 +46,7 @@
 						</div>
 					</div>
 					<div class="input-group input-group-icon">
-						<form:input path="contactno" type="text"
+						<form:input path="contactno" type="number"
 							placeholder="Phone Number" />
 						<form:errors path="contactno" cssStyle="color: red;" />
 						<div class="input-icon">

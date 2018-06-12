@@ -41,7 +41,7 @@ public class LoginController {
 				us.setUser(u);
 				// PUT CODE FOR SETTING SESSION ID
 				us.setSessionId(session.getId());
-				session.setAttribute("returnpage", mav);
+//				session.setAttribute("returnpage", mav);
 				
 				if(u.getRole().equals("admin") && u.isActive() == (true)) {
 					session.setAttribute("Role", "admin");

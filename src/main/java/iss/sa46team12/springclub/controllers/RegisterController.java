@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,8 @@ public class RegisterController {
 
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@ModelAttribute @Valid User user, BindingResult result,
-			final RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response) {
+			final RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, 
+			HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -103,7 +105,7 @@ public class RegisterController {
 		Date date = cal.getTime();
 		user.setDateofbirth(date);
 
-		user.setRole("Member");
+		user.setRole("member");
 		user.setActive(true);
 
 		uService.createUser(user);
@@ -152,7 +154,14 @@ public class RegisterController {
 		newSubscription.setActive(true);
 		
 		sService.createSubscription(newSubscription);
-
+		
+		//Login after registering
+		UserSession us = new UserSession();
+		us.setUser(user);
+		us.setSessionId(session.getId());
+		session.setAttribute("Role", "member");
+		session.setAttribute("UserID", user.getUserId());
+		
 		mav.setViewName("redirect:/");
 
 		redirectAttributes.addFlashAttribute("message", message);
