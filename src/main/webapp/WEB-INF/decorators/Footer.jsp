@@ -13,4 +13,3 @@
         <!-- Copyright -->
 
     </div>
-    <!-- Footer -->

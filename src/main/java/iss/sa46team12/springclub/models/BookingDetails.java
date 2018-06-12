@@ -1,5 +1,6 @@
 package iss.sa46team12.springclub.models;
 
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -38,7 +39,7 @@ public class BookingDetails {
    private int timeslotid;
 	
 	@Column(name = "bookingdate")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDateTime bookingdate;
 	@Column(name = "bookingprice")
 	private double bookingprice;
