@@ -10,6 +10,10 @@ public interface UserService {
 
 	ArrayList<User> findAllUsers();
 	
+	User findByEmail(String uname);
+	
+	//User findUserByNric(String nric);		
+
 //	User findUserByNric(String nric);		
 
 	User editUser(User u);

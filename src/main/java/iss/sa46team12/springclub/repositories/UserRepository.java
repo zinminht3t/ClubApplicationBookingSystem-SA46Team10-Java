@@ -19,12 +19,17 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     
 	@Query("SELECT u FROM User u WHERE u.email=:un AND u.password=:pwd")
 	User findUserByNamePwd(@Param("un") String uname, @Param("pwd") String pwd);
+	
+	@Query("SELECT u FROM User u WHERE u.email=:un")
+	User findUserByName(@Param("un") String uname);
 
 	@Query("SELECT Count(u) from User u where gender = 'male'")
 	int countMaleUsers();
 	
 	@Query("SELECT Count(u) from User u where gender = 'female'")
 	int countFemaleUsers();
+	
+	
 	
 //	@Query("SELECT u.* FROM User u INNER JOIN Subscription s ON u.userid=s.userid where s.expirydate=:date")
 //	ArrayList <User> findUserByDate(@Param("date") Date date);
