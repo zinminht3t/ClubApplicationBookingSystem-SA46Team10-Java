@@ -23,7 +23,7 @@
 
 <body>
 
-	<form:form method="POST" commandName="facility"
+	<form:form method="POST" commandName="facilities"
 		action="${pageContext.request.contextPath}/admin/facility/create.html">
 
 		<div class="row">
@@ -91,11 +91,10 @@
 					<div class="form-group">
 						<label class="control-label col-md-4">Active</label>
 						<div class="col-md-8">
-							<!-- attribute name -->							
+							<!-- attribute name -->
 							<form:input path="active" type="text"
-								placeholder="Enter the active status" readonly="true"/>
-							<form:errors path="active" cssClass="help-block" element="em" /> 						
-							
+								placeholder="Enter the active status" />
+							<form:errors path="active" cssClass="help-block" element="em" />
 						</div>
 					</div>
 
@@ -116,6 +115,10 @@
 
 
 	</form:form>
+	
+
+
+	
 
 </body>
 
