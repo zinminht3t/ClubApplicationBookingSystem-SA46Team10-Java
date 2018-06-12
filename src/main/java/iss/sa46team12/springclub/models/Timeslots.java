@@ -43,9 +43,10 @@ public class Timeslots {
 	private List<Maintenance> maintenanceList2;
 	
 	
-//	public List<BookingDetails> getBookingdetails() {
-//		return (new ArrayList<BookingDetails> (bookingdetails));
-//	}
+	public List<BookingDetails> getBookingdetails() {
+		return (new ArrayList<BookingDetails> (bookingdetails));
+	}
+	
 	/** Constructor **/
 	public Timeslots() {
 		super();
