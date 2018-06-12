@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.services;
 
 import java.util.ArrayList;
@@ -6,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import iss.sa46team12.springclub.models.SubscriptionPackage;
 
+
 public interface SubscriptionPackageService {
 
 	ArrayList<SubscriptionPackage> findAllSubscriptionPackages();
@@ -13,5 +15,4 @@ public interface SubscriptionPackageService {
 	ArrayList<SubscriptionPackage> findActiveSubscriptionPackages();
 
 	SubscriptionPackage findPackage(int packageid);
-
 }

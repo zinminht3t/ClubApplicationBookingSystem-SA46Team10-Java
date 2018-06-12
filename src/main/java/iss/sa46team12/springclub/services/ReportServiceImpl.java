@@ -12,6 +12,7 @@ import iss.sa46team12.springclub.repositories.BookingsRepository;
 import iss.sa46team12.springclub.repositories.FacilityRepository;
 import iss.sa46team12.springclub.repositories.ReportRepository;
 import iss.sa46team12.springclub.repositories.UserRepository;
+import iss.sa46team12.springclub.repositories.ReportMaintenanceRepository;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -30,14 +31,14 @@ public class ReportServiceImpl implements ReportService {
 	@Transactional
 	public Facility findFacilityByName(String name) {
 		System.out.println("Facility Name"+name);
-		Facility facility = facrepo.findOne(name);
+		Facility facility = facrepo.findOneByName(name);
 		System.out.println(facility.toString());
 		return facility;
 	}
 
 	@Override
 	@Transactional
-	public Facility findFacilityById(String id) {
+	public Facility findFacilityById(int id) {
 		System.out.println("Facility ID"+id);
 		Facility facility = facrepo.findOne(id);
 		System.out.println(facility.toString());
@@ -125,5 +126,41 @@ public class ReportServiceImpl implements ReportService {
 	public void removeBooking(Bookings booking) {
 		// TODO Auto-generated method stub
 		bookingsRepository.delete(booking);
+	}
+	
+	//custom
+	@Resource
+	ReportRepository repoRepo;
+	
+	public int findNumOfBookingsFacil1() {
+		return repoRepo.findNumOfBookingsFacil1();
+	}
+	public int findNumOfBookingsFacil2() {
+		return repoRepo.findNumOfBookingsFacil2();
+	}
+	public int findNumOfBookingsFacil3() {
+		return repoRepo.findNumOfBookingsFacil3();
+	}
+	public int findNumOfBookingsFacil4() {
+		return repoRepo.findNumOfBookingsFacil4();
+	}	
+	
+	@Resource
+	ReportMaintenanceRepository repoMainRepo;
+	
+	public int findNumActMainFacil1() {
+		return repoMainRepo.findActiveMaintainFacil1();
+	}
+	
+	public int findNumActMainFacil2() {
+		return repoMainRepo.findActiveMaintainFacil2();
+	}
+	
+	public int findNumActMainFacil3() {
+		return repoMainRepo.findActiveMaintainFacil3();
+	}
+	
+	public int findNumActMainFacil4() {
+		return repoMainRepo.findActiveMaintainFacil4();
 	}
 }

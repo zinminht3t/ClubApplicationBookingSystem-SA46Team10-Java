@@ -23,9 +23,8 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 
 	@Override
 	@Transactional
-	public Subscription createSubscription(Subscription newSub) {
-		return srepo.saveAndFlush(newSub);
-		
+	public Subscription createSubscription(Subscription subscription) {
+		return srepo.saveAndFlush(subscription);
 	}
 	
 	
