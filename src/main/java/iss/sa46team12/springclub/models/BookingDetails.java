@@ -1,5 +1,6 @@
 package iss.sa46team12.springclub.models;
 
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -38,7 +39,7 @@ public class BookingDetails {
    private int timeslotid;
 	
 	@Column(name = "bookingdate")
-	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDateTime bookingdate;
 	@Column(name = "bookingprice")
 	private double bookingprice;
@@ -75,9 +76,58 @@ public class BookingDetails {
 			}
 
 	/**Getter / Setter**/
+	
 	public Timeslots getTimeslot() {
 		return timeslots;
 	}
+	public int getBookingid() {
+		return bookingid;
+	}
+
+	public void setBookingid(int bookingid) {
+		this.bookingid = bookingid;
+	}
+
+	public int getFacilityid() {
+		return facilityid;
+	}
+
+	public void setFacilityid(int facilityid) {
+		this.facilityid = facilityid;
+	}
+
+	public int getTimeslotid() {
+		return timeslotid;
+	}
+
+	public void setTimeslotid(int timeslotid) {
+		this.timeslotid = timeslotid;
+	}
+
+	public Bookings getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Bookings booking) {
+		this.booking = booking;
+	}
+
+	public Timeslots getTimeslots() {
+		return timeslots;
+	}
+
+	public void setTimeslots(Timeslots timeslots) {
+		this.timeslots = timeslots;
+	}
+
+	public Facility getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(Facility facilities) {
+		this.facilities = facilities;
+	}
+
 	public void setTimeslot(Timeslots timeslot) {
 		this.timeslots = timeslot;
 	}

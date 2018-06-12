@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -33,9 +34,19 @@ public class Timeslots {
 	@OneToMany(mappedBy="timeslots", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
 	
-//	public List<BookingDetails> getBookingdetails() {
-//		return (new ArrayList<BookingDetails> (bookingdetails));
-//	}
+	@JsonManagedReference
+	@OneToMany(mappedBy="timeslots_start", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Maintenance> maintenanceList;
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy="timeslots_end", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<Maintenance> maintenanceList2;
+	
+	
+	public List<BookingDetails> getBookingdetails() {
+		return (new ArrayList<BookingDetails> (bookingdetails));
+	}
+	
 	/** Constructor **/
 	public Timeslots() {
 		super();

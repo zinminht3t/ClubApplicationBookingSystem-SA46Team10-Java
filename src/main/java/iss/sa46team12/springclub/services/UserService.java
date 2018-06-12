@@ -1,6 +1,7 @@
 package iss.sa46team12.springclub.services;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import iss.sa46team12.springclub.models.User;
@@ -21,5 +22,7 @@ public interface UserService {
 	
 	ArrayList<User> getAllUsers();
 	
-//	User authenticate(String uname, String pwd);
+	User authenticate(String uname, String pwd);
+	
+//	ArrayList<User> getAllUserByDate(Date date);
 }

@@ -3,8 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<<<<<<< HEAD
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+=======
+>>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -90,5 +93,4 @@
 
 </body>
 </html>
-
 

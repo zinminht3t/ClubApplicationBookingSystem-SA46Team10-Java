@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "subsriptions")
-public class Subscription{
+@Table(name = "subscriptions")
+public class Subscription {
 	@Id
 	private int subid;
 
@@ -16,8 +16,16 @@ public class Subscription{
 	private Date joindate;
 	private Date expirydate;
 	private int packageid;
-	
-	
+	private Boolean active;
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public int getSubid() {
 		return subid;
 	}
@@ -26,35 +34,35 @@ public class Subscription{
 		this.subid = subid;
 	}
 
-	public int getUserid(){
+	public int getUserid() {
 		return userid;
 	}
 
-	public void setUserid(int userid){
-		this.userid=userid;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 
-	public Date getJoindate(){
+	public Date getJoindate() {
 		return joindate;
 	}
 
-	public void setJoindate(Date joindate){
-		this.joindate=joindate;
+	public void setJoindate(Date joindate) {
+		this.joindate = joindate;
 	}
 
-	public Date getExpirydate(){
+	public Date getExpirydate() {
 		return expirydate;
 	}
 
-	public void setExpirydate(Date expirydate){
-		this.expirydate=expirydate;
+	public void setExpirydate(Date expirydate) {
+		this.expirydate = expirydate;
 	}
 
-	public int getPackageid(){
+	public int getPackageid() {
 		return packageid;
 	}
 
-	public void setPackageid(int packageid){
-		this.packageid=packageid;
+	public void setPackageid(int packageid) {
+		this.packageid = packageid;
 	}
 }
