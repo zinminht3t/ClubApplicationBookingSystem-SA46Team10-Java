@@ -11,7 +11,10 @@ public interface FacilityService {
 
 	ArrayList<Facility> findAllFacilities();
 	
+	ArrayList<String> findAllDistinctFacilityName();
 	
+	ArrayList<String> findAllDistinctFacilityCourt();
+
 //	Facility findFacilityByName(String name);
 //
 	Facility findFacilityById(Integer fid);		
@@ -19,6 +22,8 @@ public interface FacilityService {
 	Facility createFacility(Facility f);
 
 	Facility editFacility(Facility fac);
+	
+	Integer findByFacilityCourt(String fName,String fCourt);
 
 	ArrayList<Facility> findFacilityByCriteria(Facility facility);
 

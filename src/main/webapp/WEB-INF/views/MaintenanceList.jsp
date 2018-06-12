@@ -34,9 +34,6 @@
 						<td>${maintenance.getTimeslots_start().getTime()}</td>
 						<td>${maintenance.getTimeslots_end().getTime()}</td>
 						<td>${maintenance.isActive()}</td>
-						
-						
-						
 					</tr>
 					
 			</c:forEach>

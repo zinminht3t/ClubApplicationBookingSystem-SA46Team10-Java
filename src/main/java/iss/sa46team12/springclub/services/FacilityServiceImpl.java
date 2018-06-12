@@ -52,4 +52,23 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findFacilityByCriteria(Facility facility) {
 		return null;
 	}
+
+	@Override
+	public ArrayList<String> findAllDistinctFacilityName() {
+		// TODO Auto-generated method stub
+		return (ArrayList<String>) facrepo.findAllDistinctFacilityName();	
+	}
+
+	@Override
+	public ArrayList<String> findAllDistinctFacilityCourt() {
+		// TODO Auto-generated method stub
+		return (ArrayList<String>) facrepo.findAllDistinctFacilityCourt();	
+	}
+
+	@Override
+	@Transactional
+	public Integer findByFacilityCourt(String fName, String fCourt) {
+		// TODO Auto-generated method stub
+		return facrepo.findByFacilityCourt(fName, fCourt);
+	}
 }
