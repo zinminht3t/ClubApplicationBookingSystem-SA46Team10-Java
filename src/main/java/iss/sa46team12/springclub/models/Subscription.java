@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "subsriptions")
+@Table(name = "subscriptions")
 public class Subscription {
 	@Id
 	private int subid;
