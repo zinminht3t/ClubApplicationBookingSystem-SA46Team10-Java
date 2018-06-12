@@ -101,7 +101,7 @@ public class UserController {
 		//Membership Date Percentage
 		double days = 0; //package year in days
 		double percentage = 0;
-		if(subpackage.getPackageyears() == "1 Year") {
+		if(subpackage.getPackageyears().equals("1 Year")) {
 			days = 365;
 		}
 		else {
