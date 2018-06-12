@@ -25,21 +25,22 @@
             </div>
             <div class="row justify-content-center features">
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
-                	<canvas id="mycanvas" width="300" height="300" style="margin-left:auto; margin-right:auto;"></canvas>               	
-					<script>
-							var ctx = document.getElementById("mycanvas").getContext("2d")
+                	<canvas id="mycanvas1" width="300" height="300" style="margin-left:auto; margin-right:auto;"></canvas>               	
+					<script>		
+							var a = ${maleNum};
+							var b = ${femaleNum};
+							var ctx = document.getElementById("mycanvas1").getContext("2d")
 							var data = {
 								    datasets: [{
-								    	backgroundColor: ['Red', 'Yellow', 'Blue'],
-								        data: [10, 20, 30],
+								    	backgroundColor: ['Red', 'Blue'],
+								        data: [a, b],
 								    	borderWidth:1,
 								    }],
 			
 								    // These labels appear in the legend and in the tooltips when hovering different arcs
 								    labels: [
-								        'Red',
-								        'Yellow',
-								        'Blue'
+								        'Male',
+								        'Female'
 								    ]
 								};
 							//draw
@@ -53,19 +54,71 @@
 					</script>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-clock-o icon"></i>
-                        <h3 class="name">Always available</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p><a href="#" class="learn-more">Learn more »</a></div>
+                    <canvas id="mycanvas2" width="300" height="300" style="margin-left:auto; margin-right:auto;"></canvas>               	
+					<script>		
+							var a = ${maleNum};
+							var b = ${femaleNum};
+							var ctx = document.getElementById("mycanvas2").getContext("2d")
+							var data = {
+								    datasets: [{
+								    	backgroundColor: ['Red', 'Blue'],
+								        data: [a, b],
+								    	borderWidth:1,
+								    }],
+			
+								    // These labels appear in the legend and in the tooltips when hovering different arcs
+								    labels: [
+								        'Male',
+								        'Females'
+								    ]
+								};
+							//draw
+							var pieChart = new Chart(ctx, {
+								type: 'pie', 
+								data: data, 
+								options: {
+							        responsive:false,
+							        maintainAspectRatio:false
+						      	}});
+					</script>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-list-alt icon"></i>
-                        <h3 class="name">Customizable </h3>
-                        <p class="description">Hell on earth be realised. Nothing sacred is left untarnished. Nothing innocent left unravaged.</p><a href="#" class="learn-more">Learn more »</a></div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <canvas id="mycanvas3" width="300" height="300" style="margin-left:auto; margin-right:auto;"></canvas>               	
+					<script>		
+							var a = ${maleNum};
+							var b = ${femaleNum};
+							var ctx = document.getElementById("mycanvas3").getContext("2d")
+							var data = {
+								    datasets: [{
+								    	backgroundColor: ['Red', 'Blue'],
+								        data: [a, b],
+								    	borderWidth:1,
+								    }],
+			
+								    // These labels appear in the legend and in the tooltips when hovering different arcs
+								    labels: [
+								        'Male',
+								        'Female'
+								    ]
+								};
+							//draw
+							var pieChart = new Chart(ctx, {
+								type: 'pie', 
+								data: data, 
+								options: {
+							        responsive:false,
+							        maintainAspectRatio:false
+						      	}});
+					</script>
+                </div>               
+            </div>
+            <div class="row justify-content-center features">
+            	<div class="col-sm-6 col-md-5 col-lg-4 item">
                     <div class="box"><i class="fa fa-leaf icon"></i>
                         <h3 class="name">Organic </h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p><a href="#" class="learn-more">Learn more »</a></div>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p>
+                        <a href="#" class="learn-more">Learn more »</a>
+                	</div>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
                     <div class="box"><i class="fa fa-plane icon"></i>
@@ -82,5 +135,3 @@
     </div>
     
 </body>
-
-</html>

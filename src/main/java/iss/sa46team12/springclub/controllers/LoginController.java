@@ -21,12 +21,12 @@ public class LoginController {
 	@Autowired
 	UserService usersvc;
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String home(Model model) {
 		model.addAttribute("user", new User());
 		return "login";
 	}
-
+	
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ModelAndView authenticate(@ModelAttribute User user, HttpSession session, BindingResult result) {
 		ModelAndView mav = new ModelAndView("login");
@@ -35,22 +35,26 @@ public class LoginController {
 			return mav;
 		}
 		
-		System.out.println(user.toString());
-		
 		UserSession us = new UserSession();
-
-			if (user.getNric() != null) {
-				User u = usersvc.authenticate(user.getEmail(), user.getPassword());
+		User u = usersvc.authenticate(user.getEmail(), user.getPassword());
+			if (u != null) {
 				us.setUser(u);
 				// PUT CODE FOR SETTING SESSION ID
 				us.setSessionId(session.getId());
+				session.setAttribute("returnpage", mav);
 				
 				if(u.getRole().equals("admin") && u.isActive() == (true)) {
-					mav = new ModelAndView("admin");
+					session.setAttribute("Role", "admin");
+					session.setAttribute("UserID", u.getUserId());
+					mav = new ModelAndView("redirect:/admin");
 				}
 				else 
 				if(u.getRole().equals("member") && u.isActive() == true){
-					mav = new ModelAndView("facilities");
+					session.setAttribute("Role", "member");
+					session.setAttribute("UserID", u.getUserId());
+//					mav = (ModelAndView) session.getAttribute("returnpage");
+					//session.getAttribute
+					mav = new ModelAndView("redirect:/facilities");
 				}
 				else {
 					mav = new ModelAndView("login","errormsg", "Your Account Has Expired. Please Register Again.");

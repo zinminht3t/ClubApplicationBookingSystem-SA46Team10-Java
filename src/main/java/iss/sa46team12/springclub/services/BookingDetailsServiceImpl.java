@@ -3,6 +3,7 @@ package iss.sa46team12.springclub.services;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,10 +19,9 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 	BookingDetailsRepository bookingDetails;
 	@Override
 	@Transactional
-	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate() {
+	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid , LocalDateTime bdate) {
 		
-		///return bookingDetails.findAllConfirmedBookingsByCourtAndDate();
-		//LocalDateTime bdate, 
+		return bookingDetails.findAllConfirmedBookingsByCourtAndDate(fid, bdate); 
 	}
 
 }

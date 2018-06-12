@@ -1,7 +1,11 @@
 package iss.sa46team12.springclub.controllers;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,26 +51,38 @@ public class RegisterController {
 			
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@ModelAttribute @Valid User users, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpServletRequest request, 
+	        HttpServletResponse response) {
 
 		ModelAndView mav = new ModelAndView();
 		
 		if (result.hasErrors())
 			return new ModelAndView("register");
-
 		
 		String message = "New user " + users.getUserId() + " was successfully created.";
+
+		String dayOfBirth = request.getParameter("dayOfBirth");
+		String monthOfBirth = request.getParameter("monthOfBirth");
+		String yearOfBirth = request.getParameter("yearOfBirth");
 		
-		users.setGender("Male");
+		int day = Integer.parseInt(dayOfBirth);
+		int month = Integer.parseInt(monthOfBirth);		
+		int year = Integer.parseInt(yearOfBirth);
 		
-		//Temporary PlaceHolder
-		Date date = new Date();
+        Calendar cal = new GregorianCalendar(year, month-1, day);
+        Date date = cal.getTime();   
+        
 		users.setDateofbirth(date);
 		
 		users.setRole("Member");
 		users.setActive(true);
 		
 		uService.createUser(users);
+		
+		String chosenPackage = request.getParameter("chosen-package");
+		
+		System.out.println(chosenPackage);
+		
 		mav.setViewName("redirect:/");
 
 		redirectAttributes.addFlashAttribute("message", message);

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import iss.sa46team12.springclub.models.Bookings;
-import iss.sa46team12.springclub.models.Greeting;
+//import iss.sa46team12.springclub.models.Greeting;
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.BookingsService;
 import iss.sa46team12.springclub.services.FacilityService;
