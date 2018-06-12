@@ -1,5 +1,8 @@
 package iss.sa46team12.springclub.services;
 
+import java.sql.Date;
+import java.util.ArrayList;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -27,5 +30,18 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 		return srepo.saveAndFlush(subscription);
 	}
 	
+	@Override
+	@Transactional
+	public ArrayList<Subscription> findUserByDate(Date date) {
+		ArrayList<Subscription> getuserbydate = facrepo.findByDate(date);
+		return getuserbydate;
+	}
+	
+	@Override
+	@Transactional
+	public ArrayList<Subscription> findall(){
+		return (ArrayList<Subscription>) facrepo.findAll();
+	}
+
 	
 }
