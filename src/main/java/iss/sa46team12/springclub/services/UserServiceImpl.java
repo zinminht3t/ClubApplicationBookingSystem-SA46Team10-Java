@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public ArrayList<User> findAllUsers() {
 		return (ArrayList<User>) userRepository.findAll();	
-		}
+	}
 		
 //	@Override
 //	@Transactional
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService{
 
 //	@Override
 //	@Transactional
-//	public ArrayList<User> getAllUserByDate(Date date) {
+//	public ArrayList<User> findUserByDate(Date date) {
 //		   ArrayList<User> getuserbydate = userRepository.findUserByDate(date);
 //		   return getuserbydate;
 //	}

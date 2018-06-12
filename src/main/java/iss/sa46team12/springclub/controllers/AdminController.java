@@ -33,6 +33,11 @@ public class AdminController {
 	FacilityService facService;
 
 	// ********** List Users ***************
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public String list() {
+		return "admin";
+	}
 
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public ModelAndView listAllUser() {

@@ -24,5 +24,5 @@ public interface UserService {
 	
 	User authenticate(String uname, String pwd);
 	
-//	ArrayList<User> getAllUserByDate(Date date);
+//	ArrayList<User> findUserByDate(Date date);
 }
