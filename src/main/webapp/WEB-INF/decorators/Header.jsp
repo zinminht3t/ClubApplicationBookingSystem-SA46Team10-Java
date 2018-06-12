@@ -34,6 +34,16 @@
 			<c:choose>
 				<c:when test="${sessionScope.Role =='admin'}">
 				
+					<li class="nav-item"><a class="nav-link"
+						href="${contextPath}/admin" id="home">Admin Home</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${contextPath}/admin/facility/list">Manage Facilities</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${contextPath}/admin/user/list">Manage User</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${contextPath}/admin/userlist">Reports</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="${contextPath}//admin/bm">Manage Booking</a></li>
 					<li class="nav-item"><a class="btn btn-outline-danger"
 						href="${contextPath}/logout">Logout</a></li>
 
