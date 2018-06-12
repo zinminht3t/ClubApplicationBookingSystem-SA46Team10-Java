@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.models.Password;
+import iss.sa46team12.springclub.models.Subscription;
 import iss.sa46team12.springclub.models.User;
+import iss.sa46team12.springclub.services.SubscriptionService;
 import iss.sa46team12.springclub.services.UserService;
 import iss.sa46team12.springclub.validators.UserValidator;
 
@@ -25,6 +27,8 @@ public class UserController {
 
 	@Autowired
 	UserService uService;
+	@Autowired
+	SubscriptionService sService;
 	@Autowired
 	private UserValidator uValidator;
 
@@ -37,7 +41,9 @@ public class UserController {
 	public ModelAndView editProfile() {
 		ModelAndView mav = new ModelAndView("profile", "changeUserPassword", new Password());
 		User userProfile = uService.findUserById(1);
+		Subscription sub = sService.findActiveSubscription(1);
 		mav.addObject("userProfile", userProfile);
+		mav.addObject("subscription", sub);
 		return mav;
 
 	}

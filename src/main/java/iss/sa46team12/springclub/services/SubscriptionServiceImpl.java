@@ -3,7 +3,9 @@ package iss.sa46team12.springclub.services;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import iss.sa46team12.springclub.models.Subscription;
 import iss.sa46team12.springclub.repositories.SubscriptionRepository;
 
 
@@ -11,7 +13,13 @@ import iss.sa46team12.springclub.repositories.SubscriptionRepository;
 public class SubscriptionServiceImpl implements SubscriptionService{
 
 	@Resource
-	SubscriptionRepository facrepo;
+	SubscriptionRepository srepo;
+
+	@Override
+	@Transactional
+	public Subscription findActiveSubscription(int i) {
+		return srepo.findOne(1);
+	}
 	
 	
 }
