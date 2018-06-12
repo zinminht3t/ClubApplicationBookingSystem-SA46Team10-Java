@@ -39,6 +39,7 @@
 					
 				</c:forEach>
 			</c:forEach>
+			
 		</tbody>
 	</table>
 </c:if>

@@ -50,4 +50,5 @@ public class ReportController {
 		mav.addObject("userProfile", userProfile);
 		return mav;
 	}*/
+
 }

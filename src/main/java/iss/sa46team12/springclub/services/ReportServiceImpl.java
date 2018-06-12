@@ -126,5 +126,4 @@ public class ReportServiceImpl implements ReportService {
 		// TODO Auto-generated method stub
 		bookingsRepository.delete(booking);
 	}
-
 }

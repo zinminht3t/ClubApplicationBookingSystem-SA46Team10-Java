@@ -27,6 +27,4 @@ public interface ReportService {
 	Bookings createBooking(Bookings booking);
 	Bookings changeBooking(Bookings booking);
 	void removeBooking(Bookings booking);
-
-	
 }
