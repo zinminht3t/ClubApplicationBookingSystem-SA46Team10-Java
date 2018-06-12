@@ -75,6 +75,12 @@ public class UserServiceImpl implements UserService{
 		return u;
 	}
 
+	@Override
+	@Transactional
+	public User findByEmail(String uname) {
+		User u = userRepository.findUserByName(uname);
+		return u;
+	}
 //	@Override
 //	@Transactional
 //	public ArrayList<User> findUserByDate(Date date) {

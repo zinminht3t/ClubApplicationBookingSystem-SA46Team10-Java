@@ -34,7 +34,7 @@
 	<c:choose>
 		<c:when test="${not empty showNotification}">
 			<script>
-				swal('Profile Updated', 'Your Profile has been successfully updated', 'success')
+				swal('${NotiTitle}', '${NotiMessage}', 'success')
 			</script>
 		</c:when>
 	</c:choose>
@@ -157,7 +157,8 @@
 							<h3>Change Password</h3>
 							<hr>
 							<form:form method="POST" id="changeUserPassword"
-								commandName="changeUserPassword" action="${pageContext.request.contextPath}/user/password">
+								commandName="changeUserPassword"
+								action="${pageContext.request.contextPath}/user/password">
 
 								<h4>Password</h4>
 								<div class="input-group input-group-icon">
@@ -177,7 +178,8 @@
 								</div>
 								<form:errors path="newpassword" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
-									<input type="password" path="confirmpassword" placeholder="Confirm Password" />
+									<input type="password" path="confirmpassword"
+										placeholder="Confirm Password" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
@@ -200,7 +202,131 @@
 				<div class="tab-pane fade" id="pills-pastbooking" role="tabpanel"
 					aria-labelledby="pills-pastbooking-tab">...</div>
 				<div class="tab-pane fade" id="pills-sub" role="tabpanel"
-					aria-labelledby="pills-sub-tab">...</div>
+					aria-labelledby="pills-sub-tab">
+
+					<div class="row">
+						<div class="col-md-12">
+							<c:choose>
+								<c:when test="${subpackage.packageyears=='1 Year'}">
+									<img
+										src="${pageContext.request.contextPath}/image/Membership-Bronze-1.png"
+										width="20%" class="mx-auto d-block">
+									<br />
+								</c:when>
+								<c:otherwise>
+									<img
+										src="${pageContext.request.contextPath}/image/Membership-Gold.png"
+										width="20%" class="mx-auto d-block">
+									<br />
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<hr />
+
+						<div class="col-md-6 offset-md-3">
+
+
+							<em>Your membership progress is : </em>
+
+							<div class="progress">
+								<c:choose>
+									<c:when test="${percentage < 10}">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${percentage }%" aria-valuenow="${percentage }"
+											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+									</c:when>
+									<c:when test="${percentage > 90}">
+										<div class="progress-bar bg-success" role="progressbar"
+											style="width: ${percentage }%" aria-valuenow="${percentage }"
+											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+									</c:when>
+									<c:otherwise>
+										<div class="progress-bar bg-warning" role="progressbar"
+											style="width: ${percentage }%" aria-valuenow="${percentage }"
+											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
+							<br />
+
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title text-success">${subpackage.packageyears}
+										Membership</h5>
+
+									<c:choose>
+										<c:when test="${dayleft < 0}">
+											<h6 class="card-subtitle mb-2 text-danger">Your account
+												has already been expired! Please Renew!</h6>
+										</c:when>
+										<c:otherwise>
+											<em class="card-subtitle mb-2 text-info">Your
+												Subscription will be expired in ${dayleft } days</em>
+										</c:otherwise>
+									</c:choose>
+									<br />
+									<p class="card-text">You have these privileges</p>
+									<ul class="card-text">
+										<c:choose>
+											<c:when test="${subpackage.packageyears=='1 Year'}">
+												<li>ACCESS TO BOOKING FACILITIES</li>
+												<li>DISCOUNTS AT VARIOUS RESTAURANTS</li>
+
+
+											</c:when>
+											<c:otherwise>
+												<li>PERSONAL CHAUFFEUR</li>
+												<li>ACCESS TO BOOKING PRIVATE AUDITORIUM</li>
+											</c:otherwise>
+										</c:choose>
+									</ul>
+									<hr />
+									<div id="renewbuttondiv">
+										<button id="renew"
+											class="btn btn btn-outline-success float-right">Renew
+											Membership</button>
+									</div>
+									<div id="renewdiv" style="display: none;">
+										<h6>Choose Package</h6>
+										<a
+											href="${pageContext.request.contextPath}/user/renewmembership/${oneYearPackage.packageid}"
+											class="btn btn-info"><i class="fa fa-cube"></i> 1 Year :
+											${oneYear}</a> <a
+											href="${pageContext.request.contextPath}/user/renewmembership/${threeYearsPackage.packageid}"
+											class="btn btn-success"><i class="fa fa-cubes"></i> 3
+											Years : ${threeYears}</a>
+
+
+										<button id="cancelbtn" class="btn btn-danger float-right">
+											<i class="fa fa-close"></i>
+										</button>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+
+
+
+						<script>
+							$(document).ready(function() {
+								$("#renew").click(function() {
+									$("#renew").hide();
+									$("#renewdiv").show();
+								});
+								$("#cancelbtn").click(function() {
+									$("#renew").show();
+									$("#renewdiv").hide();
+								});
+							});
+						</script>
+						</script>
+					</div>
+
+
+				</div>
 			</div>
 
 		</div>

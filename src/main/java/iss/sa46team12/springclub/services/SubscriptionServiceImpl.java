@@ -16,7 +16,19 @@ import iss.sa46team12.springclub.repositories.SubscriptionRepository;
 public class SubscriptionServiceImpl implements SubscriptionService{
 
 	@Resource
-	SubscriptionRepository facrepo;
+	SubscriptionRepository srepo;
+
+	@Override
+	@Transactional
+	public Subscription findActiveSubscription(int i) {
+		return srepo.findActiveSubscription(1);
+	}
+
+	@Override
+	@Transactional
+	public Subscription createSubscription(Subscription subscription) {
+		return srepo.saveAndFlush(subscription);
+	}
 	
 	@Override
 	@Transactional

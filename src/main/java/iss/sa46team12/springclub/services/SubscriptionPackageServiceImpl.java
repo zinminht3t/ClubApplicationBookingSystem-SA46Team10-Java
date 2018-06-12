@@ -27,6 +27,12 @@ public class SubscriptionPackageServiceImpl implements SubscriptionPackageServic
 	public ArrayList<SubscriptionPackage> findActiveSubscriptionPackages() {
 		return (ArrayList<SubscriptionPackage>) subscriptionPackageRepository.findActiveSubscriptions();	
 	}
+
+	@Override
+	@Transactional
+	public SubscriptionPackage findPackage(int packageid) {
+		return subscriptionPackageRepository.findOne(packageid);
+	}
 	
 	
 	
