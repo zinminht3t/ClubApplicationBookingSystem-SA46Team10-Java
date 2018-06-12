@@ -23,7 +23,7 @@
 <body>
 
 <form:form method="POST" commandName="users"  
-		action="${pageContext.request.contextPath}/admin/user/edit/${user.userId}.html">
+		action="${pageContext.request.contextPath}/admin/user/edit/${users.userId}.html">
 
 <h3>Edit User page</h3>
 

@@ -22,7 +22,7 @@
 
 <body>
 
-<form:form method="POST" commandName="facilities"
+<form:form method="POST" commandName="facility"
 		action="${pageContext.request.contextPath}/admin/facility/edit/${facility.facilityID}.html">
 
 <h3>Edit Facility page</h3>
