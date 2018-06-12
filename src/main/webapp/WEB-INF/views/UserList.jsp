@@ -18,7 +18,9 @@
 </head>
 <body> 
 
-<div class="row" style="margin-top: 100px; margin-left: 6px">
+<a href="${pageContext.request.contextPath}/admin/user/list"></a>
+
+<div class="row" style="margin-top: 10px; margin-left: 6px">
 <div class='col-xs-12'>
 	<div class="panel-heading">
 
@@ -59,9 +61,18 @@
 							<td>${user.email}</td>
 							<td>${user.contactno}</td>
 							<td>${user.role}</td>
-							<td>${user.active}</td>
+							<td><c:choose>
+									<c:when test="${user.active == true}">
+											<input type="checkbox" name="chkbox" checked="checked"
+													onclick="return false;" />
+									</c:when>
+									<c:otherwise>
+											<input type="checkbox" name="chkbox" onclick="return false;" />
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<td><a
-						href="${pageContext.request.contextPath}/admin/facility/edit/${user.nric}.html"><button type="button" class="btn btn-warning btn-xs">Edit
+						href="${pageContext.request.contextPath}/admin/user/UserFormEdit/${user.userId}"><button type="button" class="btn btn-warning btn-xs">Edit
 							</button></td>
 							
 						 							
