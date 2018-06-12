@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -34,3 +35,28 @@
 		</tbody>
 	</table>
 </c:if>
+
+<c:if test="${fn:length(availableTimes) gt 0}">
+	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+		<thead>
+			<tr class="listHeading">
+				
+			   <th>TimeslotID</th>
+			   <th>Times</th>	   
+			</tr>
+		</thead>
+		<tbody>
+				<c:forEach var="availableTimes" items="${availableTimes}">
+			
+					<tr class="bookingRecord">
+						<td>${availableTimes.timeslotid}</td>
+						<td>${availableTimes.time}</td>
+					</tr>
+					
+				</c:forEach>
+		</tbody>
+	</table>
+</c:if>
+				<c:forEach var="avtime" items="${avtime}">
+				Available Time:	${avtime} <br />				
+				</c:forEach>
