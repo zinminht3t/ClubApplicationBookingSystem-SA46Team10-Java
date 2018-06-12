@@ -2,6 +2,7 @@
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/repositories/ReportRepository.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/controllers/HomeController.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/controllers/MembershipController.java
+/Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/controllers/SecurityController.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/services/SubscriptionServiceImpl.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/models/BookingId.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/controllers/ReportController.java
@@ -24,6 +25,7 @@
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/services/LoginService.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/exceptions/UserNotFound.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/repositories/BookingDetailsRepository.java
+/Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/email/SendEmail.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/services/SubscriptionPackageServiceImpl.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/initconfigs/WebAppConfig.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/services/ReportServiceImpl.java
@@ -42,6 +44,7 @@
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/repositories/BookingsRepository.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/services/MaintenanceServiceImpl.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/repositories/ReportMaintenanceRepository.java
+/Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/initconfigs/SecurityConfiguration.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/services/SubscriptionService.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/models/Maintenance.java
 /Users/zinminhtet/Documents/GitHub/SA46Team12CABProject/src/main/java/iss/sa46team12/springclub/validators/PasswordValidator.java
