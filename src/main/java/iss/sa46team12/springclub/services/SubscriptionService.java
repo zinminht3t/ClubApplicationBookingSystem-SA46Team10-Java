@@ -14,4 +14,6 @@ public interface SubscriptionService {
 
 	public ArrayList<Subscription> findall();
 	ArrayList<Subscription> findUserByDate(Date date);
+
+	Subscription editSub(Subscription u);
 }
