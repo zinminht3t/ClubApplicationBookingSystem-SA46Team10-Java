@@ -34,5 +34,5 @@ public class HomeController {
 //		mav.setViewName("/");
 		return "home";
 	}
-	
+
 }

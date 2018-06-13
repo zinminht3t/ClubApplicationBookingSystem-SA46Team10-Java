@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.repositories;
 
 import java.time.LocalDateTime;
@@ -17,4 +18,6 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetails, 
 	@Query(value = "INSERT INTO bookingdetails values(?1, ?2, ?3, ?4, ?5)" , nativeQuery = true)
 	int createBookingDetail(int bid, int fid, int tid, LocalDateTime bdate, double price);
 
+
 }
+
