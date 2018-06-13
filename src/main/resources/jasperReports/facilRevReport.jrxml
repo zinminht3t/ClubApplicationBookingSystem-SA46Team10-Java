@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facilRevReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="135152df-33e5-4593-8bbc-fa72f02033e5">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Team12cabProject"/>
+	<queryString language="SQL">
+		<![CDATA[select b.facilityid, sum(b.bookingprice), f.facilityname from bookingdetails b, facilities f
+where b.facilityid = f.facilityid 
+group by facilityid]]>
+	</queryString>
+	<field name="facilityid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="facilityid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookingdetails"/>
+	</field>
+	<field name="sum(b.bookingprice)" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sum(b.bookingprice)"/>
+	</field>
+	<field name="facilityname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="facilityname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilities"/>
+	</field>
+	<variable name="sum(b.bookingprice)1" class="java.lang.Double" resetType="Group" resetGroup="total" calculation="Sum">
+		<variableExpression><![CDATA[$F{sum(b.bookingprice)}]]></variableExpression>
+	</variable>
+	<group name="total">
+		<groupFooter>
+			<band height="34">
+				<textField>
+					<reportElement x="440" y="5" width="115" height="25" uuid="dcdeb1d8-8933-4b20-b126-b220cb1ab1e0"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Lato"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{sum(b.bookingprice)1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="400" y="5" width="40" height="25" uuid="7a289e0b-5a24-454d-84fc-8eafe771c6d2"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Lato"/>
+					</textElement>
+					<text><![CDATA[Total: ]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="ea47f9a4-5342-45a9-aab4-5ec0dfab9cec"/>
+				<staticText>
+					<reportElement x="20" y="20" width="370" height="43" forecolor="#FFFFFF" uuid="96c026fb-d35b-4424-b620-b1576506fef9"/>
+					<textElement>
+						<font fontName="Lato" size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Facility Revenue Report]]></text>
+				</staticText>
+				<textField pattern="MMMMM dd, yyyy">
+					<reportElement x="470" y="43" width="120" height="30" uuid="78818e65-2d60-47cb-b457-daaa6de3e8f0"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="220">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="180" y="12" width="200" height="200" uuid="f08288a5-7c84-4255-8abc-9f952b44a471"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Revenue earned per facility"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{facilityname}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{sum(b.bookingprice)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="24784a9e-dd43-437a-a6d9-111bbabbb9e0"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="aa7baa96-e6cf-4db5-9a18-b8816b4c6b03">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="26b3be0d-e6cd-4bde-9ae3-37f3bfc6fa42"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facility ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="0" width="115" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e0c721ae-b093-40da-999a-65c52e493a61">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1828a29-9e22-478a-99da-cc359a938e0e"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Revenue Earned]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="360" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e4b5e2f3-1c33-4fdb-b778-12ee2ba61859">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dd1ec463-e5e0-4d81-8182-5aa5fa55cbc8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facility Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="ad2ed744-3f94-46fc-919c-abe5667c74a9"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="80" height="20" uuid="c8675b16-9ace-4820-bdea-df5b62ad6036">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="26b3be0d-e6cd-4bde-9ae3-37f3bfc6fa42"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{facilityid}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="440" y="0" width="115" height="20" uuid="8a2d5880-f76c-47e4-aa1e-e61a10238ef2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b1828a29-9e22-478a-99da-cc359a938e0e"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sum(b.bookingprice)}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="0" width="360" height="20" uuid="b0bde7e7-dca5-4513-b952-59cc1ba8a68f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dd1ec463-e5e0-4d81-8182-5aa5fa55cbc8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{facilityname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="76811fcd-e52f-4ccb-b97c-8708e6a31079"/>
+				<textElement textAlignment="Right">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f0b9bf4b-c2f6-44bc-b436-c01fe8d896a5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="8a51e648-de72-4916-8c46-e246b39600f3"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

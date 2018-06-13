@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -23,12 +24,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import iss.sa46team12.springclub.models.BookingView;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
 import iss.sa46team12.springclub.models.Maintenance;
 import iss.sa46team12.springclub.models.Timeslots;
+
 import iss.sa46team12.springclub.services.BookingDetailsService;
 import iss.sa46team12.springclub.services.BookingViewService;
 import iss.sa46team12.springclub.services.BookingsService;
@@ -36,11 +37,14 @@ import iss.sa46team12.springclub.services.FacilityService;
 import iss.sa46team12.springclub.services.MaintenanceService;
 import iss.sa46team12.springclub.services.TimeslotService;
 
+
 //controller class for admin to manage bookings and maintenances
 
 @RequestMapping("/admin")
 @Controller
+
 @Scope("session")
+
 public class ManageBMController {
 
 	@Autowired
@@ -90,6 +94,7 @@ public class ManageBMController {
 		ArrayList<String> facilityList = facilityService.findAllDistinctFacilityName();
 		ArrayList<String> facilityCourtsList = facilityService.findAllDistinctFacilityCourt();
 		int nextMaintenanceId = maintenanceService.getAllMaintenances().size() + 1;
+
 		ArrayList<Timeslots> timeslotsList = timeslotService.getAllTimeslots();
 
 		mav.addObject("facilityList", facilityList);
@@ -102,7 +107,9 @@ public class ManageBMController {
 
 	@RequestMapping(value = "/calendar/maintenance/create", method = RequestMethod.POST)
 	public ModelAndView createNewMaintenance(@ModelAttribute @Valid Maintenance maintenance, BindingResult result,
+
 			final RedirectAttributes redirectAttributes, HttpServletRequest request) {
+
 		if (result.hasErrors())
 			return new ModelAndView("MaintenanceFormNew");
 		ModelAndView mav = new ModelAndView();

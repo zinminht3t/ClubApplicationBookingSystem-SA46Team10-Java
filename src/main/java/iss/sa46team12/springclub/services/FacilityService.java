@@ -33,5 +33,6 @@ public interface FacilityService {
 	
 	ArrayList<Facility> findFacilityByName(String name);
 
+	ArrayList<Facility> findAllActiveFacility();
 
 }

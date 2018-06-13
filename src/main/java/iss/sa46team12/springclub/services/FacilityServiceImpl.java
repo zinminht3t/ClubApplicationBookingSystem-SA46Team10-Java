@@ -89,4 +89,10 @@ public class FacilityServiceImpl implements FacilityService {
 		return facrepo.findByFacilityCourt(fName, fCourt);
 	}
 
+	@Override
+	public ArrayList<Facility> findAllActiveFacility() {
+		// TODO Auto-generated method stub
+		return facrepo.getAllActiveFacility();
+	}
+
 }

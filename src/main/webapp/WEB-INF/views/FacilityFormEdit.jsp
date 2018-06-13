@@ -1,8 +1,9 @@
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,53 +27,104 @@
 <form:form method="POST" commandName="facility"
 		action="${pageContext.request.contextPath}/admin/facility/edit/${facility.facilityID}.html">
 
-<h3>Edit Facility page</h3>
+<div class="container">
+			<form>
+				<div class="row">
 
-	<table>
-		<tbody>		  
-			<tr>
-				<td><spring:message code="ID" /></td>
-				<td><form:input path="facilityID" readonly="true"  /></td>
-				<td><form:errors path="facilityID" cssStyle="color: red;" /></td>
-			</tr> 
-			<tr>
-				<td><spring:message code="Facility Name" /></td>
-				<td><form:input path="facilityName" /></td>
-				<td><form:errors path="facilityName" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Court" /></td>
-				<td><form:input path="court" /></td>
-				<td><form:errors path="court" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Price" /></td>
-				<td><form:input path="price" />
-				<td><form:errors path="price" cssStyle="color: red;" /></td>
-			</tr>			
-			<tr>
-				<td><spring:message code="Remark" /></td>
-				<td><form:input path="remark" /></td>
-				<td><form:errors path="remark" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Image Path" /></td>
-				<td><form:input path="imagePath" /></td>
-				<td><form:errors path="imagePath" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Active" /></td>
-				<td><form:input path="active" readonly="true" /></td>
-				<td><form:errors path="active" cssStyle="color: red;" /></td>
-			</tr>
-			
-			
-			<tr>
-				<td><input type="submit" value="Update" /></td>
-				 <td><input type="reset" value="Reset"></td>
-				<td></td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
-</form:form>
+					<div class="col-md-offset-2 col-md-12">
+						<div class="panel-heading">
+
+							<h4 style="margin-left: .7em">Edit Facility</h4>
+							<hr>
+
+						</div>
+
+						<div class="panel panel-primary">
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Facility ID</label>
+								<div class="col-xl-12">
+									<!-- attribute name -->
+									<form:input path="facilityID" readonly="true"  />
+									<form:errors path="facilityID" cssStyle="color: red;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Facility Name</label>
+								<div class="col-xl-12">
+									<!-- attribute name -->
+									<form:input path="facilityName" readonly="true"/>
+									<form:errors path="facilityName" cssStyle="color: red;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Court</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="court" readonly="true"/>
+									<form:errors path="court" cssStyle="color: red;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Price</label>
+								<div class="col-md-12">									
+									<form:input path="price" style="background:#87CEFA"/>					
+									<form:errors path="price" cssStyle="color: red;" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-6">Remark</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="remark" style="background:#87CEFA"/>
+									<form:errors path="remark" cssStyle="color: red;" />
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Image Path</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="imagePath" style="background:#87CEFA"/>
+									<form:errors path="imagePath" cssStyle="color: red;" />
+								</div>
+							</div>
+							
+							<div class="col-half">
+						<h6 style="margin-left: .9em">Active</h6>
+						<div class="input-group" style="margin-left: .9em">
+							<form:radiobutton path="active" value="true" label="Yes"/> 							
+							<form:radiobutton path="active" value="false" label="No"/>
+							<form:errors path="active" cssStyle="color: red;" />
+						</div>
+					</div>
+
+					</div>
+					
+					</div>
+				</div>
+				<table id="action-button">
+					<tr>
+						<td><input type="submit" value="Submit"
+							style="margin-left: .9em;background:#F0AD4E" /></td>
+						<td></td>
+						<td><input type="reset" value="Reset"
+							style="margin-left: 2em; background:#F0AD4E" /></td>
+				</table>
+
+			</form>
+		</div>
+
+		<script
+			src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script src="js/index.js"></script>
+
+	</form:form>
+
+</body>
+
+</html>
