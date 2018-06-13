@@ -15,7 +15,7 @@
 	style="height: 50px; position: fixed; width: 100%; top: 0; z-index: 100; padding-top: 0; padding-bottom: 0;'">
 	<!-- Brand -->
 	<a class="navbar-brand" href="${contextPath}/"> <img
-		src="Images/WhatsappImage.jpeg" width="40px" height="40px">
+		src="image/springClubLogo1.png" width="50px" height="50px">
 	</a>
 
 

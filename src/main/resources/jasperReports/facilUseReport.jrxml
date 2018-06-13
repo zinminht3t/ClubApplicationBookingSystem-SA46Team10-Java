@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facilUseReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bb7b44c5-3214-44d9-9860-e3f05acc8a96">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Team12cabProject"/>
+	<queryString language="SQL">
+		<![CDATA[select b.facilityid, count(b.facilityid), f.facilityname from bookingdetails b, facilities f
+where b.facilityid = f.facilityid 
+group by facilityid]]>
+	</queryString>
+	<field name="facilityid" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="facilityid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="bookingdetails"/>
+	</field>
+	<field name="count(b.facilityid)" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="count(b.facilityid)"/>
+	</field>
+	<field name="facilityname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="facilityname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="facilities"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="330912c6-69ef-4036-a96a-0a4b48de4b73"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="c21f1518-9202-4995-b569-b613121d0d6e"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Facility Usage Report]]></text>
+				</staticText>
+				<textField pattern="MMMMM dd, yyyy">
+					<reportElement x="480" y="50" width="100" height="30" uuid="ed748a11-c3ba-4b9d-8d80-1490ef851284"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="219">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="180" y="9" width="200" height="200" uuid="0fdebf9e-805a-4053-9afe-155de278e3a7"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Bookings per facility"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{facilityid}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{count(b.facilityid)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c9eff5ed-c68c-40c1-bf0a-21655b46aa70"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="99e02424-408b-43cc-a5ee-68ac4cecd24d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f3279c4-e5ad-40a0-978b-550b09035d6a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facility ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="420" y="0" width="135" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2902d2f7-89a9-4de4-b85e-c03509fc7527">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00cc0160-5cce-4f46-8119-f7ee4ebe4cc7"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Times Used]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="340" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bcb3e123-8a01-40a3-b791-48abfdc889e0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a53b3a33-4e2d-42a4-9ac9-3d80d3f23c9e"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facility Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="7f33a2fc-bddf-4ad0-9543-decbd84917d3"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="80" height="20" uuid="fe4eef12-2535-4070-9af3-29bedd1c2a2e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1f3279c4-e5ad-40a0-978b-550b09035d6a"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{facilityid}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="420" y="0" width="135" height="20" uuid="679a3808-5227-4b2b-b32a-c8d0ebb557cf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00cc0160-5cce-4f46-8119-f7ee4ebe4cc7"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{count(b.facilityid)}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="0" width="340" height="20" uuid="2097c4e2-4d90-4433-b841-992f2fbd95fb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a53b3a33-4e2d-42a4-9ac9-3d80d3f23c9e"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Lato" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{facilityname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="d1537158-30c4-4e17-b9f0-814968bc0be4"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="8705f4e9-ce3f-452f-a29c-b974407e8b0c"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="9ede5cef-bc1b-4257-8146-f352224baf8b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
