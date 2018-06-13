@@ -43,8 +43,10 @@
 		action="${pageContext.request.contextPath}/admin/manageBM/editBooking/${booking.getBookingid()}">
 
 		<div class="row">
+		</br>
+		</br>
 			<div class="col-md-12">
-				<h2>Edit Booking (Admin)</h2>
+				<h2 style="text-align:center">Edit Booking (Admin)</h2>
 			</div>
 					
 			<div class="col-md-6">
