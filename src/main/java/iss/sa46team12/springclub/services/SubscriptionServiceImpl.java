@@ -22,7 +22,7 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 	@Override
 	@Transactional
 	public Subscription findActiveSubscription(int i) {
-		return srepo.findActiveSubscription(1);
+		return srepo.findActiveSubscription(i);
 	}
 
 	@Override
