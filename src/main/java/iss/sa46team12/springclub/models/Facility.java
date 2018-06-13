@@ -40,7 +40,7 @@ public class Facility {
 	}
 		
 	public Facility(int facilityID, String facilityName, String court, Double price, String remark, String imagePath,
-			boolean active) {
+		boolean active) {
 		super();
 		this.facilityID = facilityID;
 		this.facilityName = facilityName;
@@ -84,6 +84,7 @@ public class Facility {
 	public void setFacilityName(String facilityName) {
 		this.facilityName = facilityName;
 	}
+	
 
 	public String getCourt() {
 		return court;

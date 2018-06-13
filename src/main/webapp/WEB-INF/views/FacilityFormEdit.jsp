@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -22,7 +23,7 @@
 
 <body>
 
-<form:form method="POST" commandName="facilities"
+<form:form method="POST" commandName="facility"
 		action="${pageContext.request.contextPath}/admin/facility/edit/${facility.facilityID}.html">
 
 <h3>Edit Facility page</h3>
