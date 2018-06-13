@@ -1,7 +1,11 @@
 .login-dark {
-  height:1000px;
-  background:#85144b url(testPage.jpg);
-  background-size:cover;
+  height:460px;
+  background:#85144b url(loginpic1.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 1425px 500px;
+  margin:auto;
+  padding:0;
   position:relative;
 }
 
