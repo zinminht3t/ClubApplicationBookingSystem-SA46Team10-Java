@@ -67,7 +67,7 @@ public class ManageBMController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
 	}

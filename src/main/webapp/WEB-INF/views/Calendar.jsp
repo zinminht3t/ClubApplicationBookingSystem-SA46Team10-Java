@@ -21,15 +21,15 @@
 
 <body>
 	<div>
-		<h1>Manage Bookings and Maintenance</h1>
-
-		<table style="width: 100%;">
-
-			<div id="viewMonth">Month:${sessionScope.currentMonth}</div>
-			<div id="viewYear">Year:${sessionScope.currentYear}</div>
-			<div>
+		
+		<div class=top-content>
+			<div class="title">Manage Bookings and Maintenance</div>
+			
+			<div class="monthyear" id="viewMonth">Month: ${sessionScope.currentMonth}</div>
+			<div class="monthyear" id="viewYear">Year:${sessionScope.currentYear}</div>
+			<div class="calendar-buttons">
 				<form action="${pageContext.request.contextPath}/admin/viewCalendar"
-					class="contact-form" method="post">
+					class="nextprev-form" method="post">
 					<input type="submit" name="btnPrev" value="prev">
 					</input>
 					<input type="submit" name="btnNext" value="next">
@@ -39,8 +39,7 @@
 			
 			<form action="${pageContext.request.contextPath}/admin/calendar/maintenance/create">
 			
-				<input type="submit" name="btnShowAddMaintenance" value="Add Maintenance">
-					</input>
+				<input id="btn-add-maintenance" type="submit" name="btnShowAddMaintenance" value="Add Maintenance"></input>
 			</form>
 			
 			<div class="legend">
@@ -48,7 +47,10 @@
 				<p>Green-Bookings</p>
 				<p>Blue-Maintenance</p>
 			</div>
+		</div>
 					
+					
+		<table style="width: 100%;">
 			<c:forEach var="day" items="${sessionScope.daysOfWeek}">
 				<td style="border: 1px solid black; float: left; width: 13%;">${day}</td>
 			</c:forEach>
@@ -59,7 +61,7 @@
 				style="border: 1px solid black; float: left; width: 13%; height: 15%;">
 
 				<c:if test="${sessionScope.currentFirstDayIndex-loop.index<=0 && loop.index-sessionScope.currentFirstDayIndex+1<=sessionScope.lastDayOfCurrentMonth}">
-					<p>${loop.index-sessionScope.currentFirstDayIndex+1}</p>
+					<p class="day-header">${loop.index-sessionScope.currentFirstDayIndex+1}</p>
 				
 					<div class="calendar-tile-content">
 						<c:forEach var="booking" items="${sessionScope.bookingViewList}">
@@ -68,7 +70,7 @@
 		
 							<c:if
 								test="${bookingDate==thisDate}">
-								<button id="${booking.getBookingid()}" class="btn-booking-slot" onClick="viewBooking()">${booking.getMinTime()}--${booking.getMaxTime()}</button>
+								<button id="${booking.getBookingid()}" class="btn-booking-slot" onClick="viewBooking()">${booking.getMinTime().substring(0, 4)}--${booking.getMaxTime().substring(booking.getMaxTime().length() -4)}</button>
 							</c:if>
 						</c:forEach>
 						
@@ -78,8 +80,21 @@
 						<fmt:parseDate var="maintenanceEndDate" value="${maintenance.getEnddate()}" pattern="yyyy-MM-dd" />
 		
 							<c:if
-								test="${maintenanceStartDate==thisDate}">
-								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot" onClick="viewMaintenance()">${maintenance.getTimeslots_start().getTime()}--${maintenance.getTimeslots_end().getTime()}</button>
+								test="${maintenanceStartDate==thisDate || maintenanceEndDate==thisDate}">
+								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot" onClick="viewMaintenance()">
+								<c:if test="${thisDate==maintenanceEndDate && maintenanceStartDate!=maintenanceEndDate}">
+									0000-${maintenance.getTimeslots_end().getTime().substring(0, 4)}
+								</c:if>
+								
+								<c:if test="${thisDate==maintenanceEndDate && maintenanceStartDate==maintenanceEndDate}">
+									${maintenance.getTimeslots_start().getTime().substring(0, 4)}-${maintenance.getTimeslots_end().getTime().substring(0, 4)}
+								</c:if>
+								
+								<c:if test="${thisDate!=maintenanceEndDate}">
+									${maintenance.getTimeslots_start().getTime().substring(0, 4)}--*
+								</c:if>
+								</button>
+								
 							</c:if>
 						</c:forEach>
 					</div>
