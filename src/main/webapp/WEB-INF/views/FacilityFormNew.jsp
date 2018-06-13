@@ -23,7 +23,7 @@
 
 <body>
 
-	<form:form method="POST" commandName="facilities"
+	<form:form method="POST" commandName="facility"
 		action="${pageContext.request.contextPath}/admin/facility/create.html">
 
 		<div class="row">
