@@ -33,8 +33,11 @@
 						<p>${facility.facilityID}</p>
 						<p>${facility.facilityName}</p>
 						<p>${facility.remark}</p>
+						<p>${facility.price}</p>
 						<p>${facility.imagePath}</p>
 						<p>${facility.active}</p>
+						<a href="${pageContext.request.contextPath}/${date}">
+						<button	type="button" class="btn btn-warning btn-xs">Book</button></a>
                 </div>
             </div>
 </c:forEach>

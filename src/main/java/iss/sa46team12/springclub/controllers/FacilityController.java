@@ -1,7 +1,11 @@
 package iss.sa46team12.springclub.controllers;
 
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +29,20 @@ public class FacilityController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView facilitybooking() {
 		ModelAndView mav = new ModelAndView("facilities");
-		ArrayList<Facility> allfacilities = facService.findAllFacilities();
+		ArrayList<String> allfacilities = facService.findAllDistinctFacilityName();
 		mav.addObject("allfacility", allfacilities);
+		return mav;
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView postToBooking(Model model) {
+		ModelAndView mav = new ModelAndView("confirm-booking");
+		LocalDate localDate = LocalDate.now();
+		Calendar dateWithoutTimec = Calendar.getInstance();
+		dateWithoutTimec.setTime(Date.valueOf(localDate));
+		SimpleDateFormat aaaa = new SimpleDateFormat("dd/MM/yyyy");
+		aaaa.format(dateWithoutTimec.getTime());
+		model.addAttribute("date", aaaa);
 		return mav;
 	}
 
