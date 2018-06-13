@@ -27,7 +27,7 @@ public class Timeslots {
 	@Column (name ="timeslotid")
 	private int timeslotid;
 	@Column (name ="time")
-	private int time;
+	private String time;
 	/** Mapping **/
 
 	@JsonManagedReference
@@ -43,10 +43,9 @@ public class Timeslots {
 	private List<Maintenance> maintenanceList2;
 	
 	
-	public List<BookingDetails> getBookingdetails() {
-		return (new ArrayList<BookingDetails> (bookingdetails));
-	}
-	
+//	public List<BookingDetails> getBookingdetails() {
+//		return (new ArrayList<BookingDetails> (bookingdetails));
+//	}
 	/** Constructor **/
 	public Timeslots() {
 		super();
@@ -55,7 +54,7 @@ public class Timeslots {
 	public int getTimeslotid() {
 		return timeslotid;
 	}
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 	
