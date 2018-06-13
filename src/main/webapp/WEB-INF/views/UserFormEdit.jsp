@@ -21,7 +21,8 @@
 </head>
 
 <body>
-
+<br/>
+<br/>
 <form:form method="POST" commandName="users"  
 		action="${pageContext.request.contextPath}/admin/user/edit/${users.userId}.html">
 

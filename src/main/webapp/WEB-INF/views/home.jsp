@@ -7,6 +7,7 @@
 <html lang="en">
 
 <head>
+<link rel="stylesheet" href="css/Home.css">
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Spring Club</title>
@@ -127,8 +128,8 @@
                         
                         <div class="form-group">
                         	<div class="form-group"><label for="from-phone">Subject</label><span class="required-input">*</span>
-                        		<div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-phone"></i></span></div>
-                        		<input class="form-control" type="text" name="sb" required="required" placeholder="Subject" id="sb">
+                        		<div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-star-o"></i></span>
+                        		<input class="form-control" type="text" name="sb" required="required" placeholder="Subject" id="sb"></div>
                         	</div>
                         </div>
                         
@@ -147,7 +148,7 @@
                         <div class="form-row">
                         
                         	<!-- google map! -->
-                        	<div id="map"></div>
+                        	<div id="map" style="width:400px; height:300px; border: solid 1px; margin: 10px auto;"></div>
                             <div class="col-sm-6 col-md-12 col-lg-6 text-center">
                                 <h2 class="h4"><i class="fa fa-user"></i> Our Info</h2>
                                 <div><span><strong>Spring Club Staff</strong></span></div>
@@ -171,10 +172,8 @@
         </div>
     </div>
 
-	</br>
-	</br>
-	</br>
-	</br>
+	<br/>
+	<br/>
 
 	<script>
 		function initMap() {

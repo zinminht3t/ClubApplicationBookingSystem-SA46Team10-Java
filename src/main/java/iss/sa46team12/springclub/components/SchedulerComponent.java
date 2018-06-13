@@ -46,17 +46,17 @@ public class SchedulerComponent {
 
 		ArrayList<Subscription> allsub = subscriptionService.findUserByDate(Date.valueOf(localDate));
 		for (Subscription sub : allsub) {
-			Calendar dateWithoutTimec = Calendar.getInstance();
-			dateWithoutTimec.setTime(Date.valueOf(localDate));
-			SimpleDateFormat aaaa = new SimpleDateFormat("dd/MM/yyyy");
-			aaaa.format(dateWithoutTimec.getTime());
+			Calendar dateWithoutTime1 = Calendar.getInstance();
+			dateWithoutTime1.setTime(Date.valueOf(localDate));
+			SimpleDateFormat date1 = new SimpleDateFormat("dd/MM/yyyy");
+			date1.format(dateWithoutTime1.getTime());
 
-			Calendar dateWithoutTimeca = Calendar.getInstance();
-			dateWithoutTimeca.setTime(sub.getExpirydate());
-			SimpleDateFormat aaaaa = new SimpleDateFormat("dd/MM/yyyy");
-			aaaaa.format(dateWithoutTimeca.getTime());
+			Calendar dateWithoutTime2 = Calendar.getInstance();
+			dateWithoutTime2.setTime(sub.getExpirydate());
+			SimpleDateFormat date2 = new SimpleDateFormat("dd/MM/yyyy");
+			date2.format(dateWithoutTime2.getTime());
 
-			if (aaaa.equals(aaaaa)) {
+			if (date1.equals(date2)) {
 				sub.setActive(false);
 				int id = sub.getUserid();
 				User u = userService.findUserById(id);

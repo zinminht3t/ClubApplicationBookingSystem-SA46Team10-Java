@@ -9,8 +9,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import iss.sa46team12.springclub.models.BookingDetails;
@@ -26,21 +28,21 @@ public class FacilityBookingController {
 
 	@Autowired
 	BookingDetailsService bookingDetailsService;
-	
+
 	@Autowired
 	TimeslotService allTimeslots;
-	
+
 	@Autowired
 	FacilityService courtsinFacility;
-	
-	@RequestMapping(value = "/confirm-booking", method = RequestMethod.GET)
-	public ModelAndView listAll() {
+
+	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView listAll( @PathVariable("datepicker") String datepicker) {
 		ModelAndView mav = new ModelAndView("confirm-booking");
-		
 		//Formatting Date to match with database to compare
-		String str = "2018-06-14 00:00";
+		String str = datepicker+" 00:00";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
 		//Get all the timeslots
 		ArrayList<Timeslots> timeslots = allTimeslots.getAllTimeslots();
 		//Get a list of all the courts under the category that is passed as an argument
@@ -74,24 +76,9 @@ public class FacilityBookingController {
 			availableCourtsTime.put(courtBooking.getKey(),tempTimeslots);
 		}
 		
-		
-		//courtsTime.get("court 1").get(1).getTimeslots().getTime();
-		
-		
-		
-		
-		
-		
-		/*
-		 * 
-		ArrayList<Integer> availabletime = new ArrayList<Integer>();
-
-		ArrayList<BookingDetails> bookingDetailsList = bookingDetailsService.findAllConfirmedBookingsByCourtAndDate(1 , dateTime);
-
-		mav.addObject("avtime", availabletime);*/
-		
 		mav.addObject("bookedCourtsTime", bookedCourtsTime);
 		mav.addObject("availableCourtsTime", availableCourtsTime);
+		mav.addObject("date", datepicker);
 		
 		return mav;
 	}
