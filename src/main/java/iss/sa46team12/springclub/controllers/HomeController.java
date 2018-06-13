@@ -29,8 +29,8 @@ public class HomeController {
 //		if(results.hasErrors())
 //			return new ModelAndView("home");
 		
-		SendEmail.sendEmail("springclub12@gmail.com", req.getParameter("em"), 
-				req.getParameter("sb"), "From: " + req.getParameter("nm") + " - " + req.getParameter("FB"));
+		SendEmail.sendEmail(req.getParameter("em"), "springclub12@gmail.com",
+				"Feedback: " + req.getParameter("sb"), "From: " + req.getParameter("nm") + " - " + req.getParameter("FB"));
 //		mav.setViewName("/");
 		return "home";
 	}

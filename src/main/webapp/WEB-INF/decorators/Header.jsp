@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +15,7 @@
 	style="height: 50px; position: fixed; width: 100%; top: 0; z-index: 100; padding-top: 0; padding-bottom: 0;'">
 	<!-- Brand -->
 	<a class="navbar-brand" href="${contextPath}/"> <img
-		src="Images/WhatsappImage.jpeg" width="40px" height="40px">
+		src="image/springClubLogo1.png" width="50px" height="50px">
 	</a>
 
 

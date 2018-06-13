@@ -28,13 +28,13 @@ public class FacilityBookingController {
 
 	@Autowired
 	BookingDetailsService bookingDetailsService;
-	
+
 	@Autowired
 	TimeslotService allTimeslots;
-	
+
 	@Autowired
 	FacilityService courtsinFacility;
-	
+
 	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView listAll( @PathVariable("datepicker") String datepicker) {
 		ModelAndView mav = new ModelAndView("confirm-booking");
@@ -42,6 +42,7 @@ public class FacilityBookingController {
 		String str = datepicker+" 00:00";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
 		//Get all the timeslots
 		ArrayList<Timeslots> timeslots = allTimeslots.getAllTimeslots();
 		//Get a list of all the courts under the category that is passed as an argument
@@ -81,8 +82,4 @@ public class FacilityBookingController {
 		
 		return mav;
 	}
-	
-	
-	
-	
 }

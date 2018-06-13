@@ -6,41 +6,46 @@
 <html lang="en">
 
 <head>
-<title>Facility Booking</title>
-
+	<title>Facility Booking</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/dh-row-text-image-right.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-	
-        <div class="container" width="60%" margin-right="10%" margin-left="10%">
-            <div class="card">
-            <div class="card-block text-center" id="contactus">
-                <h2>Facility Bookings</h2>
-            </div></div>
-
-        <br/>
-<c:if test="${fn:length(allfacility) gt 0}">       
-        <c:forEach items="${allfacility}" var="facility">
-            <div class="card bg-light mb-3" style="width: 100%" >
-                <div class="card-header text-center">
-                    <h5>Location</h5>
-                </div>
-                <div class="card-block" display="inline-block">
-                    <img src="Images/WhatsappImage.jpeg" width="40%" float="left" display="inline-block" height="200px" styles="margin-left:0;">
-                       Swimming pool
-                       <p>Opening hours:  9am - 9am</p>
-                       <p>Entrance Fees:  $0</p>
-						<p>${facility.facilityID}</p>
-						<p>${facility.facilityName}</p>
-						<p>${facility.remark}</p>
-						<p>${facility.imagePath}</p>
-						<p>${facility.active}</p>
-                </div>
-            </div>
-</c:forEach>
-</c:if>
-        </div>
-
+	<c:if test="${fn:length(allfacility) gt 0}">   
+		<div class="container" width="60%" margin-right="10%" margin-left="10%">
+			<div>
+	            <div class="col-xs-12 col-sm-12 col-md-12 col-sm-pull-12" style="text-align:center" id="contactus">
+	                <h1>Available Facilities</h1>
+				</div>
+			</div>
+    		
+    		</br>
+    		</br>
+    		
+	        <c:forEach items="${allfacility}" var="facility">
+	        
+		        <div class="shadowTable pricing-table row clearmargin clearpadding row-image-txt">
+			        <div class="col-xs-12 col-sm-6 col-md-6 clearmargin clearpadding col-sm-push-6"><img src="image/${facility.imagePath}" style="width:100%;"></div>
+			        <div class="col-xs-12 col-sm-6 col-md-6 col-sm-pull-6" style="padding:20px;">
+			            <h1>${facility.facilityName}</h1>
+			            <hr>
+			            <p>${facility.remark}</p>
+			            <div style="text-align:center">
+			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/${facility.facilityName}/${date}">
+			            <button class="btn btn-light btn-lg" type="button">Book</button></a></div>
+			        </div>
+			    </div>
+			    
+			    </br>
+			    </br>
+			    </br>
+			    
+			</c:forEach>
+	</c:if>
 </body>
 
 </html>

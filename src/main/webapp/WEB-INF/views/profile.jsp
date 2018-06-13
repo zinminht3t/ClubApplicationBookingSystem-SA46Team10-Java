@@ -2,8 +2,9 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 
 
@@ -11,23 +12,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Spring Club - User Profile</title>
 
 
 <spring:url value="/css/register.css" var="register" />
+
+
 <link rel="STYLESHEET" type="text/css" href="${register}" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
 <link rel='stylesheet prefetch'
 	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.22.2/sweetalert2.all.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
 </head>
 <body>
 
@@ -43,9 +48,9 @@
 			</script>
 		</c:when>
 	</c:choose>
-	
+
 	<h2 class="text-primary text-center">User Profile</h2>
-	<br/>
+	<br />
 	<div class="row">
 
 		<div class="col-md-8 offset-md-2">
@@ -215,9 +220,155 @@
 
 				</div>
 				<div class="tab-pane fade" id="pills-booking" role="tabpanel"
-					aria-labelledby="pills-booking-tab">...</div>
+					aria-labelledby="pills-booking-tab">
+
+
+					<c:if test="${fn:length(upcomingbookings) gt 0}">
+
+						<c:forEach var="ubookings" items="${upcomingbookings}">
+
+
+							<div class="row"
+								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+								<div class="col-md-4">
+									<img src="" id="${ubookings.bookingid}uphoto"
+										alt="facilityphoto" width="100%" class="rounded-circle" />
+								</div>
+								<div class="col-md-5">
+									<div style="overflow: hidden;">
+										<h4 class="float-left text-dark">
+											<strong id="${ubookings.bookingid}uname"></strong>
+										</h4>
+									</div>
+									<h4 class="text-secondary">
+										<strong id="${ubookings.bookingid}udate"></strong>
+									</h4>
+									<div id="${ubookings.bookingid}utimeslots"></div>
+									<h5>
+										Price : $ ${ubookings.total }.00</em>
+									</h5>
+									<h6 class="text-warning">Status : ${ubookings.status }</h6>
+
+
+									<c:forEach var="ubookingDetail"
+										items="${ubookings.getBookings()}">
+
+										<script>
+											document
+													.getElementById("${ubookings.bookingid}uphoto").src = "${pageContext.request.contextPath}/image/${ubookingDetail.getFacility().getImagePath()}";
+
+											document
+													.getElementById("${ubookings.bookingid}uname").innerHTML = "${ubookingDetail.getFacility().getFacilityName()}";
+											document
+													.getElementById("${ubookings.bookingid}udate").innerHTML = "${ubookingDetail.bookingdate}";
+											document
+													.getElementById("${ubookings.bookingid}utimeslots").innerHTML += "<span class=\"badge badge-info\">${ubookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
+										</script>
+									</c:forEach>
+
+								</div>
+								<div class="col-md-3">
+									<em><i class="fa fa-stopwatch"></i>
+										${ubookings.transactiontime} </em> <br /> <br /> <br />
+									<c:choose>
+										<c:when test="${ubookings.status =='Booked'}">
+											<button id="cancelbookingbtn" class="btn btn-outline-danger">
+												<i class="fa fa-ban"></i> Cancel Booking
+											</button>
+
+											<script>
+										 document.getElementById("cancelbookingbtn").addEventListener('click',function ()
+												    {
+
+												swal({
+													  title: 'Booking Cancellation',
+													  text: "Are you sure you want to cancel booking!",
+													  type: 'warning',
+													  showCancelButton: true,
+													  confirmButtonColor: '#3085d6',
+													  cancelButtonColor: '#d33',
+													  confirmButtonText: 'Yes, I am Sure!'
+													}).then((result) => {
+													  if (result.value) {
+														  window.location.href = "${pageContext.request.contextPath}/user/booking/cancel/${ubookings.bookingid}";
+													  }
+													});
+											 
+											 
+												    }  ); 
+										</script>
+										</c:when>
+									</c:choose>
+								</div>
+							</div>
+
+						</c:forEach>
+
+
+					</c:if>
+
+
+
+				</div>
 				<div class="tab-pane fade" id="pills-pastbooking" role="tabpanel"
-					aria-labelledby="pills-pastbooking-tab">...</div>
+					aria-labelledby="pills-pastbooking-tab">
+
+					<c:if test="${fn:length(pastbookings) gt 0}">
+
+						<c:forEach var="bookings" items="${pastbookings}">
+
+
+							<div class="row"
+								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+								<div class="col-md-4">
+									<img src="" id="${bookings.bookingid}photo" alt="facilityphoto"
+										width="100%" class="rounded-circle" />
+								</div>
+								<div class="col-md-5">
+									<div style="overflow: hidden;">
+										<h4 class="float-left text-dark">
+											<strong id="${bookings.bookingid}name"></strong>
+										</h4>
+									</div>
+									<h4 class="text-secondary">
+										<strong id="${bookings.bookingid}date"></strong>
+									</h4>
+									<div id="${bookings.bookingid}timeslots"></div>
+									<h5>
+										Price : $ ${bookings.total }.00</em>
+									</h5>
+									<h6 class="text-warning">Status : ${bookings.status }</h6>
+									<c:forEach var="bookingDetail"
+										items="${bookings.getBookings()}">
+
+										<script>
+											document
+													.getElementById("${bookings.bookingid}photo").src = "${pageContext.request.contextPath}/image/${bookingDetail.getFacility().getImagePath()}";
+
+											document
+													.getElementById("${bookings.bookingid}name").innerHTML = "${bookingDetail.getFacility().getFacilityName()}";
+											document
+													.getElementById("${bookings.bookingid}date").innerHTML = "${bookingDetail.bookingdate}";
+											document
+													.getElementById("${bookings.bookingid}timeslots").innerHTML += "<span class=\"badge badge-info\">${bookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
+										</script>
+									</c:forEach>
+
+								</div>
+
+								<div class="col-md-3">
+
+									<em>${bookings.transactiontime} </em>
+
+								</div>
+							</div>
+
+						</c:forEach>
+
+
+					</c:if>
+
+				</div>
 				<div class="tab-pane fade" id="pills-sub" role="tabpanel"
 					aria-labelledby="pills-sub-tab">
 
@@ -248,19 +399,22 @@
 							<div class="progress">
 								<c:choose>
 									<c:when test="${percentage < 10}">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: ${percentage }%" aria-valuenow="${percentage }"
-											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+										<div class="progress-bar progress-bar-striped bg-danger"
+											role="progressbar" style="width: ${percentage }%"
+											aria-valuenow="${percentage }" aria-valuemin="0"
+											aria-valuemax="100">${percentage }%</div>
 									</c:when>
 									<c:when test="${percentage > 90}">
-										<div class="progress-bar bg-success" role="progressbar"
-											style="width: ${percentage }%" aria-valuenow="${percentage }"
-											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+										<div class="progress-bar progress-bar-striped bg-success"
+											role="progressbar" style="width: ${percentage }%"
+											aria-valuenow="${percentage }" aria-valuemin="0"
+											aria-valuemax="100">${percentage }%</div>
 									</c:when>
 									<c:otherwise>
-										<div class="progress-bar bg-warning" role="progressbar"
-											style="width: ${percentage }%" aria-valuenow="${percentage }"
-											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+										<div class="progress-bar progress-bar-striped bg-warning"
+											role="progressbar" style="width: ${percentage }%"
+											aria-valuenow="${percentage }" aria-valuemin="0"
+											aria-valuemax="100">${percentage }%</div>
 									</c:otherwise>
 								</c:choose>
 							</div>

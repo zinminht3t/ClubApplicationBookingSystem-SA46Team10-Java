@@ -1,6 +1,5 @@
 package iss.sa46team12.springclub.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -29,6 +29,7 @@ public class Facility {
 	private String imagePath;
 	private boolean active = true;
 	
+	
 	@JsonManagedReference
 	@OneToMany(mappedBy="facilities", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
@@ -40,7 +41,7 @@ public class Facility {
 	}
 		
 	public Facility(int facilityID, String facilityName, String court, Double price, String remark, String imagePath,
-			boolean active) {
+		boolean active) {
 		super();
 		this.facilityID = facilityID;
 		this.facilityName = facilityName;
@@ -84,6 +85,7 @@ public class Facility {
 	public void setFacilityName(String facilityName) {
 		this.facilityName = facilityName;
 	}
+	
 
 	public String getCourt() {
 		return court;

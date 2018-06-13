@@ -32,7 +32,7 @@ public class FacilityServiceImpl implements FacilityService {
 	
 	@Override
 	@Transactional
-	public Facility findFacilityById(String fid) {
+	public Facility findFacilityById(Integer fid) {
 		return facrepo.findOne(fid);		 
 	}
 	
@@ -61,10 +61,38 @@ public class FacilityServiceImpl implements FacilityService {
 		return facrepo.getAllCourtsInFacility(fname);
 	}
 
+	//Return Null???
 	@Override
 	public ArrayList<Facility> findFacilityByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<String> findAllDistinctFacilityName() {
+		// TODO Auto-generated method stub
+		return (ArrayList<String>) facrepo.findAllDistinctFacilityName();	
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<String> findAllDistinctFacilityCourt() {
+		// TODO Auto-generated method stub
+		return (ArrayList<String>) facrepo.findAllDistinctFacilityCourt();	
+	}
+
+	@Override
+	@Transactional
+	public Integer findByFacilityCourt(String fName, String fCourt) {
+		// TODO Auto-generated method stub
+		return facrepo.findByFacilityCourt(fName, fCourt);
+	}
+
+	@Override
+	public ArrayList<Facility> findAllActiveFacility() {
+		// TODO Auto-generated method stub
+		return facrepo.getAllActiveFacility();
 	}
 
 }

@@ -1,139 +1,179 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<!DOCTYPE HTML>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page session="false"%>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <title>Admin | New Facility</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
- 
-<link rel="stylesheet" href="css/FacilityFormNew.css">
+<meta charset="UTF-8">
+<title>New Facility Form</title>
+
+<spring:url value="/css/FacilityFormNew.css" var="FacilityFormNew" />
+<link rel="STYLESHEET" type="text/css" href="${FacilityFormNew}" />
+
+<spring:url value="/css/MaintenanceFormNew.css" var="MaintenanceFormNew" />
+<link rel="STYLESHEET" type="text/css" href="${MaintenanceFormNew}" />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+<link rel='stylesheet prefetch'
+	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 </head>
+
 <body>
 
-<a href="${pageContext.request.contextPath}/admin/maintenance/create"></a>
+	<form:form method="POST" commandName="maintenance"
+		action="${pageContext.request.contextPath}/admin/calendar/maintenance/create.html">
 
-<div class="container" style="margin-top: 100px">
-
-	<c:if test="${not empty message}">
 		<div class="row">
-			<div class="col-xs-12 col-md-offset-2 col-md-8">
-				<div class="alert alert-info fade in">${message}</div>
-			</div>
-		</div>
-	</c:if>
 
-	<div class="row">
-
-		<div class="col-md-offset-2 col-md-8">
+			<div class="col-md-offset-2 col-md-8">
 				<div class="panel-heading">
 
-					<h4>New Facility Creation</h4>
+					<h4>New Maintenance session Creation</h4>
 					<hr>
 
 				</div>
+							
 
-			<div class="panel panel-primary">	
+				<div class="panel panel-primary">
 
-				<div class="panel-body">
-					<sf:form class="form-horizontal" modelAttribute="maintenance"
-						action="${contextRoot}/admin/maintenance/list" method="POST"
-						enctype="multipart/form-data">
-
-						<div class="form-group">
-							<label class="control-label col-md-4">Maintenance Id</label>
-							<div class="col-md-8">
-								<!-- attribute name -->
-								<sf:input type="text" path="maintenanceid" class="form-control"
-									placeholder="Enter Maintenance id here!" />
-								<sf:errors path="maintenanceid" cssClass="help-block"
-									element="em" />
-							</div>
+					<div class="form-group">
+						<label class="control-label col-md-4">Maintenance Id</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							<label class="control-label col-md-4" path="maintenanceid">${nextMaintenanceId}</label>
+							
+							<form:errors path="maintenanceid" cssClass="help-block"
+								element="em" />
 						</div>
+					</div>
 
-						<div class="form-group">
-							<label class="control-label col-md-4">Facilities</label>
-							<div class="col-md-8">
-								<sf:input type="text" path="facilities" class="form-control"
-									placeholder="facilities" />
-								<sf:errors path="facilities" cssClass="help-block" element="em" />
-							</div>
+
+					<div class="form-group">
+						<label class="control-label col-md-4">Facility</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							<select name="facilityName">
+							    <c:forEach items="${facilityList}" var="facility">
+							        <option value="${facility}"><c:out value="${facility}" /></option>
+							    </c:forEach>
+							</select>
+							
+							<select name="courtName">
+							    <c:forEach items="${facilityCourtsList}" var="court">
+							        <option value="${court}"><c:out value="${court}" /></option>
+							    </c:forEach>
+							</select>
+							<form:errors path="facilities" cssClass="help-block" element="em" />
 						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-4">Start Date</label>
-							<div class="col-md-8">
-								<sf:input path="startdate" class="form-control"
-									placeholder="Enter your StartDate here!" />
-								<sf:errors path="startdate" cssClass="help-block" element="em" />
-							</div>
+					</div>
+					<br>
+					<br>
+					<div class="form-group">
+						<label class="control-label col-md-4">Start Date</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							<fmt:formatDate value="${startdate.date}" 
+			                pattern="yyyy-MM-dd" 
+			                var="formattedDate"/>
+							<form:input id="datepicker_start" path="startdate" type="date" pattern="yyyy-mm-dd"/>
+							<form:errors path="startdate" cssClass="help-block" element="em" />
 						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-4">End Date</label>
-							<div class="col-md-8">
-								<!-- attribute name -->
-								<sf:input type="enddate" path="imagePath" class="form-control"
-									placeholder="Enter EndDate here!" />
-								<sf:errors path="enddate" cssClass="help-block" element="em" />
-							</div>
-						</div>					
-
-						<div class="form-group">
-							<label class="control-label col-md-4">Start Time</label>
-							<div class="col-md-8">
-								<sf:input path="timeslots_start" class="form-control"
-									placeholder="Enter your StartTime here!" />
-								<sf:errors path="timeslots_start" cssClass="help-block" element="em" />
-							</div>
+					</div>
+					
+					
+					<div class="form-group">
+						<label class="control-label col-md-4">End Date</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							<fmt:formatDate value="${enddate.date}" 
+			                pattern="yyyy-MM-dd" 
+			                var="formattedDate"/>
+							<form:input id="datepicker_end" path="enddate" type="date"/>
+							<form:errors path="enddate" cssClass="help-block" element="em" />
 						</div>
-
-						<div class="form-group">
-							<label class="control-label col-md-4">End Time</label>
-							<div class="col-md-8">
-								<!-- attribute name -->
-								<sf:input type="timeslots_end" path="imagePath" class="form-control"
-									placeholder="Enter EndTime here!" />
-								<sf:errors path="timeslots_end" cssClass="help-block" element="em" />
-							</div>
-						</div>			
-						
-						<div class="form-group">
-							<label class="control-label col-md-4">Active</label>
-							<div class="col-md-8">
-								<sf:input type="boolean" path="active" class="form-control"
-									placeholder="Indicate status" />
-								<sf:errors path="active" cssClass="help-block" element="em" />
-							</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-md-4">Start Time</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							
+							<select name="timeslotsName_start">
+							    <c:forEach items="${timeslotsList}" var="timeSlot">
+							        <option value="${timeSlot.time}"><c:out value="${timeSlot.time}" /></option>
+							    </c:forEach>
+							</select>
+							<form:errors path="timeslots_start" cssClass="help-block" element="em" />
 						</div>
-
-						<div class="form-group">
-
-							<div class="col-md-offset-4 col-md-4">
-
-								<input type="submit" name="submit" value="Save"
-									class="btn btn-primary" />
-
-							</div>
+					</div>
+					<br>
+					<br>
+					
+					<div class="form-group">
+						<label class="control-label col-md-4">End Time</label>
+						<div class="col-md-8">
+							<!-- attribute name -->
+							<select name="timeslotsName_end">
+							    <c:forEach items="${timeslotsList}" var="timeSlot">
+							        <option value="${timeSlot.time}"><c:out value="${timeSlot.time}" /></option>
+							    </c:forEach>
+							</select>
+							<form:errors path="timeslots_end" cssClass="help-block" element="em" />
 						</div>
-
-					</sf:form>
+					</div>
+					<br>
+					<br>
 
 				</div>
 
 			</div>
-
 		</div>
+ 
+		<div class="action-button">
+			<input id="btnSubmit" type="submit" value="Submit" />
+			<input id="btnReset" type="reset" value="Reset"/>
+		</div>
+		
+		<script
+			src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script src="js/index.js"></script>
 
-	</div>
-</div>
-    
-    </body>
+
+	</form:form>
+	
+<script>
+
+$( function() {
+    $( "#datepicker_start" ).datepicker(         
+    		dateFormat: 'yyyy-mm-dd',
+            defaultDate: '2018-06-01')
+);
+  } 
+);
+  
+$( function() {
+    $( "#datepicker_end" ).datepicker(dateFormat : "dd/mm/yy");
+  } 
+);
+  
+</script>
+
+	
+
+</body>
+
 </html>

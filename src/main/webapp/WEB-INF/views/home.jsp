@@ -1,51 +1,53 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
- <c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
 <%@ page session="false"%>
 <!doctype html>
 <html lang="en">
 
 <head>
-<title>Spring Club</title>
-
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Spring Club</title>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/Team-Clean.css">
+    <link rel="stylesheet" href="assets/css/Contact-Form-v2-Modal--Full-with-Google-Map.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/Contact-Form-v2-Modal--Full-with-Google-Map.js"></script>  
 </head>
 
 <body>
-	<div class="container" width="60%" margin-right="10%" margin-left="10%" padding-top="120px" margin-top="120px" >
-		<div id="carouselId" class="carousel slide" data-ride="carousel"
-			width="60%">
+	<!-- carousel -->
+	<div class="container" width="80%" margin-right="10%" margin-left="10%" padding-top="120px" margin-top="120px" >
+		<div id="carouselId" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselId" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselId" data-slide-to="1"></li>
 				<li data-target="#carouselId" data-slide-to="2"></li>
 			</ol>
-			<div class="carousel-inner" role="listbox" width="60%">
-				<div class="carousel-item active"
-					styles="margin-left:auto; margin-right: auto;">
-					<img src="Images/la.jpg" alt="First slide" width="100%"
+			<div class="carousel-inner" role="listbox" width="100%">
+				<div class="carousel-item active" styles="margin-left:auto; margin-right: auto;">
+					<img src="image/vista.png" alt="First slide" width="100%"
 						height="420px" styles="margin-left:auto; margin-right: auto;">
 					<div class="carousel-caption d-none d-md-block">
-						<button class="default" type="submit">Read More</button>
 					</div>
 				</div>
-				<div class="carousel-item"
-					styles="margin-left:auto; margin-right: auto;">
-					<img src="Images/chicago.jpg" alt="Second slide" width="100%"
+				<div class="carousel-item" styles="margin-left:auto; margin-right: auto;">
+					<img src="image/golfvista.png" alt="Second slide" width="100%"
 						height="420px" styles="margin-left:auto; margin-right: auto;">
 					<div class="carousel-caption d-none d-md-block">
-						<button class="default" type="submit">Read More</button>
 					</div>
 				</div>
-				<div class="carousel-item"
-					styles="margin-left:auto; margin-right: auto;">
-					<img src="Images/ny.jpg" alt="Third slide" width="100%"
+				<div class="carousel-item" styles="margin-left:auto; margin-right: auto;">
+					<img src="image/tennisvista.png" alt="Third slide" width="100%"
 						height="420px" styles="margin-left:auto; margin-right: auto;">
 					<div class="carousel-caption d-none d-md-block">
-						<button class="default" type="submit">Read More</button>
 					</div>
 				</div>
 			</div>
@@ -58,176 +60,121 @@
 			</a>
 		</div>
 	</div>
+	
 	<br />
-
-	<div class="container">
-		<div class="card">
-			<div class="card-block text-center">
-				<h2 id="aboutus">
-					About Us
-					</h2>
-			</div>
-
-		</div>
-		<br />
-		<div class="row">
-			<div class="col-md-6 col-lg-3">
-				<div class="card">
-					<img src="Images/WhatsappImage.jpeg"
-						class="card-img-top card-fluid" />
-					<div class="card-block">
-						<h3 class="card-title text-center">Our Story</h3>
-						<p text-align="center">our facilities here</p>
-					</div>
-
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3">
-				<div class="card">
-					<img src="Images/WhatsappImage.jpeg"
-						class="card-img-top card-fluid" />
-					<div class="card-block">
-						<h3 class="card-title text-center">Our Vision</h3>
-						<p>our facilities here</p>
-					</div>
-
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3">
-				<div class="card">
-					<img src="Images/WhatsappImage.jpeg"
-						class="card-img-top card-fluid" />
-					<div class="card-block">
-						<h3 class="card-title text-center">Our Mission</h3>
-						<p>our facilities here</p>
-					</div>
-
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3">
-				<div class="card">
-					<img src="Images/WhatsappImage.jpeg"
-						class="card-img-top card-fluid" />
-					<div class="card-block">
-						<h3 class="card-title text-center">Our Team</h3>
-						<p>our facilities here</p>
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<br />
-	</div>
-	<div class="container">
-		<div class="card">
-			<div class="card-block text-center" id="contactus">
-				<h2>
-					Contact Us
-					</h2>
-			</div>
-
-		</div>
-		<br />
-		<div class="card-group col-xs-4">
-			<div class="card bg-light mb-3 text-center" style="max-width: 350px;">
-				<div class="card-header">
-					<h5>Location</h5>
-				</div>
-				<!-- Google Map -->
-				<div id="map"></div>
-				<div class="card-footer bg-light">
-					<h6>Address</h6>
-					<p>25 Heng Mui Keng Terrace, Singapore 119615</p>
-					<h6>Opening Hours</h6>
-
-					<p>Mon - Sun: 9:00am - 9:00pm
-				</div>
-
-			</div>
-			<div class="card bg-light mb-3 text-center">
-				<div class="card-header">
-					<h5>Contact Us</h5>
-				</div>
-				<!-- Google Map -->
-				<div id="contact-us-form">
-				 <form action="${pageContext.request.contextPath}/" class="contact-form" method="post">
-              
-                          <div class="form-group">
-                             <input type="text" class="form-control" id="name" name="nm" placeholder="Name" required="required" autofocus>
-
-                          </div>
-                      
-                      
-                          <div class="form-group form_left">
-                             <input type="email" class="form-control" id="email" name="em" placeholder="Email" required="required"> 
-
-                          </div>
-                      
-                        <div class="form-group">
-                              <input type="text" class="form-control" id="sb" placeholder="Subject" required="required"> 
-
+	<br />
+	
+	<!-- history and all that -->
+	<div class="team-clean">
+        <div class="container" style="background-color: #343A40;">
+            <div class="intro">
+                <h2 class="text-center" id="aboutus" style="color: white">ABOUT US </h2>
+                <p class="text-center" style="color: white">Spring Club was founded in 1882 Sir Stampford Waffles in the prestigious Singamalam disctrict of sunny Singapore.</p>
+            </div>
+            <div class="row people">
+                <div class="col-md-6 col-lg-4 item"><img src="image/historical.png">
+                    <h3 class="name" style="color: white">Historical Holdings</h3>
+                    <p class="description" style="color: white">Bask in the glory of ancient history and wander through the different relics and historical buildings scattered throughout the club's compound.</p>                   
+                </div>
+                <div class="col-md-6 col-lg-4 item"><img src="image/lodgings.png">
+                    <h3 class="name" style="color: white">Luxurious Lodgings</h3>
+                    <p class="description" style="color: white">Indulge yourself to a gorgeous weekend with a staycation in one of the many rooms the club has to offer. Or just enjoy the facilities provided to members.</p>
+                    <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                </div>
+                <div class="col-md-6 col-lg-4 item"><img src="image/staff.png">
+                    <h3 class="name" style="color: white">Serviceful Staff</h3>
+                    <p class="description" style="color: white">Our highly trained and enthusiastic staff can't wait to pamper you and help you indulge in any of what the club has to offer you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<br />
+	<br />
+	
+	<!-- map and contactNew -->
+	<div class="container" width="80%" margin-right="10%" margin-left="10%" padding-top="120px" margin-top="120px">
+        <div class="container-fluid" id="contactus">
+            <h1 class="text-center">Contact Information</h1>
+            <hr>
+            <form action="${pageContext.request.contextPath}/" class="contact-form" method="post">
+            <input class="form-control" type="hidden" name="Introduction" value="This email was sent from springclub.com">
+            <input class="form-control" type="hidden" name="subject" value="springclub.com Contact Form">
+            <input class="form-control" type="hidden" name="to" value="springclub12@gmail.com">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div id="successfail"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12 col-md-6" id="contact-us-form">
+                    
+                        <h2 class="h4"><i class="fa fa-envelope"></i> Contact Us<small><small class="required-input">&nbsp;(*required)</small></small></h2>
+                        
+                        <div class="form-group"><label for="from-name">Name</label><span class="required-input">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-user-o"></i></span></div>
+                                <input class="form-control" type="text" name="nm" required="required" placeholder="Full Name" id="name">
+                            </div>
                         </div>
-                        <div class="form-group">
-                         <textarea class="form-control textarea-contact" rows="5" id="comment" name="FB" placeholder="Type Your Message/Feedback here..." required="required"></textarea> 
-
-                        <br>
-                          <button class="btn btn-default btn-send"> <span class="glyphicon glyphicon-send"></span> Send </button>
+                        
+                        <div class="form-group"><label for="from-email">Email</label><span class="required-input">*</span>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-envelope-o"></i></span></div>
+                                <input class="form-control" type="text" name="em" required="required" placeholder="Email Address" id="email">
+                            </div>
                         </div>
-                       </form>
-					<!-- form validation here - do in jsp using tag library -->
-<%-- 					<form:form modelAttribute="user" class="contact-form" method="POST"
-						action="${pageContext.request.contextPath}/login/authenticate">
-						<table class="framed">
-							<tr>
-								<td><spring:message code="Email / Username: " /></td>
-								<td colspan="3"><form:input path="email" size="40"
-										required="required" /></td>
-							</tr>
-							<tr>
-								<td><spring:message code="Password: " /></td>
-								<td colspan="3"><form:password path="password" size="40"
-										required="required" /></td>
-							</tr>
-							<tr>
-								<td colspan="4">&nbsp;
-									<p class="label label-danger">${errormsg}</p>
-								</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td><form:button class="btn btn-success" name="submit"
-										type="submit" value="Login">
+                        
+                        <div class="form-group">
+                        	<div class="form-group"><label for="from-phone">Subject</label><span class="required-input">*</span>
+                        		<div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-phone"></i></span></div>
+                        		<input class="form-control" type="text" name="sb" required="required" placeholder="Subject" id="sb">
+                        	</div>
+                        </div>
+                        
+                        <div class="form-group"><label for="from-comments">Comments</label><textarea class="form-control textarea-contact" rows="5" name="FB" placeholder="Enter Comments" id="comment"></textarea></div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col"><button class="btn btn-primary btn-block" type="reset"><i class="fa fa-undo"></i> Reset</button></div>
+                                <div class="col"><button class="btn btn-primary btn-block" type="submit">Submit <i class="fa fa-chevron-circle-right"></i></button></div>
+                            </div>
+                        </div>
+                        <hr class="d-flex d-md-none">
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <h2 class="h4 text-center"><i class="fa fa-location-arrow"></i> Locate Us</h2>
+                        <div class="form-row">
+                        
+                        	<!-- google map! -->
+                        	<div id="map"></div>
+                            <div class="col-sm-6 col-md-12 col-lg-6 text-center">
+                                <h2 class="h4"><i class="fa fa-user"></i> Our Info</h2>
+                                <div><span><strong>Spring Club Staff</strong></span></div>
+                                <div><span>springclub12@gmail.com</span></div>
+                                <div><abbr data-toggle="tooltip" data-placement="top" title="Office Phone: +65-1234 5678">O:</abbr> +65-1234 5678</div>
+                                <hr class="d-sm-none d-md-block d-lg-none">
+                            </div>
+                            <div class="col-sm-6 col-md-12 col-lg-6 text-center">
+                                <h2 class="h4"><i class="fa fa-location-arrow"></i> Our Address</h2>
+                                <div><span><strong>Spring Club</strong></span></div>
+                                <div><span>25 Heng Mui Keng Terrace, </br>Singapore 119615</span></div>
+                                <div><span>Mon - Sun: 9:00am - 9:00pm</span></div>      
+                                <hr class="d-sm-none">
+                            </div>
+                            <!-- google map! -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-									</form:button></td>
-								<td><form:button class="btn btn-danger" name="clear"
-										type="reset" value="Reset">
-
-									</form:button></td>
-							</tr>
-						</table>
-					</form:form> --%>
-					<!-- End Of Contact Us -->
-
-				</div>
-				<div class="card-footer bg-light">
-					<h6>Email</h6>
-					<p>springclub12@gmail.com</p>
-					<h6>Tel No.</h6>
-					<p>+65-1234 5678</p>
-
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-
-
-
-
+	</br>
+	</br>
+	</br>
+	</br>
 
 	<script>
 		function initMap() {
