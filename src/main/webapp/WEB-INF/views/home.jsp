@@ -164,7 +164,7 @@
                           </div>
                       
                         <div class="form-group">
-                              <input type="text" class="form-control" id="sb" placeholder="Subject" required="required"> 
+                              <input type="text" class="form-control" id="sb" name="sb" placeholder="Subject" required="required"> 
 
                         </div>
                         <div class="form-group">
