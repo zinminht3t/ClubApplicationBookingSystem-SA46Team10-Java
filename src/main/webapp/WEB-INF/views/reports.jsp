@@ -132,31 +132,59 @@
             <div class="row justify-content-center features">
             	<div class="col-sm-6 col-md-5 col-lg-4 item">
                     <div class="box">
-                        <h3 class="name">Report 1</h3>
-                        <p class="description">Learn about the time 15 stragglers came to the inn to brawl.</p>
-                        <form:form method = "GET" action = "reports/report1">
-				         <table>
-				            <tr>
-				               <td>
-				                  <input type = "submit" value = "Generate Report"/>
-				               </td>
-				            </tr>
-				         </table>  
-				      </form:form>
+                        <h3 class="name">Members</h3>
+                        <p class="description">Click below to generate a pdf of a member list showing all the members of the club and their contact details.</p>
+	                   	<form:form method = "GET" action = "reports/report1">
+					        <table style="display: flex; justify-content: center;">
+					            <tr>
+					               <td>
+					                  <input type = "submit" value = "Member List"/>
+					               </td>
+					            </tr>
+					      	</table>  
+						</form:form>
+                	</div>
+                </div>                
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box">
+                        <h3 class="name">Facilities</h3>
+                        <p class="description">Click below to generate a pdf of either a facility revenue report showing the amount of revenue generated per facility, or a facility usage report showing the amount of time a facility is used.</p>
+                        <form:form method = "GET" action = "reports/report2">
+					        <table style="display: flex; justify-content: center;">
+					            <tr>
+					               <td>
+					                  <input type = "submit" value = "Facility Revenue Report"/>
+					               </td>
+					            </tr>
+					      	</table>  
+						</form:form>
+						<form:form method = "GET" action = "reports/report3">
+					        <table style="display: flex; justify-content: center;">
+					            <tr>
+					               <td>
+					                  <input type = "submit" value = "Facility Usage Report"/>
+					               </td>
+					            </tr>
+					      	</table>  
+						</form:form>
                 	</div>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-plane icon"></i>
-                        <h3 class="name">Fast </h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p><a href="#" class="learn-more">Learn more »</a></div>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-phone icon"></i>
-                        <h3 class="name">Mobile-first</h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p><a href="#" class="learn-more">Learn more »</a></div>
-                </div>
+                    <div class="box">
+                        <h3 class="name">Maintenance</h3>
+                        <p class="description">Click below to generate a pdf showing the maintenance status on the facilites.</p>
+                        <form:form method = "GET" action = "reports/report4">
+					        <table style="display: flex; justify-content: center;">
+					            <tr>
+					               <td>
+					                  <input type = "submit" value = "Maintenance Report"/>
+					               </td>
+					            </tr>
+					      	</table>  
+						</form:form>
+                  	</div>
+               	</div>
             </div>
         </div>
-    </div>
-    
+    </div>    
 </body>

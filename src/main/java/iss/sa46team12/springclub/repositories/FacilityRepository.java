@@ -25,6 +25,8 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 	@Query("SELECT f from Facility f WHERE f.facilityName = :fname")
 	ArrayList<Facility> getAllCourtsInFacility(@Param("fname") String fname);
 
+	@Query("SELECT f from Facility f WHERE f.active = 1 GROUP BY f.facilityName")
+	ArrayList<Facility> getAllActiveFacility();
 }
 
 
