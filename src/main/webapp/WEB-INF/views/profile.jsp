@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 
 
@@ -11,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Spring Club - User Profile</title>
 
 
 <spring:url value="/css/register.css" var="register" />
@@ -43,9 +44,9 @@
 			</script>
 		</c:when>
 	</c:choose>
-	
+
 	<h2 class="text-primary text-center">User Profile</h2>
-	<br/>
+	<br />
 	<div class="row">
 
 		<div class="col-md-8 offset-md-2">
@@ -215,119 +216,270 @@
 
 				</div>
 				<div class="tab-pane fade" id="pills-booking" role="tabpanel"
-					aria-labelledby="pills-booking-tab">...</div>
-				<div class="tab-pane fade" id="pills-pastbooking" role="tabpanel"
-					aria-labelledby="pills-pastbooking-tab">...</div>
-				<div class="tab-pane fade" id="pills-sub" role="tabpanel"
-					aria-labelledby="pills-sub-tab">
-
-					<div class="row">
-						<div class="col-md-12">
-							<c:choose>
-								<c:when test="${subpackage.packageyears=='1 Year'}">
-									<img
-										src="${pageContext.request.contextPath}/image/Membership-Bronze-1.png"
-										width="40%" class="mx-auto d-block">
-									<br />
-								</c:when>
-								<c:otherwise>
-									<img
-										src="${pageContext.request.contextPath}/image/Membership-Gold.png"
-										width="40%" class="mx-auto d-block">
-									<br />
-								</c:otherwise>
-							</c:choose>
-						</div>
-						<hr />
-
-						<div class="col-md-6 offset-md-3">
+					aria-labelledby="pills-booking-tab">
 
 
-							<em>Your membership progress is : </em>
+					<c:if test="${fn:length(upcomingbookings) gt 0}">
 
-							<div class="progress">
-								<c:choose>
-									<c:when test="${percentage < 10}">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: ${percentage }%" aria-valuenow="${percentage }"
-											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
-									</c:when>
-									<c:when test="${percentage > 90}">
-										<div class="progress-bar bg-success" role="progressbar"
-											style="width: ${percentage }%" aria-valuenow="${percentage }"
-											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
-									</c:when>
-									<c:otherwise>
-										<div class="progress-bar bg-warning" role="progressbar"
-											style="width: ${percentage }%" aria-valuenow="${percentage }"
-											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
-									</c:otherwise>
-								</c:choose>
+						<c:forEach var="ubookings" items="${upcomingbookings}">
+
+
+							<div class="row"
+								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+								<div class="col-md-4">
+									<img src="" id="${ubookings.bookingid}uphoto"
+										alt="facilityphoto" width="100%" class="rounded-circle" />
+								</div>
+								<div class="col-md-5">
+									<div style="overflow: hidden;">
+										<h4 class="float-left text-dark">
+											<strong id="${ubookings.bookingid}uname"></strong>
+										</h4>
+									</div>
+									<h4 class="text-secondary">
+										<strong id="${ubookings.bookingid}udate"></strong>
+									</h4>
+									<div id="${ubookings.bookingid}utimeslots"></div>
+									<h5>
+										Price : $ ${ubookings.total }.00</em>
+									</h5>
+									<h6 class="text-warning">Status : ${ubookings.status }</h6>
+
+
+									<c:forEach var="ubookingDetail"
+										items="${ubookings.getBookings()}">
+
+										<script>
+											document
+													.getElementById("${ubookings.bookingid}uphoto").src = "${pageContext.request.contextPath}/image/${ubookingDetail.getFacility().getImagePath()}";
+
+											document
+													.getElementById("${ubookings.bookingid}uname").innerHTML = "${ubookingDetail.getFacility().getFacilityName()}";
+											document
+													.getElementById("${ubookings.bookingid}udate").innerHTML = "${ubookingDetail.bookingdate}";
+											document
+													.getElementById("${ubookings.bookingid}utimeslots").innerHTML += "<span class=\"badge badge-info\">${ubookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
+										</script>
+									</c:forEach>
+
+								</div>
+								<div class="col-md-3">
+									<em><i class="fa fa-stopwatch"></i>
+										${ubookings.transactiontime} </em> <br /> <br /> <br />
+									<c:choose>
+										<c:when test="${ubookings.status =='Booked'}">
+											<button id="cancelbookingbtn" class="btn btn-outline-danger">
+												<i class="fa fa-ban"></i> Cancel Booking
+											</button>
+
+											<script>
+										 document.getElementById("cancelbookingbtn").addEventListener('click',function ()
+												    {
+
+												swal({
+													  title: 'Booking Cancellation',
+													  text: "Are you sure you want to cancel booking!",
+													  type: 'warning',
+													  showCancelButton: true,
+													  confirmButtonColor: '#3085d6',
+													  cancelButtonColor: '#d33',
+													  confirmButtonText: 'Yes, I am Sure!'
+													}).then((result) => {
+													  if (result.value) {
+														  window.location.href = "${pageContext.request.contextPath}/user/booking/cancel/${ubookings.bookingid}";
+													  }
+													});
+											 
+											 
+												    }  ); 
+										</script>
+										</c:when>
+									</c:choose>
+								</div>
 							</div>
 
-							<br />
-
-							<div class="card">
-								<div class="card-body">
-									<h5 class="card-title text-success">${subpackage.packageyears}
-										Membership</h5>
-
-									<c:choose>
-										<c:when test="${dayleft <= 0}">
-											<h6 class="card-subtitle mb-2 text-danger">Your account
-												has already been expired! Please Renew!</h6>
-										</c:when>
-										<c:otherwise>
-											<em class="card-subtitle mb-2 text-info">Your
-												Subscription will be expired in ${dayleft } days</em>
-										</c:otherwise>
-									</c:choose>
-									<br />
-									<p class="card-text">You have these privileges</p>
-									<ul class="card-text">
-										<c:choose>
-											<c:when test="${subpackage.packageyears=='1 Year'}">
-												<li>ACCESS TO BOOKING FACILITIES</li>
-												<li>DISCOUNTS AT VARIOUS RESTAURANTS</li>
+						</c:forEach>
 
 
-											</c:when>
-											<c:otherwise>
-												<li>PERSONAL CHAUFFEUR</li>
-												<li>ACCESS TO BOOKING PRIVATE AUDITORIUM</li>
-											</c:otherwise>
-										</c:choose>
-									</ul>
-									<hr />
-									<div id="renewbuttondiv">
-										<button id="renew"
-											class="btn btn btn-outline-success float-right">Renew
-											Membership</button>
+					</c:if>
+
+
+
+				</div>
+				<div class="tab-pane fade" id="pills-pastbooking" role="tabpanel"
+					aria-labelledby="pills-pastbooking-tab">
+
+					<c:if test="${fn:length(pastbookings) gt 0}">
+
+						<c:forEach var="bookings" items="${pastbookings}">
+
+
+							<div class="row"
+								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+								<div class="col-md-4">
+									<img src="" id="${bookings.bookingid}photo" alt="facilityphoto"
+										width="100%" class="rounded-circle" />
+								</div>
+								<div class="col-md-5">
+									<div style="overflow: hidden;">
+										<h4 class="float-left text-dark">
+											<strong id="${bookings.bookingid}name"></strong>
+										</h4>
 									</div>
-									<div id="renewdiv" style="display: none;">
-										<h6>Choose Package</h6>
-										<a
-											href="${pageContext.request.contextPath}/user/renewmembership/${oneYearPackage.packageid}"
-											class="btn btn-info"><i class="fa fa-cube"></i> 1 Year :
-											${oneYear}</a> <a
-											href="${pageContext.request.contextPath}/user/renewmembership/${threeYearsPackage.packageid}"
-											class="btn btn-success"><i class="fa fa-cubes"></i> 3
-											Years : ${threeYears}</a>
+									<h4 class="text-secondary">
+										<strong id="${bookings.bookingid}date"></strong>
+									</h4>
+									<div id="${bookings.bookingid}timeslots"></div>
+									<h5>
+										Price : $ ${bookings.total }.00</em>
+									</h5>
+									<h6 class="text-warning">Status : ${bookings.status }</h6>
+									<c:forEach var="bookingDetail"
+										items="${bookings.getBookings()}">
 
+										<script>
+											document
+													.getElementById("${bookings.bookingid}photo").src = "${pageContext.request.contextPath}/image/${bookingDetail.getFacility().getImagePath()}";
 
-										<button id="cancelbtn" class="btn btn-danger float-right">
-											<i class="fa fa-close"></i>
-										</button>
-									</div>
+											document
+													.getElementById("${bookings.bookingid}name").innerHTML = "${bookingDetail.getFacility().getFacilityName()}";
+											document
+													.getElementById("${bookings.bookingid}date").innerHTML = "${bookingDetail.bookingdate}";
+											document
+													.getElementById("${bookings.bookingid}timeslots").innerHTML += "<span class=\"badge badge-info\">${bookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
+										</script>
+									</c:forEach>
 
+								</div>
+
+								<div class="col-md-3">
+
+									<em>${bookings.transactiontime} </em>
 
 								</div>
 							</div>
-						</div>
+
+						</c:forEach>
+
+
+					</c:if>
+
+				</div>
+				<div class="tab-pane fade" id="pills-sub" role="tabpanel"
+					aria-labelledby="pills-sub-tab">
+
+					<c:if test="${fn:length(subpackage) gt 0}">
+						<div class="row">
+							<div class="col-md-12">
+
+								<c:choose>
+									<c:when test="${subpackage.packageyears=='1 Year'}">
+										<img
+											src="${pageContext.request.contextPath}/image/Membership-Bronze-1.png"
+											width="40%" class="mx-auto d-block">
+										<br />
+									</c:when>
+									<c:otherwise>
+										<img
+											src="${pageContext.request.contextPath}/image/Membership-Gold.png"
+											width="40%" class="mx-auto d-block">
+										<br />
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<hr />
+
+							<div class="col-md-6 offset-md-3">
+
+
+								<em>Your membership progress is : </em>
+
+								<div class="progress">
+									<c:choose>
+										<c:when test="${percentage < 10}">
+											<div class="progress-bar progress-bar-striped bg-danger"
+												role="progressbar" style="width: ${percentage }%"
+												aria-valuenow="${percentage }" aria-valuemin="0"
+												aria-valuemax="100">${percentage }%</div>
+										</c:when>
+										<c:when test="${percentage > 90}">
+											<div class="progress-bar progress-bar-striped bg-success"
+												role="progressbar" style="width: ${percentage }%"
+												aria-valuenow="${percentage }" aria-valuemin="0"
+												aria-valuemax="100">${percentage }%</div>
+										</c:when>
+										<c:otherwise>
+											<div class="progress-bar progress-bar-striped bg-warning"
+												role="progressbar" style="width: ${percentage }%"
+												aria-valuenow="${percentage }" aria-valuemin="0"
+												aria-valuemax="100">${percentage }%</div>
+										</c:otherwise>
+									</c:choose>
+								</div>
+
+								<br />
+
+								<div class="card">
+									<div class="card-body">
+										<h5 class="card-title text-success">${subpackage.packageyears}
+											Membership</h5>
+
+										<c:choose>
+											<c:when test="${dayleft <= 0}">
+												<h6 class="card-subtitle mb-2 text-danger">Your account
+													has already been expired! Please Renew!</h6>
+											</c:when>
+											<c:otherwise>
+												<em class="card-subtitle mb-2 text-info">Your
+													Subscription will be expired in ${dayleft } days</em>
+											</c:otherwise>
+										</c:choose>
+										<br />
+										<p class="card-text">You have these privileges</p>
+										<ul class="card-text">
+											<c:choose>
+												<c:when test="${subpackage.packageyears=='1 Year'}">
+													<li>ACCESS TO BOOKING FACILITIES</li>
+													<li>DISCOUNTS AT VARIOUS RESTAURANTS</li>
+
+
+												</c:when>
+												<c:otherwise>
+													<li>PERSONAL CHAUFFEUR</li>
+													<li>ACCESS TO BOOKING PRIVATE AUDITORIUM</li>
+												</c:otherwise>
+											</c:choose>
+										</ul>
+										<hr />
+										<div id="renewbuttondiv">
+											<button id="renew"
+												class="btn btn btn-outline-success float-right">Renew
+												Membership</button>
+										</div>
+										<div id="renewdiv" style="display: none;">
+											<h6>Choose Package</h6>
+											<a
+												href="${pageContext.request.contextPath}/user/renewmembership/${oneYearPackage.packageid}"
+												class="btn btn-info"><i class="fa fa-cube"></i> 1 Year :
+												${oneYear}</a> <a
+												href="${pageContext.request.contextPath}/user/renewmembership/${threeYearsPackage.packageid}"
+												class="btn btn-success"><i class="fa fa-cubes"></i> 3
+												Years : ${threeYears}</a>
+
+
+											<button id="cancelbtn" class="btn btn-danger float-right">
+												<i class="fa fa-close"></i>
+											</button>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
 
 
 
-						<script>
+							<script>
 							$(document).ready(function() {
 								$("#renew").click(function() {
 									$("#renew").hide();
@@ -339,10 +491,11 @@
 								});
 							});
 						</script>
-						</script>
-					</div>
+							</script>
+						</div>
 
 
+					</c:if>
 				</div>
 			</div>
 

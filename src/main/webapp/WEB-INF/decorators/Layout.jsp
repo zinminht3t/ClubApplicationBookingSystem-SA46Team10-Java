@@ -8,6 +8,7 @@
 		<%@include file="Header.jsp"%>
 		<link rel="STYLESHEET" type="text/css" href="${ss}" />
 		<link rel="stylesheet" href="css/Layout.css">
+		<title>Spring Club</title>
 		<dec:head />
 	</head>
 <body id="top">
