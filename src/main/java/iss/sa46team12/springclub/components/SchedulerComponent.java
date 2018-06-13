@@ -35,7 +35,7 @@ public class SchedulerComponent {
 
 	// Cron expression : second, minute, hour, day of month, month, day(s) of week
 	// eg. 22:00 hrs = "0 0 22 * * *", 1.30am = "0 30 1 * * *"
-	@Scheduled(cron = "0 9 1 * * *")
+	@Scheduled(cron = "0 0 0 * * *")
 	public void updateAccountExpiry() {
 		process();
 	}
