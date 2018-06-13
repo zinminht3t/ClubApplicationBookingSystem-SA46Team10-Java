@@ -1,11 +1,8 @@
 package iss.sa46team12.springclub.controllers;
 
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.validation.Valid;
 
+import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
+import org.hibernate.type.descriptor.java.LocalDateTimeJavaDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +26,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.email.SendEmail;
+import iss.sa46team12.springclub.models.BookingDetails;
+import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Password;
 import iss.sa46team12.springclub.models.Subscription;
 import iss.sa46team12.springclub.models.SubscriptionPackage;
 import iss.sa46team12.springclub.models.User;
+import iss.sa46team12.springclub.services.BookingsService;
 import iss.sa46team12.springclub.services.SubscriptionPackageService;
 import iss.sa46team12.springclub.services.SubscriptionService;
 import iss.sa46team12.springclub.services.UserService;
@@ -47,6 +49,8 @@ public class UserController {
 	SubscriptionService sService;
 	@Autowired
 	SubscriptionPackageService spService;
+	@Autowired
+	BookingsService bService;
 	@Autowired
 	private UserValidator uValidator;
 	@Autowired
@@ -65,7 +69,7 @@ public class UserController {
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView editProfile() {
 
-		int userid = 1;// todo
+		int userid = 1; // TODO
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
 
@@ -114,6 +118,23 @@ public class UserController {
 		}
 		percentage = (int) percentage;
 
+		// get user past and upcoming bookings
+		ArrayList<Bookings> bookingslist = bService.getUserBookings(userid);
+
+		ArrayList<Bookings> pastbookings = new ArrayList<Bookings>();
+		ArrayList<Bookings> upcomingbookings = new ArrayList<Bookings>();
+		LocalDateTime today = LocalDateTime.now();
+
+		for (Bookings b : bookingslist) {
+			if (b.getBookings().get(0).getBookingdate().isAfter(today)) {
+				upcomingbookings.add(b);
+			} else {
+				pastbookings.add(b);
+			}
+		}
+
+		mav.addObject("pastbookings", pastbookings);
+		mav.addObject("upcomingbookings", upcomingbookings);
 		mav.addObject("oneYear", price1Year);
 		mav.addObject("threeYears", price3Years);
 		mav.addObject("oneYearPackage", pyear1);
@@ -187,7 +208,7 @@ public class UserController {
 	public ModelAndView logic(@PathVariable int selectedPackage, Model model,
 			final RedirectAttributes redirectAttributes) {
 
-		int userid = 1; // todo
+		int userid = 1; // TODO
 		ModelAndView mav;
 		mav = new ModelAndView("redirect:/user/profile");
 		SubscriptionPackage sp = spService.findPackage(selectedPackage);
@@ -228,6 +249,52 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("NotiTitle", "Success");
 		redirectAttributes.addFlashAttribute("NotiMessage",
 				"Your Subscription has been successfully renewed! Thank you for choosing our club!");
+		return mav;
+	}
+
+	@RequestMapping(value = "/booking/cancel/{bookingid}", method = RequestMethod.GET)
+	public ModelAndView cancelBooking(@PathVariable int bookingid, Model model,
+			final RedirectAttributes redirectAttributes) {
+
+		int userid = 1; // TODO
+		String bookingStatus = "Booked"; // TODO
+
+		ModelAndView mav;
+		mav = new ModelAndView("redirect:/user/profile");
+
+		Bookings userBooking = bService.findBooking(bookingid);
+
+		BookingDetails userBD = new BookingDetails();
+
+		for (BookingDetails bd : userBooking.getBookings()) {
+			userBD = bd;
+		}
+		LocalDateTime todayplusthreedays = LocalDateTime.now().plusDays(3);
+		if (userBooking.getUser().getUserId() != userid || todayplusthreedays.isAfter(userBD.getBookingdate())) {
+			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
+			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Something went wrong!");
+		} else {
+
+			User loginuser = uService.findUserById(userid);
+
+			if (userBooking.getStatus().equals(bookingStatus)) {
+				userBooking.setStatus("Cancelled by user");
+				bService.changeBooking(userBooking);
+
+				SendEmail.sendEmail("springclub12@gmail.com", loginuser.getEmail(), "Booking Cancellation",
+						"Hello, Your booking for " + userBD.getFacility().getFacilityName() + " facility at "
+								+ userBD.getBookingdate() + " has been successfully cancelled!");
+
+				redirectAttributes.addFlashAttribute("showNotification", "success");
+				redirectAttributes.addFlashAttribute("NotiTitle", "Booking Cancellation");
+				redirectAttributes.addFlashAttribute("NotiMessage",
+						"Hello, Your booking for " + userBD.getFacility().getFacilityName() + " facility at "
+								+ userBD.getBookingdate() + " has been successfully cancelled!");
+			}
+
+		}
+
 		return mav;
 	}
 

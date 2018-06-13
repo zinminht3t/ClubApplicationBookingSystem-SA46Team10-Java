@@ -18,4 +18,7 @@ public interface BookingsService {
 
 	void removeBooking(Bookings booking);
 	
+	//for  bookings in user profile
+	ArrayList<Bookings> getUserBookings(int userid);
+	
 }
