@@ -42,11 +42,8 @@
 		}
 
 	});
-	$(function() {
-		$("input").checkboxradio();
-	});
-</script>
-
+	
+	</script>
 </head>
 <body>
 	<a href="${pageContext.request.contextPath}/facilities/confirm-booking">Book
@@ -54,14 +51,15 @@
 
 	<form:form method="POST"
 		action="${pageContext.request.contextPath}/facilities/confirm-booking/booking-details">
-		<p>
-			Date: <input type="text" name="selecteddate" value="${date}"
-				id="datepicker">
-		</p>
-		<script>
+			Date: <input type="text" name="selecteddate" value="${date}" id="datepicker">
+		
 			
+		<script>
+		$(function() {
+			$("input").checkboxradio();
+		});
 		</script>
-
+		
 		<c:forEach var="courts" items="${availableCourtsTime}">
 			<c:forEach var="court" items="${courts.key}">
 				${court} <br />

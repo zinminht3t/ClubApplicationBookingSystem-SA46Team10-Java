@@ -12,11 +12,11 @@
 <body>
 ${selecteddate}
 <br />
-
+Booked Times: 
 <c:forEach var="court" items="${courtAndTimes}">
-	<c:forEach var="times" items="${court.key}">
-		<c:forEach var="time" items="${courtAndTimes[times]}">
-			${time.getCourt()}
+	<c:forEach var="times" items="${court.value}">
+		<c:forEach var="time" items="${times}">
+			${time}
 		</c:forEach>
 		<br />
 	</c:forEach>
