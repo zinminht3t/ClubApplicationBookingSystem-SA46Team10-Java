@@ -14,8 +14,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -24,12 +24,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import iss.sa46team12.springclub.models.BookingView;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
 import iss.sa46team12.springclub.models.Maintenance;
 import iss.sa46team12.springclub.models.Timeslots;
-
 import iss.sa46team12.springclub.services.BookingDetailsService;
 import iss.sa46team12.springclub.services.BookingViewService;
 import iss.sa46team12.springclub.services.BookingsService;
@@ -133,7 +133,7 @@ public class ManageBMController {
 
 
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.GET)
-	public ModelAndView viewCalendar(HttpSession session) {
+	public ModelAndView viewCalendar(Model model, HttpSession session) {
 		ModelAndView mav = new ModelAndView("Calendar");
 //		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
 		ArrayList<String> daysOfWeek = new ArrayList<String>() {
@@ -193,7 +193,10 @@ public class ManageBMController {
 
 		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
 		session.setAttribute("maintenanceList", maintenanceList);
-
+		
+		// for booking id 
+//		model.addAttribute("getbookingtiming", new Bookings());
+//		model.addAttribute("getmainttiming", new Maintenance());
 		return mav;
 	}
 
@@ -313,6 +316,11 @@ public class ManageBMController {
 		
 		return "MaintenanceFormNew";
 	}
-	
+
+//	@RequestMapping(value="/viewCalendar", method = RequestMethod.POST, params = "btnIDeditBooking")
+//	public String sendToBooking() {
+//		
+//	}
+//	
 
 }
