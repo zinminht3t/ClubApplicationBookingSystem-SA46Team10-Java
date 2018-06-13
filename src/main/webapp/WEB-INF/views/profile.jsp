@@ -37,13 +37,21 @@
 				swal('${NotiTitle}', '${NotiMessage}', 'success')
 			</script>
 		</c:when>
+		<c:when test="${not empty showErrorNotification}">
+			<script>
+				swal('${NotieTitle}', '${NotieMessage}', 'error')
+			</script>
+		</c:when>
 	</c:choose>
+	
+	<h2 class="text-primary text-center">User Profile</h2>
+	<br/>
+	<div class="row">
 
-	<div class="row" style="margin-top: 100px;">
+		<div class="col-md-8 offset-md-2">
 
-		<div class="col-md-10 offset-md-1">
-
-			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			<ul class="nav nav-pills mb-3 shadow-lg rounded" id="pills-tab"
+				role="tablist" style="background: #eee; margin: 2px;">
 				<li class="nav-item"><a class="nav-link active"
 					id="pills-home-tab" data-toggle="pill" href="#pills-home"
 					role="tab" aria-controls="pills-home" aria-selected="true">Edit
@@ -70,51 +78,56 @@
 
 
 
-					<div class="row" style="padding: 50px;">
-						<div class="col-md-5 col-sm-12">
+					<div class="row" style="padding: 20px;">
+						<div class="col-md-6 col-sm-12">
 
 							<h3>Edit Profile</h3>
 							<hr>
-							<form:form method="POST" id="user" modelAttribute="userProfile"
+							<form:form method="POST" id="user" modelAttribute="user"
 								action="${pageContext.request.contextPath}/user/edit">
 
 								<div class="row">
-									<form:errors path="fullname" cssStyle="color: red;" />
-									<form:errors path="nric" cssStyle="color: red;" />
-									<form:errors path="contactno" cssStyle="color: red;" />
 									<h4>Account</h4>
 									<div class="input-group input-group-icon">
 										<form:input path="fullname" type="text"
-											placeholder="Full Name" />
+											placeholder="Full Name" required="required" />
 										<div class="input-icon">
 											<i class="fa fa-user"></i>
 										</div>
+
+										<form:errors path="fullname" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
-										<form:input path="nric" type="text" placeholder="NRIC" />
+										<form:input path="nric" type="text" placeholder="NRIC"
+											required="required" />
 										<div class="input-icon">
 											<i class="fa fa-user"></i>
 										</div>
+										<form:errors path="nric" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
 										<form:input path="contactno" type="text"
-											placeholder="Phone Number" />
+											placeholder="Phone Number" required="required" />
 										<div class="input-icon">
 											<i class="fa fa-phone"></i>
 										</div>
+										<form:errors path="contactno" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
-										<form:input path="address" type="text" placeholder="Address" />
+										<form:input path="address" type="text" placeholder="Address"
+											required="required" />
 										<div class="input-icon">
 											<i class="fa fa-location-arrow"></i>
 										</div>
+										<form:errors path="address" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
 										<form:input path="email" type="email"
-											placeholder="Email Address" />
+											placeholder="Email Address" required="required" />
 										<div class="input-icon">
 											<i class="fa fa-envelope"></i>
 										</div>
+										<form:errors path="email" cssStyle="color: red;" />
 									</div>
 								</div>
 								<div class="row">
@@ -124,21 +137,23 @@
 											<fmt:formatDate value="${userProfile.dateofbirth}"
 												var="dateString" pattern="yyyy-MM-dd" />
 											<form:input path="dateofbirth" type="date"
-												value="${dateString}" placeholder="Date" />
+												value="${dateString}" placeholder="Date" required="required" />
 											<div class="input-icon">
 												<i class="fa fa-calendar"></i>
 											</div>
+											<form:errors path="dateofbirth" cssStyle="color: red;" />
 										</div>
 									</div>
 									<div class="col-half">
 										<h4>Gender</h4>
 										<div class="input-group">
 											<form:radiobutton name="gender" path="gender"
-												id="gender-male" value="male" />
+												id="gender-male" value="male" required="required" />
 											<label for="gender-male">Male</label>
 											<form:radiobutton name="gender" path="gender"
-												id="gender-female" value="female" />
+												id="gender-female" value="female" required="required" />
 											<label for="gender-female">Female</label>
+											<form:errors path="gender" cssStyle="color: red;" />
 										</div>
 									</div>
 								</div>
@@ -151,38 +166,40 @@
 
 						</div>
 
-						<div class="col-md-2"></div>
+						<div class="col-md-1"></div>
 
 						<div class="col-md-5 col-sm-12">
 							<h3>Change Password</h3>
 							<hr>
-							<form:form method="POST" id="changeUserPassword"
-								commandName="changeUserPassword"
+							<form:form method="POST" id="password" commandName="password"
 								action="${pageContext.request.contextPath}/user/password">
 
 								<h4>Password</h4>
 								<div class="input-group input-group-icon">
 									<form:input path="password" type="password"
-										placeholder="Old Password" />
+										placeholder="Old Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
+									<form:errors path="password" cssStyle="color: red;" />
 								</div>
 								<form:errors path="password" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
 									<form:input path="newpassword" type="password"
-										placeholder="New Password" />
+										placeholder="New Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
+									<form:errors path="newpassword" cssStyle="color: red;" />
 								</div>
 								<form:errors path="newpassword" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
 									<input type="password" path="confirmpassword"
-										placeholder="Confirm Password" />
+										placeholder="Confirm Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
+									<form:errors path="confirmpassword" cssStyle="color: red;" />
 								</div>
 								<form:errors path="confirmpassword" cssStyle="color: red;" />
 
@@ -210,13 +227,13 @@
 								<c:when test="${subpackage.packageyears=='1 Year'}">
 									<img
 										src="${pageContext.request.contextPath}/image/Membership-Bronze-1.png"
-										width="20%" class="mx-auto d-block">
+										width="40%" class="mx-auto d-block">
 									<br />
 								</c:when>
 								<c:otherwise>
 									<img
 										src="${pageContext.request.contextPath}/image/Membership-Gold.png"
-										width="20%" class="mx-auto d-block">
+										width="40%" class="mx-auto d-block">
 									<br />
 								</c:otherwise>
 							</c:choose>

@@ -21,6 +21,7 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 	
 	@Query("SELECT f.facilityID from Facility f WHERE f.facilityName = :fName AND f.court = :fCourt")
 	Integer findByFacilityCourt(@Param("fName") String fName,@Param("fCourt") String fCourt);
+
 }
 
 

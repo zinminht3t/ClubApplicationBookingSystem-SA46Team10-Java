@@ -1,13 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
  <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+ <c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
 <%@ page session="false"%>
 <!doctype html>
 <html lang="en">
 
 <head>
 <title>Spring Club</title>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
 </head>
 
 <body>
@@ -140,14 +144,38 @@
 				</div>
 
 			</div>
-			<div class="card bg-light mb-3 text-center" width="100%">
+			<div class="card bg-light mb-3 text-center">
 				<div class="card-header">
 					<h5>Contact Us</h5>
 				</div>
 				<!-- Google Map -->
 				<div id="contact-us-form">
+				 <form action="${pageContext.request.contextPath}/" class="contact-form" method="post">
+              
+                          <div class="form-group">
+                             <input type="text" class="form-control" id="name" name="nm" placeholder="Name" required="required" autofocus>
+
+                          </div>
+                      
+                      
+                          <div class="form-group form_left">
+                             <input type="email" class="form-control" id="email" name="em" placeholder="Email" required="required"> 
+
+                          </div>
+                      
+                        <div class="form-group">
+                              <input type="text" class="form-control" id="sb" placeholder="Subject" required="required"> 
+
+                        </div>
+                        <div class="form-group">
+                         <textarea class="form-control textarea-contact" rows="5" id="comment" name="FB" placeholder="Type Your Message/Feedback here..." required="required"></textarea> 
+
+                        <br>
+                          <button class="btn btn-default btn-send"> <span class="glyphicon glyphicon-send"></span> Send </button>
+                        </div>
+                       </form>
 					<!-- form validation here - do in jsp using tag library -->
-<%-- 					<form:form modelAttribute="user" method="POST"
+<%-- 					<form:form modelAttribute="user" class="contact-form" method="POST"
 						action="${pageContext.request.contextPath}/login/authenticate">
 						<table class="framed">
 							<tr>
@@ -183,7 +211,7 @@
 				</div>
 				<div class="card-footer bg-light">
 					<h6>Email</h6>
-					<p>customerservice@springclub.com</p>
+					<p>springclub12@gmail.com</p>
 					<h6>Tel No.</h6>
 					<p>+65-1234 5678</p>
 

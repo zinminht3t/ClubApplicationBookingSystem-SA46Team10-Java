@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,14 +32,14 @@ public class FacilityServiceImpl implements FacilityService {
 	
 	@Override
 	@Transactional
-	public Facility findFacilityById(Integer fid) {
+	public Facility findFacilityById(String fid) {
 		return facrepo.findOne(fid);		 
 	}
 	
 	@Override
 	@Transactional
-	public Facility createFacility(Facility f) {
-		return facrepo.saveAndFlush(f);
+	public Facility createFacility(Facility fac) {
+		return facrepo.saveAndFlush(fac);
 	}
 
 	@Override
@@ -50,6 +51,19 @@ public class FacilityServiceImpl implements FacilityService {
 	@Override
 	@Transactional
 	public ArrayList<Facility> findFacilityByCriteria(Facility facility) {
+		return null;
+	}
+	
+	@Override
+	@Transactional
+	public ArrayList<Facility> getAllCourtsInFacility(String fname){
+		
+		return facrepo.getAllCourtsInFacility(fname);
+	}
+
+	@Override
+	public ArrayList<Facility> findFacilityByName(String name) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -73,4 +87,5 @@ public class FacilityServiceImpl implements FacilityService {
 		// TODO Auto-generated method stub
 		return facrepo.findByFacilityCourt(fName, fCourt);
 	}
+
 }
