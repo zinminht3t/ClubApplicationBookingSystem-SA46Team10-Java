@@ -9,8 +9,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import iss.sa46team12.springclub.models.BookingDetails;
@@ -33,12 +35,11 @@ public class FacilityBookingController {
 	@Autowired
 	FacilityService courtsinFacility;
 	
-	@RequestMapping(value = "/confirm-booking", method = RequestMethod.GET)
-	public ModelAndView listAll() {
+	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
+	public @ResponseBody ModelAndView listAll( @PathVariable("datepicker") String datepicker) {
 		ModelAndView mav = new ModelAndView("confirm-booking");
-		
 		//Formatting Date to match with database to compare
-		String str = "2018-06-14 00:00";
+		String str = datepicker+" 00:00";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 		//Get all the timeslots
@@ -74,38 +75,14 @@ public class FacilityBookingController {
 			availableCourtsTime.put(courtBooking.getKey(),tempTimeslots);
 		}
 		
-		
-		//courtsTime.get("court 1").get(1).getTimeslots().getTime();
-		
-		
-		
-		
-		
-		
-		/*
-		 * 
-		ArrayList<Integer> availabletime = new ArrayList<Integer>();
-		
-		//Gets a list of all the times
-		for(Timeslots time: timeslots) {
-			availabletime.add(time.getTime());
-		}
-		//Removes all the booked times from the list of available time
-		for(BookingDetails bookingdetails: bookingDetailsList ) {
-			int bookedtimes = bookingdetails.getTimeslot().getTime();
-			availabletime.remove(new Integer(bookedtimes));
-		}
-		
-		mav.addObject("bookingDetailsList", bookingDetailsList);
-		mav.addObject("availableTimes", timeslots);
-		mav.addObject("availabletime", availabletime);
-		mav.addObject("courts", courts);
-		
-		*/
-		
 		mav.addObject("bookedCourtsTime", bookedCourtsTime);
 		mav.addObject("availableCourtsTime", availableCourtsTime);
+		mav.addObject("date", datepicker);
 		
 		return mav;
 	}
+	
+	
+	
+	
 }

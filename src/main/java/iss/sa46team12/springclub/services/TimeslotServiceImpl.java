@@ -23,4 +23,10 @@ public class TimeslotServiceImpl implements TimeslotService {
 		return (ArrayList<Timeslots>) timeslot.findAll();
 	}
 
+	@Override
+	@Transactional
+	public Timeslots getOneTimeSlot(String tvalue) {
+		return timeslot.getOneTimeSlot(tvalue);
+	}
+
 }
