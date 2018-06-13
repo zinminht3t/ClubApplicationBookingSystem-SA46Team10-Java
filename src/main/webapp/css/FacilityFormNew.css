@@ -11,7 +11,8 @@ body {
   background-color: #e3e3e3;
 }
 h4 {
-  color: #7ed321;
+ 
+  color: blue;
 }
 input,
 input[type="radio"] + label,
@@ -29,7 +30,9 @@ select {
   -o-transition: 0.35s ease-in-out;
   transition: 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
+ 
 }
+
 input:focus {
   outline: 0;
   border-color: #64ac15;
@@ -180,6 +183,7 @@ select option {
 }
 .row {
   zoom: 1;
+   
 }
 .row:before,
 .row:after {
@@ -215,11 +219,14 @@ select option {
 
 .action-button {
   border: 1px solid #9dd1ff;
-  border-radius: 10px;
+  border-radius: 10px; 
   color: #348EFE;
   display: inline-block;
   margin: 25px 0;
   padding: 15px 35px;
   text-decoration: none;
   transition: all 150ms ease-in-out;
+}
+.title{
+	color: red;
 }

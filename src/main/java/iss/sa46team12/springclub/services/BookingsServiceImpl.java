@@ -58,5 +58,12 @@ public class BookingsServiceImpl implements BookingsService {
 		// TODO Auto-generated method stub
 		bookingsRepository.delete(booking);
 	}
+
+	//for showing the booking details in user profile
+	@Override
+	@Transactional
+	public ArrayList<Bookings> getUserBookings(int userid) {
+		return bookingsRepository.findUserBookings(userid);
+	}
 	
 }
