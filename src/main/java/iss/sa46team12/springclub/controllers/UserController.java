@@ -1,17 +1,14 @@
 package iss.sa46team12.springclub.controllers;
 
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
-import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
-import org.hibernate.type.descriptor.java.LocalDateTimeJavaDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.Bookings;
@@ -67,9 +63,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public ModelAndView editProfile() {
-
-		int userid = 1; // TODO
+	public ModelAndView editProfile(HttpSession session) {
+		int userid;
+		try {
+			userid = (int) session.getAttribute("UserID"); 
+		}
+		catch(NullPointerException e) {
+			userid = 1;
+		}
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
 
@@ -150,9 +151,15 @@ public class UserController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ModelAndView editUser(@ModelAttribute @Valid User user, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpSession session) {
 
-		int userid = 1; // todo
+		int userid;
+		try {
+			userid = (int) session.getAttribute("UserID"); 
+		}
+		catch(NullPointerException e) {
+			userid = 1;
+		}
 		if (result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
@@ -180,12 +187,18 @@ public class UserController {
 
 	@RequestMapping(value = "/password", method = RequestMethod.POST)
 	public ModelAndView changePassword(@ModelAttribute @Valid Password password, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpSession session) {
 
 		ModelAndView mav;
 		mav = new ModelAndView("redirect:/user/profile");
 
-		int userid = 1; // TODO
+		int userid;
+		try {
+			userid = (int) session.getAttribute("UserID"); 
+		}
+		catch(NullPointerException e) {
+			userid = 1;
+		}
 		if (result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
@@ -206,9 +219,15 @@ public class UserController {
 
 	@RequestMapping(value = "/renewmembership/{selectedPackage}", method = RequestMethod.GET)
 	public ModelAndView logic(@PathVariable int selectedPackage, Model model,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpSession session) {
 
-		int userid = 1; // TODO
+		int userid;
+		try {
+			userid = (int) session.getAttribute("UserID"); 
+		}
+		catch(NullPointerException e) {
+			userid = 1;
+		}
 		ModelAndView mav;
 		mav = new ModelAndView("redirect:/user/profile");
 		SubscriptionPackage sp = spService.findPackage(selectedPackage);
@@ -254,10 +273,16 @@ public class UserController {
 
 	@RequestMapping(value = "/booking/cancel/{bookingid}", method = RequestMethod.GET)
 	public ModelAndView cancelBooking(@PathVariable int bookingid, Model model,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpSession session) {
 
-		int userid = 1; // TODO
-		String bookingStatus = "Booked"; // TODO
+		int userid;
+		try {
+			userid = (int) session.getAttribute("UserID"); 
+		}
+		catch(NullPointerException e) {
+			userid = 1;
+		}
+		String bookingStatus = "CONFIRMED";
 
 		ModelAndView mav;
 		mav = new ModelAndView("redirect:/user/profile");
