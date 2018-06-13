@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +53,13 @@ public class FacilityServiceImpl implements FacilityService {
 	@Transactional
 	public ArrayList<Facility> findFacilityByCriteria(Facility facility) {
 		return null;
+	}
+	
+	@Override
+	@Transactional
+	public ArrayList<Facility> getAllCourtsInFacility(String fname){
+		
+		return facrepo.getAllCourtsInFacility(fname);
 	}
 
 }

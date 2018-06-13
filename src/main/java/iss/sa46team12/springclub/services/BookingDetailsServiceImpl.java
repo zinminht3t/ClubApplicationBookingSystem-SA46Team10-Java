@@ -19,7 +19,7 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 	BookingDetailsRepository bookingDetails;
 	@Override
 	@Transactional
-	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid , LocalDateTime bdate) {
+	public ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(int fid, LocalDateTime bdate) {
 		
 		return bookingDetails.findAllConfirmedBookingsByCourtAndDate(fid, bdate); 
 	}

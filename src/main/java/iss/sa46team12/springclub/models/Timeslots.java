@@ -27,7 +27,7 @@ public class Timeslots {
 	@Column (name ="timeslotid")
 	private int timeslotid;
 	@Column (name ="time")
-	private int time;
+	private String time;
 	/** Mapping **/
 
 	@JsonManagedReference
@@ -55,7 +55,7 @@ public class Timeslots {
 	public int getTimeslotid() {
 		return timeslotid;
 	}
-	public int getTime() {
+	public String getTime() {
 		return time;
 	}
 	
