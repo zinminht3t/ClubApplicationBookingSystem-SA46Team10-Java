@@ -40,7 +40,7 @@
 <body>
 
 	<form:form method="POST" commandName="adminBookingF"
-		action="${pageContext.request.contextPath}/admin/manageBM/editBooking">
+		action="${pageContext.request.contextPath}/admin/manageBM/editBooking/${booking.getBookingid()}">
 
 		<div class="row">
 			<div class="col-md-12">

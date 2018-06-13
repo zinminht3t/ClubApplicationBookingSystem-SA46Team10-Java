@@ -68,7 +68,10 @@
 		
 							<c:if
 								test="${bookingDate==thisDate}">
-								<button id="${booking.getBookingid()}" class="btn-booking-slot" onClick="viewBooking()">${booking.getMinTime()}--${booking.getMaxTime()}</button>
+<%-- 					<form:form modelAttribute="getbookingtiming" method="POST" action="${pageContext.request.contextPath}/manageBM/editBooking/${booking.getBookingid()}"> --%>
+											            <a href="${pageContext.request.contextPath}/admin/manageBM/editBooking/${booking.getBookingid()}">
+								<button id="${booking.getBookingid()}" name="btnIDeditBooking" class="btn-booking-slot">${booking.getMinTime()}--${booking.getMaxTime()}</button></a>
+<%-- 								</form:form> --%>
 							</c:if>
 						</c:forEach>
 						
@@ -79,7 +82,8 @@
 		
 							<c:if
 								test="${maintenanceStartDate==thisDate}">
-								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot" onClick="viewMaintenance()">${maintenance.getTimeslots_start().getTime()}--${maintenance.getTimeslots_end().getTime()}</button>
+								 <a href="${pageContext.request.contextPath}/admin/facility/MaintenanceFormEdit/${maintenance.getMaintenanceid()}">
+								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot">${maintenance.getTimeslots_start().getTime()}--${maintenance.getTimeslots_end().getTime()}</button></a>
 							</c:if>
 						</c:forEach>
 					</div>

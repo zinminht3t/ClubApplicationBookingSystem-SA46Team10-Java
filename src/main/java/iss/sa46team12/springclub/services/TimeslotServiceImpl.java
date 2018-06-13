@@ -25,6 +25,10 @@ public class TimeslotServiceImpl implements TimeslotService {
 
 	@Override
 	@Transactional
+	public Timeslots getOneTimeSlot(String tvalue) {
+		return timeslot.getOneTimeSlot(tvalue);
+	}
+
 	public Timeslots findTimeslotByName(String tName) {
 		// TODO Auto-generated method stub
 		return timeslot.findTimeslotByName(tName);
@@ -44,7 +48,6 @@ public class TimeslotServiceImpl implements TimeslotService {
 //		// TODO Auto-generated method stub
 //		return timeslot.findOne(timeslotid);
 //	}
-
 
 
 }

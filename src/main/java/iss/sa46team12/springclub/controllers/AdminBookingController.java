@@ -3,6 +3,7 @@ package iss.sa46team12.springclub.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,18 +36,24 @@ public class AdminBookingController {
 	@Autowired
 	TimeslotService ts;
 
-	@RequestMapping(value = "/admin/manageBM/editBooking", method = RequestMethod.GET)
-	public ModelAndView editMaintenance() {
+	@RequestMapping(value = "/admin/manageBM/editBooking/{bookingID}", method = RequestMethod.GET)
+	public ModelAndView editMaintenance(@PathVariable Integer bookingID) {
 		ModelAndView mav = new ModelAndView("adminBookingForm");
-		Bookings booking = bookingService.findBooking(1);		
+		Bookings booking = bookingService.findBooking(bookingID);		
 		mav.addObject("booking", booking);
 		return mav;
 	}
 	
-	@RequestMapping(value = "/admin/manageBM/editBooking", method = RequestMethod.POST)
-	public ModelAndView cancelBooking(@ModelAttribute Bookings booking) {
-		booking.setStatus("CANCELLED");
-		ModelAndView mav = new ModelAndView("adminCalendar");
+	@RequestMapping(value = "/admin/manageBM/editBooking/{bookingID}", method = RequestMethod.POST)
+	public ModelAndView cancelBooking(@ModelAttribute Bookings booking, @PathVariable Integer bookingID) {
+		
+		Bookings currBooking = bookingService.findBooking(bookingID);
+		
+		currBooking.setStatus("CANCELLED");
+		
+		bookingService.changeBooking(currBooking);
+		
+		ModelAndView mav = new ModelAndView("redirect:/admin/viewCalendar");
 		return mav;
 	}
 }

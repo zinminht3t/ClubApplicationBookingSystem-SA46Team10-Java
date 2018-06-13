@@ -23,5 +23,10 @@ public class BookingDetailsServiceImpl implements BookingDetailsService {
 		
 		return bookingDetails.findAllConfirmedBookingsByCourtAndDate(fid, bdate); 
 	}
-
+	@Override
+	@Transactional
+	public int createBooking(BookingDetails booking) {
+		return bookingDetails.createBookingDetail(booking.getBookingid(), booking.getFacilityid(), booking.getTimeslotid(), booking.getBookingdate(), booking.getBookingprice());
+	}
+	
 }
