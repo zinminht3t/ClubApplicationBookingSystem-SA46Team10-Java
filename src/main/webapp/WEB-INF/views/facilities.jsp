@@ -28,7 +28,7 @@
     		
 	        <c:forEach items="${allfacility}" var="facility">
 	        
-		        <div class="row clearmargin clearpadding row-image-txt">
+		        <div class="shadowTable pricing-table row clearmargin clearpadding row-image-txt">
 			        <div class="col-xs-12 col-sm-6 col-md-6 clearmargin clearpadding col-sm-push-6"><img src="${facility.imagePath}" style="width:100%;"></div>
 			        <div class="col-xs-12 col-sm-6 col-md-6 col-sm-pull-6" style="padding:20px;">
 			            <h1>${facility.facilityName}</h1>
