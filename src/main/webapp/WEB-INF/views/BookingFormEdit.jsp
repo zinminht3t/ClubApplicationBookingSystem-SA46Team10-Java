@@ -24,8 +24,8 @@
 
 <body>
 
-<form:form method="POST" commandName="facility"
-		action="${pageContext.request.contextPath}/admin/facility/edit/${facility.facilityID}.html">
+<form:form method="POST" commandName="booking"
+		action="${pageContext.request.contextPath}/admin/viewBookings/BookingFormEdit/${bookings.bookingid}.html">
 
 <div class="container">
 			<form>
@@ -42,55 +42,45 @@
 						<div class="panel panel-primary">
 
 							<div class="form-group">
-								<label class="control-label col-md-6">Facility ID</label>
+								<label class="control-label col-md-6">Booking ID</label>
 								<div class="col-xl-12">
 									<!-- attribute name -->
-									<form:input path="facilityID" readonly="true"  />
-									<form:errors path="facilityID" cssStyle="color: red;" />
+									<form:input path="bookingid" readonly="true"  />
+									<form:errors path="bookingid" cssStyle="color: red;" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-md-6">Facility Name</label>
+								<label class="control-label col-md-6">Transaction Time</label>
 								<div class="col-xl-12">
 									<!-- attribute name -->
-									<form:input path="facilityName" readonly="true"/>
-									<form:errors path="facilityName" cssStyle="color: red;" />
+									<form:input path="transactiontime" readonly="true"/>
+									<form:errors path="transactiontime" cssStyle="color: red;" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-md-6">Court</label>
+								<label class="control-label col-md-6">User</label>
 								<div class="col-md-12">
 									<!-- attribute name -->
-									<form:input path="court" readonly="true"/>
-									<form:errors path="court" cssStyle="color: red;" />
+									<form:input path="users" readonly="true"/>
+									<form:errors path="users" cssStyle="color: red;" />
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-md-6">Price</label>
+								<label class="control-label col-md-6">Facility</label>
 								<div class="col-md-12">									
-									<form:input path="price" style="background:#87CEFA"/>					
-									<form:errors path="price" cssStyle="color: red;" />
+									<form:input path="facilities" style="background:#87CEFA"/>					
+									<form:errors path="facilities" cssStyle="color: red;" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-md-6">Remark</label>
+								<label class="control-label col-md-6">Time</label>
 								<div class="col-md-12">
 									<!-- attribute name -->
 									<form:input path="remark" style="background:#87CEFA"/>
 									<form:errors path="remark" cssStyle="color: red;" />
-								</div>
-							</div>
-
-
-							<div class="form-group">
-								<label class="control-label col-md-6">Image Path</label>
-								<div class="col-md-12">
-									<!-- attribute name -->
-									<form:input path="imagePath" style="background:#87CEFA"/>
-									<form:errors path="imagePath" cssStyle="color: red;" />
 								</div>
 							</div>
 							

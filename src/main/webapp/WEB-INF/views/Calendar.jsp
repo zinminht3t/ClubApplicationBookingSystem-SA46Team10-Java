@@ -16,17 +16,21 @@
 
 <link href="${pageContext.request.contextPath}/css/Calendar.css"
 	rel="stylesheet" type="text/css">
-	
 </head>
 
 <body>
 	<div>
 		
 		<div class=top-content>
-			<div class="title">Manage Bookings and Maintenance</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		
+			<h3>Manage Bookings and Maintenance</h3>
+
 			
-			<div class="monthyear" id="viewMonth">Month: ${sessionScope.currentMonth}</div>
-			<div class="monthyear" id="viewYear">Year:${sessionScope.currentYear}</div>
+			<div class="monthyear" id="viewMonthYear"> ${sessionScope.currentMonthName}-${sessionScope.currentYear}</div>
 			<div class="calendar-buttons">
 				<form action="${pageContext.request.contextPath}/admin/viewCalendar"
 					class="nextprev-form" method="post">
@@ -35,24 +39,33 @@
 					<input type="submit" name="btnNext" value="next">
 					</input>
 				</form>
-			</div>
 			
-			<form action="${pageContext.request.contextPath}/admin/calendar/maintenance/create">
 			
+			<form action="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormNew">
 				<input id="btn-add-maintenance" type="submit" name="btnShowAddMaintenance" value="Add Maintenance"></input>
 			</form>
+			
+			
+			</div>
 			
 			<div class="legend">
 				<p>Legend:</p>
 				<p>Green-Bookings</p>
 				<p>Blue-Maintenance</p>
 			</div>
+			<p>Toggle View</p>
+			<form action="${pageContext.request.contextPath}/admin/viewMaintenances">
+				<input id="btn-show-maintenances" type="submit" name="btnShowMaintenances" value="Display Maintenance"></input>
+			</form>
+			<form action="${pageContext.request.contextPath}/admin/viewBookings">
+				<input id="btn-show-bookings" type="submit" name="btnShowBookings" value="Display Bookings"></input>
+			</form>
 		</div>
 					
 					
 		<table style="width: 100%;">
 			<c:forEach var="day" items="${sessionScope.daysOfWeek}">
-				<td style="border: 1px solid black; float: left; width: 13%;">${day}</td>
+				<td style="border: 1px solid black; float: left; width: 13%; background-color:#FFD700;">${day}</td>
 			</c:forEach>
 		</table>
 		
@@ -70,7 +83,9 @@
 		
 							<c:if
 								test="${bookingDate==thisDate}">
-								<button id="${booking.getBookingid()}" class="btn-booking-slot" onClick="viewBooking()">${booking.getMinTime().substring(0, 4)}--${booking.getMaxTime().substring(booking.getMaxTime().length() -4)}</button>
+
+					            <a href="${pageContext.request.contextPath}/admin/viewBookings/editBooking/${booking.getBookingid()}">
+								<button id="${booking.getBookingid()}" name="btnIDeditBooking" class="btn-booking-slot">${booking.getMinTime().substring(0, 4)}--${booking.getMaxTime().substring(booking.getMaxTime().length()-4)}</button></a>
 							</c:if>
 						</c:forEach>
 						
@@ -79,9 +94,9 @@
 						<fmt:parseDate var="maintenanceStartDate" value="${maintenance.getStartdate()}" pattern="yyyy-MM-dd" />
 						<fmt:parseDate var="maintenanceEndDate" value="${maintenance.getEnddate()}" pattern="yyyy-MM-dd" />
 		
-							<c:if
-								test="${maintenanceStartDate==thisDate || maintenanceEndDate==thisDate}">
-								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot" onClick="viewMaintenance()">
+							<c:if test="${maintenanceStartDate==thisDate || maintenanceEndDate==thisDate}">
+								 <a href="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormEdit/${maintenance.getMaintenanceid()}">
+								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot">
 								<c:if test="${thisDate==maintenanceEndDate && maintenanceStartDate!=maintenanceEndDate}">
 									0000-${maintenance.getTimeslots_end().getTime().substring(0, 4)}
 								</c:if>
@@ -93,8 +108,7 @@
 								<c:if test="${thisDate!=maintenanceEndDate}">
 									${maintenance.getTimeslots_start().getTime().substring(0, 4)}--*
 								</c:if>
-								</button>
-								
+								</button></a>
 							</c:if>
 						</c:forEach>
 					</div>

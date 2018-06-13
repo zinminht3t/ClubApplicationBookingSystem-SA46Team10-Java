@@ -23,7 +23,7 @@
 <body>
 
 <form:form method="POST" commandName="maintenance"
-		action="${pageContext.request.contextPath}/admin/facility/MaintenanceFormEdit/${maintenance.maintenanceid}.html">
+		action="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormEdit/${maintenanceID}">
 
 <h3>Edit Maintenance page</h3>
 
@@ -56,7 +56,7 @@
 						
 			<tr>
 				<td></td>
-				 <td><input type="submit" value="Cancel Booking"></td>
+				 <td><input type="submit" value="Cancel Maintenance"></td>
 				<td></td>
 				<td></td>
 			</tr>

@@ -1,19 +1,8 @@
 
-
 button {
     float:left;
 }
 
-.btn-booking-slot {
-	background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 1px 1px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    border: 0.5px solid black;
-} 
 
 .btn-maintenance-slot {
 	background-color: #008CBA;
@@ -24,6 +13,8 @@ button {
     display: inline-block;
     font-size: 12px;
     border: 0.5px solid black;
+    width:100%;
+    height:auto;
 } 
 
 .btn-booking-slot:hover
@@ -45,48 +36,25 @@ button {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.btn-booking-slot {
+	background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: 0.5px solid black;
+    width:100%;
+    height:auto;
+} 
+
 .day-header{
 	height:10%;
+	
 }
 
 .legend{
-	float:right;
-	border: 0.5px solid black;
-	grid-area:rtbtm;
-	margin-right:5%;
-	width:67%;
-}
-
-.top-content{
-	display: grid;
-	grid-template-areas: 'title .   button'
-						 'left1 middle1 right1'
- 						 'left2 middle2 right2'
-						 'leftbtm midbtm rtbtm';
-	grid-template-columns: 4fr 4fr 3fr;
-	grid-template-rows: 2fr 2fr 2fr 3fr;
-}
-
-.monthyear{
-	grid-area:middle1;
-}
-
-.calendar-buttons{
-	grid-area:midbtm;
-}
-
-.title{
-	grid-area:title;
-}
-
-#btn-add-maintenance{
-	grid-area:button;
-}
-
-#viewMonth{
-	grid-area:middle1;
-}
-
-#viewYear{
-	grid-area:middle2;
+    border: 0.5px solid black;
+    width:91%;
 }
