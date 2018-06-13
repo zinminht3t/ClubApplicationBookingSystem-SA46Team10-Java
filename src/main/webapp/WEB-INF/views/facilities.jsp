@@ -36,7 +36,7 @@
 						<p>${facility.price}</p>
 						<p>${facility.imagePath}</p>
 						<p>${facility.active}</p>
-						<a href="${pageContext.request.contextPath}/${date}">
+						<a href="${pageContext.request.contextPath}/facilities/confirm-booking/${facility.facilityName}/${date}">
 						<button	type="button" class="btn btn-warning btn-xs">Book</button></a>
                 </div>
             </div>
