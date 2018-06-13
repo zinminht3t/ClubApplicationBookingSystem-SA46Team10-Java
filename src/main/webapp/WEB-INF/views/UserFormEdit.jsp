@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -26,162 +25,124 @@
 <form:form method="POST" commandName="users"  
 		action="${pageContext.request.contextPath}/admin/user/edit/${users.userId}.html">
 
-<h3>Edit User page</h3>
+<div class="container">
+			<form>
+				<div class="row">
 
-	<table>
-		<tbody>		  
-			<tr>
-				<td><spring:message code="ID" /></td>
-				<td><form:input path="userId" readonly="true"  /></td>
-				<td><form:errors path="userId" cssStyle="color: red;" /></td>
-			</tr> 
-			<tr>
-				<td><spring:message code="Name" /></td>
-				<td><form:input path="fullname" /></td>
-				<td><form:errors path="fullname" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="NRIC" /></td>
-				<td><form:input path="nric" readonly="true" /></td>
-				<td><form:errors path="nric" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Date of Birth" /></td>
-				<td><form:input path="dateofbirth"/></td>				
-				<td><form:errors path="dateofbirth" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Gender" /></td>
-				<td><form:input path="gender" /></td>
-				<td><form:errors path="gender" cssStyle="color: red;" /></td>
-			</tr>			
-			<tr>
-				<td><spring:message code="Address" /></td>
-				<td><form:input path="address" /></td>
-				<td><form:errors path="address" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Contact No." /></td>
-				<td><form:input path="contactno" /></td>
-				<td><form:errors path="contactno" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Email" /></td>
-				<td><form:input path="email" /></td>
-				<td><form:errors path="email" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Role" /></td>
-				<td><form:input path="role" /></td>
-				<td><form:errors path="role" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Active" /></td>
-				<td><form:input path="active" readonly="true" /></td>
-				<td><form:errors path="active" cssStyle="color: red;" /></td>
-			</tr>
-			
-			
-			<tr>
-					<td><input type="submit" value="Update" /></td>
-					<td><input type="reset" value="Reset"></td>
-					<td></td>
-					<td></td>
-				</tr>
-		</tbody>
-	</table>
-</form:form>
-=======
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page session="false"%>
-<!DOCTYPE html>
-<html lang="en">
+					<div class="col-md-offset-2 col-md-12">
+						<div class="panel-heading">
 
-<head>
-<meta charset="UTF-8">
-<title>Edit User Form</title>
+							<h4 style="margin-left: .7em">Edit User</h4>
+							<hr>
+
+						</div>
+
+						<div class="panel panel-primary">
+
+							<div class="form-group">
+								<label class="control-label col-md-6">User ID</label>
+								<div class="col-xl-12">
+									<!-- attribute name -->
+									<form:input path="userId" readonly="true"  />
+									<form:errors path="userId" cssStyle="color: red;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Full Name</label>
+								<div class="col-xl-12">
+									<!-- attribute name -->
+									<form:input path="fullname" style="background:#87CEFA" />
+									<form:errors path="fullname" cssStyle="color: red;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-6">NRIC</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="nric" readonly="true"/>
+									<form:errors path="nric" cssStyle="color: red;" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label col-md-6">Date of Birth</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="dateofbirth" readonly="true"/>
+									<form:errors path="dateofbirth" cssStyle="color: red;" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-6">Gender</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="gender" readonly="true"/>
+									<form:errors path="gender" cssStyle="color: red;" />
+								</div>
+							</div>
 
 
-<spring:url value="/css/FacilityFormNew.css" var="UserFormEdit" />
-<link rel="STYLESHEET" type="text/css" href="${UserFormEdit}" />
+							<div class="form-group">
+								<label class="control-label col-md-6">Address</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="address" style="background:#87CEFA"/>
+									<form:errors path="address" cssStyle="color: red;" />
+								</div>
+							</div>
 
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+							<div class="form-group">
+								<label class="control-label col-md-6">Contact No.</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="contactno" style="background:#87CEFA"/>
+									<form:errors path="contactno" cssStyle="color: red;" />
+								</div>
+							</div>
 
-<link rel='stylesheet prefetch'
-	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-</head>
+							<div class="form-group">
+								<label class="control-label col-md-6">Email</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="email" style="background:#87CEFA"/>
+									<form:errors path="email" cssStyle="color: red;" />
+								</div>
+							</div>
 
-<body>
+							<div class="form-group">
+								<label class="control-label col-md-6">Role</label>
+								<div class="col-md-12">
+									<!-- attribute name -->
+									<form:input path="role" readonly="true"/>
+									<form:errors path="role" cssStyle="color: red;" />
+								</div>
+							</div>
 
-<form:form method="POST" commandName="users"  
-		action="${pageContext.request.contextPath}/admin/user/edit/${user.userId}.html">
+							
+						</div>
 
-<h3>Edit User page</h3>
+					</div>
+				</div>
+				<table id="action-button">
+					<tr>
+						<td><input type="submit" value="Submit"
+							style="margin-left: .9em; background:#F0AD4E"/></td>
+						<td></td>
+						<td><input type="reset" value="Reset"
+							style="margin-left: 2em; background:#F0AD4E" /></td>
+				</table>
 
-	<table>
-		<tbody>		  
-			<tr>
-				<td><spring:message code="ID" /></td>
-				<td><form:input path="userId" readonly="true"  /></td>
-				<td><form:errors path="userId" cssStyle="color: red;" /></td>
-			</tr> 
-			<tr>
-				<td><spring:message code="Name" /></td>
-				<td><form:input path="fullname" /></td>
-				<td><form:errors path="fullname" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="NRIC" /></td>
-				<td><form:input path="nric" readonly="true" /></td>
-				<td><form:errors path="nric" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Date of Birth" /></td>
-				<td><form:input path="dateofbirth"/></td>				
-				<td><form:errors path="dateofbirth" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Gender" /></td>
-				<td><form:input path="gender" /></td>
-				<td><form:errors path="gender" cssStyle="color: red;" /></td>
-			</tr>			
-			<tr>
-				<td><spring:message code="Address" /></td>
-				<td><form:input path="address" /></td>
-				<td><form:errors path="address" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Contact No." /></td>
-				<td><form:input path="contactno" /></td>
-				<td><form:errors path="contactno" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Email" /></td>
-				<td><form:input path="email" /></td>
-				<td><form:errors path="email" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Role" /></td>
-				<td><form:input path="role" /></td>
-				<td><form:errors path="role" cssStyle="color: red;" /></td>
-			</tr>
-			<tr>
-				<td><spring:message code="Active" /></td>
-				<td><form:input path="active" readonly="true" /></td>
-				<td><form:errors path="active" cssStyle="color: red;" /></td>
-			</tr>
-			
-			
-			<tr>
-					<td><input type="submit" value="Update" /></td>
-					<td><input type="reset" value="Reset"></td>
-					<td></td>
-					<td></td>
-				</tr>
-		</tbody>
-	</table>
-</form:form>
->>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject
+			</form>
+		</div>
+
+		<script
+			src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script src="js/index.js"></script>
+
+	</form:form>
+
+</body>
+
+</html>

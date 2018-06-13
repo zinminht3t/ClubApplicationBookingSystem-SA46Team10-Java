@@ -1,6 +1,5 @@
 package iss.sa46team12.springclub.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -28,6 +28,7 @@ public class Facility {
 	@Column(name = "imagepath")
 	private String imagePath;
 	private boolean active = true;
+	
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy="facilities", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
