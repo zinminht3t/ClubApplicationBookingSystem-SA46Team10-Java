@@ -40,18 +40,6 @@ public class FacilityBookingController {
 		ArrayList<Integer> availabletime = new ArrayList<Integer>();
 		ArrayList<BookingDetails> bookingDetailsList = bookingDetailsService.findAllConfirmedBookingsByCourtAndDate(1 , dateTime);
 
-		//Gets a list of all the times
-		for(Timeslots time: timeslots) {
-			availabletime.add(time.getTime());
-		}
-		//Removes all the booked times from the list of available time
-		for(BookingDetails bookingdetails: bookingDetailsList ) {
-			int bookedtimes = bookingdetails.getTimeslot().getTime();
-			availabletime.remove(new Integer(bookedtimes));
-		}
-		
-		mav.addObject("bookingDetailsList", bookingDetailsList);
-		mav.addObject("availableTimes", timeslots);
 		mav.addObject("avtime", availabletime);
 		
 		return mav;

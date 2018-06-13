@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%@ page session="false"%>
 <!doctype html>
@@ -59,7 +61,7 @@
 			<div class="card-block text-center">
 				<h2 id="aboutus">
 					About Us
-					<h2>
+					</h2>
 			</div>
 
 		</div>
@@ -117,7 +119,7 @@
 			<div class="card-block text-center" id="contactus">
 				<h2>
 					Contact Us
-					<h2>
+					</h2>
 			</div>
 
 		</div>
@@ -144,8 +146,39 @@
 				</div>
 				<!-- Google Map -->
 				<div id="contact-us-form">
-					<!-- 
-                                form validation here - do in jsp using tag library -->
+					<!-- form validation here - do in jsp using tag library -->
+<%-- 					<form:form modelAttribute="user" method="POST"
+						action="${pageContext.request.contextPath}/login/authenticate">
+						<table class="framed">
+							<tr>
+								<td><spring:message code="Email / Username: " /></td>
+								<td colspan="3"><form:input path="email" size="40"
+										required="required" /></td>
+							</tr>
+							<tr>
+								<td><spring:message code="Password: " /></td>
+								<td colspan="3"><form:password path="password" size="40"
+										required="required" /></td>
+							</tr>
+							<tr>
+								<td colspan="4">&nbsp;
+									<p class="label label-danger">${errormsg}</p>
+								</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td><form:button class="btn btn-success" name="submit"
+										type="submit" value="Login">
+
+									</form:button></td>
+								<td><form:button class="btn btn-danger" name="clear"
+										type="reset" value="Reset">
+
+									</form:button></td>
+							</tr>
+						</table>
+					</form:form> --%>
+					<!-- End Of Contact Us -->
 
 				</div>
 				<div class="card-footer bg-light">
