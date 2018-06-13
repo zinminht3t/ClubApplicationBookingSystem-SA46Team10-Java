@@ -23,4 +23,28 @@ public class TimeslotServiceImpl implements TimeslotService {
 		return (ArrayList<Timeslots>) timeslot.findAll();
 	}
 
+	@Override
+	@Transactional
+	public Timeslots findTimeslotByName(String tName) {
+		// TODO Auto-generated method stub
+		return timeslot.findTimeslotByName(tName);
+	}
+
+
+//	@Override
+//	public int findTimeslotIdByName(String tName) {
+//		// TODO Auto-generated method stub
+//		return timeslot.findTimeslotIdByName(tName);
+//	}
+//
+//
+//	@Override
+//	@Transactional
+//	public Timeslots findTimeslotId(int timeslotid) {
+//		// TODO Auto-generated method stub
+//		return timeslot.findOne(timeslotid);
+//	}
+
+
+
 }

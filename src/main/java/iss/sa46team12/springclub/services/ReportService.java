@@ -11,7 +11,7 @@ public interface ReportService {
 	
 	//facilities
 	ArrayList<Facility> findAllFacilities();	
-	Facility findFacilityByName(String name);
+	//Facility findFacilityByName(String name);
 	Facility findFacilityById(int id);	
 	ArrayList<Facility> findFacilityByCriteria(Facility facility);
 	

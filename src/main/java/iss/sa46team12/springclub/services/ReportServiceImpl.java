@@ -27,14 +27,14 @@ public class ReportServiceImpl implements ReportService {
 		return (ArrayList<Facility>) facrepo.findAll();	
 		}
 		
-	@Override
-	@Transactional
-	public Facility findFacilityByName(String name) {
-		System.out.println("Facility Name"+name);
-		Facility facility = facrepo.findOneByName(name);
-		System.out.println(facility.toString());
-		return facility;
-	}
+//	@Override
+//	@Transactional
+//	public Facility findFacilityByName(String name) {
+//		System.out.println("Facility Name"+name);
+//		Facility facility = facrepo.find(name);
+//		System.out.println(facility.toString());
+//		return facility;
+//	}
 
 	@Override
 	@Transactional
