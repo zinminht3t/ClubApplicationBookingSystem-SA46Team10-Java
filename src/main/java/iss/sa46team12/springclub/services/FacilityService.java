@@ -26,6 +26,12 @@ public interface FacilityService {
 	ArrayList<Facility> findFacilityByCriteria(Facility facility);
 	
 	ArrayList<Facility> getAllCourtsInFacility(String fname);
+	
+	Facility findFacilityById(Integer fid);
+	
+	Facility createFacility(Facility f);
+	
+	ArrayList<Facility> findFacilityByName(String name);
 
 
 }

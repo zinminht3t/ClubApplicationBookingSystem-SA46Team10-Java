@@ -80,26 +80,26 @@ public class AdminController {
 	@RequestMapping(value = "/facility/FacilityFormNew", method = RequestMethod.GET)
 	public ModelAndView logic(Model model) {
 
-		ModelAndView mav = new ModelAndView("FacilityFormNew", "facilities", new Facility());
+		ModelAndView mav = new ModelAndView("FacilityFormNew", "facility", new Facility());
 		return mav;
 	}
 	
 	@RequestMapping(value = "/facility/create", method = RequestMethod.POST)
-	public ModelAndView createFacility(@ModelAttribute @Valid Facility facilities, BindingResult result,
+	public ModelAndView createFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
 		
-		new FacilityValidator().validate(facilities,result);
+//		new FacilityValidator().validate(facility,result);
 
 		if (result.hasErrors())
 			return new ModelAndView("FacilityFormNew");
 
 		ModelAndView mav = new ModelAndView();
-		String message = "New facility " + facilities.getFacilityID() + " was successfully created.";
+		String message = "New facility " + facility.getFacilityID() + " was successfully created.";
 
 		// Temporary PlaceHolder
-		facilities.setActive(true);
+		facility.setActive(true);
 
-		facService.createFacility(facilities);
+		facService.createFacility(facility);
 		mav.setViewName("redirect:/admin/facility/list");
 
 		redirectAttributes.addFlashAttribute("message", message);
@@ -110,20 +110,20 @@ public class AdminController {
 
 	@RequestMapping(value = "/facility/FacilityFormEdit/{facilityID}", method = RequestMethod.GET)
 	public ModelAndView logic(@PathVariable Integer facilityID, Model model) {
-		ModelAndView mav = new ModelAndView("FacilityFormEdit");
-		 mav.addObject("facilities", facService.findFacilityById(facilityID));
+		ModelAndView mav = new ModelAndView("FacilityFormEdit", "facility", new Facility());
+		 mav.addObject("facility", facService.findFacilityById(facilityID));
 		return mav;
 	}
 
 	@RequestMapping(value = "/facility/edit/{facilityID}", method = RequestMethod.POST)
-		public ModelAndView editFacility(@ModelAttribute @Valid Facility facilities, @PathVariable Integer facilityID, BindingResult result,
+		public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, @PathVariable Integer facilityID, BindingResult result,
 				final RedirectAttributes redirectAttributes) throws FacilityNotFound{
 			
 			if (result.hasErrors())
 				return new ModelAndView("FacilityFormEdit");
-			facService.editFacility(facilities);
+			facService.editFacility(facility);
 			ModelAndView mav = new ModelAndView("redirect:/admin/facility/list");	
-			String message = "Facility " + facilities.getFacilityID() + " was successfully updated.";
+			String message = "Facility " + facility.getFacilityID() + " was successfully updated.";
 			redirectAttributes.addFlashAttribute("message", message);
 			return mav;			
 		}
