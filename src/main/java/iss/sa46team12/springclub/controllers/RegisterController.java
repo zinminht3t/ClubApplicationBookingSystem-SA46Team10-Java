@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.models.Subscription;
 import iss.sa46team12.springclub.models.SubscriptionPackage;
 import iss.sa46team12.springclub.models.User;
@@ -153,7 +154,7 @@ public class RegisterController {
 		newSubscription.setExpirydate(expiryDate);
 		newSubscription.setActive(true);
 		
-		sService.createSubscription(newSubscription);
+
 		
 		//Login after registering
 		UserSession us = new UserSession();
@@ -163,6 +164,8 @@ public class RegisterController {
 		session.setAttribute("UserID", user.getUserId());
 		
 		mav.setViewName("redirect:/");
+		
+		SendEmail.sendEmail("spring12@gmail.com", "wwj.jayden@gmail.com", "Spring Club - Welcome", "Thank you for signing up with Spring Club!"); 
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
