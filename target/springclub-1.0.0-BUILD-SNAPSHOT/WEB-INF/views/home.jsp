@@ -6,7 +6,6 @@
 
 <head>
 <title>Spring Club</title>
-
 </head>
 
 <body>

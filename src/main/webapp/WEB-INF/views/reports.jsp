@@ -52,72 +52,97 @@
 							        maintainAspectRatio:false
 						      	}});
 					</script>
+					<p>Male-Female ratio amongst members</p>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
                     <canvas id="mycanvas2" width="300" height="300" style="margin-left:auto; margin-right:auto;"></canvas>               	
 					<script>		
-							var a = ${maleNum};
-							var b = ${femaleNum};
+							var a = ${bookingsFacil1}
+							var b = ${bookingsFacil2}
+							var c = ${bookingsFacil3}
+							var d = ${bookingsFacil4}
 							var ctx = document.getElementById("mycanvas2").getContext("2d")
 							var data = {
 								    datasets: [{
-								    	backgroundColor: ['Red', 'Blue'],
-								        data: [a, b],
-								    	borderWidth:1,
+								    	backgroundColor: ['Red', 'Blue', 'Yellow', 'Green'],
+								        data: [a, b, c, d],
 								    }],
 			
 								    // These labels appear in the legend and in the tooltips when hovering different arcs
 								    labels: [
-								        'Male',
-								        'Females'
+								       	'Pool',
+								        'Court',
+								        'Heaven',
+								        'Hell'
 								    ]
 								};
 							//draw
 							var pieChart = new Chart(ctx, {
-								type: 'pie', 
+								type: 'bar', 
 								data: data, 
 								options: {
 							        responsive:false,
-							        maintainAspectRatio:false
+							        maintainAspectRatio:false,
+							        scales: {
+							            yAxes: [{
+							                ticks: {
+							                    beginAtZero: true,
+							                }
+							            }]
+							        }
 						      	}});
 					</script>
+					<p>Number of bookings per facility</p>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">
                     <canvas id="mycanvas3" width="300" height="300" style="margin-left:auto; margin-right:auto;"></canvas>               	
 					<script>		
-							var a = ${maleNum};
-							var b = ${femaleNum};
+							var a = ${actMainFacil1};
+							var b = ${actMainFacil2};
+							var c = ${actMainFacil3};
+							var d = ${actMainFacil4};
 							var ctx = document.getElementById("mycanvas3").getContext("2d")
 							var data = {
 								    datasets: [{
-								    	backgroundColor: ['Red', 'Blue'],
-								        data: [a, b],
+								    	backgroundColor: ['Red', 'Blue', 'Yellow', 'Green'],
+								        data: [a, b, c, d],
 								    	borderWidth:1,
 								    }],
 			
 								    // These labels appear in the legend and in the tooltips when hovering different arcs
 								    labels: [
-								        'Male',
-								        'Female'
+								        'Pool',
+								        'Court',
+								        'Heaven',
+								        'Hell'
 								    ]
 								};
 							//draw
 							var pieChart = new Chart(ctx, {
-								type: 'pie', 
+								type: 'doughnut', 
 								data: data, 
 								options: {
 							        responsive:false,
 							        maintainAspectRatio:false
 						      	}});
 					</script>
+					<p>Number of facilities under active maintenance</p>
                 </div>               
             </div>
             <div class="row justify-content-center features">
             	<div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><i class="fa fa-leaf icon"></i>
-                        <h3 class="name">Organic </h3>
-                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu.</p>
-                        <a href="#" class="learn-more">Learn more »</a>
+                    <div class="box">
+                        <h3 class="name">Report 1</h3>
+                        <p class="description">Learn about the time 15 stragglers came to the inn to brawl.</p>
+                        <form:form method = "GET" action = "reports/report1">
+				         <table>
+				            <tr>
+				               <td>
+				                  <input type = "submit" value = "Generate Report"/>
+				               </td>
+				            </tr>
+				         </table>  
+				      </form:form>
                 	</div>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 item">

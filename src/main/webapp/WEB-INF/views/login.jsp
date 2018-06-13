@@ -50,9 +50,11 @@
  
  <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login/authenticate" >
+<c:choose>
+				<c:when test="${sessionScope.Role == null}">
+				<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login/authenticate" >
 	<table class="framed" >
 		<tr>
 			<td>
@@ -80,4 +82,12 @@
 		</tr>
 	</table>
 </form:form>
+				</c:when>
+				<c:otherwise>
+You are already logged in!
+				</c:otherwise>
+			</c:choose>
+
+
+
 </html>

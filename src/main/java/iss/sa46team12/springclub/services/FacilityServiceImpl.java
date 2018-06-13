@@ -22,21 +22,20 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findAllFacilities() {
 		return (ArrayList<Facility>) facrepo.findAll();	
 		}
-		
+	
+//	@Override
+//	@Transactional
+//	public Facility findFacilityByName(String name) {		
+//		Facility facility = facrepo.findOne(name);	
+//		return facility;
+//	}
+	
 	@Override
 	@Transactional
-	public Facility findFacilityByName(String name) {		
-		Facility facility = facrepo.findOne(name);	
-		return facility;
+	public Facility findFacilityById(String fid) {
+		return facrepo.findOne(fid);		 
 	}
-
-	@Override
-	@Transactional
-	public Facility findFacilityById(String id) {	
-		Facility facility = facrepo.findOne(id);
-		return facility;
-	}
-
+	
 	@Override
 	@Transactional
 	public Facility createFacility(Facility fac) {
@@ -60,6 +59,12 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> getAllCourtsInFacility(String fname){
 		
 		return facrepo.getAllCourtsInFacility(fname);
+	}
+
+	@Override
+	public ArrayList<Facility> findFacilityByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

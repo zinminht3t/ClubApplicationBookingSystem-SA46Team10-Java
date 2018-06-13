@@ -1,5 +1,9 @@
 package iss.sa46team12.springclub.services;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public ArrayList<User> findAllUsers() {
 		return (ArrayList<User>) userRepository.findAll();	
-		}
+	}
 		
 //	@Override
 //	@Transactional
@@ -64,9 +68,25 @@ public class UserServiceImpl implements UserService{
 //		return u;
 //	}
 	
+	@Override
 	@Transactional
 	public User authenticate(String uname, String pwd) {
 		User u = userRepository.findUserByNamePwd(uname, pwd);
 		return u;
 	}
+
+	@Override
+	@Transactional
+	public User findByEmail(String uname) {
+		User u = userRepository.findUserByName(uname);
+		return u;
+	}
+//	@Override
+//	@Transactional
+//	public ArrayList<User> findUserByDate(Date date) {
+//		   ArrayList<User> getuserbydate = userRepository.findUserByDate(date);
+//		   return getuserbydate;
+//	}
+	
+	
 }

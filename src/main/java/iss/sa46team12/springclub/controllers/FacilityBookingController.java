@@ -1,12 +1,9 @@
 
 package iss.sa46team12.springclub.controllers;
 
-
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

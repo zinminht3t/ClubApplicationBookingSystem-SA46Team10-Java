@@ -9,11 +9,15 @@ import org.springframework.data.repository.query.Param;
 
 import iss.sa46team12.springclub.models.Facility;
 
-
 public interface FacilityRepository extends JpaRepository<Facility, String> {
 	
 	@Query("SELECT f from Facility f WHERE f.facilityName = :fname")
 	ArrayList<Facility> getAllCourtsInFacility(@Param("fname") String fname);
+
+	@Query("SELECT f FROM Facility f WHERE f.facilityName=:fname")
+	Facility findOneByName(@Param("fname") String facilityName);
+	
+	
 }
 
 

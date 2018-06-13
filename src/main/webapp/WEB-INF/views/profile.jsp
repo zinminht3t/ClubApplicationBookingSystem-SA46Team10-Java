@@ -34,16 +34,24 @@
 	<c:choose>
 		<c:when test="${not empty showNotification}">
 			<script>
-				swal('Profile Updated', 'Your Profile has been successfully updated', 'success')
+				swal('${NotiTitle}', '${NotiMessage}', 'success')
+			</script>
+		</c:when>
+		<c:when test="${not empty showErrorNotification}">
+			<script>
+				swal('${NotieTitle}', '${NotieMessage}', 'error')
 			</script>
 		</c:when>
 	</c:choose>
+	
+	<h2 class="text-primary text-center">User Profile</h2>
+	<br/>
+	<div class="row">
 
-	<div class="row" style="margin-top: 100px;">
+		<div class="col-md-8 offset-md-2">
 
-		<div class="col-md-10 offset-md-1">
-
-			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			<ul class="nav nav-pills mb-3 shadow-lg rounded" id="pills-tab"
+				role="tablist" style="background: #eee; margin: 2px;">
 				<li class="nav-item"><a class="nav-link active"
 					id="pills-home-tab" data-toggle="pill" href="#pills-home"
 					role="tab" aria-controls="pills-home" aria-selected="true">Edit
@@ -70,51 +78,56 @@
 
 
 
-					<div class="row" style="padding: 50px;">
-						<div class="col-md-5 col-sm-12">
+					<div class="row" style="padding: 20px;">
+						<div class="col-md-6 col-sm-12">
 
 							<h3>Edit Profile</h3>
 							<hr>
-							<form:form method="POST" id="user" modelAttribute="userProfile"
+							<form:form method="POST" id="user" modelAttribute="user"
 								action="${pageContext.request.contextPath}/user/edit">
 
 								<div class="row">
-									<form:errors path="fullname" cssStyle="color: red;" />
-									<form:errors path="nric" cssStyle="color: red;" />
-									<form:errors path="contactno" cssStyle="color: red;" />
 									<h4>Account</h4>
 									<div class="input-group input-group-icon">
 										<form:input path="fullname" type="text"
-											placeholder="Full Name" />
+											placeholder="Full Name" required="required" />
 										<div class="input-icon">
 											<i class="fa fa-user"></i>
 										</div>
+
+										<form:errors path="fullname" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
-										<form:input path="nric" type="text" placeholder="NRIC" />
+										<form:input path="nric" type="text" placeholder="NRIC"
+											required="required" />
 										<div class="input-icon">
 											<i class="fa fa-user"></i>
 										</div>
+										<form:errors path="nric" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
 										<form:input path="contactno" type="text"
-											placeholder="Phone Number" />
+											placeholder="Phone Number" required="required" />
 										<div class="input-icon">
 											<i class="fa fa-phone"></i>
 										</div>
+										<form:errors path="contactno" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
-										<form:input path="address" type="text" placeholder="Address" />
+										<form:input path="address" type="text" placeholder="Address"
+											required="required" />
 										<div class="input-icon">
 											<i class="fa fa-location-arrow"></i>
 										</div>
+										<form:errors path="address" cssStyle="color: red;" />
 									</div>
 									<div class="input-group input-group-icon">
 										<form:input path="email" type="email"
-											placeholder="Email Address" />
+											placeholder="Email Address" required="required" />
 										<div class="input-icon">
 											<i class="fa fa-envelope"></i>
 										</div>
+										<form:errors path="email" cssStyle="color: red;" />
 									</div>
 								</div>
 								<div class="row">
@@ -124,21 +137,23 @@
 											<fmt:formatDate value="${userProfile.dateofbirth}"
 												var="dateString" pattern="yyyy-MM-dd" />
 											<form:input path="dateofbirth" type="date"
-												value="${dateString}" placeholder="Date" />
+												value="${dateString}" placeholder="Date" required="required" />
 											<div class="input-icon">
 												<i class="fa fa-calendar"></i>
 											</div>
+											<form:errors path="dateofbirth" cssStyle="color: red;" />
 										</div>
 									</div>
 									<div class="col-half">
 										<h4>Gender</h4>
 										<div class="input-group">
 											<form:radiobutton name="gender" path="gender"
-												id="gender-male" value="male" />
+												id="gender-male" value="male" required="required" />
 											<label for="gender-male">Male</label>
 											<form:radiobutton name="gender" path="gender"
-												id="gender-female" value="female" />
+												id="gender-female" value="female" required="required" />
 											<label for="gender-female">Female</label>
+											<form:errors path="gender" cssStyle="color: red;" />
 										</div>
 									</div>
 								</div>
@@ -151,36 +166,40 @@
 
 						</div>
 
-						<div class="col-md-2"></div>
+						<div class="col-md-1"></div>
 
 						<div class="col-md-5 col-sm-12">
 							<h3>Change Password</h3>
 							<hr>
-							<form:form method="POST" id="changeUserPassword"
-								commandName="changeUserPassword" action="${pageContext.request.contextPath}/user/password">
+							<form:form method="POST" id="password" commandName="password"
+								action="${pageContext.request.contextPath}/user/password">
 
 								<h4>Password</h4>
 								<div class="input-group input-group-icon">
 									<form:input path="password" type="password"
-										placeholder="Old Password" />
+										placeholder="Old Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
+									<form:errors path="password" cssStyle="color: red;" />
 								</div>
 								<form:errors path="password" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
 									<form:input path="newpassword" type="password"
-										placeholder="New Password" />
+										placeholder="New Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
+									<form:errors path="newpassword" cssStyle="color: red;" />
 								</div>
 								<form:errors path="newpassword" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
-									<input type="password" path="confirmpassword" placeholder="Confirm Password" />
+									<input type="password" path="confirmpassword"
+										placeholder="Confirm Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
 									</div>
+									<form:errors path="confirmpassword" cssStyle="color: red;" />
 								</div>
 								<form:errors path="confirmpassword" cssStyle="color: red;" />
 
@@ -200,7 +219,131 @@
 				<div class="tab-pane fade" id="pills-pastbooking" role="tabpanel"
 					aria-labelledby="pills-pastbooking-tab">...</div>
 				<div class="tab-pane fade" id="pills-sub" role="tabpanel"
-					aria-labelledby="pills-sub-tab">...</div>
+					aria-labelledby="pills-sub-tab">
+
+					<div class="row">
+						<div class="col-md-12">
+							<c:choose>
+								<c:when test="${subpackage.packageyears=='1 Year'}">
+									<img
+										src="${pageContext.request.contextPath}/image/Membership-Bronze-1.png"
+										width="40%" class="mx-auto d-block">
+									<br />
+								</c:when>
+								<c:otherwise>
+									<img
+										src="${pageContext.request.contextPath}/image/Membership-Gold.png"
+										width="40%" class="mx-auto d-block">
+									<br />
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<hr />
+
+						<div class="col-md-6 offset-md-3">
+
+
+							<em>Your membership progress is : </em>
+
+							<div class="progress">
+								<c:choose>
+									<c:when test="${percentage < 10}">
+										<div class="progress-bar bg-danger" role="progressbar"
+											style="width: ${percentage }%" aria-valuenow="${percentage }"
+											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+									</c:when>
+									<c:when test="${percentage > 90}">
+										<div class="progress-bar bg-success" role="progressbar"
+											style="width: ${percentage }%" aria-valuenow="${percentage }"
+											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+									</c:when>
+									<c:otherwise>
+										<div class="progress-bar bg-warning" role="progressbar"
+											style="width: ${percentage }%" aria-valuenow="${percentage }"
+											aria-valuemin="0" aria-valuemax="100">${percentage }%</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
+							<br />
+
+							<div class="card">
+								<div class="card-body">
+									<h5 class="card-title text-success">${subpackage.packageyears}
+										Membership</h5>
+
+									<c:choose>
+										<c:when test="${dayleft <= 0}">
+											<h6 class="card-subtitle mb-2 text-danger">Your account
+												has already been expired! Please Renew!</h6>
+										</c:when>
+										<c:otherwise>
+											<em class="card-subtitle mb-2 text-info">Your
+												Subscription will be expired in ${dayleft } days</em>
+										</c:otherwise>
+									</c:choose>
+									<br />
+									<p class="card-text">You have these privileges</p>
+									<ul class="card-text">
+										<c:choose>
+											<c:when test="${subpackage.packageyears=='1 Year'}">
+												<li>ACCESS TO BOOKING FACILITIES</li>
+												<li>DISCOUNTS AT VARIOUS RESTAURANTS</li>
+
+
+											</c:when>
+											<c:otherwise>
+												<li>PERSONAL CHAUFFEUR</li>
+												<li>ACCESS TO BOOKING PRIVATE AUDITORIUM</li>
+											</c:otherwise>
+										</c:choose>
+									</ul>
+									<hr />
+									<div id="renewbuttondiv">
+										<button id="renew"
+											class="btn btn btn-outline-success float-right">Renew
+											Membership</button>
+									</div>
+									<div id="renewdiv" style="display: none;">
+										<h6>Choose Package</h6>
+										<a
+											href="${pageContext.request.contextPath}/user/renewmembership/${oneYearPackage.packageid}"
+											class="btn btn-info"><i class="fa fa-cube"></i> 1 Year :
+											${oneYear}</a> <a
+											href="${pageContext.request.contextPath}/user/renewmembership/${threeYearsPackage.packageid}"
+											class="btn btn-success"><i class="fa fa-cubes"></i> 3
+											Years : ${threeYears}</a>
+
+
+										<button id="cancelbtn" class="btn btn-danger float-right">
+											<i class="fa fa-close"></i>
+										</button>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+
+
+
+						<script>
+							$(document).ready(function() {
+								$("#renew").click(function() {
+									$("#renew").hide();
+									$("#renewdiv").show();
+								});
+								$("#cancelbtn").click(function() {
+									$("#renew").show();
+									$("#renewdiv").hide();
+								});
+							});
+						</script>
+						</script>
+					</div>
+
+
+				</div>
 			</div>
 
 		</div>

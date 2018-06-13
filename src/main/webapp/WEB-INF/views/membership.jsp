@@ -26,7 +26,7 @@
 							<li class="pricing-features-item">Discounts at various
 								Restaurants</li>
 						</ul>
-						<span class="pricing-price">$250</span> <a
+						<span class="pricing-price">${oneYear}</span> <a
 							href="${pageContext.request.contextPath}/register/selectedPackage1"
 							class="pricing-button">Sign up</a>
 					</div>
@@ -40,7 +40,7 @@
 							<li class="pricing-features-item">Access to Booking Private
 								Auditorium</li>
 						</ul>
-						<span class="pricing-price">$500</span> <a
+						<span class="pricing-price">${threeYears}</span> <a
 							href="${pageContext.request.contextPath}/register/selectedPackage2"
 							class="pricing-button">Sign up</a>
 					</div>

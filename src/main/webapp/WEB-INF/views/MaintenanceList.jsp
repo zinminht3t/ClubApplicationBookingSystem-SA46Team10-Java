@@ -1,10 +1,11 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <h3>Maintenance List page</h3>
 
-<a href="${pageContext.request.contextPath}/admin/bm/calendar2">List
+<a href="${pageContext.request.contextPath}/admin/calendar/maintenance/list">List
 	Bookings</a>
 	<c:if test="${fn:length(maintenanceList) gt 0}">
 	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
@@ -26,13 +27,13 @@
 			<c:forEach var="maintenance" items="${maintenanceList}">
 			
 					<tr class="maintenanceRecord">
-						<td>${maintenance.getMaintenanceId()}</td>
-						<td>${maintenance.getFacility().getFacilityName()}</td>
-						<td>${maintenance.getStartDate()}</td>
-						<td>${maintenance.getEndDate()}</td>
-						<td>${maintenance.getStartTimeSlot().getTime()}</td>
-						<td>${maintenance.getEndTimeSlot().getTime()}</td>
-						<td>${maintenance.getActiveStatus()}</td>
+						<td>${maintenance.getMaintenanceid()}</td>
+						<td>${maintenance.getFacilities().getFacilityName()}</td>
+						<td>${maintenance.getStartdate()}</td>
+						<td>${maintenance.getEnddate()}</td>
+						<td>${maintenance.getTimeslots_start().getTime()}</td>
+						<td>${maintenance.getTimeslots_end().getTime()}</td>
+						<td>${maintenance.isActive()}</td>
 						
 						
 						
@@ -42,3 +43,4 @@
 		</tbody>
 	</table>
 </c:if>
+

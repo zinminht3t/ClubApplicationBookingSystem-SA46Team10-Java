@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+ <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+ <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+ <c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
 <%@ page session="false"%>
 <!doctype html>
 <html lang="en">
@@ -7,6 +9,9 @@
 <head>
 <title>Spring Club</title>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
 </head>
 
 <body>
@@ -60,7 +65,7 @@
 			<div class="card-block text-center">
 				<h2 id="aboutus">
 					About Us
-					<h2>
+					</h2>
 			</div>
 
 		</div>
@@ -118,7 +123,7 @@
 			<div class="card-block text-center" id="contactus">
 				<h2>
 					Contact Us
-					<h2>
+					</h2>
 			</div>
 
 		</div>
@@ -139,19 +144,74 @@
 				</div>
 
 			</div>
-			<div class="card bg-light mb-3 text-center" width="100%">
+			<div class="card bg-light mb-3 text-center">
 				<div class="card-header">
 					<h5>Contact Us</h5>
 				</div>
 				<!-- Google Map -->
 				<div id="contact-us-form">
-					<!-- 
-                                form validation here - do in jsp using tag library -->
+				 <form action="${pageContext.request.contextPath}/" class="contact-form" method="post">
+              
+                          <div class="form-group">
+                             <input type="text" class="form-control" id="name" name="nm" placeholder="Name" required="required" autofocus>
+
+                          </div>
+                      
+                      
+                          <div class="form-group form_left">
+                             <input type="email" class="form-control" id="email" name="em" placeholder="Email" required="required"> 
+
+                          </div>
+                      
+                        <div class="form-group">
+                              <input type="text" class="form-control" id="sb" placeholder="Subject" required="required"> 
+
+                        </div>
+                        <div class="form-group">
+                         <textarea class="form-control textarea-contact" rows="5" id="comment" name="FB" placeholder="Type Your Message/Feedback here..." required="required"></textarea> 
+
+                        <br>
+                          <button class="btn btn-default btn-send"> <span class="glyphicon glyphicon-send"></span> Send </button>
+                        </div>
+                       </form>
+					<!-- form validation here - do in jsp using tag library -->
+<%-- 					<form:form modelAttribute="user" class="contact-form" method="POST"
+						action="${pageContext.request.contextPath}/login/authenticate">
+						<table class="framed">
+							<tr>
+								<td><spring:message code="Email / Username: " /></td>
+								<td colspan="3"><form:input path="email" size="40"
+										required="required" /></td>
+							</tr>
+							<tr>
+								<td><spring:message code="Password: " /></td>
+								<td colspan="3"><form:password path="password" size="40"
+										required="required" /></td>
+							</tr>
+							<tr>
+								<td colspan="4">&nbsp;
+									<p class="label label-danger">${errormsg}</p>
+								</td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								<td><form:button class="btn btn-success" name="submit"
+										type="submit" value="Login">
+
+									</form:button></td>
+								<td><form:button class="btn btn-danger" name="clear"
+										type="reset" value="Reset">
+
+									</form:button></td>
+							</tr>
+						</table>
+					</form:form> --%>
+					<!-- End Of Contact Us -->
 
 				</div>
 				<div class="card-footer bg-light">
 					<h6>Email</h6>
-					<p>customerservice@springclub.com</p>
+					<p>springclub12@gmail.com</p>
 					<h6>Tel No.</h6>
 					<p>+65-1234 5678</p>
 
