@@ -24,7 +24,8 @@
 </head>
 
 <body>
-
+<br/>
+<br/>
 	<form:form method="POST" commandName="user"
 		action="${pageContext.request.contextPath}/register/${selectedPackage}.html">
 		<div class="container">

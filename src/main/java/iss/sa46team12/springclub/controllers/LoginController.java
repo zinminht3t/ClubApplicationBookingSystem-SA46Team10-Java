@@ -46,7 +46,7 @@ public class LoginController {
 			if (u.getRole().equals("admin") && u.isActive() == (true)) {
 				session.setAttribute("Role", "admin");
 				session.setAttribute("UserID", u.getUserId());
-				mav = new ModelAndView("redirect:/admin");
+				mav = new ModelAndView("redirect:/reports");
 			} else if (u.getRole().equals("member") && u.isActive() == (true)) {
 				session.setAttribute("Role", "member");
 				session.setAttribute("UserID", u.getUserId());

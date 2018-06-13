@@ -39,6 +39,7 @@
 
 <body>
 
+
 	<form:form method="POST" commandName="adminBookingF"
 		action="${pageContext.request.contextPath}/admin/manageBM/editBooking/${booking.getBookingid()}">
 
@@ -154,4 +155,8 @@
 		);	  
 	</script>
 
+	
+
 </body>
+
+
