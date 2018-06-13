@@ -49,19 +49,14 @@ public class ManageBMController {
 
 	@Autowired
 	BookingsService bookingService;
-
 	@Autowired
 	MaintenanceService maintenanceService;
-
 	@Autowired
 	FacilityService facilityService;
-
 	@Autowired
 	TimeslotService timeslotService;
-
 	@Autowired
 	BookingDetailsService bkgDetailsService;
-
 	@Autowired
 	BookingViewService bkgViewService;
 
@@ -140,7 +135,7 @@ public class ManageBMController {
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.GET)
 	public ModelAndView viewCalendar(HttpSession session) {
 		ModelAndView mav = new ModelAndView("Calendar");
-		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
+//		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
 		ArrayList<String> daysOfWeek = new ArrayList<String>() {
 			{
 				add("Sun");

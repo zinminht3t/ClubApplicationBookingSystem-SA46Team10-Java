@@ -68,7 +68,10 @@
 		
 							<c:if
 								test="${bookingDate==thisDate}">
-								<button id="${booking.getBookingid()}" class="btn-booking-slot" onClick="viewBooking()">${booking.getMinTime()}--${booking.getMaxTime()}</button>
+					<form:form modelAttribute="getbookingtiming" method="POST" action="${pageContext.request.contextPath}/login/authenticate">
+								
+								<button id="${booking.getBookingid()}" class="btn-booking-slot">${booking.getMinTime()}--${booking.getMaxTime()}</button>
+								</form:form>
 							</c:if>
 						</c:forEach>
 						
@@ -79,7 +82,7 @@
 		
 							<c:if
 								test="${maintenanceStartDate==thisDate}">
-								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot" onClick="viewMaintenance()">${maintenance.getTimeslots_start().getTime()}--${maintenance.getTimeslots_end().getTime()}</button>
+								<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot">${maintenance.getTimeslots_start().getTime()}--${maintenance.getTimeslots_end().getTime()}</button>
 							</c:if>
 						</c:forEach>
 					</div>
