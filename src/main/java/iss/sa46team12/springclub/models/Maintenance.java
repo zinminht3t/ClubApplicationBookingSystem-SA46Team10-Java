@@ -57,11 +57,11 @@ public class Maintenance {
 	
 	//@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "startdate")
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date startdate;
 	
 	@Column(name = "enddate")
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date enddate;
 	
 	@Column(name="active",columnDefinition = "TINYINT")
