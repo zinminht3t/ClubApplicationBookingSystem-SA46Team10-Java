@@ -78,7 +78,6 @@
 					<form:input class="form-control" type="password" path="password" name="password" /></div>
             	<div class="form-group">
             		<button class="btn btn-primary btn-block" type="submit">Log In</button></div>
-            		<a href="#" class="forgot">Forgot your email or password?</a>
             </form:form>	
 		</c:when>
 		<c:otherwise>
