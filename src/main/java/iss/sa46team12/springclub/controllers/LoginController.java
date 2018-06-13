@@ -49,7 +49,7 @@ public class LoginController {
 					mav = new ModelAndView("redirect:/admin");
 				}
 				else 
-				if(u.getRole().equals("member") && u.isActive() == true){
+				if(u.getRole().equals("member") && u.isActive() == (true)){
 					session.setAttribute("Role", "member");
 					session.setAttribute("UserID", u.getUserId());
 //					mav = (ModelAndView) session.getAttribute("returnpage");

@@ -4,90 +4,85 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Admin | Facility</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous">
- 
-<link rel="stylesheet" href="css/UserList.css">
+<title></title>
 
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function() {
+    $('#ulist').DataTable();
+} );
+    </script>
 </head>
-<body> 
+<body>
 
-<a href="${pageContext.request.contextPath}/admin/user/list"></a>
-
-<div class="row" style="margin-top: 10px; margin-left: 6px">
-<div class='col-xs-12'>
-	<div class="panel-heading">
-
-					<h4>User List</h4>
-					<hr>
-
-				</div>
+	<a href="${pageContext.request.contextPath}/admin/user/list"></a>
 
 	<div class='col-xs-12'>
-		<c:if test="${fn:length(userlist) gt 0}">
-			<table id="userTable"
-				class="table table-condensed table-bordered">
-				<thead>
-					<tr class="listHeading">
-						<th><spring:message code="ID" /></th>
-						<th><spring:message code="Name" /></th>
-						<th><spring:message code="NRIC" /></th>
-						<th><spring:message code="DOB" /></th>
-						<th><spring:message code="Gender" /></th>
-						<th><spring:message code="Address" /></th>
-						<th><spring:message code="Email" /></th>
-						<th><spring:message code="Contact" /></th>
-						<th><spring:message code="Role" /></th>
-						<th><spring:message code="Active" /></th>	
-						<th></th>
-						
-					</tr>
-				</thead>
-				<tfoot>
-					<c:forEach var="user" items="${userlist}">
-						<tr class="listRecord">
-							<td>${user.userId}</td>
-							<td>${user.fullname}</td>
-							<td>${user.nric}</td>
-							<td><fmt:formatDate pattern="dd-MM-yyyy" value="${user.dateofbirth}"/></td>
-							<td>${user.gender}</td>
-							<td>${user.address}</td>
-							<td>${user.email}</td>
-							<td>${user.contactno}</td>
-							<td>${user.role}</td>
-							<td><c:choose>
-									<c:when test="${user.active == true}">
-											<input type="checkbox" name="chkbox" checked="checked"
-													onclick="return false;" />
-									</c:when>
-									<c:otherwise>
-											<input type="checkbox" name="chkbox" onclick="return false;" />
-									</c:otherwise>
-								</c:choose>
-							</td>
-							<td><a
-						href="${pageContext.request.contextPath}/admin/user/UserFormEdit/${user.userId}"><button type="button" class="btn btn-warning btn-xs">Edit
-							</button></td>
-							
-						 							
-						</tr>
-					</c:forEach>
+		<div class="panel-heading">
 
-				</tfoot>
-			</table>
-		</c:if>
+			<h4 style="color:blue; margin-left: 10px">Members Listing</h4>
+			<hr>
+
+		</div>
 	</div>
-</div>
 
-<script src="static/js/jquery-1.11.1.min.js"></script>    
-<script src="static/js/bootstrap.min.js"></script>
-    
-    </body>
+	<c:if test="${fn:length(userlist) gt 0}">
+		<table id="ulist" class="display" style="width: 100%; padding-left:10px; padding-right:10px">
+			<thead style="color:blue">			 
+				<tr>
+					<th><spring:message code="ID" /></th>
+					<th><spring:message code="Name" /></th>
+					<th><spring:message code="NRIC" /></th>
+					<th><spring:message code="DOB" /></th>
+					<th><spring:message code="Gender" /></th>
+					<th><spring:message code="Address" /></th>
+					<th><spring:message code="Email" /></th>
+					<th><spring:message code="Contact" /></th>
+					<th><spring:message code="Role" /></th>
+					<th><spring:message code="Active" /></th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="user" items="${userlist}">
+					<tr>
+						<td>${user.userId}</td>
+						<td>${user.fullname}</td>
+						<td>${user.nric}</td>
+						<td><fmt:formatDate pattern="dd-MM-yyyy"
+								value="${user.dateofbirth}" /></td>
+						<td>${user.gender}</td>
+						<td>${user.address}</td>
+						<td>${user.email}</td>
+						<td>${user.contactno}</td>
+						<td>${user.role}</td>
+						<td><c:choose>
+								<c:when test="${user.active == true}">
+									<input type="checkbox" name="chkbox" checked="checked"
+										onclick="return false;" />
+								</c:when>
+								<c:otherwise>
+									<input type="checkbox" name="chkbox" onclick="return false;" />
+								</c:otherwise>
+							</c:choose></td>
+						<td><a
+							href="${pageContext.request.contextPath}/admin/user/UserFormEdit/${user.userId}"><button
+									type="button" class="btn btn-warning btn-xs">Edit</button></td>
+
+					</tr>
+				</c:forEach>
+			</tbody>
+
+		</table>
+	</c:if>
+</body>
 </html>
-

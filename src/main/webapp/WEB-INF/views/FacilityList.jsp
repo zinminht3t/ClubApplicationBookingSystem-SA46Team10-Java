@@ -3,94 +3,88 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<<<<<<< HEAD
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<fmt:setLocale value="en_SG" scope="session"/>
 
-
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Admin | Facility</title>
-<!--  <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-        crossorigin="anonymous"> / -->
+<title></title>
 
-<link rel="stylesheet" href="css/FacilityList.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
+<script type="text/javascript">
+        $(document).ready(function() {
+    $('#faclist').DataTable();
+} );
+    </script>
 </head>
 <body>
 
 	<a href="${pageContext.request.contextPath}/admin/facility/list"></a>
 
-	<div class="row" style="margin-top: 10px; margin-left: 200px">
-		<div class='col-xs-12'>
-			<div class="panel-heading">
+	<div class='col-xs-12'>
+		<div class="panel-heading">
 
-				<h4>Facilities List</h4>
-				<hr>
-
-			</div>
-
-			<c:if test="${fn:length(facilitylist) gt 0}">
-				<table id="facilityTable"
-					class="table table-condensed table-bordered">
-					<thead>
-						<tr class="listHeading">
-							<th><spring:message code="ID" /></th>
-							<th><spring:message code="Name" /></th>
-							<th><spring:message code="Court" /></th>
-							<th><spring:message code="Price" /></th>
-							<th><spring:message code="Remark" /></th>
-							<th><spring:message code="Image Path" /></th>
-							<th><spring:message code="Active" /></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tfoot>
-						<c:forEach var="facility" items="${facilitylist}">
-							<tr class="listRecord">
-								<td>${facility.facilityID}</td>
-								<td>${facility.facilityName}</td>
-								<td>${facility.court}</td>
-								<td>${facility.price}</td>
-								<td>${facility.remark}</td>
-								<td>${facility.imagePath}</td>
-								<td>
-								<c:choose>
-									<c:when test="${facility.active == true}" >
-										<input type="checkbox" name="chkbox" checked="checked" onclick="return false;"/>
-									</c:when>
-									<c:otherwise>
-										<input type="checkbox" name="chkbox" onclick="return false;"/>
-									</c:otherwise>
-								</c:choose>
-								</td>
-
-								<td><a
-									href="${pageContext.request.contextPath}/admin/facility/FacilityFormEdit/${facility.facilityID}"><button
-											type="button" class="btn btn-warning btn-xs">Edit</a></td>
-
-							</tr>
-						</c:forEach>
-
-					</tfoot>
-				</table>
-			</c:if>
-
-			<div>
-				<a
-					href="${pageContext.request.contextPath}/admin/facility/FacilityFormNew"><button
-						type="button" class="btn btn-warning btn-xs">Add</a>
-			</div>
-			
-
+			<h4 style="color:blue; margin-left: 10px">Facilities Listing</h4>			
+			<hr>
 
 		</div>
 	</div>
 
-	<script src="static/js/jquery-1.11.1.min.js"></script>
-	<script src="static/js/bootstrap.min.js"></script>
+	<c:if test="${fn:length(facilitylist) gt 0}">
+		<table id="faclist" class="display" style="width: 100%; padding-left:10px; padding-right:10px">
+			<thead style="color:blue">
+				<tr>
+					<th><spring:message code="ID" /></th>
+					<th><spring:message code="Name" /></th>
+					<th><spring:message code="Court" /></th>
+					<th><spring:message code="Price" /></th>
+					<th><spring:message code="Remark" /></th>
+					<th><spring:message code="Image Path" /></th>
+					<th><spring:message code="Active" /></th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="facility" items="${facilitylist}">
+					<tr>
+						<td>${facility.facilityID}</td>
+						<td>${facility.facilityName}</td>
+						<td>${facility.court}</td>
+						<td><fmt:formatNumber value="${facility.price}" type="currency" /></td>
+						<td>${facility.remark}</td>
+						<td>${facility.imagePath}</td>
+						<td><c:choose>
+								<c:when test="${facility.active == true}">
+									<input type="checkbox" name="chkbox" checked="checked"
+										onclick="return false;" />
+								</c:when>
+								<c:otherwise>
+									<input type="checkbox" name="chkbox" onclick="return false;" />
+								</c:otherwise>
+							</c:choose></td>
+						<td><a
+							href="${pageContext.request.contextPath}/admin/facility/FacilityFormEdit/${facility.facilityID}"><button
+									type="button" class="btn btn-warning btn-xs">Edit</a></td>
+
+					</tr>
+				</c:forEach>
+			</tbody>
+
+		</table>
+	</c:if>
+
+	<div>
+		<a
+			href="${pageContext.request.contextPath}/admin/facility/FacilityFormNew"><button
+				type="button" class="btn btn-warning btn-xs" style="margin-left:20px">Add</a>
+	</div>
 
 </body>
 </html>

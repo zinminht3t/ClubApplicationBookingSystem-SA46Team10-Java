@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: mayta
 Build-Jdk: 1.8.0_171
+=======
+Built-By: Henry
+Build-Jdk: 1.8.0_172
+>>>>>>> 2ce313eded9db75ff026e8ec9e24a9c5e6602f45
 Created-By: Maven Integration for Eclipse
 
