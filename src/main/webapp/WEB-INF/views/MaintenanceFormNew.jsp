@@ -23,10 +23,11 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -87,9 +88,9 @@
 						<div class="col-md-8">
 							<!-- attribute name -->
 							<fmt:formatDate value="${startdate.date}" 
-			                pattern="yyyy-MM-dd" 
+			                pattern="yy-MM-dd" 
 			                var="formattedDate"/>
-							<form:input id="datepicker_start" path="startdate" type="date" pattern="yyyy-mm-dd"/>
+							<form:input id="datepicker_start" path="startdate" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" type="text"/>
 							<form:errors path="startdate" cssClass="help-block" element="em" />
 						</div>
 					</div>
@@ -102,7 +103,7 @@
 							<fmt:formatDate value="${enddate.date}" 
 			                pattern="yyyy-MM-dd" 
 			                var="formattedDate"/>
-							<form:input id="datepicker_end" path="enddate" type="date"/>
+							<form:input id="datepicker_end" path="enddate" type="text" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
 							<form:errors path="enddate" cssClass="help-block" element="em" />
 						</div>
 					</div>
@@ -148,27 +149,26 @@
 			<input id="btnReset" type="reset" value="Reset"/>
 		</div>
 		
-		<script
-			src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-		<script src="js/index.js"></script>
+		
 
 
 	</form:form>
 	
 <script>
 
-$( function() {
-    $( "#datepicker_start" ).datepicker(         
-    		dateFormat: 'yyyy-mm-dd',
-            defaultDate: '2018-06-01')
-);
-  } 
-);
-  
-$( function() {
-    $( "#datepicker_end" ).datepicker(dateFormat : "dd/mm/yy");
-  } 
-);
+$(function() {
+    $( "#datepicker_start" ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: 0 
+    });
+});
+
+$(function() {
+    $( "#datepicker_end" ).datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+});
   
 </script>
 
