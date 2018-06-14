@@ -27,13 +27,8 @@ public class LoginController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ModelAndView authenticate(@ModelAttribute User user, HttpSession session, BindingResult result) {
-		ModelAndView mav = new ModelAndView("login");
-		if (result.hasErrors() || user == null) {
-			// add error msg
-			return mav;
-		}
+	@RequestMapping(method = RequestMethod.POST)
+	public String authenticate(@ModelAttribute User user, HttpSession session, BindingResult result, Model model) {
 
 		UserSession us = new UserSession();
 		User u = usersvc.authenticate(user.getEmail(), user.getPassword());
@@ -43,25 +38,26 @@ public class LoginController {
 			us.setSessionId(session.getId());
 			// session.setAttribute("returnpage", mav);
 
-			if (u.getRole().equals("admin") && u.isActive() == (true)) {
+			if (u.getRole().equals("admin") && u.isActive() == true) {
 				session.setAttribute("Role", "admin");
 				session.setAttribute("UserID", u.getUserId());
-				mav = new ModelAndView("redirect:/reports");
-			} else if (u.getRole().equals("member") && u.isActive() == (true)) {
+				return "redirect:/reports";
+			} else if (u.getRole().equals("member") && u.isActive() == true) {
 				session.setAttribute("Role", "member");
 				session.setAttribute("UserID", u.getUserId());
 				// mav = (ModelAndView) session.getAttribute("returnpage");
 				// session.getAttribute
-				mav = new ModelAndView("redirect:/facilities");
+				return "redirect:/facilities";
 			} else {
-				mav = new ModelAndView("login", "errormsg", "Your Account Has Expired. Please Register Again.");
+				model.addAttribute("errormsg", "Your Account Has Expired");
+				return "login";
 			}
 		} else {
-			// add error msg
-			mav = new ModelAndView("login", "errormsg", "Wrong Username / Password!");
+			model.addAttribute("errormsg", "Wrong Username / Password");
+			return "login";
+			
 		}
 
-		return mav;
 		// ModelAndView mav = new ModelAndView("login");
 		// if(result.hasErrors()) {
 		// return mav;
