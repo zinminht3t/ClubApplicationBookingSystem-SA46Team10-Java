@@ -156,10 +156,11 @@ public class RegisterController {
 
 		// Login after registering
 		UserSession us = new UserSession();
-		us.setUser(user);
+		User u = uService.findByEmail(user.getEmail());
+		us.setUser(u);
 		us.setSessionId(session.getId());
 		session.setAttribute("Role", "member");
-		session.setAttribute("UserID", user.getUserId());
+		session.setAttribute("UserID", u.getUserId());
 
 		mav.setViewName("redirect:/");
 
