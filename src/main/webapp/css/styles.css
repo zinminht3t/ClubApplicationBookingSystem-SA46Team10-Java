@@ -6,3 +6,27 @@
 .itemi {
 	background-size: cover;
 }
+
+/* below are ways to try fix user list's table */
+/* in the end i just decided to shrink the font size */
+/* thus allowing the entire table to fir horizontally in the page */
+.cw-table-list{
+    margin:0px !important;
+    table-layout:fixed;  
+  }
+  
+.cw-table-list td{
+    padding-bottom: 0px !important;  
+    overflow:hidden;
+}
+
+.table-scrollable{
+    overflow: auto;
+}
+
+.ie-table-fix {
+    overflow: auto;
+}
+.ie-table-fix > table {
+    table-layout: fixed;
+}
