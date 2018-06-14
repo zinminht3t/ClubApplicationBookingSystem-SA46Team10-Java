@@ -35,7 +35,7 @@
 <body>
 
 	<form:form method="POST" commandName="maintenance"
-		action="${pageContext.request.contextPath}/admin/calendar/maintenance/create.html">
+		action="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormNew/create">
 
 		<div class="row">
 

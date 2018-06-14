@@ -41,7 +41,7 @@
 
 
 	<form:form method="POST" commandName="adminBookingF"
-		action="${pageContext.request.contextPath}/admin/manageBM/editBooking/${booking.getBookingid()}">
+		action="${pageContext.request.contextPath}/admin/viewBookings/editBooking/${booking.getBookingid()}">
 
 		<div class="row">
 		</br>
