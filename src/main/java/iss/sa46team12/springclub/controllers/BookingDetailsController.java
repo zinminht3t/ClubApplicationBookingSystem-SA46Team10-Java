@@ -73,7 +73,9 @@ public class BookingDetailsController {
 			}
 		}
 
-		User user = userService.findUserById((int)session.getAttribute("UserID"));
+		//User user = userService.findUserById((int)session.getAttribute("UserID"));
+		
+		User user = userService.findUserById(1);
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = new Bookings();
 		booking.setTransactiontime(date);
