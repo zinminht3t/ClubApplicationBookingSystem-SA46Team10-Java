@@ -66,7 +66,7 @@ public class UserController {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView editProfile(HttpSession session) {
-		int userid;
+		int userid = 0;
 		try {
 			userid = (int) session.getAttribute("UserID");
 		} catch (NullPointerException e) {
