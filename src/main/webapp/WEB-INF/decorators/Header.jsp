@@ -37,7 +37,7 @@
 				<c:when test="${sessionScope.Role =='admin'}">
 
 					<li class="nav-item"><a class="nav-link" style="margin-right: 30px;"
-						href="${contextPath}/admin" id="home">Reports</a></li>
+						href="${contextPath}/reports" id="home">Reports</a></li>
 					<li class="nav-item"><a class="nav-link" style="margin-right: 30px;"
 						href="${contextPath}/admin/facility/list">Manage Facilities</a></li>
 					<li class="nav-item"><a class="nav-link" style="margin-right: 30px;"
@@ -45,7 +45,7 @@
 					<%-- 					<li class="nav-item"><a class="nav-link"
 						href="${contextPath}/admin/userlist">Reports</a></li> --%>
 					<li class="nav-item"><a class="nav-link" style="margin-right: 30px;"
-						href="${contextPath}/admin/viewCalendar">Manage Booking</a></li>
+						href="${contextPath}/admin/viewCalendar">Manage Booking and Maintenances</a></li>
 					<li class="nav-item"><a class="btn btn-outline-danger"
 						href="${contextPath}/logout">Logout</a></li>
 
