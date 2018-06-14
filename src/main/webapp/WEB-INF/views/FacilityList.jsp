@@ -46,7 +46,7 @@
 
 
 		<c:if test="${fn:length(facilitylist) gt 0}">
-			<table id="faclist" class="display" style="width: 100%; padding-left:10px; padding-right:10px">
+			<table id="faclist" class="display" style="width: 100%; padding-left:10px; padding-right:10px; font-size: 14px;">
 				<thead style="color:blue">
 					<tr>
 						<th><spring:message code="ID" /></th>
