@@ -31,11 +31,12 @@
 		        <div class="shadowTable pricing-table row clearmargin clearpadding row-image-txt">
 			        <div class="col-xs-12 col-sm-6 col-md-6 clearmargin clearpadding col-sm-push-6"><img src="image/${facility.imagePath}" style="width:100%;"></div>
 			        <div class="col-xs-12 col-sm-6 col-md-6 col-sm-pull-6" style="padding:20px;">
-			            <h1>${facility.facilityName}</h1>
+			            <h1 name="facname">${facility.facilityName}</h1>
 			            <hr>
 			            <p>${facility.remark}</p>
 			            <div style="text-align:center">
-			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/${facility.facilityName}/${date}">
+			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/${date}/${facility.facilityName}">
+			            
 			            <button class="btn btn-light btn-lg" type="button">Book</button></a></div>
 			        </div>
 			    </div>

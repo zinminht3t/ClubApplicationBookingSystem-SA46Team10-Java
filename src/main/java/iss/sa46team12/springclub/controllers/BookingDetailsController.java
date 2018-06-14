@@ -49,11 +49,11 @@ public class BookingDetailsController {
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
 	public ModelAndView listAll(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("booking-details");
-		// String selecteddate = request.getParameter("selecteddate");
 
 		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility("Tennis Court"));
 		LinkedHashMap<Facility, ArrayList<String>> courtAndTimes = new LinkedHashMap<Facility, ArrayList<String>>();
-
+		int bookingPrice = 0; 
+		
 		for (Facility court : courts) {
 			ArrayList<String> eachCourt = new ArrayList<String>();
 			String[] key;
@@ -65,8 +65,10 @@ public class BookingDetailsController {
 			if (key != null) {
 				for (String value : key) {
 					eachCourt.add(value);
+					bookingPrice = (int) (bookingPrice+court.getPrice());
 				}
 				courtAndTimes.put(court, eachCourt);
+				
 			}
 		}
 
@@ -75,15 +77,11 @@ public class BookingDetailsController {
 		Bookings booking = new Bookings();
 		booking.setTransactiontime(date);
 		booking.setUser(user);
-		booking.setTotal(10);
+		booking.setTotal(bookingPrice);
 		booking.setStatus("CONFIRMED");
 		bookingsService.createBooking(booking);
 
 		String bookingdate = request.getParameter("selecteddate") + " 00:00";
-		//
-		// LocalDate convertedBookingDate = new
-		// SimpleLocalDateFormat("yyyy-MM-dd").parse(bookingdate);
-
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime convertedbookingdate = LocalDateTime.parse(bookingdate, formatter);
 		
@@ -97,7 +95,7 @@ public class BookingDetailsController {
 				
 				bookingdetails.setBookingid(booking.getBookingid());
 				bookingdetails.setBookingdate(convertedbookingdate);
-				bookingdetails.setBookingprice(50);
+				bookingdetails.setBookingprice(court.getKey().getPrice());
 				bookingdetails.setFacilityid(court.getKey().getFacilityID());
 				bookingdetails.setTimeslotid(timeslotService.getOneTimeSlot(times).getTimeslotid());
 				
@@ -110,6 +108,7 @@ public class BookingDetailsController {
 		// mav.addObject("selecteddate", selecteddate);
 		mav.addObject("courtAndTimes", courtAndTimes);
 		mav.addObject("date", date);
+		mav.addObject("request", request);
 		return mav;
 	}
 

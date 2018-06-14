@@ -53,7 +53,7 @@
 		function updateAb(value) {
 			window.location
 					.replace('${pageContext.request.contextPath}/facilities/confirm-booking/'
-							+ value);
+							+ value + '/${facilityname}');
 		}
 
 	});
@@ -94,8 +94,8 @@
 					<c:forEach var="courts" items="${availableCourtsTime}">
 						<c:forEach var="court" items="${courts.key}">
 
-							<div 
-								style=" min-width:450; background-color: #71bfe5; padding: 5px; margin: 8px; border-radius: 5px; min-height: 33px; opacity: 0.9;">
+							<div
+								style="min-width: 450; background-color: #71bfe5; padding: 5px; margin: 8px; border-radius: 5px; min-height: 33px; opacity: 0.9;">
 								<h5
 									style="display: block; float: none; margin: 0 auto; height: 20px; line-height: 20px; text-align: center;">
 									${court}</h5>

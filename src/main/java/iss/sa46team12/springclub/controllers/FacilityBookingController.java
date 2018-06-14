@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,17 +38,22 @@ public class FacilityBookingController {
 	FacilityService courtsinFacility;
 
 	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
-	public @ResponseBody ModelAndView listAll( @PathVariable("datepicker") String datepicker) {
+	public @ResponseBody ModelAndView listAll(HttpSession session, @PathVariable("datepicker") String datepicker) {
 		ModelAndView mav = new ModelAndView("confirm-booking");
 		//Formatting Date to match with database to compare
+
+		String fn = (String) session.getAttribute("fn");
+		fn = fn.replaceAll("%20", "");
 		String str = datepicker+" 00:00";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+		
+		session.setAttribute("fn", fn);
 
 		//Get all the timeslots
 		ArrayList<Timeslots> timeslots = allTimeslots.getAllTimeslots();
 		//Get a list of all the courts under the category that is passed as an argument
-		ArrayList<Facility> courts  = courtsinFacility.getAllCourtsInFacility("Tennis Court");
+		ArrayList<Facility> courts  = courtsinFacility.getAllCourtsInFacility(fn);
 		
 		//A hashMap for mapping courts with their booking details
 		LinkedHashMap<String, ArrayList<BookingDetails>> bookedCourtsTime = new LinkedHashMap<String, ArrayList<BookingDetails>>();
@@ -79,6 +86,7 @@ public class FacilityBookingController {
 		mav.addObject("bookedCourtsTime", bookedCourtsTime);
 		mav.addObject("availableCourtsTime", availableCourtsTime);
 		mav.addObject("date", datepicker);
+		mav.addObject("facilityname", fn);
 		
 		return mav;
 	}
