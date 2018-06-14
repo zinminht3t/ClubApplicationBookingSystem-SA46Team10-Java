@@ -156,25 +156,25 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	
 	
 	
-//	  @Bean(name="simpleMappingExceptionResolver")
-//	  public SimpleMappingExceptionResolver
-//	                  createSimpleMappingExceptionResolver() {
-//	    SimpleMappingExceptionResolver r =
-//	                new SimpleMappingExceptionResolver();
-//
-//	    Properties mappings = new Properties();
-//	    mappings.setProperty(NullPointerException.class.getName(), "error");
-//	    mappings.setProperty("DatabaseException", "databaseError");
-//	    mappings.setProperty("InvalidCreditCardException", "creditCardError");	 
-//	    r.setExceptionMappings(mappings);  // None by default
-//	    
-//	    r.addStatusCode("error", 404);
-//	    r.setDefaultErrorView("error");    // No default	    
-//	    r.setExceptionAttribute("null");     // Default is "exception"
-//	    r.setWarnLogCategory("example.MvcLogger");     // No default
-//	    r.setDefaultStatusCode(500);
-//	    return r;
-//	  }
+	  @Bean(name="simpleMappingExceptionResolver")
+	  public SimpleMappingExceptionResolver
+	                  createSimpleMappingExceptionResolver() {
+	    SimpleMappingExceptionResolver r =
+	                new SimpleMappingExceptionResolver();
+
+	    Properties mappings = new Properties();
+	    mappings.setProperty(NullPointerException.class.getName(), "error");
+	    mappings.setProperty("DatabaseException", "databaseError");
+	    mappings.setProperty("InvalidCreditCardException", "creditCardError");	 
+	    r.setExceptionMappings(mappings);  // None by default
+	    
+	    r.addStatusCode("error", 404);
+	    r.setDefaultErrorView("error");    // No default	    
+	    r.setExceptionAttribute("null");     // Default is "exception"
+	    r.setWarnLogCategory("example.MvcLogger");     // No default
+	    r.setDefaultStatusCode(500);
+	    return r;
+	  }
 	
 	
 	
