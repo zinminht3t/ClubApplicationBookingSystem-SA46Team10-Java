@@ -100,7 +100,7 @@
 					<div class="panel-heading">
 	
 						
-						<input class ="btn btn-danger" id="btnSubmit" type="submit" value="Cancel Booking" style="width: 150px;"/>
+						<input class ="btn btn-danger" id="btnSubmit" type="submit" value="OK" style="width: 150px;"/>
 						
 						<hr>
 	
@@ -114,36 +114,7 @@
 				</div>
 				
 				<!-- second column -->
-				<div class="col-md-6">
-					<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-						<thead>
-							<tr class="listHeading">
-								
-							   <th>Facility Id</th>
-				   			   <th>Facility Name</th>
-							   <th>Timeslot</th>
-							   <th>Booked Date</th>
-							   <th>Price ($)</th>			   
-							   
-							</tr>
-						</thead>
-						<tbody>
-								<c:forEach var="bookingDetail" items="${booking.getBookings()}">
-							
-									<tr class="bookingDetail">
-										<td>${bookingDetail.getFacility().getFacilityID()}</td>
-										<td>${bookingDetail.getFacility().getFacilityName()}</td>
-										<td>${bookingDetail.getTimeslots().getTime()}</td>
-										<td>${bookingDetail.getBookingdate()}</td>
-										<td>${bookingDetail.getBookingprice()}</td>
-									</tr>
-									
-							</c:forEach>
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
+						</div>
 		</div>
 	</form>
 	
