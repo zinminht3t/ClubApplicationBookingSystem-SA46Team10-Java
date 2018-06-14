@@ -18,6 +18,10 @@
 <script type="text/javascript"
 	src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
 <script type="text/javascript">
         $(document).ready(function() {
     $('#maintenanceList').DataTable();
@@ -36,15 +40,21 @@
 
 			<h4 style="color:blue; margin-left: 10px">Maintenance Listing</h4>		
 				
-			<p>Toggle View</p>
-			
-			<form action="${pageContext.request.contextPath}/admin/viewCalendar">
-				<input id="btn-show-calendar" type="submit" name="btnShowCalendar" value="Display Calendar"></input>
-			</form>
-			
-			<form action="${pageContext.request.contextPath}/admin/viewBookings">
-				<input id="btn-show-bookings" type="submit" name="btnShowBookings" value="Display Bookings"></input>
-			</form>
+			<div class="row">
+				<div class="col-sm-12 col-md-12"><h3>Toggle View</h3></div>
+				
+				<div class="col-sm-6 col-md-2">
+					<form action="${pageContext.request.contextPath}/admin/viewCalendar">
+						<input id="btn-show-calendar" type="submit" name="btnShowCalendar" value="Display Calendar" class="btn-primary btn-sm"></input>
+					</form>
+				</div>
+					
+				<div class="col-sm-6 col-md-2">
+					<form action="${pageContext.request.contextPath}/admin/viewBookings">
+						<input id="btn-show-bookings" type="submit" name="btnShowBookings" value="Display Bookings" class="btn-primary btn-sm"></input>
+					</form>
+				</div>
+			</div>
 
 		</div>
 	</div>
