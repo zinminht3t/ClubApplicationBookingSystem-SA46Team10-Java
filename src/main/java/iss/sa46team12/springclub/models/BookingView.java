@@ -112,7 +112,25 @@ public class BookingView {
 		this.maxTime = maxTime;
 	}
 	
-	/**Constructor**/
-	
+	/**SQL to create View
+	 
+	 
+	 *
+	 *
+	 CREATE VIEW `new_view` AS 
+	 select `bkg`.`bookingid` AS `bookingid`,`bkg`.`bookingdate` 
+	 AS `bookingdate`,`bkg`.`minTimeslotId` AS `minTimeslotId`,
+	 `bkg`.`maxTimeslotId` AS `maxTimeslotId`,`t1`.`time` AS `minTime`,
+	 `t2`.`time` AS `maxTime` from 
+	 (((select `bookingdetails`.`bookingid` AS `bookingid`,`bookingdetails`.
+	 `bookingdate` AS `bookingdate`,min(`bookingdetails`.`timeslotid`) 
+	 AS `minTimeslotId`,max(`bookingdetails`.`timeslotid`) AS `maxTimeslotId` from `bookingdetails` 
+	 where `bookingdetails`.`bookingid` in (select `b`.`bookingid` from `bookings` `b` 
+	 where (`b`.`status` like '%CONFIRMED%')) group by `bookingdetails`.`bookingid`) `bkg` 
+	 left join `timeslots` `t1` on((`t1`.`timeslotid` = `bkg`.`minTimeslotId`))) 
+	 left join `timeslots` `t2` on((`t2`.`timeslotid` = `bkg`.`maxTimeslotId`)));
+
+	 *
+	 */
 	
 }
