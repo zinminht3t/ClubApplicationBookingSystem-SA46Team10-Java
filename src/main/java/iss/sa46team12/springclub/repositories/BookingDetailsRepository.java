@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.repositories;
 
 import java.time.LocalDateTime;
@@ -19,3 +20,4 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetails, 
 
 
 }
+
