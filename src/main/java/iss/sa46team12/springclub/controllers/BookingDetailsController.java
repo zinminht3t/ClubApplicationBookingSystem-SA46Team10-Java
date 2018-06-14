@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class BookingDetailsController {
 	TimeslotService timeslotService;
 
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
-	public ModelAndView listAll(HttpServletRequest request) {
+	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("booking-details");
 
 		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility("Tennis Court"));
@@ -72,7 +73,7 @@ public class BookingDetailsController {
 			}
 		}
 
-		User user = userService.findUserById(1);
+		User user = userService.findUserById((int)session.getAttribute("UserID"));
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = new Bookings();
 		booking.setTransactiontime(date);
