@@ -1,11 +1,10 @@
 package iss.sa46team12.springclub.components;
 
-import java.text.DateFormat;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -66,7 +65,6 @@ public class SchedulerComponent {
 
 			}
 		}
-
 
 	}
 }

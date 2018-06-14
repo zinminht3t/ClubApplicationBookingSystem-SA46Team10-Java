@@ -41,7 +41,7 @@ public class RegisterController {
 
 	@Autowired
 	private SubscriptionPackageService sPackageService;
-	
+
 	@Autowired
 	private SubscriptionService sService;
 
@@ -58,33 +58,32 @@ public class RegisterController {
 
 		ModelAndView mav = new ModelAndView("register", "user", new User());
 		model.addAttribute("packageSelected", selectedPackage);
-		
+
 		ArrayList<SubscriptionPackage> activeSubscriptions = sPackageService.findActiveSubscriptionPackages();
-		double price1YearD=0, price3YearsD=0;
-		
+		double price1YearD = 0, price3YearsD = 0;
+
 		for (SubscriptionPackage subscriptionPackage : activeSubscriptions) {
-			if(subscriptionPackage.getPackageyears().equals("1 Year")) {
+			if (subscriptionPackage.getPackageyears().equals("1 Year")) {
 				price1YearD = subscriptionPackage.getPackageprice();
-			}
-			else {
+			} else {
 				price3YearsD = subscriptionPackage.getPackageprice();
-			}				
+			}
 		}
-		
+
 		DecimalFormat fmt = new DecimalFormat("#,##0.00");
-		
+
 		String price1Year = "$" + fmt.format(price1YearD);
 		String price3Years = "$" + fmt.format(price3YearsD);
-		
+
 		model.addAttribute("oneYear", price1Year);
 		model.addAttribute("threeYears", price3Years);
-		
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/register/{selectedPackage}", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@ModelAttribute @Valid User user, BindingResult result,
-			final RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response, 
+			final RedirectAttributes redirectAttributes, HttpServletRequest request, HttpServletResponse response,
 			HttpSession session) {
 
 		ModelAndView mav = new ModelAndView();
@@ -139,8 +138,7 @@ public class RegisterController {
 		if (chosenPackage.equals("package1")) {
 			yearSubscribe = 1;
 			newSubscription.setPackageid(price1YearID);
-		}		
-		else {
+		} else {
 			yearSubscribe = 3;
 			newSubscription.setPackageid(price3YearsID);
 		}
@@ -153,20 +151,20 @@ public class RegisterController {
 		newSubscription.setJoindate(joinDate);
 		newSubscription.setExpirydate(expiryDate);
 		newSubscription.setActive(true);
-		
-		sService.createSubscription(newSubscription);		
 
-		
-		//Login after registering
+		sService.createSubscription(newSubscription);
+
+		// Login after registering
 		UserSession us = new UserSession();
 		us.setUser(user);
 		us.setSessionId(session.getId());
 		session.setAttribute("Role", "member");
 		session.setAttribute("UserID", user.getUserId());
-		
+
 		mav.setViewName("redirect:/");
-		
-		SendEmail.sendEmail("spring12@gmail.com", user.getEmail(), "Spring Club - Welcome", "Thank you for signing up with Spring Club!"); 
+
+		SendEmail.sendEmail("spring12@gmail.com", user.getEmail(), "Spring Club - Welcome",
+				"Thank you for signing up with Spring Club!");
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;

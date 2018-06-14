@@ -1,7 +1,5 @@
 package iss.sa46team12.springclub.services;
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -13,41 +11,42 @@ import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Resource
 	UserRepository userRepository;
-	
+
 	@Override
 	@Transactional
 	public ArrayList<User> findAllUsers() {
-		return (ArrayList<User>) userRepository.findAll();	
+		return (ArrayList<User>) userRepository.findAll();
 	}
-		
-//	@Override
-//	@Transactional
-//	public User findUserByNric(String nric) {
-//		User user = urepo.findOne(nric);		 
-//		return user;
-//	}	
-	
+
+	// @Override
+	// @Transactional
+	// public User findUserByNric(String nric) {
+	// User user = urepo.findOne(nric);
+	// return user;
+	// }
+
 	@Override
 	@Transactional
 	public User editUser(User u) {
 		return userRepository.saveAndFlush(u);
 	}
-	
+
 	@Override
 	@Transactional
 	public ArrayList<User> findUserByCriteria(User user) {
 		return null;
 	}
+
 	@Override
 	@Transactional
 	public User createUser(User users) {
 		return userRepository.saveAndFlush(users);
 	}
-	
+
 	@Override
 	@Transactional
 	public User findUserById(Integer userId) {
@@ -58,16 +57,15 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public ArrayList<User> getAllUsers() {
 		// TODO Auto-generated method stub
-		return (ArrayList<User>) userRepository.findAll();	
+		return (ArrayList<User>) userRepository.findAll();
 	}
-	
 
-//	@Transactional
-//	public User authenticate(String user, String pwd) {
-//		User u = userRepository.findUserbyEmailPwd(user, pwd);
-//		return u;
-//	}
-	
+	// @Transactional
+	// public User authenticate(String user, String pwd) {
+	// User u = userRepository.findUserbyEmailPwd(user, pwd);
+	// return u;
+	// }
+
 	@Override
 	@Transactional
 	public User authenticate(String uname, String pwd) {
@@ -81,12 +79,11 @@ public class UserServiceImpl implements UserService{
 		User u = userRepository.findUserByName(uname);
 		return u;
 	}
-//	@Override
-//	@Transactional
-//	public ArrayList<User> findUserByDate(Date date) {
-//		   ArrayList<User> getuserbydate = userRepository.findUserByDate(date);
-//		   return getuserbydate;
-//	}
-	
-	
+	// @Override
+	// @Transactional
+	// public ArrayList<User> findUserByDate(Date date) {
+	// ArrayList<User> getuserbydate = userRepository.findUserByDate(date);
+	// return getuserbydate;
+	// }
+
 }

@@ -11,5 +11,5 @@ public interface SubscriptionPackageRepository extends JpaRepository<Subscriptio
 
 	@Query("SELECT sp FROM SubscriptionPackage sp WHERE sp.active = true")
 	ArrayList<SubscriptionPackage> findActiveSubscriptions();
-	
+
 }

@@ -34,14 +34,14 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
 		characterEncodingFilter.setEncoding("UTF-8");
 		return new Filter[] { characterEncodingFilter, new SiteMeshFilter() };
 	}
-	
-	  @Override
-	  protected FrameworkServlet createDispatcherServlet (WebApplicationContext wac) {
-	      DispatcherServlet ds = new DispatcherServlet(wac);
-	      //setting this flag to true will throw NoHandlerFoundException instead of 404 page
-	      ds.setThrowExceptionIfNoHandlerFound(true);
-	      return ds;
-	  }
-	
-	
+
+	@Override
+	protected FrameworkServlet createDispatcherServlet(WebApplicationContext wac) {
+		DispatcherServlet ds = new DispatcherServlet(wac);
+		// setting this flag to true will throw NoHandlerFoundException instead of 404
+		// page
+		ds.setThrowExceptionIfNoHandlerFound(true);
+		return ds;
+	}
+
 }

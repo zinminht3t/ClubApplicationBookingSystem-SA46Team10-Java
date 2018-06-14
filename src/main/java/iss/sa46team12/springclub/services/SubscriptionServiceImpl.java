@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import iss.sa46team12.springclub.models.Subscription;
-import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.repositories.SubscriptionRepository;
 
-
 @Service
-public class SubscriptionServiceImpl implements SubscriptionService{
+public class SubscriptionServiceImpl implements SubscriptionService {
 
 	@Resource
 	SubscriptionRepository srepo;
@@ -30,25 +28,24 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 	public Subscription createSubscription(Subscription subscription) {
 		return srepo.saveAndFlush(subscription);
 	}
-	
+
 	@Override
 	@Transactional
 	public ArrayList<Subscription> findUserByDate(Date date) {
 		ArrayList<Subscription> getuserbydate = srepo.findByDate(date);
 		return getuserbydate;
 	}
-	
+
 	@Override
 	@Transactional
 	public Subscription editSub(Subscription u) {
 		return srepo.saveAndFlush(u);
 	}
-	
+
 	@Override
 	@Transactional
-	public ArrayList<Subscription> findall(){
+	public ArrayList<Subscription> findall() {
 		return (ArrayList<Subscription>) srepo.findAll();
 	}
 
-	
 }
