@@ -15,13 +15,13 @@ public class BookingsServiceImpl implements BookingsService {
 
 	@Resource
 	BookingsRepository bookingsRepository;
+
 	@Override
 	@Transactional
 	public ArrayList<Bookings> getAllBookings() {
 
 		return (ArrayList<Bookings>) bookingsRepository.findAll();
 	}
-	
 
 	@Override
 	@Transactional
@@ -30,18 +30,17 @@ public class BookingsServiceImpl implements BookingsService {
 		return bookingsRepository.findAllConfirmedBookings();
 	}
 
-
 	@Override
 	@Transactional
 	public Bookings findBooking(Integer bookingid) {
-		
+
 		return bookingsRepository.findOne(bookingid);
 	}
 
 	@Override
 	@Transactional
 	public Bookings createBooking(Bookings booking) {
-		
+
 		return bookingsRepository.save(booking);
 	}
 
@@ -59,11 +58,11 @@ public class BookingsServiceImpl implements BookingsService {
 		bookingsRepository.delete(booking);
 	}
 
-	//for showing the booking details in user profile
+	// for showing the booking details in user profile
 	@Override
 	@Transactional
 	public ArrayList<Bookings> getUserBookings(int userid) {
 		return bookingsRepository.findUserBookings(userid);
 	}
-	
+
 }

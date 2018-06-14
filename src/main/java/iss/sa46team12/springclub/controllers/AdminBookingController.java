@@ -39,20 +39,20 @@ public class AdminBookingController {
 	@RequestMapping(value = "/admin/manageBM/editBooking/{bookingID}", method = RequestMethod.GET)
 	public ModelAndView editMaintenance(@PathVariable Integer bookingID) {
 		ModelAndView mav = new ModelAndView("adminBookingForm");
-		Bookings booking = bookingService.findBooking(bookingID);		
+		Bookings booking = bookingService.findBooking(bookingID);
 		mav.addObject("booking", booking);
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/admin/manageBM/editBooking/{bookingID}", method = RequestMethod.POST)
 	public ModelAndView cancelBooking(@ModelAttribute Bookings booking, @PathVariable Integer bookingID) {
-		
+
 		Bookings currBooking = bookingService.findBooking(bookingID);
-		
+
 		currBooking.setStatus("CANCELLED");
-		
+
 		bookingService.changeBooking(currBooking);
-		
+
 		ModelAndView mav = new ModelAndView("redirect:/admin/viewCalendar");
 		return mav;
 	}

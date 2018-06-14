@@ -1,22 +1,13 @@
 package iss.sa46team12.springclub.models;
 
-
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * BookingDetails class
@@ -25,31 +16,31 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  */
 
 @Entity
-//@IdClass(BookingId.class)
+// @IdClass(BookingId.class)
 @Table(name = "new_view")
 public class BookingView {
-	/**Attributes for BookingDetails**/
+	/** Attributes for BookingDetails **/
 	@Id
 	@Column(name = "bookingid")
 	private int bookingid;
-	
+
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date bookingdate;
-	
-	@Column (name ="minTimeslotId")
+
+	@Column(name = "minTimeslotId")
 	private int minTimeslotId;
-	
-	@Column (name ="maxTimeslotId")
+
+	@Column(name = "maxTimeslotId")
 	private int maxTimeslotId;
-	
-	@Column (name ="minTime")
+
+	@Column(name = "minTime")
 	private String minTime;
-	
-	@Column (name ="maxTime")
+
+	@Column(name = "maxTime")
 	private String maxTime;
-	
-	/**Constructor to Initialize Booking model object**/
+
+	/** Constructor to Initialize Booking model object **/
 	public BookingView() {
 	}
 
@@ -111,26 +102,27 @@ public class BookingView {
 	public void setMaxTime(String maxTime) {
 		this.maxTime = maxTime;
 	}
-	
-	/**SQL to create View
-	 
-	 
-	 *
-	 *
-	 CREATE VIEW `new_view` AS 
-	 select `bkg`.`bookingid` AS `bookingid`,`bkg`.`bookingdate` 
-	 AS `bookingdate`,`bkg`.`minTimeslotId` AS `minTimeslotId`,
-	 `bkg`.`maxTimeslotId` AS `maxTimeslotId`,`t1`.`time` AS `minTime`,
-	 `t2`.`time` AS `maxTime` from 
-	 (((select `bookingdetails`.`bookingid` AS `bookingid`,`bookingdetails`.
-	 `bookingdate` AS `bookingdate`,min(`bookingdetails`.`timeslotid`) 
-	 AS `minTimeslotId`,max(`bookingdetails`.`timeslotid`) AS `maxTimeslotId` from `bookingdetails` 
-	 where `bookingdetails`.`bookingid` in (select `b`.`bookingid` from `bookings` `b` 
-	 where (`b`.`status` like '%CONFIRMED%')) group by `bookingdetails`.`bookingid`) `bkg` 
-	 left join `timeslots` `t1` on((`t1`.`timeslotid` = `bkg`.`minTimeslotId`))) 
-	 left join `timeslots` `t2` on((`t2`.`timeslotid` = `bkg`.`maxTimeslotId`)));
 
+	/**
+	 * SQL to create View
 	 *
+	 *
+	 * 
+	 * 
+	 * CREATE VIEW `new_view` AS select `bkg`.`bookingid` AS
+	 * `bookingid`,`bkg`.`bookingdate` AS `bookingdate`,`bkg`.`minTimeslotId` AS
+	 * `minTimeslotId`, `bkg`.`maxTimeslotId` AS `maxTimeslotId`,`t1`.`time` AS
+	 * `minTime`, `t2`.`time` AS `maxTime` from (((select
+	 * `bookingdetails`.`bookingid` AS `bookingid`,`bookingdetails`. `bookingdate`
+	 * AS `bookingdate`,min(`bookingdetails`.`timeslotid`) AS
+	 * `minTimeslotId`,max(`bookingdetails`.`timeslotid`) AS `maxTimeslotId` from
+	 * `bookingdetails` where `bookingdetails`.`bookingid` in (select
+	 * `b`.`bookingid` from `bookings` `b` where (`b`.`status` like '%CONFIRMED%'))
+	 * group by `bookingdetails`.`bookingid`) `bkg` left join `timeslots` `t1`
+	 * on((`t1`.`timeslotid` = `bkg`.`minTimeslotId`))) left join `timeslots` `t2`
+	 * on((`t2`.`timeslotid` = `bkg`.`maxTimeslotId`)));
+	 *
+	 * 
 	 */
-	
+
 }

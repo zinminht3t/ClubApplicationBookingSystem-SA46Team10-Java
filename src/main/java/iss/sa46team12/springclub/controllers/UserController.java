@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.Bookings;
@@ -64,17 +66,17 @@ public class UserController {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView editProfile(HttpSession session) {
-		int userid;
+		int userid = 0;
 		try {
-			userid = (int) session.getAttribute("UserID"); 
-		}
-		catch(NullPointerException e) {
+			userid = (int) session.getAttribute("UserID");
+		} catch (NullPointerException e) {
 			userid = 1;
 		}
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
+		Subscription sub = new Subscription();
+		sub = sService.findActiveSubscription(userid);
 
-		Subscription sub = sService.findActiveSubscription(userid);
 		SubscriptionPackage subpackage = spService.findPackage(sub.getPackageid());
 
 		ArrayList<SubscriptionPackage> activeSubscriptions = spService.findActiveSubscriptionPackages();
@@ -102,7 +104,7 @@ public class UserController {
 		c2.setTime(new Date());// today date
 		long dayleft = daysBetween(c, c2);
 		mav.addObject("dayleft", dayleft);
-		double dayleftint = (double) dayleft;
+		double dayleftint = dayleft;
 		// Membership Date Percentage
 		double days = 0; // package year in days
 		double percentage = 0;
@@ -155,9 +157,8 @@ public class UserController {
 
 		int userid;
 		try {
-			userid = (int) session.getAttribute("UserID"); 
-		}
-		catch(NullPointerException e) {
+			userid = (int) session.getAttribute("UserID");
+		} catch (NullPointerException e) {
 			userid = 1;
 		}
 		if (result.hasErrors()) {
@@ -194,9 +195,8 @@ public class UserController {
 
 		int userid;
 		try {
-			userid = (int) session.getAttribute("UserID"); 
-		}
-		catch(NullPointerException e) {
+			userid = (int) session.getAttribute("UserID");
+		} catch (NullPointerException e) {
 			userid = 1;
 		}
 		if (result.hasErrors()) {
@@ -223,9 +223,8 @@ public class UserController {
 
 		int userid;
 		try {
-			userid = (int) session.getAttribute("UserID"); 
-		}
-		catch(NullPointerException e) {
+			userid = (int) session.getAttribute("UserID");
+		} catch (NullPointerException e) {
 			userid = 1;
 		}
 		ModelAndView mav;
@@ -277,9 +276,8 @@ public class UserController {
 
 		int userid;
 		try {
-			userid = (int) session.getAttribute("UserID"); 
-		}
-		catch(NullPointerException e) {
+			userid = (int) session.getAttribute("UserID");
+		} catch (NullPointerException e) {
 			userid = 1;
 		}
 		String bookingStatus = "CONFIRMED";
@@ -304,7 +302,7 @@ public class UserController {
 			User loginuser = uService.findUserById(userid);
 
 			if (userBooking.getStatus().equals(bookingStatus)) {
-				userBooking.setStatus("Cancelled by user");
+				userBooking.setStatus("CANCELLED");
 				bService.changeBooking(userBooking);
 
 				SendEmail.sendEmail("springclub12@gmail.com", loginuser.getEmail(), "Booking Cancellation",

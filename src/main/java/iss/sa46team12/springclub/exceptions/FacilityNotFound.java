@@ -1,7 +1,7 @@
 package iss.sa46team12.springclub.exceptions;
 
-public class FacilityNotFound extends Exception{
-	
+public class FacilityNotFound extends Exception {
+
 	public FacilityNotFound() {
 	}
 

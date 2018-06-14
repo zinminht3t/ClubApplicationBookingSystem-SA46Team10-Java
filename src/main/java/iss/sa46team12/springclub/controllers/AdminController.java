@@ -24,7 +24,6 @@ import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.FacilityService;
 import iss.sa46team12.springclub.services.UserService;
 import iss.sa46team12.springclub.validators.FacilityValidator;
-import iss.sa46team12.springclub.validators.UserValidator;
 
 @RequestMapping("/admin")
 @Controller
@@ -32,20 +31,17 @@ public class AdminController {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private FacilityService facService;	
-	
-	@Autowired
-	private FacilityValidator fValidator;	
 
-	
+	@Autowired
+	private FacilityService facService;
+
+	@Autowired
+	private FacilityValidator fValidator;
+
 	@InitBinder("facility")
 	private void initFacilityBinder(WebDataBinder binder) {
 		binder.addValidators(fValidator);
 	}
-	
-	
 
 	// ********** List Users ***************
 
@@ -55,37 +51,36 @@ public class AdminController {
 		ArrayList<User> userlist = userService.findAllUsers();
 		mav.addObject("userlist", userlist);
 		return mav;
-	}	
-	
+	}
+
 	// ********** Edit Users ***************
 
-		@RequestMapping(value = "/user/UserFormEdit/{userId}", method = RequestMethod.GET)
-		public ModelAndView editUserPage(@PathVariable Integer userId, Model model) {
-			ModelAndView mav = new ModelAndView("UserFormEdit","users", new User());
-			 mav.addObject("users", userService.findUserById(userId));			
-			return mav;
-		}
+	@RequestMapping(value = "/user/UserFormEdit/{userId}", method = RequestMethod.GET)
+	public ModelAndView editUserPage(@PathVariable Integer userId, Model model) {
+		ModelAndView mav = new ModelAndView("UserFormEdit", "users", new User());
+		mav.addObject("users", userService.findUserById(userId));
+		return mav;
+	}
 
-		@RequestMapping(value = "/user/edit/{userId}", method = RequestMethod.POST)
-			public ModelAndView editUser(@ModelAttribute @Valid User users, @PathVariable Integer userId, BindingResult result,
-					final RedirectAttributes redirectAttributes) throws UserNotFound{
-				
-				if (result.hasErrors())
-					return new ModelAndView("UserFormEdit");
-				
-				User currentUser = userService.findUserById(users.getUserId());
-				String password = currentUser.getPassword();
-				Boolean active = currentUser.isActive();
-				users.setPassword(password);
-				users.setActive(active);
-				userService.editUser(users);
-				ModelAndView mav = new ModelAndView("redirect:/admin/user/list");	
-				String message = "User " + users.getUserId() + " was successfully updated.";
-				redirectAttributes.addFlashAttribute("message", message);
-				return mav;			
-			}
-	
-	
+	@RequestMapping(value = "/user/edit/{userId}", method = RequestMethod.POST)
+	public ModelAndView editUser(@ModelAttribute @Valid User users, @PathVariable Integer userId, BindingResult result,
+			final RedirectAttributes redirectAttributes) throws UserNotFound {
+
+		if (result.hasErrors())
+			return new ModelAndView("UserFormEdit");
+
+		User currentUser = userService.findUserById(users.getUserId());
+		String password = currentUser.getPassword();
+		Boolean active = currentUser.isActive();
+		users.setPassword(password);
+		users.setActive(active);
+		userService.editUser(users);
+		ModelAndView mav = new ModelAndView("redirect:/admin/user/list");
+		String message = "User " + users.getUserId() + " was successfully updated.";
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
+
 	// ********** List Facilities ***************
 
 	@RequestMapping(value = "/facility/list", method = RequestMethod.GET)
@@ -104,12 +99,12 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("FacilityFormNew", "facility", new Facility());
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/facility/create", method = RequestMethod.POST)
 	public ModelAndView createFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
 			final RedirectAttributes redirectAttributes) {
-		
-			if (result.hasErrors())
+
+		if (result.hasErrors())
 			return new ModelAndView("FacilityFormNew");
 
 		ModelAndView mav = new ModelAndView();
@@ -126,24 +121,24 @@ public class AdminController {
 	}
 
 	// ********** Edit Facility ***************
-	
+
 	@RequestMapping(value = "/facility/FacilityFormEdit/{facilityID}", method = RequestMethod.GET)
 	public ModelAndView logic(@PathVariable Integer facilityID, Model model) {
-		ModelAndView mav = new ModelAndView("FacilityFormEdit","facility", new Facility());
+		ModelAndView mav = new ModelAndView("FacilityFormEdit", "facility", new Facility());
 		mav.addObject("facility", facService.findFacilityById(facilityID));
 		return mav;
 	}
 
 	@RequestMapping(value = "/facility/edit/{facilityID}", method = RequestMethod.POST)
-		public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, @PathVariable Integer facilityID, BindingResult result,
-				final RedirectAttributes redirectAttributes) throws FacilityNotFound{
-			
-			if (result.hasErrors())
-				return new ModelAndView("FacilityFormEdit");
-			facService.editFacility(facility);
-			ModelAndView mav = new ModelAndView("redirect:/admin/facility/list");	
-			String message = "Facility " + facility.getFacilityID() + " was successfully updated.";
-			redirectAttributes.addFlashAttribute("message", message);
-			return mav;			
-		}
+	public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, @PathVariable Integer facilityID,
+			BindingResult result, final RedirectAttributes redirectAttributes) throws FacilityNotFound {
+
+		if (result.hasErrors())
+			return new ModelAndView("FacilityFormEdit");
+		facService.editFacility(facility);
+		ModelAndView mav = new ModelAndView("redirect:/admin/facility/list");
+		String message = "Facility " + facility.getFacilityID() + " was successfully updated.";
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
 }
