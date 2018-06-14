@@ -302,7 +302,7 @@ public class UserController {
 			User loginuser = uService.findUserById(userid);
 
 			if (userBooking.getStatus().equals(bookingStatus)) {
-				userBooking.setStatus("Cancelled by user");
+				userBooking.setStatus("CANCELLED");
 				bService.changeBooking(userBooking);
 
 				SendEmail.sendEmail("springclub12@gmail.com", loginuser.getEmail(), "Booking Cancellation",
