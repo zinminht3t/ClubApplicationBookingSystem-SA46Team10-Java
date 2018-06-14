@@ -320,7 +320,11 @@ public class ManageBMController {
 	}
 	
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.POST, params = "btnShowCalendar")
-	public ModelAndView viewCalendar(Model model, HttpSession session) {
+<<<<<<< HEAD
+	public ModelAndView viewCalendar(HttpSession session) {
+=======
+	public ModelAndView zviewCalendar(Model model, HttpSession session) {
+>>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject
 		ModelAndView mav = new ModelAndView("Calendar");
 
 		ArrayList<String> daysOfWeek = new ArrayList<String>() {
