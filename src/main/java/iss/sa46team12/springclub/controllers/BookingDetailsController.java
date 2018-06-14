@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,13 +48,13 @@ public class BookingDetailsController {
 	TimeslotService timeslotService;
 
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
-	public ModelAndView listAll(HttpServletRequest request) {
+	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("booking-details");
-		// String selecteddate = request.getParameter("selecteddate");
 
 		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility("Tennis Court"));
 		LinkedHashMap<Facility, ArrayList<String>> courtAndTimes = new LinkedHashMap<Facility, ArrayList<String>>();
-
+		int bookingPrice = 0; 
+		
 		for (Facility court : courts) {
 			ArrayList<String> eachCourt = new ArrayList<String>();
 			String[] key;
@@ -65,25 +66,23 @@ public class BookingDetailsController {
 			if (key != null) {
 				for (String value : key) {
 					eachCourt.add(value);
+					bookingPrice = (int) (bookingPrice+court.getPrice());
 				}
 				courtAndTimes.put(court, eachCourt);
+				
 			}
 		}
 
-		User user = userService.findUserById(1);
+		User user = userService.findUserById((int)session.getAttribute("UserID"));
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = new Bookings();
 		booking.setTransactiontime(date);
 		booking.setUser(user);
-		booking.setTotal(10);
+		booking.setTotal(bookingPrice);
 		booking.setStatus("CONFIRMED");
 		bookingsService.createBooking(booking);
 
 		String bookingdate = request.getParameter("selecteddate") + " 00:00";
-		//
-		// LocalDate convertedBookingDate = new
-		// SimpleLocalDateFormat("yyyy-MM-dd").parse(bookingdate);
-
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime convertedbookingdate = LocalDateTime.parse(bookingdate, formatter);
 		
@@ -97,10 +96,9 @@ public class BookingDetailsController {
 				
 				bookingdetails.setBookingid(booking.getBookingid());
 				bookingdetails.setBookingdate(convertedbookingdate);
-				bookingdetails.setBookingprice(50);
+				bookingdetails.setBookingprice(court.getKey().getPrice());
 				bookingdetails.setFacilityid(court.getKey().getFacilityID());
 				bookingdetails.setTimeslotid(timeslotService.getOneTimeSlot(times).getTimeslotid());
-				
 				bookingDetailsService.createBooking(bookingdetails);
 			
 			}
@@ -108,9 +106,11 @@ public class BookingDetailsController {
 		}
 
 		// mav.addObject("selecteddate", selecteddate);
-		mav.addObject("courtAndTimes", courtAndTimes);
-		mav.addObject("date", date);
+		//mav.addObject("courtAndTimes", courtAndTimes);
+		//mav.addObject("date", date);
+		mav.addObject("booking", booking);
 		return mav;
+		
 	}
 
 }

@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 	<style type="text/css">
 	.accordion-toggle:after {
 		font-family: 'FontAwesome';
@@ -27,11 +26,6 @@
 		href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- This give the A bug, plus the header bug issue -->
-<!-- 	<link -->
-<!-- 		href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" -->
-<!-- 		rel="stylesheet" id="bootstrap-css"> -->
 		
 		
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -43,9 +37,6 @@
 	
 	<spring:url value="/js/confirm-booking.js" var="javascript" />
 	<script src="${javascript}"></script>
-	
-<%-- 	<spring:url value="/css/confirm-booking-style.css" var="style" /> --%>
-<%-- 	<link rel="stylesheet" href="${style}"> --%>
 	
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -61,9 +52,8 @@
 			function updateAb(value) {
 				window.location
 						.replace('${pageContext.request.contextPath}/facilities/confirm-booking/'
-								+ value);
+								+ value + '/${facilityname}');
 			}
-	
 		});
 	</script>
 </head>
@@ -133,9 +123,8 @@
 											<div style="margin: 5px; display: inline">
 												<span class="button-checkbox">
 													<button type="button" class="btn" data-color="success"
-														style="margin: 5px;">${time.getTime()}</button><input
-														type="checkbox" name="${court}" value="${time.getTime()}"
-														class="hidden">
+														style="margin: 5px;">${time.getTime()}</button>
+														<input type="checkbox" name="${court}" value="${time.getTime()}" class="hidden"/>
 												</span>
 											</div>
 										</c:forEach>	
@@ -246,19 +235,3 @@
 	</div>
 </body>
 </html>
-
-
-
-
-
-
-<!--  
-	<c:forEach var="courts" items="${bookedCourtsTime}">
-		<c:forEach var="court" items="${courts.key}">
-			${court} <br />
-			<c:forEach var="time" items="${bookedCourtsTime[court]}">
-					${time.getTimeslots().getTime()} <br />
-			</c:forEach>
-		</c:forEach>
-	</c:forEach>
-	-->
