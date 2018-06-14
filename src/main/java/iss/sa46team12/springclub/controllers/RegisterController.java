@@ -154,6 +154,7 @@ public class RegisterController {
 		newSubscription.setExpirydate(expiryDate);
 		newSubscription.setActive(true);
 		
+		sService.createSubscription(newSubscription);		
 
 		
 		//Login after registering
@@ -165,7 +166,7 @@ public class RegisterController {
 		
 		mav.setViewName("redirect:/");
 		
-		SendEmail.sendEmail("spring12@gmail.com", "wwj.jayden@gmail.com", "Spring Club - Welcome", "Thank you for signing up with Spring Club!"); 
+		SendEmail.sendEmail("spring12@gmail.com", user.getEmail(), "Spring Club - Welcome", "Thank you for signing up with Spring Club!"); 
 
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
