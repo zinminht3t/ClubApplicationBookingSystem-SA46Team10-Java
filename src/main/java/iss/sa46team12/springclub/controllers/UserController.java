@@ -74,8 +74,9 @@ public class UserController {
 		}
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
+		Subscription sub = new Subscription();
+		sub = sService.findActiveSubscription(userid);
 
-		Subscription sub = sService.findActiveSubscription(userid);
 		SubscriptionPackage subpackage = spService.findPackage(sub.getPackageid());
 
 		ArrayList<SubscriptionPackage> activeSubscriptions = spService.findActiveSubscriptionPackages();
