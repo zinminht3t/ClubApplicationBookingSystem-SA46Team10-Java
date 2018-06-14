@@ -25,45 +25,44 @@
 
 <body>
 
-	<form:form method="POST" commandName="maintenance"
-			action="${pageContext.request.contextPath}/admin/facility/MaintenanceFormEdit/${maintenance.maintenanceid}.html">
-	
-	<h2 style="text-align:center">Edit Maintenance page</h2>
-	
-		<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-			<tbody>		  
-				<tr>
-					<td><spring:message code="Maintenance ID" /></td>
-					<td><form:input path="maintenanceid" readonly="true"  /></td>
-				</tr> 
-				<tr>
-					<td><spring:message code="Facility ID" /></td>
-					<td><form:input path="facilities.facilityID" readonly="true" /></td>
-				</tr>
-				<tr>
-					<td><spring:message code="Start Date" /></td>
-					<td><form:input path="startdate" readonly="true" /></td>
-				</tr>
-				<tr>
-					<td><spring:message code="Time Start ID" /></td>
-					<td><form:input path="timeslots_start.time" readonly="true" /></td>
-				</tr>
-				<tr>
-					<td><spring:message code="End Date" /></td>
-					<td><form:input path="enddate" readonly="true" />
-				</tr>						
-				<tr>
-					<td><spring:message code="Time End ID" /></td>
-					<td><form:input path="timeslots_end.time" readonly="true" /></td>
-				</tr>
-							
-				<tr>
-					<td></td>
-					 <td><input type="submit" value="Cancel Booking"></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
-	</form:form>
-</body>
+<form:form method="POST" commandName="maintenance"
+		action="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormEdit/${maintenanceID}">
+
+<h3>Edit Maintenance page</h3>
+
+	<table>
+		<tbody>		  
+			<tr>
+				<td><spring:message code="Maintenance ID" /></td>
+				<td><form:input path="maintenanceid" readonly="true"  /></td>
+			</tr> 
+			<tr>
+				<td><spring:message code="Facility ID" /></td>
+				<td><form:input path="facilities.facilityID" readonly="true" /></td>
+			</tr>
+			<tr>
+				<td><spring:message code="Start Date" /></td>
+				<td><form:input path="startdate" readonly="true" /></td>
+			</tr>
+			<tr>
+				<td><spring:message code="Time Start ID" /></td>
+				<td><form:input path="timeslots_start.time" readonly="true" /></td>
+			</tr>
+			<tr>
+				<td><spring:message code="End Date" /></td>
+				<td><form:input path="enddate" readonly="true" />
+			</tr>						
+			<tr>
+				<td><spring:message code="Time End ID" /></td>
+				<td><form:input path="timeslots_end.time" readonly="true" /></td>
+			</tr>
+						
+			<tr>
+				<td></td>
+				 <td><input type="submit" value="Cancel Maintenance"></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</form:form>

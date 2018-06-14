@@ -1,6 +1,5 @@
-package iss.sa46team12.springclub.repositories;
 
-import java.util.ArrayList;
+package iss.sa46team12.springclub.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,3 +16,4 @@ public interface TimeslotRepository extends JpaRepository<Timeslots, Integer> {
 	Timeslots findTimeslotByName(@Param("tName") String tName);
 
 }
+

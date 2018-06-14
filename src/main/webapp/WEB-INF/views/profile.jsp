@@ -271,7 +271,7 @@
 									<em><i class="fa fa-stopwatch"></i>
 										${ubookings.transactiontime} </em> <br /> <br /> <br />
 									<c:choose>
-										<c:when test="${ubookings.status =='Booked'}">
+										<c:when test="${ubookings.status =='CONFIRMED'}">
 											<button id="cancelbookingbtn" class="btn btn-outline-danger">
 												<i class="fa fa-ban"></i> Cancel Booking
 											</button>

@@ -1,6 +1,7 @@
 
 package iss.sa46team12.springclub.controllers;
 
+import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,80 +64,49 @@ public class ManageBMController {
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.setLenient(true);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
 	}
+	
+	/********Manage Bookings********/
 
-	@RequestMapping(value = "/calendar", method = RequestMethod.GET)
+	@RequestMapping(value = "/viewBookings", method = RequestMethod.GET)
 	public ModelAndView listAllCfmBookings() {
-		ModelAndView mav = new ModelAndView("adminCalendar");
+		ModelAndView mav = new ModelAndView("bookings");
 		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
 		mav.addObject("bookingList", bookingList);
 		return mav;
 	}
-
-	@RequestMapping(value = "/calendar/maintenance/list", method = RequestMethod.GET)
-	public ModelAndView flistAll() {
-		ModelAndView mav = new ModelAndView("MaintenanceList");
-		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
-		mav.addObject("maintenanceList", maintenanceList);
-		return mav;
-	}
-
-	@RequestMapping(value = "/calendar/maintenance/create", method = RequestMethod.GET)
-	public ModelAndView newMaintenancePage() {
-		ModelAndView mav = new ModelAndView("MaintenanceFormNew", "maintenance", new Maintenance());
-		ArrayList<String> facilityList = facilityService.findAllDistinctFacilityName();
-		ArrayList<String> facilityCourtsList = facilityService.findAllDistinctFacilityCourt();
-		int nextMaintenanceId = maintenanceService.getAllMaintenances().size() + 1;
-
-		ArrayList<Timeslots> timeslotsList = timeslotService.getAllTimeslots();
-
-		mav.addObject("facilityList", facilityList);
-		mav.addObject("facilityCourtsList", facilityCourtsList);
-		mav.addObject("nextMaintenanceId", nextMaintenanceId);
-		mav.addObject("timeslotsList", timeslotsList);
-
-		return mav;
-	}
-
-	@RequestMapping(value = "/calendar/maintenance/create", method = RequestMethod.POST)
-	public ModelAndView createNewMaintenance(@ModelAttribute @Valid Maintenance maintenance, BindingResult result,
-
-			final RedirectAttributes redirectAttributes, HttpServletRequest request) {
-
-		if (result.hasErrors())
-			return new ModelAndView("MaintenanceFormNew");
-		ModelAndView mav = new ModelAndView();
-
-		String selFacilityName = request.getParameter("facilityName");
-		String selCourtName = request.getParameter("courtName");
-		String startTimeSlot = request.getParameter("timeslotsName_start");
-		String endTimeSlot = request.getParameter("timeslotsName_end");
-
-		Integer facilityID = facilityService.findByFacilityCourt(selFacilityName, selCourtName);
-		Facility f = facilityService.findFacilityById(facilityID);
-		maintenance.setFacilities(f);
-
-		Timeslots ts_start = timeslotService.findTimeslotByName(startTimeSlot);
-		Timeslots ts_end = timeslotService.findTimeslotByName(endTimeSlot);
-		maintenance.setTimeslots_start(ts_start);
-		maintenance.setTimeslots_end(ts_end);
-		maintenance.setActive(true);
-
-		maintenanceService.createMaintenance(maintenance);
-		String message = "New maintenance " + maintenance.getMaintenanceid() + " was successfully created.";
-		mav.setViewName("redirect:/admin/calendar/maintenance/list");
+	
+	@RequestMapping(value = "/viewBookings/editBooking/{bookingID}", method = RequestMethod.GET)
+	public ModelAndView editMaintenance(@PathVariable Integer bookingID) {
+		ModelAndView mav = new ModelAndView("adminBookingForm");
+		Bookings booking = bookingService.findBooking(bookingID);		
+		mav.addObject("booking", booking);
 		return mav;
 	}
 	
+	@RequestMapping(value = "/viewBookings/editBooking/{bookingID}", method = RequestMethod.POST)
+	public ModelAndView cancelBooking(@ModelAttribute Bookings booking, @PathVariable Integer bookingID) {
+		
+		Bookings currBooking = bookingService.findBooking(bookingID);
+		
+		currBooking.setStatus("CANCELLED");
+		
+		bookingService.changeBooking(currBooking);
+		
+		ModelAndView mav = new ModelAndView("redirect:/admin/viewBookings");
+		return mav;
+	}
+	
+	/**Calendar of Maintenances and Bookings***/
 
 
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.GET)
 	public ModelAndView viewCalendar(Model model, HttpSession session) {
 		ModelAndView mav = new ModelAndView("Calendar");
-//		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
+
 		ArrayList<String> daysOfWeek = new ArrayList<String>() {
 			{
 				add("Sun");
@@ -151,6 +122,12 @@ public class ManageBMController {
 		Calendar now = Calendar.getInstance();
 		int currentMonth = now.get(Calendar.MONTH) + 1;
 		int currentYear = now.get(Calendar.YEAR);
+
+		DateFormatSymbols dfs = new DateFormatSymbols();
+        String[] months = dfs.getMonths();
+		String currentMonthName = months[currentMonth-1];
+		session.setAttribute("currentMonthName", currentMonthName);
+
 
 		Date currentDate = new Date();
 
@@ -238,6 +215,11 @@ public class ManageBMController {
 		session.setAttribute("currentFirstDayIndex", currentFirstDayIndex);
 
 
+		DateFormatSymbols dfs = new DateFormatSymbols();
+        String[] months = dfs.getMonths();
+		String currentMonthName = months[currentMonth-1];
+		session.setAttribute("currentMonthName", currentMonthName);
+		
 		//end parsing//
 		Date lastDateOfMonth = new Date();
 		//add a month to current session variable//
@@ -291,6 +273,10 @@ public class ManageBMController {
 		session.setAttribute("currentYear", currentYear);
 		session.setAttribute("currentFirstDayIndex", currentFirstDayIndex);
 
+		DateFormatSymbols dfs = new DateFormatSymbols();
+        String[] months = dfs.getMonths();
+		String currentMonthName = months[currentMonth-1];
+		session.setAttribute("currentMonthName", currentMonthName);
 		//end parsing//
 		Date lastDateOfMonth = new Date();
 		//add a month to current session variable//
@@ -307,20 +293,181 @@ public class ManageBMController {
 		return "Calendar";
 	}
 	
-	@RequestMapping(value="/calendar/maintenance/create", method = RequestMethod.POST, params = "btnShowAddMaintenance")
+	/***Manage Maintenance***/
+	
+	@RequestMapping(value = "/viewMaintenances", method = RequestMethod.GET)
+	public ModelAndView listAllMaintenances() {
+		ModelAndView mav = new ModelAndView("Maintenance");
+		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
+		mav.addObject("maintenanceList", maintenanceList);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/viewMaintenances", method = RequestMethod.POST, params = "btnShowMaintenances")
+	public ModelAndView viewMaintenances() {
+		ModelAndView mav = new ModelAndView("Maintenance");
+		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
+		mav.addObject("maintenanceList", maintenanceList);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/viewBookings", method = RequestMethod.POST, params = "btnShowBookings")
+	public ModelAndView viewBookings() {
+		ModelAndView mav = new ModelAndView("bookings");
+		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
+		mav.addObject("bookingList", bookingList);
+		return mav;
+	}
+	
+	@RequestMapping(value = "/viewCalendar", method = RequestMethod.POST, params = "btnShowCalendar")
+	public ModelAndView viewCalendar(Model model, HttpSession session) {
+		ModelAndView mav = new ModelAndView("Calendar");
+
+		ArrayList<String> daysOfWeek = new ArrayList<String>() {
+			{
+				add("Sun");
+				add("Mon");
+				add("Tue");
+				add("Wed");
+				add("Thu");
+				add("Fri");
+				add("Sat");
+			}
+		};
+
+		Calendar now = Calendar.getInstance();
+		int currentMonth = now.get(Calendar.MONTH) + 1;
+		int currentYear = now.get(Calendar.YEAR);
+
+		DateFormatSymbols dfs = new DateFormatSymbols();
+        String[] months = dfs.getMonths();
+		String currentMonthName = months[currentMonth-1];
+		session.setAttribute("currentMonthName", currentMonthName);
+
+
+		Date currentDate = new Date();
+
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		try {
+			currentDate = simpleDateFormat.parse(currentYear + "-" + currentMonth + "-01");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		int currentFirstDayIndex = currentDate.getDay();
+
+		session.setAttribute("currentDate", currentDate);
+		session.setAttribute("currentMonth", currentMonth);
+		session.setAttribute("currentYear", currentYear);
+		session.setAttribute("currentFirstDayIndex", currentFirstDayIndex);
+		session.setAttribute("daysOfWeek", daysOfWeek);
+
+//		mav.addObject("bookingList", bookingList);
+
+		ArrayList<BookingView> bookingViewList = bkgViewService.findBookingMinMaxTimeslots();
+		mav.addObject("bookingViewList", bookingViewList);
+		session.setAttribute("bookingViewList", bookingViewList);
+
+		
+		//end parsing//
+		Date lastDateOfMonth = new Date();
+		//add a month to current session variable//
+		Calendar c = Calendar.getInstance();
+	    c.setTime(currentDate);    
+		c.add(Calendar.MONTH, +1);   //get next month date as of 01 day 
+		c.add(Calendar.DATE, -1);   //get next month date as of 01 day 
+		lastDateOfMonth = c.getTime();
+		int lastDayOfCurrentMonth = lastDateOfMonth.getDate();
+		//end adding//
+		
+		session.setAttribute("lastDayOfCurrentMonth", lastDayOfCurrentMonth);
+
+		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
+		session.setAttribute("maintenanceList", maintenanceList);
+		
+		// for booking id 
+//		model.addAttribute("getbookingtiming", new Bookings());
+//		model.addAttribute("getmainttiming", new Maintenance());
+		return mav;
+	}
+	
+
+	@RequestMapping(value="/viewMaintenances/MaintenanceFormNew/create", method = RequestMethod.POST, params = "btnShowAddMaintenance")
 	public String showMaintenance(HttpSession session) {
-//		Date date = (Date) session.getAttribute("currentDate");
-		
-		//to parse session date parts (int) to a valid date//
-		
-		
 		return "MaintenanceFormNew";
 	}
 
-//	@RequestMapping(value="/viewCalendar", method = RequestMethod.POST, params = "btnIDeditBooking")
-//	public String sendToBooking() {
-//		
-//	}
-//	
+	@RequestMapping(value = "/viewMaintenances/MaintenanceFormNew", method = RequestMethod.GET)
+	public ModelAndView newMaintenancePage() {
+		ModelAndView mav = new ModelAndView("MaintenanceFormNew", "maintenance", new Maintenance());
+		ArrayList<String> facilityList = facilityService.findAllDistinctFacilityName();
+		ArrayList<String> facilityCourtsList = facilityService.findAllDistinctFacilityCourt();
+		int nextMaintenanceId = maintenanceService.getAllMaintenances().size() + 1;
+
+		ArrayList<Timeslots> timeslotsList = timeslotService.getAllTimeslots();
+
+		mav.addObject("facilityList", facilityList);
+		mav.addObject("facilityCourtsList", facilityCourtsList);
+		mav.addObject("nextMaintenanceId", nextMaintenanceId);
+		mav.addObject("timeslotsList", timeslotsList);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/viewMaintenances/MaintenanceFormNew/create", method = RequestMethod.POST)
+	public ModelAndView createNewMaintenance(@ModelAttribute @Valid Maintenance maintenance, BindingResult result,
+
+			final RedirectAttributes redirectAttributes, HttpServletRequest request) {
+
+		if (result.hasErrors())
+			return new ModelAndView("MaintenanceFormNew");
+		ModelAndView mav = new ModelAndView();
+
+		String selFacilityName = request.getParameter("facilityName");
+		String selCourtName = request.getParameter("courtName");
+		String startTimeSlot = request.getParameter("timeslotsName_start");
+		String endTimeSlot = request.getParameter("timeslotsName_end");
+
+		Integer facilityID = facilityService.findByFacilityCourt(selFacilityName, selCourtName);
+		Facility f = facilityService.findFacilityById(facilityID);
+		maintenance.setFacilities(f);
+
+		Timeslots ts_start = timeslotService.findTimeslotByName(startTimeSlot);
+		Timeslots ts_end = timeslotService.findTimeslotByName(endTimeSlot);
+		maintenance.setTimeslots_start(ts_start);
+		maintenance.setTimeslots_end(ts_end);
+		maintenance.setActive(true);
+
+		maintenanceService.createMaintenance(maintenance);
+		String message = "New maintenance " + maintenance.getMaintenanceid() + " was successfully created.";
+		mav.setViewName("redirect:/admin/viewMaintenances");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/viewMaintenances/MaintenanceFormEdit/{maintenanceID}", method = RequestMethod.GET)
+	public ModelAndView showEditMaintenanceForm(@PathVariable Integer maintenanceID, Model model) {
+		ModelAndView mav = new ModelAndView("MaintenanceFormEdit", "maintenance", new Maintenance());
+		mav.addObject("maintenance", maintenanceService.findMaintenance(maintenanceID));
+		return mav;
+	}
+
+	@RequestMapping(value = "/viewMaintenances/MaintenanceFormEdit/{maintenanceID}", method = RequestMethod.POST)
+	public ModelAndView editMaintenance(@ModelAttribute Maintenance maintenance, @PathVariable Integer maintenanceID,
+			final RedirectAttributes redirectAttributes) {
+		
+		Maintenance currMaintenance = maintenanceService.findMaintenance(maintenanceID);
+
+		currMaintenance.setActive(false);
+		
+		maintenanceService.changeMaintenance(currMaintenance);
+
+		ModelAndView mav = new ModelAndView("redirect:/admin/viewMaintenances");
+		String message = "Maintenance " + maintenance.getMaintenanceid() + " was successfully updated.";
+		redirectAttributes.addFlashAttribute("message", message);
+		return mav;
+	}
+
 
 }

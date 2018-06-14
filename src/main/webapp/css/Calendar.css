@@ -1,19 +1,8 @@
 
-
 button {
     float:left;
 }
 
-.btn-booking-slot {
-	background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 1px 1px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    border: 0.5px solid black;
-} 
 
 .btn-maintenance-slot {
 	background-color: #008CBA;
@@ -24,17 +13,9 @@ button {
     display: inline-block;
     font-size: 12px;
     border: 0.5px solid black;
+    width:100%;
+    height:auto;
 } 
-
-
-.calendar-tile-content{
-	grid-area: content;
-	width:100%;
-	height:100%;
-	display: grid;
-    grid-template-rows: repeat(7, 1fr);
-    grid-template-columns: repeat(2, 1fr);
-}
 
 .btn-booking-slot:hover
 {
@@ -46,9 +27,34 @@ button {
 	opacity: 0.5;
 }
 
+.calendar-tile-content{
+	grid-area: content;
+	width:100%;
+	height:100%;
+	display: grid;
+    grid-template-rows: repeat(7, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.btn-booking-slot {
+	background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: 0.5px solid black;
+    width:100%;
+    height:auto;
+} 
+
+.day-header{
+	height:10%;
+	
+}
+
 .legend{
-	float:right;
-	border: 0.5px solid black;
-	margin-right:9%;
-	width:18%;
+    border: 0.5px solid black;
+    width:91%;
 }
