@@ -13,11 +13,6 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Inte
 	@Query("SELECT s FROM Subscription s where s.expirydate=:date")
 	ArrayList<Subscription> findByDate(@Param("date") Date date);
 
-	@Query("select s from Subscription s where s.active = true and s.userid=:uid and s.expirydate IN (select max(ss.expirydate) from Subscription ss)")
+	@Query(value = "select s.* from Subscriptions s where s.active = true and s.userid = :uid and s.expirydate IN (select max(ss.expirydate) from Subscriptions ss where ss.userid = :uid) limit 1", nativeQuery = true)
 	Subscription findActiveSubscription(@Param("uid") int userid);
-
-	// @Query (value="select s from Subscriptions s where s.active = true and
-	// s.userid=:uid and s.expirydate IN (select max(ss.expirydate) from
-	// Subscriptions ss) limit 1", nativeQuery=true)
-	// Subscription findActiveSubscription(@Param("uid") int userid);
 }
