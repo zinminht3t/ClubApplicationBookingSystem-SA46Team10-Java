@@ -43,100 +43,108 @@
 	<form:form method="POST" commandName="adminBookingF"
 		action="${pageContext.request.contextPath}/admin/viewBookings/editBooking/${booking.getBookingid()}">
 
-		<div class="row">
-		</br>
-		</br>
-			<div class="col-md-12">
-				<h2 style="text-align:center">Edit Booking (Admin)</h2>
-			</div>
-					
-			<div class="col-md-6">
-				<div class="panel panel-primary">
+		<div class="container">
 
-					<hr>
-
-					<div class="form-group">
-						<label class="control-label col-md-4">Booking Id</label>
-						<!-- attribute name -->
-						<input class="control-label col-md-4" path="bookingid" value="${booking.getBookingid()}" readonly="readonly"/>
-
-					</div>
-					
-					
-					<div class="form-group">
-						<label class="control-label col-md-4">Transaction Time</label>
-							<!-- attribute name -->
-							<input class="control-label col-md-4" path="transactiontime" value="${booking.getTransactiontime()}"/>
-					</div>
-
-					
-					<div class="form-group">
-						<label class="control-label col-md-4">User Id</label>
-							<!-- attribute name -->
-							<input class="control-label col-md-4" path="users" value="${booking.getUser().userId}"/>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label col-md-4">Total ($)</label>
-							<!-- attribute name -->
-							<input class="control-label col-md-4" path="total" value="${booking.total}"/>
-					</div>
-					
-					<div class="form-group">
-						<label class="control-label col-md-4">Status</label>
-							<!-- attribute name -->
-							<input class="control-label col-md-4" path="total" value="${booking.status}"/>
-					</div>
-			</div>
+			<br/>
+			<br/>
+			<br/>
 			
-			<div class="col-md-offset-2 col-md-8">
-				<div class="panel-heading">
-
-					
-					<input class ="btn btn-danger" id="btnSubmit" type="submit" value="Cancel Booking" style="width: 150px;"/>
-					
-					<hr>
-
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<h3>Edit Booking (Admin)</h3>
 				</div>
-							
-
+			</div>	
+					
+			<hr>		
+					
+			<div class="row">		
+				<div class="col-md-6">
+					<div class="panel panel-primary">
+	
+						
+	
+						<div class="form-group">
+							<label class="control-label col-md-4">Booking Id</label>
+							<!-- attribute name -->
+							<input class="control-label col-md-4" path="bookingid" value="${booking.getBookingid()}" readonly="readonly"/>
+	
+						</div>
+						
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">Transaction Time</label>
+								<!-- attribute name -->
+								<input class="control-label col-md-4" path="transactiontime" value="${booking.getTransactiontime()}"/>
+						</div>
+	
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">User Id</label>
+								<!-- attribute name -->
+								<input class="control-label col-md-4" path="users" value="${booking.getUser().userId}"/>
+						</div>
+	
+						<div class="form-group">
+							<label class="control-label col-md-4">Total ($)</label>
+								<!-- attribute name -->
+								<input class="control-label col-md-4" path="total" value="${booking.total}"/>
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">Status</label>
+								<!-- attribute name -->
+								<input class="control-label col-md-4" path="total" value="${booking.status}"/>
+						</div>
+				</div>
 				
-
-				</div>
-
-			</div>
-			
-			<!-- second column -->
-			<div class="col-md-6">
-				<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-					<thead>
-						<tr class="listHeading">
-							
-						   <th>Facility Id</th>
-			   			   <th>Facility Name</th>
-						   <th>Timeslot</th>
-						   <th>Booked Date</th>
-						   <th>Price ($)</th>			   
-						   
-						</tr>
-					</thead>
-					<tbody>
-							<c:forEach var="bookingDetail" items="${booking.getBookings()}">
+				<div class="col-md-offset-2 col-md-8">
+					<div class="panel-heading">
+	
 						
-								<tr class="bookingDetail">
-									<td>${bookingDetail.getFacility().getFacilityID()}</td>
-									<td>${bookingDetail.getFacility().getFacilityName()}</td>
-									<td>${bookingDetail.getTimeslots().getTime()}</td>
-									<td>${bookingDetail.getBookingdate()}</td>
-									<td>${bookingDetail.getBookingprice()}</td>
-								</tr>
+						<input class ="btn btn-danger" id="btnSubmit" type="submit" value="Cancel Booking" style="width: 150px;"/>
+						
+						<hr>
+	
+					</div>
 								
-						</c:forEach>
-						
-					</tbody>
-				</table>
+	
+					
+	
+					</div>
+	
+				</div>
+				
+				<!-- second column -->
+				<div class="col-md-6">
+					<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+						<thead>
+							<tr class="listHeading">
+								
+							   <th>Facility Id</th>
+				   			   <th>Facility Name</th>
+							   <th>Timeslot</th>
+							   <th>Booked Date</th>
+							   <th>Price ($)</th>			   
+							   
+							</tr>
+						</thead>
+						<tbody>
+								<c:forEach var="bookingDetail" items="${booking.getBookings()}">
+							
+									<tr class="bookingDetail">
+										<td>${bookingDetail.getFacility().getFacilityID()}</td>
+										<td>${bookingDetail.getFacility().getFacilityName()}</td>
+										<td>${bookingDetail.getTimeslots().getTime()}</td>
+										<td>${bookingDetail.getBookingdate()}</td>
+										<td>${bookingDetail.getBookingprice()}</td>
+									</tr>
+									
+							</c:forEach>
+							
+						</tbody>
+					</table>
+				</div>
 			</div>
-			
 		</div>
 	</form:form>
 	

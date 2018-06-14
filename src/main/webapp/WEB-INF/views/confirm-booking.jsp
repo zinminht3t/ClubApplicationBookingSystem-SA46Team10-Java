@@ -46,6 +46,7 @@
 
 		$("#datepicker").datepicker({
 			dateFormat : 'yy-mm-dd',
+	        minDate: 0,
 			onSelect : function(select) {
 				updateAb(select);
 			}
