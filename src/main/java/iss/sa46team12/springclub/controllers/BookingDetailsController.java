@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.controllers;
 
 import java.time.LocalDateTime;
@@ -73,9 +74,7 @@ public class BookingDetailsController {
 			}
 		}
 
-		//User user = userService.findUserById((int)session.getAttribute("UserID"));
-		
-		User user = userService.findUserById(1);
+		User user = userService.findUserById((int)session.getAttribute("UserID"));
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = new Bookings();
 		booking.setTransactiontime(date);
@@ -116,3 +115,4 @@ public class BookingDetailsController {
 	}
 
 }
+>>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject.git

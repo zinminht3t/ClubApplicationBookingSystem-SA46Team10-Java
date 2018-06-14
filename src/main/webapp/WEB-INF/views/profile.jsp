@@ -11,29 +11,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Spring Club - User Profile</title>
-
-
-<spring:url value="/css/register.css" var="register" />
-
-
-<link rel="STYLESHEET" type="text/css" href="${register}" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet prefetch'
-	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Spring Club - User Profile</title>
 	
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.22.2/sweetalert2.all.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
-
+	
+	<spring:url value="/css/register.css" var="register" />
+	
+	
+	<link rel="STYLESHEET" type="text/css" href="${register}" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel='stylesheet prefetch'
+		href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="fonts/font-awesome.min.css">
+	<link rel="stylesheet" href="css/styles.css">	
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.22.2/sweetalert2.all.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
 	<c:choose>
@@ -230,23 +232,29 @@
 
 							<div class="row"
 								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+								
 								<div class="col-md-4">
 									<img src="" id="${ubookings.bookingid}uphoto"
 										alt="facilityphoto" width="100%" class="rounded-circle" />
 								</div>
+								
 								<div class="col-md-5">
 									<div style="overflow: hidden;">
 										<h4 class="float-left text-dark">
 											<strong id="${ubookings.bookingid}uname"></strong>
 										</h4>
 									</div>
+									
 									<h4 class="text-secondary">
 										<strong id="${ubookings.bookingid}udate"></strong>
 									</h4>
+									
 									<div id="${ubookings.bookingid}utimeslots"></div>
+									
 									<h5>
 										Price : $ ${ubookings.total }.00</em>
 									</h5>
+									
 									<h6 class="text-warning">Status : ${ubookings.status }</h6>
 
 
@@ -256,7 +264,6 @@
 										<script>
 											document
 													.getElementById("${ubookings.bookingid}uphoto").src = "${pageContext.request.contextPath}/image/${ubookingDetail.getFacility().getImagePath()}";
-
 											document
 													.getElementById("${ubookings.bookingid}uname").innerHTML = "${ubookingDetail.getFacility().getFacilityName()}";
 											document
@@ -265,8 +272,8 @@
 													.getElementById("${ubookings.bookingid}utimeslots").innerHTML += "<span class=\"badge badge-info\">${ubookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
 										</script>
 									</c:forEach>
-
 								</div>
+								
 								<div class="col-md-3">
 									<em><i class="fa fa-stopwatch"></i>
 										${ubookings.transactiontime} </em> <br /> <br /> <br />
@@ -277,26 +284,23 @@
 											</button>
 
 											<script>
-										 document.getElementById("cancelbookingbtn").addEventListener('click',function ()
-												    {
-
-												swal({
-													  title: 'Booking Cancellation',
-													  text: "Are you sure you want to cancel booking!",
-													  type: 'warning',
-													  showCancelButton: true,
-													  confirmButtonColor: '#3085d6',
-													  cancelButtonColor: '#d33',
-													  confirmButtonText: 'Yes, I am Sure!'
-													}).then((result) => {
-													  if (result.value) {
-														  window.location.href = "${pageContext.request.contextPath}/user/booking/cancel/${ubookings.bookingid}";
-													  }
-													});
-											 
-											 
-												    }  ); 
-										</script>
+											 	document.getElementById("cancelbookingbtn").addEventListener('click',function ()
+													{
+														swal({
+															  title: 'Booking Cancellation',
+															  text: "Are you sure you want to cancel booking!",
+															  type: 'warning',
+															  showCancelButton: true,
+															  confirmButtonColor: '#3085d6',
+															  cancelButtonColor: '#d33',
+															  confirmButtonText: 'Yes, I am Sure!'
+															}).then((result) => {
+															  if (result.value) {
+																  window.location.href = "${pageContext.request.contextPath}/user/booking/cancel/${ubookings.bookingid}";
+															  }
+															});
+													}); 
+											</script>
 										</c:when>
 									</c:choose>
 								</div>
@@ -493,7 +497,6 @@
 								});
 							});
 						</script>
-						</script>
 					</div>
 
 
@@ -501,7 +504,6 @@
 			</div>
 
 		</div>
-	</div>
 	</div>
 </body>
 </html>
