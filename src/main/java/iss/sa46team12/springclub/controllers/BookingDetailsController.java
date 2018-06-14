@@ -99,7 +99,6 @@ public class BookingDetailsController {
 				bookingdetails.setBookingprice(court.getKey().getPrice());
 				bookingdetails.setFacilityid(court.getKey().getFacilityID());
 				bookingdetails.setTimeslotid(timeslotService.getOneTimeSlot(times).getTimeslotid());
-				
 				bookingDetailsService.createBooking(bookingdetails);
 			
 			}
@@ -107,10 +106,11 @@ public class BookingDetailsController {
 		}
 
 		// mav.addObject("selecteddate", selecteddate);
-		mav.addObject("courtAndTimes", courtAndTimes);
-		mav.addObject("date", date);
-		mav.addObject("request", request);
+		//mav.addObject("courtAndTimes", courtAndTimes);
+		//mav.addObject("date", date);
+		mav.addObject("booking", booking);
 		return mav;
+		
 	}
 
 }

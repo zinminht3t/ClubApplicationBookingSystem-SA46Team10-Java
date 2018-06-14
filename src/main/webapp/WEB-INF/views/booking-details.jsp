@@ -10,16 +10,20 @@
 <head>
 </head>
 <body>
-${selecteddate}
-<br />
-Booked Times: 
-<c:forEach var="court" items="${courtAndTimes}">
-	<c:forEach var="times" items="${court.value}">
-		<c:forEach var="time" items="${times}">
-			${time}
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+		<p>${booking.getBookingid()}</p>
+		<p>${booking.getUser().getFullname()}</p>
+		<p>${booking.getStatus()}</p>
+		<c:forEach var="bookingdetails" items="${booking.getBookings()}">
+			<p>${bookingdetails.getTimeSlot().getTime()}<p>
 		</c:forEach>
-		<br />
-	</c:forEach>
-</c:forEach>
+<br />
 </body>
 </html>
