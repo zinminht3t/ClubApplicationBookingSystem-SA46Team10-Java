@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.models.Subscription;
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.repositories.SubscriptionRepository;
@@ -63,6 +64,8 @@ public class SchedulerComponent {
 				userService.editUser(u);
 				subscriptionService.editSub(sub);
 
+				SendEmail.sendEmail("spring12@gmail.com", u.getEmail(), "Spring Club - Account Expiry",
+						"Your account with this email has expired! Please register with us again!");
 			}
 		}
 
