@@ -34,8 +34,9 @@
 			<hr>
 			
 				<div class="row">
-					<div class="monthyear col-md-12" id="viewMonthYear"><strong>${sessionScope.currentMonthName}-${sessionScope.currentYear}</strong></div>
-						<div class="col-md-2">
+					<div class="monthyear col-md-12" id="viewMonthYear"><h3 style = "text-align: center"><strong>${sessionScope.currentMonthName}-${sessionScope.currentYear}</strong></h3></div>
+						<div class="col-md-5"></div>
+						<div class="col-md-2 text-center">
 						<form action="${pageContext.request.contextPath}/admin/viewCalendar"
 							class="nextprev-form" method="post">
 						
@@ -45,25 +46,25 @@
 								<input type="submit" name="btnNext" value="next" class="btn-primary" />
 							
 						</form>
+						
+						<form action="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormNew">
+						<input id="btn-add-maintenance" type="submit" name="btnShowAddMaintenance" value="Add Maintenance" class="btn-warning btn-sm"></input>
+					</form>
 						</div>
 				</div>
 				
-				<div class="row">
-					<form action="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormNew">
-						<input id="btn-add-maintenance" type="submit" name="btnShowAddMaintenance" value="Add Maintenance" class="btn-warning btn-sm"></input>
-					</form>
-				</div>
-				
 				
 			
-			<div class="row">
+			<div class="row text-center">
+				<div class="col-md-4"></div>
 				<div class="col-md-1"><p>Legend:</p></div>
-				<div class="col-md-3"><p style="color: Green"><strong>Green</strong> = Bookings</p></div>
-				<div class="col-md-3"><p style="color: blue"><strong>Blue</strong> = Maintenance</p></div>			
+				<div class="col-md-1"><p style="color: Green"><strong>Green</strong> = Bookings</p></div>
+				<div class="col-md-1"><p style="color: blue"><strong>Blue</strong> = Maintenance</p></div>			
 			</div>
 			
-			<div class="row">
-				<div class="col-sm-12 col-md-12"><h3>Toggle View</h3></div>
+			<div class="row text-center">
+				<div class="col-md-12"><h3>Toggle View</h3></div>
+				<div class="col-md-4"></div>
 				<div class="col-sm-6 col-md-2">
 					<form action="${pageContext.request.contextPath}/admin/viewMaintenances">
 						<input id="btn-show-maintenances" type="submit" name="btnShowMaintenances" value="Display Maintenance" class="btn-primary btn-sm"></input>
