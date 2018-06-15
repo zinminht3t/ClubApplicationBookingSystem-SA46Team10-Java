@@ -1,21 +1,18 @@
 package iss.sa46team12.springclub.controllers;
 
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import iss.sa46team12.springclub.models.User;
 
-
 @Component
-@Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserSession {
-	
+
 	private String sessionId = null;
 	private User user = null;
 
-	
 	public UserSession() {
 		super();
 	}
@@ -41,7 +38,6 @@ public class UserSession {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 	@Override
 	public int hashCode() {

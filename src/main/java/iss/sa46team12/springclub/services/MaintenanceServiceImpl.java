@@ -7,9 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Maintenance;
-import iss.sa46team12.springclub.repositories.BookingsRepository;
 import iss.sa46team12.springclub.repositories.MaintenanceRepository;
 
 @Service
@@ -17,13 +15,13 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
 	@Resource
 	MaintenanceRepository maintenanceRepository;
+
 	@Override
 	@Transactional
 	public ArrayList<Maintenance> getAllMaintenances() {
 
 		return (ArrayList<Maintenance>) maintenanceRepository.findAll();
 	}
-	
 
 	@Override
 	@Transactional
@@ -32,18 +30,17 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 		return maintenanceRepository.findAllActiveMaintenances();
 	}
 
-
 	@Override
 	@Transactional
 	public Maintenance findMaintenance(Integer maintenanceId) {
-		
+
 		return maintenanceRepository.findOne(maintenanceId);
 	}
 
 	@Override
 	@Transactional
 	public Maintenance createMaintenance(Maintenance maintenance) {
-		
+
 		return maintenanceRepository.save(maintenance);
 	}
 
@@ -60,5 +57,5 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 		// TODO Auto-generated method stub
 		maintenanceRepository.delete(maintenance);
 	}
-	
+
 }

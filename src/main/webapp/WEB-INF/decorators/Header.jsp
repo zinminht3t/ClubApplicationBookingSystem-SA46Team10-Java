@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Parisienne" rel="stylesheet">
 
 <body>
 <nav
@@ -16,7 +17,7 @@
 	<!-- Brand -->
 	<a class="navbar-brand" href="${contextPath}/"> <img
 		src="image/springClubLogo1.png" width="50px" height="50px">
-			<label style="color: white; font-family: 'Aclonica';font-size: 22px;"><b>pring Club</b></label>
+			<label style="color: white; font-family: 'Parisienne', cursive;font-size: 25px;"><b>pring Club</b></label>
 	</a>
 
 

@@ -7,34 +7,30 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<title>New Facility Form</title>
-
-<spring:url value="/css/FacilityFormNew.css" var="FacilityFormNew" />
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-<link rel='stylesheet prefetch'
-	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet" href="assets/css/Data-Table.css">
-<link rel="stylesheet" href="assets/css/Data-Table2.css">
-<link rel="stylesheet" href="assets/css/Dynamic-Table.css">
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
-
-<script
-			src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-		<script src="js/index.js"></script>
+	<meta charset="UTF-8">
+	<title>New Facility Form</title>
+	
+	<spring:url value="/css/FacilityFormNew.css" var="FacilityFormNew" />
+	
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	
+	<link rel='stylesheet prefetch'
+		href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<link rel="stylesheet" href="assets/css/Data-Table.css">
+	<link rel="stylesheet" href="assets/css/Data-Table2.css">
+	<link rel="stylesheet" href="assets/css/Dynamic-Table.css">
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="js/index.js"></script>
 </head>
 
 <body>
@@ -100,7 +96,7 @@
 					<div class="panel-heading">
 	
 						
-						<input class ="btn btn-danger" id="btnSubmit" type="submit" value="Cancel Booking" style="width: 150px;"/>
+						<input class ="btn btn-danger" id="btnSubmit" type="submit" value="OK" style="width: 150px;"/>
 						
 						<hr>
 	
@@ -114,36 +110,7 @@
 				</div>
 				
 				<!-- second column -->
-				<div class="col-md-6">
-					<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-						<thead>
-							<tr class="listHeading">
-								
-							   <th>Facility Id</th>
-				   			   <th>Facility Name</th>
-							   <th>Timeslot</th>
-							   <th>Booked Date</th>
-							   <th>Price ($)</th>			   
-							   
-							</tr>
-						</thead>
-						<tbody>
-								<c:forEach var="bookingDetail" items="${booking.getBookings()}">
-							
-									<tr class="bookingDetail">
-										<td>${bookingDetail.getFacility().getFacilityID()}</td>
-										<td>${bookingDetail.getFacility().getFacilityName()}</td>
-										<td>${bookingDetail.getTimeslots().getTime()}</td>
-										<td>${bookingDetail.getBookingdate()}</td>
-										<td>${bookingDetail.getBookingprice()}</td>
-									</tr>
-									
-							</c:forEach>
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
+						</div>
 		</div>
 	</form>
 	

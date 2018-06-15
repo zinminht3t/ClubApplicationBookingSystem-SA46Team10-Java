@@ -16,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.BookingDetailsForBookingProcess;
-import iss.sa46team12.springclub.models.BookingId;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.BookingDetailsForBookingProcessRepositoryService;
-import iss.sa46team12.springclub.services.BookingDetailsService;
 import iss.sa46team12.springclub.services.BookingsService;
 import iss.sa46team12.springclub.services.FacilityService;
 import iss.sa46team12.springclub.services.TimeslotService;
@@ -54,8 +51,8 @@ public class BookingDetailsController {
 
 		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility("Tennis Court"));
 		LinkedHashMap<Facility, ArrayList<String>> courtAndTimes = new LinkedHashMap<Facility, ArrayList<String>>();
-		int bookingPrice = 0; 
-		
+		int bookingPrice = 0;
+
 		for (Facility court : courts) {
 			ArrayList<String> eachCourt = new ArrayList<String>();
 			String[] key;
@@ -67,14 +64,14 @@ public class BookingDetailsController {
 			if (key != null) {
 				for (String value : key) {
 					eachCourt.add(value);
-					bookingPrice = (int) (bookingPrice+court.getPrice());
+					bookingPrice = (int) (bookingPrice + court.getPrice());
 				}
 				courtAndTimes.put(court, eachCourt);
-				
+
 			}
 		}
 
-		User user = userService.findUserById((int)session.getAttribute("UserID"));
+		User user = userService.findUserById((int) session.getAttribute("UserID"));
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = new Bookings();
 		booking.setTransactiontime(date);
@@ -86,7 +83,6 @@ public class BookingDetailsController {
 		String bookingdate = request.getParameter("selecteddate") + " 00:00";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime convertedbookingdate = LocalDateTime.parse(bookingdate, formatter);
-		
 
 		// Each Map in Hash
 		for (Map.Entry<Facility, ArrayList<String>> court : courtAndTimes.entrySet()) {
@@ -94,25 +90,24 @@ public class BookingDetailsController {
 			for (String times : court.getValue()) {
 				// for each timeslot in List
 				BookingDetailsForBookingProcess bookingdetails = new BookingDetailsForBookingProcess();
-				
+
 				bookingdetails.setBookingid(booking.getBookingid());
 				bookingdetails.setBookingdate(convertedbookingdate);
 				bookingdetails.setBookingprice(court.getKey().getPrice());
 				bookingdetails.setFacilityid(court.getKey().getFacilityID());
 				bookingdetails.setTimeslotid(timeslotService.getOneTimeSlot(times).getTimeslotid());
 				bookingDetailsService.createBooking(bookingdetails);
-			
+
 			}
 
 		}
 
 		// mav.addObject("selecteddate", selecteddate);
-		//mav.addObject("courtAndTimes", courtAndTimes);
-		//mav.addObject("date", date);
+		// mav.addObject("courtAndTimes", courtAndTimes);
+		// mav.addObject("date", date);
 		mav.addObject("booking", booking);
 		return mav;
-		
+
 	}
 
 }
->>>>>>> branch 'master' of https://github.com/zinminht3t/SA46Team12CABProject.git

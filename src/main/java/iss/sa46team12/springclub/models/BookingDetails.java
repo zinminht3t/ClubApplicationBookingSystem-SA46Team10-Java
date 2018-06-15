@@ -1,13 +1,9 @@
 package iss.sa46team12.springclub.models;
 
-
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
@@ -15,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
@@ -27,59 +24,61 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @IdClass(BookingId.class)
 @Table(name = "bookingdetails")
 public class BookingDetails {
-	/**Attributes for BookingDetails**/
-   @Id
-   @Column(insertable = false, updatable = false)
-   private int bookingid;
-   @Id
-   @Column(insertable = false, updatable = false)
-   private int facilityid;
-   @Id
-   @Column(insertable = false, updatable = false)
-   private int timeslotid;
-	
+	/** Attributes for BookingDetails **/
+	@Id
+	@Column(insertable = false, updatable = false)
+	private int bookingid;
+	@Id
+	@Column(insertable = false, updatable = false)
+	private int facilityid;
+	@Id
+	@Column(insertable = false, updatable = false)
+	private int timeslotid;
+
 	@Column(name = "bookingdate")
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private LocalDateTime bookingdate;
 	@Column(name = "bookingprice")
 	private double bookingprice;
-	
-	/*Reverse Mapping */
+
+	/* Reverse Mapping */
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "bookingid")
 	private Bookings booking;
-	
+
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="timeslotid")
+	@JoinColumn(name = "timeslotid")
 	private Timeslots timeslots;
-	
+
 	@JsonBackReference
 	@ManyToOne
-	@JoinColumn(name="facilityid")
+	@JoinColumn(name = "facilityid")
 	private Facility facilities;
-	
-	/**Constructor to Initialize Booking model object**/
+
+	/** Constructor to Initialize Booking model object **/
 	public BookingDetails() {
 	}
-	
-	/**Constructor**/
-	public BookingDetails(int bookingId, LocalDateTime bookingdate, Facility facilities, double bookingprice, Bookings booking, Timeslots timeslot) {
+
+	/** Constructor **/
+	public BookingDetails(int bookingId, LocalDateTime bookingdate, Facility facilities, double bookingprice,
+			Bookings booking, Timeslots timeslot) {
 		super();
 		this.bookingid = bookingId;
 		this.bookingdate = bookingdate;
 		this.bookingprice = bookingprice;
 		this.booking = booking;
-		this.facilities=facilities;
+		this.facilities = facilities;
 		this.timeslots = timeslot;
-			}
+	}
 
-	/**Getter / Setter**/
-	
+	/** Getter / Setter **/
+
 	public Timeslots getTimeslot() {
 		return timeslots;
 	}
+
 	public int getBookingid() {
 		return bookingid;
 	}
@@ -131,43 +130,42 @@ public class BookingDetails {
 	public void setTimeslot(Timeslots timeslot) {
 		this.timeslots = timeslot;
 	}
-	
+
 	public Facility getFacility() {
 		return facilities;
 	}
+
 	public void setFacility(Facility facility) {
 		this.facilities = facility;
 	}
-	
-	
+
 	public void setBookingId(int bookingId) {
 		this.bookingid = bookingId;
 	}
-	
+
 	public LocalDateTime getBookingdate() {
 		return bookingdate;
 	}
-	
+
 	public void setBookingdate(LocalDateTime bookingdate) {
 		this.bookingdate = bookingdate;
 	}
-	
+
 	public double getBookingprice() {
 		return bookingprice;
 	}
-	
+
 	public void setBookingprice(double bookingprice) {
 		this.bookingprice = bookingprice;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 
 		return "BookingDetails [bookingId=" + bookingid + ", bookingdate=" + bookingdate + ", bookingprice="
 				+ bookingprice + ", booking=" + booking + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -183,6 +181,7 @@ public class BookingDetails {
 		result = prime * result + ((timeslots == null) ? 0 : timeslots.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -217,5 +216,5 @@ public class BookingDetails {
 			return false;
 		return true;
 	}
-	
+
 }

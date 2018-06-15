@@ -17,7 +17,7 @@
 <div class="login-dark">
 	<c:choose>
 		<c:when test="${sessionScope.Role == null}">
-			<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login/authenticate" style="opacity: 0.95;">
+			<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login" style="opacity: 0.95;">
 				<h2 class="sr-only">Login Form</h2>
 				<div class="illustration"><img src="image/springClubLogo1.png"></img></div>
 				<div class="form-group">
@@ -28,10 +28,12 @@
 					<form:input class="form-control" type="password" path="password" name="password" /></div>
             	<div class="form-group">
             		<button class="btn btn-primary btn-block" type="submit">Log In</button></div>
+            						<div class="form-group">
+					<span class="label label-danger">${errormsg}</span></div>
             </form:form>	
 		</c:when>
 		<c:otherwise>
-			<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login/authenticate" >
+			<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login" >
 			<h1>You are already logged in!</h1>
 			</form:form>
 		</c:otherwise>

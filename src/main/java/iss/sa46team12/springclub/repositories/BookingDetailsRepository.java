@@ -15,9 +15,7 @@ public interface BookingDetailsRepository extends JpaRepository<BookingDetails, 
 	ArrayList<BookingDetails> findAllConfirmedBookingsByCourtAndDate(@Param("fid") int fid,
 			@Param("bdate") LocalDateTime bdate);
 
-	@Query(value = "INSERT INTO bookingdetails values(?1, ?2, ?3, ?4, ?5)" , nativeQuery = true)
+	@Query(value = "INSERT INTO bookingdetails values(?1, ?2, ?3, ?4, ?5)", nativeQuery = true)
 	int createBookingDetail(int bid, int fid, int tid, LocalDateTime bdate, double price);
 
-
 }
-

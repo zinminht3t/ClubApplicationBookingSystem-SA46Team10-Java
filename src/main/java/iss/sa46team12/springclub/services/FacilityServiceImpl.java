@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,26 +15,26 @@ public class FacilityServiceImpl implements FacilityService {
 
 	@Resource
 	FacilityRepository facrepo;
-	
+
 	@Override
 	@Transactional
 	public ArrayList<Facility> findAllFacilities() {
-		return (ArrayList<Facility>) facrepo.findAll();	
-		}
-	
-//	@Override
-//	@Transactional
-//	public Facility findFacilityByName(String name) {		
-//		Facility facility = facrepo.findOne(name);	
-//		return facility;
-//	}
-	
+		return (ArrayList<Facility>) facrepo.findAll();
+	}
+
+	// @Override
+	// @Transactional
+	// public Facility findFacilityByName(String name) {
+	// Facility facility = facrepo.findOne(name);
+	// return facility;
+	// }
+
 	@Override
 	@Transactional
 	public Facility findFacilityById(Integer fid) {
-		return facrepo.findOne(fid);		 
+		return facrepo.findOne(fid);
 	}
-	
+
 	@Override
 	@Transactional
 	public Facility createFacility(Facility fac) {
@@ -47,21 +46,21 @@ public class FacilityServiceImpl implements FacilityService {
 	public Facility editFacility(Facility fac) {
 		return facrepo.saveAndFlush(fac);
 	}
-	
+
 	@Override
 	@Transactional
 	public ArrayList<Facility> findFacilityByCriteria(Facility facility) {
 		return null;
 	}
-	
+
 	@Override
 	@Transactional
-	public ArrayList<Facility> getAllCourtsInFacility(String fname){
-		
+	public ArrayList<Facility> getAllCourtsInFacility(String fname) {
+
 		return facrepo.getAllCourtsInFacility(fname);
 	}
 
-	//Return Null???
+	// Return Null???
 	@Override
 	public ArrayList<Facility> findFacilityByName(String name) {
 		// TODO Auto-generated method stub
@@ -72,14 +71,14 @@ public class FacilityServiceImpl implements FacilityService {
 	@Transactional
 	public ArrayList<String> findAllDistinctFacilityName() {
 		// TODO Auto-generated method stub
-		return (ArrayList<String>) facrepo.findAllDistinctFacilityName();	
+		return facrepo.findAllDistinctFacilityName();
 	}
 
 	@Override
 	@Transactional
 	public ArrayList<String> findAllDistinctFacilityCourt() {
 		// TODO Auto-generated method stub
-		return (ArrayList<String>) facrepo.findAllDistinctFacilityCourt();	
+		return facrepo.findAllDistinctFacilityCourt();
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package iss.sa46team12.springclub.exceptions;
 
-public class UserNotFound extends Exception{
-	
+public class UserNotFound extends Exception {
+
 	public UserNotFound() {
 	}
 

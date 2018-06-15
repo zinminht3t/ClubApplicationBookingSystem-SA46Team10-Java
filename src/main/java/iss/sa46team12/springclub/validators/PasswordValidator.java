@@ -38,7 +38,7 @@ public class PasswordValidator implements Validator {
 		if (!(p.getNewpassword().equals(p.getConfirmpassword()))) {
 			errors.rejectValue("confirmpassword", "error.user.mismatchedpassword.empty");
 		}
-		int userid = 1; //TODO
+		int userid = 1; // TODO
 		User user = uService.findUserById(userid);
 
 		if (!(p.getPassword().equals(user.getPassword()))) {
