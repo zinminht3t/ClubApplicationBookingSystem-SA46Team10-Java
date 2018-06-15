@@ -22,7 +22,7 @@
 				<div class="illustration"><img src="image/springClubLogo1.png"></img></div>
 				<div class="form-group">
 					<spring:message code="Email / Username: " />
-					<form:input class="form-control" type="email" path="email" name="email" required="required" /></div>
+					<form:input class="form-control" path="email" name="email" required="required" /></div>
 				<div class="form-group">
 					<spring:message code="Password: " />
 					<form:input class="form-control" type="password" path="password" name="password" /></div>
@@ -41,3 +41,31 @@
 </div>
 </body>
 </html>
+
+<%-- <html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+  <head>
+    <title tiles:fragment="title">Messages : Create</title>
+  </head>
+  <body>
+    <div tiles:fragment="content">
+        <form name="f" th:action="@{/login}" method="post">               
+            <fieldset>
+                <legend>Please Login</legend>
+                <div th:if="${param.error}" class="alert alert-error">    
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success"> 
+                    You have been logged out.
+                </div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"/>        
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"/>    
+                <div class="form-actions">
+                    <button type="submit" class="btn">Log in</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+  </body>
+</html> --%>
