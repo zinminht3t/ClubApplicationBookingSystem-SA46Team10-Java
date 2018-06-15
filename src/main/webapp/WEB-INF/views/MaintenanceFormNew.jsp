@@ -158,10 +158,10 @@
 			
 			<div class="row btn-group">
 				<div class="col-md-6">
-					<input id="btnSubmit" type="submit" value="Submit" />
+					<input class ="btn btn-danger" id="btnSubmit" type="submit" value="Submit" />
 				</div>	
 				<div class="col-md-6">
-					<input id="btnReset" type="reset" value="Reset"/>
+					<input class ="btn btn-danger" id="btnReset" type="reset" value="Reset"/>
 				</div>
 			</div>
 			

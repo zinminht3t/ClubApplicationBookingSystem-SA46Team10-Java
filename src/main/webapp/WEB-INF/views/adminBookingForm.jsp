@@ -66,7 +66,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-4">Booking Id</label>
 							<!-- attribute name -->
-							<input class="control-label col-md-4" path="bookingid" value="${booking.getBookingid()}" readonly="readonly"/>
+							<input class="control-label col-md-4" path="bookingid" value="${booking.getBookingid()}" readonly="readonly"  disabled="true" />
 	
 						</div>
 						
@@ -74,26 +74,26 @@
 						<div class="form-group">
 							<label class="control-label col-md-4">Transaction Time</label>
 								<!-- attribute name -->
-								<input class="control-label col-md-4" path="transactiontime" value="${booking.getTransactiontime()}"/>
+								<input class="control-label col-md-4" path="transactiontime" value="${booking.getTransactiontime()}"  disabled="true" />
 						</div>
 	
 						
 						<div class="form-group">
 							<label class="control-label col-md-4">User Id</label>
 								<!-- attribute name -->
-								<input class="control-label col-md-4" path="users" value="${booking.getUser().userId}"/>
+								<input class="control-label col-md-4" path="users" value="${booking.getUser().userId}"  disabled="true" />
 						</div>
 	
 						<div class="form-group">
 							<label class="control-label col-md-4">Total ($)</label>
 								<!-- attribute name -->
-								<input class="control-label col-md-4" path="total" value="${booking.total}"/>
+								<input class="control-label col-md-4" path="total" value="${booking.total}"  disabled="true" />
 						</div>
 						
 						<div class="form-group">
 							<label class="control-label col-md-4">Status</label>
 								<!-- attribute name -->
-								<input class="control-label col-md-4" path="total" value="${booking.status}"/>
+								<input class="control-label col-md-4" path="total" value="${booking.status}"  disabled="true" />
 						</div>
 				</div>
 				
@@ -153,14 +153,11 @@
 		    $( "#datepicker_start" ).datepicker(         
 		    		dateFormat: 'yyyy-mm-dd',
 		            defaultDate: '2018-06-01')
-		);
-		  } 
-		);
+		  });
 		  
 		$( function() {
 		    $( "#datepicker_end" ).datepicker(dateFormat : "dd/mm/yy");
-		  } 
-		);	  
+		});	  
 	</script>
 
 	

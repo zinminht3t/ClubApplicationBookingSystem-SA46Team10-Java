@@ -49,27 +49,27 @@
 				<tbody>		  
 					<tr>
 						<td><spring:message code="Maintenance ID" /></td>
-						<td><form:input path="maintenanceid" readonly="true"  /></td>
+						<td><form:input path="maintenanceid" readonly="true" disabled="true" /></td>
 					</tr> 
 					<tr>
 						<td><spring:message code="Facility ID" /></td>
-						<td><form:input path="facilities.facilityID" readonly="true" /></td>
+						<td><form:input path="facilities.facilityID" readonly="true"  disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="Start Date" /></td>
-						<td><form:input path="startdate" readonly="true" /></td>
+						<td><form:input path="startdate" readonly="true"  disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="Time Start ID" /></td>
-						<td><form:input path="timeslots_start.time" readonly="true" /></td>
+						<td><form:input path="timeslots_start.time" readonly="true"  disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="End Date" /></td>
-						<td><form:input path="enddate" readonly="true" />
+						<td><form:input path="enddate" readonly="true"  disabled="true" />
 					</tr>						
 					<tr>
 						<td><spring:message code="Time End ID" /></td>
-						<td><form:input path="timeslots_end.time" readonly="true" /></td>
+						<td><form:input path="timeslots_end.time" readonly="true"  disabled="true" /></td>
 					</tr>
 								
 					<tr>
