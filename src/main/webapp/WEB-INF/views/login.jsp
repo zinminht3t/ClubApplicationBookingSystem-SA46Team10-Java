@@ -33,7 +33,7 @@
             </form:form>	
 		</c:when>
 		<c:otherwise>
-			<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login/authenticate" >
+			<form:form modelAttribute="user" method="POST" action="${pageContext.request.contextPath}/login" >
 			<h1>You are already logged in!</h1>
 			</form:form>
 		</c:otherwise>
