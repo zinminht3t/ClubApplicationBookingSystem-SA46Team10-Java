@@ -74,7 +74,7 @@
 								
 					<tr>
 						<td></td>
-						 <td><input type="submit" value="Cancel Maintenance"></td>
+						 <td><input  class ="btn btn-danger" type="submit" value="Cancel Maintenance"></td>
 					</tr>
 				</tbody>
 			</table>

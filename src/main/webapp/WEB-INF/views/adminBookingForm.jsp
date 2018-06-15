@@ -51,7 +51,7 @@
 			
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<h3>Edit Booking (Admin)</h3>
+					<h3>Edit Booking</h3>
 				</div>
 			</div>	
 					
