@@ -31,20 +31,24 @@
     </script>
 </head>
 <body>
-<br>
-<br>
-<br>
+<div class="container">
+	
+	<br>
+	<br>
+	<br>
 
 	<a href="${pageContext.request.contextPath}/admin/viewBookings"></a>
 
-	<div class='col-xs-12'>
-		<div class="panel-heading">
-
-			<h4 style="color:blue; margin-left: 10px">Bookings Listing</h4>	
-					
-			<div class="row">
-				<div class="col-sm-12 col-md-12"><h3>Toggle View</h3></div>
-				
+	<div class="row">
+			<div class="col-md-12 text-center">
+				<h3>Bookings Listing</h3>
+			</div>
+		</div>
+		<hr>
+		
+		<div class="row text-center">
+			<div class="col-md-12"><h3>Toggle View</h3></div>
+			<div class="col-md-4"></div>
 				<div class="col-sm-6 col-md-2">
 					<form action="${pageContext.request.contextPath}/admin/viewCalendar">
 						<input id="btn-show-calendar" type="submit" name="btnShowCalendar" value="Display Calendar" class="btn-primary btn-sm"></input>
@@ -56,12 +60,9 @@
 						<input id="btn-show-maintenances" type="submit" name="btnShowMaintenances" value="Display Maintenance" class="btn-primary btn-sm"></input>
 					</form>
 				</div>
-			</div>
-			
-
 		</div>
-	</div>
-
+			
+	<div class="container">
 	<c:if test="${fn:length(bookingList) gt 0}">
 		<table id="bookingList" class="display" style="width: 100%; padding-left:10px; padding-right:10px">
 			<thead style="color:blue">
@@ -104,6 +105,7 @@
 
 		</table>
 	</c:if>
+	</div>
 
 
 </body>
