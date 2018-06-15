@@ -36,12 +36,13 @@ public class User {
 	private String role;
 	@Column(name = "active")
 	private boolean active;
-	
+
 	public User() {
-		
+
 	}
-	
-	public User(int userId, String fullname, String email, String nric, Date dateofbirth, String address, String gender, String contactno, String password, String role, boolean active) {
+
+	public User(int userId, String fullname, String email, String nric, Date dateofbirth, String address, String gender,
+			String contactno, String password, String role, boolean active) {
 		this.userId = userId;
 		this.fullname = fullname;
 		this.email = email;
@@ -53,7 +54,7 @@ public class User {
 		this.password = password;
 		this.role = role;
 		this.active = active;
-		
+
 	}
 
 	public int getUserId() {
@@ -143,15 +144,5 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

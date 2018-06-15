@@ -4,7 +4,7 @@ public class Password {
 	private String password;
 	private String newpassword;
 	private String confirmpassword;
-	
+
 	public Password() {
 		super();
 	}

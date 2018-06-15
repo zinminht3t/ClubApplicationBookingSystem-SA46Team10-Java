@@ -252,7 +252,7 @@
 									<div id="${ubookings.bookingid}utimeslots"></div>
 									
 									<h5>
-										Price : $ ${ubookings.total }.00</em>
+										<em>Price : $ ${ubookings.total }.00</em>
 									</h5>
 									
 									<h6 class="text-warning">Status : ${ubookings.status }</h6>

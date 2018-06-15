@@ -10,16 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name="facilities")
+@Table(name = "facilities")
 public class Facility {
-	
+
 	@Id
 	@Column(name = "facilityid")
-	private int facilityID ;
+	private int facilityID;
 	@Column(name = "facilityname")
 	private String facilityName;
 	private String court;
@@ -28,20 +27,18 @@ public class Facility {
 	@Column(name = "imagepath")
 	private String imagePath;
 	private boolean active = true;
-	
-	
-	@JsonManagedReference
-	@OneToMany(mappedBy="facilities", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<BookingDetails> bookingdetails;
-	
 
-	//Constructors
+	@JsonManagedReference
+	@OneToMany(mappedBy = "facilities", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<BookingDetails> bookingdetails;
+
+	// Constructors
 	public Facility() {
 		super();
 	}
-		
+
 	public Facility(int facilityID, String facilityName, String court, Double price, String remark, String imagePath,
-		boolean active) {
+			boolean active) {
 		super();
 		this.facilityID = facilityID;
 		this.facilityName = facilityName;
@@ -52,24 +49,25 @@ public class Facility {
 		this.active = active;
 	}
 
+	// public Facility(int facilityID, String facilityName, String court, String
+	// remark,String imagePath, boolean active, ArrayList<BookingDetails>
+	// bookingEvents) {
+	// this(facilityID, facilityName, court, remark, imagePath, active);
+	// this.bookingEvents.addAll(bookingEvents);
+	// }
 
-	//public Facility(int facilityID, String facilityName, String court, String remark,String imagePath, boolean active, ArrayList<BookingDetails> bookingEvents) {
-		//this(facilityID, facilityName, court, remark, imagePath, active);
-//		this.bookingEvents.addAll(bookingEvents);
-//	}
-	
-//	
-//	
-//
-//	public List<BookingDetails> getBookingEvents() {
-//		return bookingEvents;
-//	}
-//
-//	public void setBookingEvents(List<BookingDetails> bookingEvents) {
-//		this.bookingEvents = bookingEvents;
-//	}
+	//
+	//
+	//
+	// public List<BookingDetails> getBookingEvents() {
+	// return bookingEvents;
+	// }
+	//
+	// public void setBookingEvents(List<BookingDetails> bookingEvents) {
+	// this.bookingEvents = bookingEvents;
+	// }
 
-	//Getters & Setters
+	// Getters & Setters
 	public int getFacilityID() {
 		return facilityID;
 	}
@@ -85,7 +83,6 @@ public class Facility {
 	public void setFacilityName(String facilityName) {
 		this.facilityName = facilityName;
 	}
-	
 
 	public String getCourt() {
 		return court;
@@ -94,7 +91,7 @@ public class Facility {
 	public void setCourt(String court) {
 		this.court = court;
 	}
-	
+
 	public Double getPrice() {
 		return price;
 	}
@@ -127,7 +124,6 @@ public class Facility {
 		this.imagePath = imagePath;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Facility [facilityID=" + facilityID + ", facilityName=" + facilityName + ", court=" + court + ", price="
@@ -188,5 +184,5 @@ public class Facility {
 			return false;
 		return true;
 	}
-	
+
 }

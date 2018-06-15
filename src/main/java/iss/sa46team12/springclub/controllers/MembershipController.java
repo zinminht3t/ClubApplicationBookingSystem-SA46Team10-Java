@@ -13,35 +13,33 @@ import iss.sa46team12.springclub.services.SubscriptionPackageService;
 
 @Controller
 public class MembershipController {
-	
+
 	@Autowired
 	private SubscriptionPackageService sPackageService;
-	
+
 	@RequestMapping(value = "/membership")
-	public String logic(Model model) {		
-		
+	public String logic(Model model) {
+
 		ArrayList<SubscriptionPackage> activeSubscriptions = sPackageService.findActiveSubscriptionPackages();
-		double price1YearD=0, price3YearsD=0;
-		
+		double price1YearD = 0, price3YearsD = 0;
+
 		for (SubscriptionPackage subscriptionPackage : activeSubscriptions) {
-			if(subscriptionPackage.getPackageyears().equals("1 Year")) {
+			if (subscriptionPackage.getPackageyears().equals("1 Year")) {
 				price1YearD = subscriptionPackage.getPackageprice();
-			}
-			else {
+			} else {
 				price3YearsD = subscriptionPackage.getPackageprice();
-			}				
+			}
 		}
-		
+
 		DecimalFormat fmt = new DecimalFormat("#,##0.00");
-		
+
 		String price1Year = "$" + fmt.format(price1YearD);
 		String price3Years = "$" + fmt.format(price3YearsD);
-		
+
 		model.addAttribute("oneYear", price1Year);
 		model.addAttribute("threeYears", price3Years);
-			
+
 		return "membership";
 	}
-
 
 }

@@ -1,6 +1,5 @@
 package iss.sa46team12.springclub.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,41 +20,42 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "timeslots")
 public class Timeslots {
-	/** Attributes  **/
+	/** Attributes **/
 	@Id
-	@Column (name ="timeslotid")
+	@Column(name = "timeslotid")
 	private int timeslotid;
-	@Column (name ="time")
+	@Column(name = "time")
 	private String time;
 	/** Mapping **/
 
 	@JsonManagedReference
-	@OneToMany(mappedBy="timeslots", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "timeslots", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<BookingDetails> bookingdetails;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy="timeslots_start", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "timeslots_start", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Maintenance> maintenanceList;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy="timeslots_end", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "timeslots_end", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Maintenance> maintenanceList2;
-	
-	
-//	public List<BookingDetails> getBookingdetails() {
-//		return (new ArrayList<BookingDetails> (bookingdetails));
-//	}
+
+	// public List<BookingDetails> getBookingdetails() {
+	// return (new ArrayList<BookingDetails> (bookingdetails));
+	// }
 	/** Constructor **/
 	public Timeslots() {
 		super();
 	}
+
 	/** Getter Setter **/
 	public int getTimeslotid() {
 		return timeslotid;
 	}
+
 	public String getTime() {
 		return time;
 	}
-	
+
 }
-//for git update
+// for git update

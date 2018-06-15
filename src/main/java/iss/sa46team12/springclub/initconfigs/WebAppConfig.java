@@ -35,9 +35,8 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableScheduling
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages="iss.sa46team12.springclub")
-@PropertySource({ "classpath:application.properties",
-		"classpath:/i18n/messages.properties" })
+@ComponentScan(basePackages = "iss.sa46team12.springclub")
+@PropertySource({ "classpath:application.properties", "classpath:/i18n/messages.properties" })
 @EnableJpaRepositories("iss.sa46team12.springclub.repositories")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
@@ -57,13 +56,10 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-		dataSource.setDriverClassName(env
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
+		dataSource.setDriverClassName(env.getRequiredProperty(PROPERTY_NAME_DATABASE_DRIVER));
 		dataSource.setUrl(env.getRequiredProperty(PROPERTY_NAME_DATABASE_URL));
-		dataSource.setUsername(env
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
-		dataSource.setPassword(env
-				.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
+		dataSource.setUsername(env.getRequiredProperty(PROPERTY_NAME_DATABASE_USERNAME));
+		dataSource.setPassword(env.getRequiredProperty(PROPERTY_NAME_DATABASE_PASSWORD));
 
 		return dataSource;
 	}
@@ -72,11 +68,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactoryBean.setDataSource(dataSource());
+		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		entityManagerFactoryBean
-				.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-		entityManagerFactoryBean
-				.setPackagesToScan(env
-						.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
+				.setPackagesToScan(env.getRequiredProperty(PROPERTY_NAME_ENTITYMANAGER_PACKAGES_TO_SCAN));
 
 		entityManagerFactoryBean.setJpaProperties(hibProperties());
 
@@ -85,26 +79,23 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	private Properties hibProperties() {
 		Properties properties = new Properties();
-		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT,
-				env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL,
-				env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+		properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+		properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
 		return properties;
 	}
 
 	@Bean
 	public JpaTransactionManager transactionManager() {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory()
-				.getObject());
+		transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 		return transactionManager;
 	}
 
 	/*
-	 * @Bean public UrlBasedViewResolver setupViewResolver() {
-	 * UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-	 * resolver.setPrefix("/WEB-INF/views/"); resolver.setSuffix(".jsp");
-	 * resolver.setViewClass(JstlView.class); return resolver; }
+	 * @Bean public UrlBasedViewResolver setupViewResolver() { UrlBasedViewResolver
+	 * resolver = new UrlBasedViewResolver(); resolver.setPrefix("/WEB-INF/views/");
+	 * resolver.setSuffix(".jsp"); resolver.setViewClass(JstlView.class); return
+	 * resolver; }
 	 */
 
 	@Bean
@@ -130,8 +121,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"/resources/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 		registry.addResourceHandler("/image/**").addResourceLocations("/image/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
@@ -149,38 +139,26 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public LocaleResolver localeResolver() {
 
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
-		cookieLocaleResolver.setDefaultLocale(StringUtils
-				.parseLocaleString("en"));
+		cookieLocaleResolver.setDefaultLocale(StringUtils.parseLocaleString("en"));
 		return cookieLocaleResolver;
 	}
-	
-	
-	
-	  @Bean(name="simpleMappingExceptionResolver")
-	  public SimpleMappingExceptionResolver
-	                  createSimpleMappingExceptionResolver() {
-	    SimpleMappingExceptionResolver r =
-	                new SimpleMappingExceptionResolver();
 
-	    Properties mappings = new Properties();
-	    mappings.setProperty(NullPointerException.class.getName(), "error");
-	    mappings.setProperty("DatabaseException", "databaseError");
-	    mappings.setProperty("InvalidCreditCardException", "creditCardError");	 
-	    r.setExceptionMappings(mappings);  // None by default
-	    
-	    r.addStatusCode("error", 404);
-	    r.setDefaultErrorView("error");    // No default	    
-	    r.setExceptionAttribute("null");     // Default is "exception"
-	    r.setWarnLogCategory("example.MvcLogger");     // No default
-	    r.setDefaultStatusCode(500);
-	    return r;
-	  }
-	
-	
-	
-	
-	
-	
-	
-	
+	@Bean(name = "simpleMappingExceptionResolver")
+	public SimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
+		SimpleMappingExceptionResolver r = new SimpleMappingExceptionResolver();
+
+		Properties mappings = new Properties();
+		mappings.setProperty(NullPointerException.class.getName(), "error");
+		mappings.setProperty("DatabaseException", "databaseError");
+		mappings.setProperty("InvalidCreditCardException", "creditCardError");
+		r.setExceptionMappings(mappings); // None by default
+
+		r.addStatusCode("error", 404);
+		r.setDefaultErrorView("error"); // No default
+		r.setExceptionAttribute("null"); // Default is "exception"
+		r.setWarnLogCategory("example.MvcLogger"); // No default
+		r.setDefaultStatusCode(500);
+		return r;
+	}
+
 }
