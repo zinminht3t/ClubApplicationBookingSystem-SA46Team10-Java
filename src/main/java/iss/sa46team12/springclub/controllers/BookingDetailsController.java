@@ -48,7 +48,8 @@ public class BookingDetailsController {
 	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("booking-details");
 
-		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility("Tennis Court"));
+		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility((String) session.getAttribute("fn")));
+		String testSession = (String) session.getAttribute("fn");
 		LinkedHashMap<Facility, ArrayList<String>> courtAndTimes = new LinkedHashMap<Facility, ArrayList<String>>();
 		int bookingPrice = 0;
 
@@ -89,7 +90,6 @@ public class BookingDetailsController {
 			for (String times : court.getValue()) {
 				// for each timeslot in List
 				BookingDetailsForBookingProcess bookingdetails = new BookingDetailsForBookingProcess();
-
 				bookingdetails.setBookingid(booking.getBookingid());
 				bookingdetails.setBookingdate(convertedbookingdate);
 				bookingdetails.setBookingprice(court.getKey().getPrice());
@@ -100,10 +100,7 @@ public class BookingDetailsController {
 			}
 
 		}
-
-		// mav.addObject("selecteddate", selecteddate);
-		// mav.addObject("courtAndTimes", courtAndTimes);
-		// mav.addObject("date", date);
+		mav.addObject("testSession" , testSession);
 		mav.addObject("booking", booking);
 		return mav;
 

@@ -47,6 +47,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h3>Booking Confirmed</h3>
+					<h3> Facility Name: ${testSession}</h3>
 				</div>
 			</div>	
 					
