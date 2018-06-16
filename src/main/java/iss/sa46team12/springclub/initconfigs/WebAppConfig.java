@@ -128,6 +128,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/image/**").addResourceLocations("/image/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+		registry.addResourceHandler("/register/**").addResourceLocations("/register/");
+		registry.addResourceHandler("/admin/**").addResourceLocations("/admin/");
 	}
 
 	@Override
