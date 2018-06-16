@@ -71,7 +71,7 @@ public class UserController {
 		try {
 			userid = (int) session.getAttribute("UserID");
 		} catch (NullPointerException e) {
-			userid = 1;
+			return new ModelAndView("redirect:/logout");
 		}
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
