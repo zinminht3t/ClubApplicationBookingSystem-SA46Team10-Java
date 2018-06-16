@@ -16,9 +16,6 @@
 	
 	<link href="${pageContext.request.contextPath}/css/Calendar.css"
 		rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>

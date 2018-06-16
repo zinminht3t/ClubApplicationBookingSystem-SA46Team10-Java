@@ -8,12 +8,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>reports</title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/font-awesome.min.css">
     <link rel="stylesheet" href="css/reportFeatures-Boxed.css">
     <link rel="stylesheet" href="css/reportStyles.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/Chart.js"></script>
 </head>
 

@@ -8,22 +8,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Edit Facility Form</title>
-
-
-	<spring:url value="/css/FacilityFormNew.css" var="FacilityFormEdit" />
-
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-	<link rel='stylesheet prefetch'
-	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="fonts/font-awesome.min.css">
-	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="assets/css/Data-Table.css">
-	<link rel="stylesheet" href="assets/css/Data-Table2.css">
-	<link rel="stylesheet" href="assets/css/Dynamic-Table.css">
 </head>
 
 <body>
