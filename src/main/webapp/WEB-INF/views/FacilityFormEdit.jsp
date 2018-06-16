@@ -27,7 +27,7 @@
 <form:form method="POST" commandName="facility"
 		action="${pageContext.request.contextPath}/admin/facility/edit/${facility.facilityID}.html">
 
-<div class="container">
+<div class="container" style="margin-top:50px;">
 			<form>
 				<div class="row">
 

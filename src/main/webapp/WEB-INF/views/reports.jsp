@@ -138,7 +138,7 @@
 					        <table style="display: flex; justify-content: center;">
 					            <tr>
 					               <td>
-					                  <input type = "submit" value = "Member List"/>
+					                  <input type = "submit" value = "Member List" class="btn btn-outline-primary"/>
 					               </td>
 					            </tr>
 					      	</table>  
@@ -153,7 +153,7 @@
 					        <table style="display: flex; justify-content: center;">
 					            <tr>
 					               <td>
-					                  <input type = "submit" value = "Facility Revenue Report"/>
+					                  <input type = "submit" value = "Facility Revenue Report" class="btn btn-outline-info"/>
 					               </td>
 					            </tr>
 					      	</table>  
@@ -162,7 +162,7 @@
 					        <table style="display: flex; justify-content: center;">
 					            <tr>
 					               <td>
-					                  <input type = "submit" value = "Facility Usage Report"/>
+					                  <input type = "submit" value = "Facility Usage Report" class="btn btn-outline-info"/>
 					               </td>
 					            </tr>
 					      	</table>  
@@ -177,7 +177,7 @@
 					        <table style="display: flex; justify-content: center;">
 					            <tr>
 					               <td>
-					                  <input type = "submit" value = "Maintenance Report"/>
+					                  <input type = "submit" value = "Maintenance Report" class="btn btn-outline-warning"/>
 					               </td>
 					            </tr>
 					      	</table>  
