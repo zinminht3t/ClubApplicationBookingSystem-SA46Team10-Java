@@ -1,10 +1,14 @@
 package iss.sa46team12.springclub.validators;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import iss.sa46team12.springclub.models.Password;
 import iss.sa46team12.springclub.models.User;
@@ -38,7 +42,10 @@ public class PasswordValidator implements Validator {
 		if (!(p.getNewpassword().equals(p.getConfirmpassword()))) {
 			errors.rejectValue("confirmpassword", "error.user.mismatchedpassword.empty");
 		}
-		int userid = 1; // TODO
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession();
+		
+		int userid = (int) session.getAttribute("UserID"); 
 		User user = uService.findUserById(userid);
 
 		if (!(p.getPassword().equals(user.getPassword()))) {
