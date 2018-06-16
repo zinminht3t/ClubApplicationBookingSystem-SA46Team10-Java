@@ -22,13 +22,6 @@ public class UserServiceImpl implements UserService {
 		return (ArrayList<User>) userRepository.findAll();
 	}
 
-	// @Override
-	// @Transactional
-	// public User findUserByNric(String nric) {
-	// User user = urepo.findOne(nric);
-	// return user;
-	// }
-
 	@Override
 	@Transactional
 	public User editUser(User u) {

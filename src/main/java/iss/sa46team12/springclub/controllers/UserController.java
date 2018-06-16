@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.email.SendEmail;
+import iss.sa46team12.springclub.exceptions.SubscriptionNotFound;
 import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Password;
@@ -75,7 +76,11 @@ public class UserController {
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
 		Subscription sub = new Subscription();
-		sub = sService.findActiveSubscription(userid);
+		try {
+			sub = sService.findActiveSubscription(userid);
+		} catch (SubscriptionNotFound e) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		SubscriptionPackage subpackage = spService.findPackage(sub.getPackageid());
 
@@ -233,7 +238,11 @@ public class UserController {
 
 		Subscription sub = new Subscription();
 
-		sub = sService.findActiveSubscription(userid);
+		try {
+			sub = sService.findActiveSubscription(userid);
+		} catch (SubscriptionNotFound e) {
+			return new ModelAndView("redirect:/logout");
+		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(sub.getExpirydate());
 		c.add(Calendar.DATE, 1);
