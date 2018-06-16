@@ -264,12 +264,12 @@
 										${ubookings.transactiontime} </em> <br /> <br /> <br />
 									<c:choose>
 										<c:when test="${ubookings.status =='CONFIRMED'}">
-											<button id="cancelbookingbtn" class="btn btn-outline-danger">
+											<button id="${ubookings.bookingid}cancelbookingbtn" class="btn btn-outline-danger">
 												<i class="fa fa-ban"></i> Cancel Booking
 											</button>
 
 											<script>
-											 	document.getElementById("cancelbookingbtn").addEventListener('click',function ()
+											 	document.getElementById("${ubookings.bookingid}cancelbookingbtn").addEventListener('click',function ()
 													{
 														swal({
 															  title: 'Booking Cancellation',
