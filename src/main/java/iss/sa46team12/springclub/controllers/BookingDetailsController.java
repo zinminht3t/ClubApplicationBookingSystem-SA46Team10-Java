@@ -49,8 +49,10 @@ public class BookingDetailsController {
 	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
 		ModelAndView mav = new ModelAndView("booking-details");
 
-		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility((String) session.getAttribute("fn")));
-		String testSession = (String) session.getAttribute("fn");
+		String fn = (String) session.getAttribute("fn");
+		fn = fn.replaceAll("%20", "");
+		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility(fn));
+
 		LinkedHashMap<Facility, ArrayList<String>> courtAndTimes = new LinkedHashMap<Facility, ArrayList<String>>();
 		int bookingPrice = 0;
 
