@@ -54,7 +54,7 @@ public class FacilityController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/confirm-booking/{fdate}/{fname}", method = RequestMethod.GET)
+	@RequestMapping(value = "/confirm-booking/date/{fdate}/{fname}", method = RequestMethod.GET)
 	public ModelAndView facboooking(@PathVariable("fdate") String fdate, @PathVariable("fname") String facN,
 			HttpSession session) {
 		session.setAttribute("fn", facN);

@@ -35,7 +35,7 @@
 			            <hr>
 			            <p>${facility.remark}</p>
 			            <div style="text-align:center">
-			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/${date}/${facility.facilityName}">
+			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/date/${date}/${facility.facilityName}">
 			            
 			            <button class="btn btn-light btn-lg" type="button">Book</button></a></div>
 			        </div>

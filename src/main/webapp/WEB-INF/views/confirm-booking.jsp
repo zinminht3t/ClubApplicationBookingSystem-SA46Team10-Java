@@ -51,7 +51,7 @@
 			});
 			function updateAb(value) {
 				window.location
-						.replace('${pageContext.request.contextPath}/facilities/confirm-booking/'
+						.replace('${pageContext.request.contextPath}/facilities/confirm-booking/date/'
 								+ value + '/${facilityname}');
 			}
 		});
