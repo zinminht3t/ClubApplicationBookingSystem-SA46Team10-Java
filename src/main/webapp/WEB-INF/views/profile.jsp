@@ -10,17 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <spring:url value="/css/register.css" var="register" />
 <link rel="STYLESHEET" type="text/css" href="${register}" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="css/styles.css">
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.22.2/sweetalert2.all.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -38,33 +27,42 @@
 		</c:when>
 	</c:choose>
 
-	<h2 class="text-primary text-center">User Profile</h2>
 	<br />
 	<div class="row">
 
-		<div class="col-md-8 offset-md-2">
+		<div class="col-md-12" style="margin-top: 50px;">
+			<h2 class="text-secondary text-center">
+				<i class="fa fa-user"></i> User Profile
+			</h2>
+			<br />
+		</div>
 
-			<ul class="nav nav-pills mb-3 shadow-lg rounded" id="pills-tab"
-				role="tablist" style="background: #eee; margin: 2px;">
+		<div class="col-md-8 offset-md-2  mb-3 shadow-lg rounded"
+			style="background: white;">
+
+			<ul class="nav nav-pills" id="pills-tab" role="tablist"
+				style="margin: 10px;">
 				<li class="nav-item"><a class="nav-link active"
 					id="pills-home-tab" data-toggle="pill" href="#pills-home"
-					role="tab" aria-controls="pills-home" aria-selected="true">Edit
-						Profile</a></li>
+					role="tab" aria-controls="pills-home" aria-selected="true"><i
+						class="fa fa-user"></i> Edit Profile</a></li>
 
 				<li class="nav-item"><a class="nav-link" id="pills-booking-tab"
 					data-toggle="pill" href="#pills-booking" role="tab"
-					aria-controls="pills-booking" aria-selected="false">Upcoming
-						Bookings</a></li>
+					aria-controls="pills-booking" aria-selected="false"><i
+						class="fa fa-book"></i> Upcoming Bookings</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					id="pills-pastbooking-tab" data-toggle="pill"
 					href="#pills-pastbooking" role="tab"
-					aria-controls="pills-pastbooking" aria-selected="false">Past
-						Bookings</a></li>
+					aria-controls="pills-pastbooking" aria-selected="false"><i
+						class="fa fa-list-ul"></i> Past Bookings</a></li>
 				<li class="nav-item"><a class="nav-link" id="pills-sub-tab"
 					data-toggle="pill" href="#pills-sub" role="tab"
-					aria-controls="pills-sub" aria-selected="false">Subscription</a></li>
+					aria-controls="pills-sub" aria-selected="false"><i
+						class="fa fa-id-card"></i> Subscription</a></li>
 			</ul>
+			<hr>
 			<div class="tab-content shadow-lg p-3 mb-5 bg-white rounded"
 				id="pills-tabContent">
 				<div class="tab-pane fade show active" id="pills-home"
