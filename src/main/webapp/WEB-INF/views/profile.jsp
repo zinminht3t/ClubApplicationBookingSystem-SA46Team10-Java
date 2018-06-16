@@ -5,35 +5,11 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Spring Club - User Profile</title>
-	
-	
-	<spring:url value="/css/register.css" var="register" />
-	
-	
-	<link rel="STYLESHEET" type="text/css" href="${register}" />
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<link rel='stylesheet prefetch'
-		href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="fonts/font-awesome.min.css">
-	<link rel="stylesheet" href="css/styles.css">	
-	
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.22.2/sweetalert2.all.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<spring:url value="/css/register.css" var="register" />
+<link rel="STYLESHEET" type="text/css" href="${register}" />
 </head>
 
 <body>
@@ -51,33 +27,42 @@
 		</c:when>
 	</c:choose>
 
-	<h2 class="text-primary text-center">User Profile</h2>
 	<br />
 	<div class="row">
 
-		<div class="col-md-8 offset-md-2">
+		<div class="col-md-12" style="margin-top: 50px;">
+			<h2 class="text-secondary text-center">
+				<i class="fa fa-user"></i> User Profile
+			</h2>
+			<br />
+		</div>
 
-			<ul class="nav nav-pills mb-3 shadow-lg rounded" id="pills-tab"
-				role="tablist" style="background: #eee; margin: 2px;">
+		<div class="col-md-8 offset-md-2  mb-3 shadow-lg rounded"
+			style="background: white;">
+
+			<ul class="nav nav-pills" id="pills-tab" role="tablist"
+				style="margin: 10px;">
 				<li class="nav-item"><a class="nav-link active"
 					id="pills-home-tab" data-toggle="pill" href="#pills-home"
-					role="tab" aria-controls="pills-home" aria-selected="true">Edit
-						Profile</a></li>
+					role="tab" aria-controls="pills-home" aria-selected="true"><i
+						class="fa fa-user"></i> Edit Profile</a></li>
 
 				<li class="nav-item"><a class="nav-link" id="pills-booking-tab"
 					data-toggle="pill" href="#pills-booking" role="tab"
-					aria-controls="pills-booking" aria-selected="false">Upcoming
-						Bookings</a></li>
+					aria-controls="pills-booking" aria-selected="false"><i
+						class="fa fa-book"></i> Upcoming Bookings</a></li>
 
 				<li class="nav-item"><a class="nav-link"
 					id="pills-pastbooking-tab" data-toggle="pill"
 					href="#pills-pastbooking" role="tab"
-					aria-controls="pills-pastbooking" aria-selected="false">Past
-						Bookings</a></li>
+					aria-controls="pills-pastbooking" aria-selected="false"><i
+						class="fa fa-list-ul"></i> Past Bookings</a></li>
 				<li class="nav-item"><a class="nav-link" id="pills-sub-tab"
 					data-toggle="pill" href="#pills-sub" role="tab"
-					aria-controls="pills-sub" aria-selected="false">Subscription</a></li>
+					aria-controls="pills-sub" aria-selected="false"><i
+						class="fa fa-id-card"></i> Subscription</a></li>
 			</ul>
+			<hr>
 			<div class="tab-content shadow-lg p-3 mb-5 bg-white rounded"
 				id="pills-tabContent">
 				<div class="tab-pane fade show active" id="pills-home"
@@ -232,29 +217,29 @@
 
 							<div class="row"
 								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
-								
+
 								<div class="col-md-4">
 									<img src="" id="${ubookings.bookingid}uphoto"
 										alt="facilityphoto" width="100%" class="rounded-circle" />
 								</div>
-								
+
 								<div class="col-md-5">
 									<div style="overflow: hidden;">
 										<h4 class="float-left text-dark">
 											<strong id="${ubookings.bookingid}uname"></strong>
 										</h4>
 									</div>
-									
+
 									<h4 class="text-secondary">
 										<strong id="${ubookings.bookingid}udate"></strong>
 									</h4>
-									
+
 									<div id="${ubookings.bookingid}utimeslots"></div>
-									
+
 									<h5>
 										<em>Price : $ ${ubookings.total }.00</em>
 									</h5>
-									
+
 									<h6 class="text-warning">Status : ${ubookings.status }</h6>
 
 
@@ -273,18 +258,18 @@
 										</script>
 									</c:forEach>
 								</div>
-								
+
 								<div class="col-md-3">
 									<em><i class="fa fa-stopwatch"></i>
 										${ubookings.transactiontime} </em> <br /> <br /> <br />
 									<c:choose>
 										<c:when test="${ubookings.status =='CONFIRMED'}">
-											<button id="cancelbookingbtn" class="btn btn-outline-danger">
+											<button id="${ubookings.bookingid}cancelbookingbtn" class="btn btn-outline-danger">
 												<i class="fa fa-ban"></i> Cancel Booking
 											</button>
 
 											<script>
-											 	document.getElementById("cancelbookingbtn").addEventListener('click',function ()
+											 	document.getElementById("${ubookings.bookingid}cancelbookingbtn").addEventListener('click',function ()
 													{
 														swal({
 															  title: 'Booking Cancellation',

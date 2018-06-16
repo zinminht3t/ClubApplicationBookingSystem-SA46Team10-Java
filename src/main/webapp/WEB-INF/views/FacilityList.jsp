@@ -21,11 +21,11 @@
     <link rel="stylesheet" href="fonts/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
 	
-	<script type="text/javascript">
+<!-- 	<script type="text/javascript">
 		        $(document).ready(function() {
 		    $('#faclist').DataTable();
 		} );
-	</script>
+	</script> -->
 </head>
 <body>
 
