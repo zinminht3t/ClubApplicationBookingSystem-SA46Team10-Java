@@ -47,66 +47,82 @@ public class BookingDetailsController {
 
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
 	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
+
 		ModelAndView mav = new ModelAndView("booking-details");
+		String facilitycategory = (String) session.getAttribute("fn");
+		facilitycategory = facilitycategory.replaceAll("%20", "");
+		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility(facilitycategory));
+		double bookingPrice = 0;
 
-		String fn = (String) session.getAttribute("fn");
-		fn = fn.replaceAll("%20", "");
-		ArrayList<Facility> courts = new ArrayList<Facility>(courtsinFacility.getAllCourtsInFacility(fn));
-
+		// A HashMap for storing all the courts in a facility as key and their available
+		// times as value in list
 		LinkedHashMap<Facility, ArrayList<String>> courtAndTimes = new LinkedHashMap<Facility, ArrayList<String>>();
-		int bookingPrice = 0;
-
 		for (Facility court : courts) {
 			ArrayList<String> eachCourt = new ArrayList<String>();
-			String[] key;
-			try {
-				key = request.getParameterValues(court.getCourt());
-			} catch (NullPointerException e) {
-				key = null;
-			}
+
+			String[] key = request.getParameterValues(court.getCourt()); 	// Getting all values for a given key from
+																			// HttpServletRequest
 			if (key != null) {
 				for (String value : key) {
 					eachCourt.add(value);
-					bookingPrice = (int) (bookingPrice + court.getPrice());
+					bookingPrice = bookingPrice + court.getPrice(); 		// Calculating total booking price for each
+																		    // timeslots booked
 				}
 				courtAndTimes.put(court, eachCourt);
-
 			}
+
 		}
 
 		User user = userService.findUserById((int) session.getAttribute("UserID"));
 		LocalDateTime date = LocalDateTime.now();
-		Bookings booking = new Bookings();
-		booking.setTransactiontime(date);
-		booking.setUser(user);
-		booking.setTotal(bookingPrice);
-		booking.setStatus("CONFIRMED");
-		bookingsService.createBooking(booking);
+		Bookings booking = createNewBooking(date, user, bookingPrice);
 
 		String bookingdate = request.getParameter("selecteddate") + " 00:00";
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-		LocalDateTime convertedbookingdate = LocalDateTime.parse(bookingdate, formatter);
-
-		// Each Map in Hash
 		for (Map.Entry<Facility, ArrayList<String>> court : courtAndTimes.entrySet()) {
-			// Each List in Map
+
+			// Each Key in LinkedHashMap
 			for (String times : court.getValue()) {
-				// for each timeslot in List
-				BookingDetailsForBookingProcess bookingdetails = new BookingDetailsForBookingProcess();
-				bookingdetails.setBookingid(booking.getBookingid());
-				bookingdetails.setBookingdate(convertedbookingdate);
-				bookingdetails.setBookingprice(court.getKey().getPrice());
-				bookingdetails.setFacilityid(court.getKey().getFacilityID());
-				bookingdetails.setTimeslotid(timeslotService.getOneTimeSlot(times).getTimeslotid());
-				bookingDetailsService.createBooking(bookingdetails);
+
+				// for each timeslot in List of available times
+				createNewBookingDetails(booking.getBookingid(), bookingdate, court.getKey().getPrice(),
+						court.getKey().getFacilityID(), timeslotService.getOneTimeSlot(times).getTimeslotid());
 
 			}
 
 		}
-		mav.addObject("testSession" , testSession);
+		mav.addObject("testSession", facilitycategory);
 		mav.addObject("booking", booking);
 		return mav;
 
+	}
+
+	// Method to create new Booking
+	public Bookings createNewBooking(LocalDateTime date, User user, double bookingPrice) {
+
+		Bookings booking = new Bookings();
+		booking.setTransactiontime(date);
+		booking.setUser(user);
+		booking.setTotal((int) bookingPrice);
+		booking.setStatus("CONFIRMED");
+		bookingsService.createBooking(booking);
+
+		return booking;
+	}
+
+	// Method to create new booking detail
+	public void createNewBookingDetails(int bookingid, String bookingdate, double facilityprice, int facilityid,
+			int timeslotid) {
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime convertedbookingdate = LocalDateTime.parse(bookingdate, formatter);
+
+		BookingDetailsForBookingProcess bookingdetails = new BookingDetailsForBookingProcess();
+		bookingdetails.setBookingid(bookingid);
+		bookingdetails.setBookingdate(convertedbookingdate);
+		bookingdetails.setBookingprice(facilityprice);
+		bookingdetails.setFacilityid(facilityid);
+		bookingdetails.setTimeslotid(timeslotid);
+		bookingDetailsService.createBooking(bookingdetails);
 	}
 
 }
