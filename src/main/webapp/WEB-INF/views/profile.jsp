@@ -209,6 +209,10 @@
 				<div class="tab-pane fade" id="pills-booking" role="tabpanel"
 					aria-labelledby="pills-booking-tab">
 
+					<h6 class="text-info"><i class="fa fa-info"></i> Please note that we have 3 days
+						cancellation policy. So some bookings cannot be cancelled.</h6>
+						<hr/>
+
 
 					<c:if test="${fn:length(upcomingbookings) gt 0}">
 
@@ -217,6 +221,8 @@
 
 							<div class="row"
 								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+
+
 
 								<div class="col-md-4">
 									<img src="" id="${ubookings.bookingid}uphoto"
@@ -369,9 +375,9 @@
 
 									<em><i class="fa fa-stopwatch"></i> <fmt:parseDate
 											value="${ bookings.transactiontime }"
-											pattern="yyyy-MM-dd'T'HH:mm" var="DateTime" type="both" />
-										<fmt:formatDate dateStyle="medium" timeStyle="medium"
-											type="both" value="${ DateTime }" /> </em>
+											pattern="yyyy-MM-dd'T'HH:mm" var="DateTime" type="both" /> <fmt:formatDate
+											dateStyle="medium" timeStyle="medium" type="both"
+											value="${ DateTime }" /> </em>
 
 								</div>
 							</div>
