@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.models.BookingDetailsForBookingProcess;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
@@ -47,6 +48,9 @@ public class BookingDetailsController {
 
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
 	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		ModelAndView mav = new ModelAndView("booking-details");
 		String facilitycategory = (String) session.getAttribute("fn");

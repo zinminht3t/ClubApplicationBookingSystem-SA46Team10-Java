@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.models.BookingView;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
@@ -39,7 +40,7 @@ import iss.sa46team12.springclub.services.FacilityService;
 import iss.sa46team12.springclub.services.MaintenanceService;
 import iss.sa46team12.springclub.services.TimeslotService;
 
-/***controller class for admin to manage bookings and maintenances****/
+/*** controller class for admin to manage bookings and maintenances ****/
 
 @RequestMapping("/admin")
 @Controller
@@ -71,13 +72,16 @@ public class ManageBMController {
 	/******** Manage Bookings ********/
 
 	@RequestMapping(value = "/viewBookings", method = RequestMethod.GET)
-	public ModelAndView listAllCfmBookings() {
+	public ModelAndView listAllCfmBookings(HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("bookings");
 		ArrayList<Bookings> bookingList = bookingService.findAllConfirmedBookings();
 		mav.addObject("bookingList", bookingList);
 		return mav;
 	}
-	
 
 	@RequestMapping(value = "/viewBookings", method = RequestMethod.POST, params = "btnShowBookings")
 	public ModelAndView viewBookings() {
@@ -87,11 +91,14 @@ public class ManageBMController {
 		return mav;
 	}
 
-	
 	/******** Edit Bookings ********/
 
 	@RequestMapping(value = "/viewBookings/editBooking/{bookingID}", method = RequestMethod.GET)
-	public ModelAndView editMaintenance(@PathVariable Integer bookingID) {
+	public ModelAndView editMaintenance(@PathVariable Integer bookingID, HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("adminBookingForm");
 		Bookings booking = bookingService.findBooking(bookingID);
 		mav.addObject("booking", booking);
@@ -99,7 +106,12 @@ public class ManageBMController {
 	}
 
 	@RequestMapping(value = "/viewBookings/editBooking/{bookingID}", method = RequestMethod.POST)
-	public ModelAndView cancelBooking(@ModelAttribute Bookings booking, @PathVariable Integer bookingID) {
+	public ModelAndView cancelBooking(@ModelAttribute Bookings booking, @PathVariable Integer bookingID,
+			HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		Bookings currBooking = bookingService.findBooking(bookingID);
 
@@ -115,9 +127,14 @@ public class ManageBMController {
 
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.GET)
 	public ModelAndView viewCalendar(Model model, HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
+
 		ModelAndView mav = new ModelAndView("Calendar");
 
-		//to populate day header of calendar
+		// to populate day header of calendar
 		ArrayList<String> daysOfWeek = new ArrayList<String>() {
 			{
 				add("Sun");
@@ -130,7 +147,7 @@ public class ManageBMController {
 			}
 		};
 
-		//to get date of 1st day of this month
+		// to get date of 1st day of this month
 		Calendar now = Calendar.getInstance();
 		int currentMonth = now.get(Calendar.MONTH) + 1;
 		int currentYear = now.get(Calendar.YEAR);
@@ -151,40 +168,40 @@ public class ManageBMController {
 
 		int currentFirstDayIndex = currentDate.getDay();
 
-		//storing properties of 'date of 1st day of this month' as session variables
+		// storing properties of 'date of 1st day of this month' as session variables
 		session.setAttribute("currentDate", currentDate);
 		session.setAttribute("currentMonth", currentMonth);
 		session.setAttribute("currentYear", currentYear);
 		session.setAttribute("currentFirstDayIndex", currentFirstDayIndex);
 		session.setAttribute("daysOfWeek", daysOfWeek);
 
-		//to retrieve booking list to populate calendar
+		// to retrieve booking list to populate calendar
 		ArrayList<BookingView> bookingViewList = bkgViewService.findBookingMinMaxTimeslots();
 		mav.addObject("bookingViewList", bookingViewList);
 		session.setAttribute("bookingViewList", bookingViewList);
 
-		//get last day of current month
+		// get last day of current month
 		Date lastDateOfMonth = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(currentDate);
-		c.add(Calendar.MONTH, +1); 
-		c.add(Calendar.DATE, -1); 
+		c.add(Calendar.MONTH, +1);
+		c.add(Calendar.DATE, -1);
 		lastDateOfMonth = c.getTime();
 		int lastDayOfCurrentMonth = lastDateOfMonth.getDate();
-		
+
 		session.setAttribute("lastDayOfCurrentMonth", lastDayOfCurrentMonth);
 
-		//to retrieve maintenance list to populate calendar
+		// to retrieve maintenance list to populate calendar
 		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
 		session.setAttribute("maintenanceList", maintenanceList);
-		
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.POST, params = "btnNext")
 	public String nextMonthViewed(HttpSession session) {
-		
-		//parse to get current date stored in session variable
+
+		// parse to get current date stored in session variable
 		int mth = (int) session.getAttribute("currentMonth");
 		int year = (int) session.getAttribute("currentYear");
 
@@ -200,14 +217,14 @@ public class ManageBMController {
 
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
-		c.add(Calendar.MONTH, +1); //add a month to current date stored in session var
+		c.add(Calendar.MONTH, +1); // add a month to current date stored in session var
 		date = c.getTime();
 
 		int currentMonth = c.get(Calendar.MONTH) + 1;
 		int currentYear = c.get(Calendar.YEAR);
 		int currentFirstDayIndex = date.getDay();
 
-		//update stored current date variables in session
+		// update stored current date variables in session
 		session.setAttribute("currentDate", date);
 		session.setAttribute("currentMonth", currentMonth);
 		session.setAttribute("currentYear", currentYear);
@@ -221,7 +238,7 @@ public class ManageBMController {
 		Date lastDateOfMonth = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		cal.add(Calendar.MONTH, +1); 
+		cal.add(Calendar.MONTH, +1);
 		cal.add(Calendar.DATE, -1); // get last day of selected month
 		lastDateOfMonth = cal.getTime();
 		int lastDayOfCurrentMonth = lastDateOfMonth.getDate();
@@ -232,8 +249,8 @@ public class ManageBMController {
 
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.POST, params = "btnPrev")
 	public String prevMonth(HttpSession session) {
-		
-		//re-parse current date stored in session
+
+		// re-parse current date stored in session
 		int mth = (int) session.getAttribute("currentMonth");
 		int year = (int) session.getAttribute("currentYear");
 
@@ -246,7 +263,7 @@ public class ManageBMController {
 			e.printStackTrace();
 		}
 
-		//subtract a month from current date stored in session variable
+		// subtract a month from current date stored in session variable
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(Calendar.MONTH, -1);
@@ -269,7 +286,7 @@ public class ManageBMController {
 		Date lastDateOfMonth = new Date();
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		cal.add(Calendar.MONTH, +1); 
+		cal.add(Calendar.MONTH, +1);
 		cal.add(Calendar.DATE, -1); // get last day of sel month
 		lastDateOfMonth = cal.getTime();
 		int lastDayOfCurrentMonth = lastDateOfMonth.getDate();
@@ -277,7 +294,6 @@ public class ManageBMController {
 
 		return "Calendar";
 	}
-
 
 	@RequestMapping(value = "/viewCalendar", method = RequestMethod.POST, params = "btnShowCalendar")
 	public ModelAndView showCalendar(HttpSession session) {
@@ -329,7 +345,7 @@ public class ManageBMController {
 		Date lastDateOfMonth = new Date();
 		Calendar c = Calendar.getInstance();
 		c.setTime(currentDate);
-		c.add(Calendar.MONTH, +1); 
+		c.add(Calendar.MONTH, +1);
 		c.add(Calendar.DATE, -1); // get last day of month
 		lastDateOfMonth = c.getTime();
 		int lastDayOfCurrentMonth = lastDateOfMonth.getDate();
@@ -341,11 +357,15 @@ public class ManageBMController {
 
 		return mav;
 	}
-	
+
 	/*** Manage Maintenance ***/
 
 	@RequestMapping(value = "/viewMaintenances", method = RequestMethod.GET)
-	public ModelAndView listAllMaintenances() {
+	public ModelAndView listAllMaintenances(HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("Maintenance");
 		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
 		mav.addObject("maintenanceList", maintenanceList);
@@ -353,30 +373,45 @@ public class ManageBMController {
 	}
 
 	@RequestMapping(value = "/viewMaintenances", method = RequestMethod.POST, params = "btnShowMaintenances")
-	public ModelAndView viewMaintenances() {
+	public ModelAndView viewMaintenances(HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("Maintenance");
 		ArrayList<Maintenance> maintenanceList = maintenanceService.findAllActiveMaintenances();
 		mav.addObject("maintenanceList", maintenanceList);
 		return mav;
 	}
-	
-	/*****Create New Maintenance*****/
+
+	/***** Create New Maintenance *****/
 
 	@RequestMapping(value = "/viewMaintenances/MaintenanceFormNew/create", method = RequestMethod.POST, params = "btnShowAddMaintenance")
-	public String showMaintenance(HttpSession session) {
-		return "MaintenanceFormNew";
+	public ModelAndView showMaintenance(HttpSession session) {
+
+		ModelAndView mav = new ModelAndView("MaintenanceFormNew");
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
+		return mav;
 	}
 
 	@RequestMapping(value = "/viewMaintenances/MaintenanceFormNew", method = RequestMethod.GET)
-	public ModelAndView newMaintenancePage() {
+	public ModelAndView newMaintenancePage(HttpSession session) {
+
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
+
 		ModelAndView mav = new ModelAndView("MaintenanceFormNew", "maintenance", new Maintenance());
-		
-		//get database values to populate dropdown lists on view
+
+		// get database values to populate dropdown lists on view
 		ArrayList<String> facilityList = facilityService.findAllDistinctFacilityName();
 		ArrayList<String> facilityCourtsList = facilityService.findAllDistinctFacilityCourt();
 		int nextMaintenanceId = maintenanceService.getAllMaintenances().size() + 1;
 		ArrayList<Timeslots> timeslotsList = timeslotService.getAllTimeslots();
-		
+
 		mav.addObject("facilityList", facilityList);
 		mav.addObject("facilityCourtsList", facilityCourtsList);
 		mav.addObject("nextMaintenanceId", nextMaintenanceId);
@@ -388,42 +423,47 @@ public class ManageBMController {
 	@RequestMapping(value = "/viewMaintenances/MaintenanceFormNew/create", method = RequestMethod.POST)
 	public ModelAndView createNewMaintenance(@ModelAttribute @Valid Maintenance maintenance, BindingResult result,
 
-		final RedirectAttributes redirectAttributes, HttpServletRequest request) {
+			final RedirectAttributes redirectAttributes, HttpServletRequest request, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		if (result.hasErrors())
 			return new ModelAndView("MaintenanceFormNew");
 		ModelAndView mav = new ModelAndView();
-		
-		//get selected obj attributes from view
+
+		// get selected obj attributes from view
 		String selFacilityName = request.getParameter("facilityName");
 		String selCourtName = request.getParameter("courtName");
 		String startTimeSlot = request.getParameter("timeslotsName_start");
 		String endTimeSlot = request.getParameter("timeslotsName_end");
-		
-		//set selected facility to new Maintenance obj
+
+		// set selected facility to new Maintenance obj
 		Integer facilityID = facilityService.findByFacilityCourt(selFacilityName, selCourtName);
 		Facility f = facilityService.findFacilityById(facilityID);
 		maintenance.setFacilities(f);
 
-		//set time start and end to new Maintenance obj
+		// set time start and end to new Maintenance obj
 		Timeslots ts_start = timeslotService.findTimeslotByName(startTimeSlot);
 		Timeslots ts_end = timeslotService.findTimeslotByName(endTimeSlot);
 		maintenance.setTimeslots_start(ts_start);
 		maintenance.setTimeslots_end(ts_end);
 		maintenance.setActive(true);
-		
-		//save new Maintenance obj into db
+
+		// save new Maintenance obj into db
 		maintenanceService.createMaintenance(maintenance);
 		String message = "New maintenance " + maintenance.getMaintenanceid() + " was successfully created.";
 		mav.setViewName("redirect:/admin/viewMaintenances");
 		return mav;
 	}
 
-	
-	/*****Edit Maintenance*****/
-	
+	/***** Edit Maintenance *****/
+
 	@RequestMapping(value = "/viewMaintenances/MaintenanceFormEdit/{maintenanceID}", method = RequestMethod.GET)
-	public ModelAndView showEditMaintenanceForm(@PathVariable Integer maintenanceID, Model model) {
+	public ModelAndView showEditMaintenanceForm(@PathVariable Integer maintenanceID, Model model, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("MaintenanceFormEdit", "maintenance", new Maintenance());
 		mav.addObject("maintenance", maintenanceService.findMaintenance(maintenanceID));
 		return mav;
@@ -431,11 +471,14 @@ public class ManageBMController {
 
 	@RequestMapping(value = "/viewMaintenances/MaintenanceFormEdit/{maintenanceID}", method = RequestMethod.POST)
 	public ModelAndView editMaintenance(@ModelAttribute Maintenance maintenance, @PathVariable Integer maintenanceID,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		Maintenance currMaintenance = maintenanceService.findMaintenance(maintenanceID);
-		
-		//inactivate selected Maintenance
+
+		// inactivate selected Maintenance
 		currMaintenance.setActive(false);
 
 		maintenanceService.changeMaintenance(currMaintenance);

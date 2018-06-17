@@ -2,6 +2,7 @@ package iss.sa46team12.springclub.controllers;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.exceptions.FacilityNotFound;
 import iss.sa46team12.springclub.exceptions.UserNotFound;
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.models.Facility;
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.FacilityService;
@@ -46,7 +48,10 @@ public class AdminController {
 	// ********** List Users ***************
 
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
-	public ModelAndView listAllUser() {
+	public ModelAndView listAllUser(HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("UserList");
 		ArrayList<User> userlist = userService.findAllUsers();
 		mav.addObject("userlist", userlist);
@@ -56,7 +61,10 @@ public class AdminController {
 	// ********** Edit Users ***************
 
 	@RequestMapping(value = "/user/UserFormEdit/{userId}", method = RequestMethod.GET)
-	public ModelAndView editUserPage(@PathVariable Integer userId, Model model) {
+	public ModelAndView editUserPage(@PathVariable Integer userId, Model model, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("UserFormEdit", "users", new User());
 		mav.addObject("users", userService.findUserById(userId));
 		return mav;
@@ -64,7 +72,10 @@ public class AdminController {
 
 	@RequestMapping(value = "/user/edit/{userId}", method = RequestMethod.POST)
 	public ModelAndView editUser(@ModelAttribute @Valid User users, @PathVariable Integer userId, BindingResult result,
-			final RedirectAttributes redirectAttributes) throws UserNotFound {
+			final RedirectAttributes redirectAttributes, HttpSession session) throws UserNotFound {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		if (result.hasErrors())
 			return new ModelAndView("UserFormEdit");
@@ -84,7 +95,10 @@ public class AdminController {
 	// ********** List Facilities ***************
 
 	@RequestMapping(value = "/facility/list", method = RequestMethod.GET)
-	public ModelAndView listAllFacility() {
+	public ModelAndView listAllFacility(HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("FacilityList");
 		ArrayList<Facility> facilitylist = facService.findAllFacilities();
 		mav.addObject("facilitylist", facilitylist);
@@ -94,7 +108,10 @@ public class AdminController {
 	// ********** Create Facility ***************
 
 	@RequestMapping(value = "/facility/FacilityFormNew", method = RequestMethod.GET)
-	public ModelAndView logic(Model model) {
+	public ModelAndView logic(Model model, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		ModelAndView mav = new ModelAndView("FacilityFormNew", "facility", new Facility());
 		return mav;
@@ -102,7 +119,10 @@ public class AdminController {
 
 	@RequestMapping(value = "/facility/create", method = RequestMethod.POST)
 	public ModelAndView createFacility(@ModelAttribute @Valid Facility facility, BindingResult result,
-			final RedirectAttributes redirectAttributes) {
+			final RedirectAttributes redirectAttributes, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		if (result.hasErrors())
 			return new ModelAndView("FacilityFormNew");
@@ -123,7 +143,10 @@ public class AdminController {
 	// ********** Edit Facility ***************
 
 	@RequestMapping(value = "/facility/FacilityFormEdit/{facilityID}", method = RequestMethod.GET)
-	public ModelAndView logic(@PathVariable Integer facilityID, Model model) {
+	public ModelAndView logic(@PathVariable Integer facilityID, Model model, HttpSession session) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("FacilityFormEdit", "facility", new Facility());
 		mav.addObject("facility", facService.findFacilityById(facilityID));
 		return mav;
@@ -131,7 +154,10 @@ public class AdminController {
 
 	@RequestMapping(value = "/facility/edit/{facilityID}", method = RequestMethod.POST)
 	public ModelAndView editFacility(@ModelAttribute @Valid Facility facility, @PathVariable Integer facilityID,
-			BindingResult result, final RedirectAttributes redirectAttributes) throws FacilityNotFound {
+			BindingResult result, final RedirectAttributes redirectAttributes, HttpSession session) throws FacilityNotFound {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		if (result.hasErrors())
 			return new ModelAndView("FacilityFormEdit");
