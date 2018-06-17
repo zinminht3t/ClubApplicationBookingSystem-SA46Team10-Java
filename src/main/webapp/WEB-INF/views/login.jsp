@@ -10,6 +10,21 @@
 		<link rel="stylesheet" href="css/Login-Form-Dark.css">
 	</head>
 <body>
+
+
+	<c:choose>
+		<c:when test="${not empty showNotification}">
+			<script>
+				swal('${NotiTitle}', '${NotiMessage}', 'success')
+			</script>
+		</c:when>
+		<c:when test="${not empty showErrorNotification}">
+			<script>
+				swal('${NotieTitle}', '${NotieMessage}', 'warning')
+			</script>
+		</c:when>
+	</c:choose>
+
 	<div class="login-dark">
 		<c:choose>
 			<c:when test="${sessionScope.Role == null}">
