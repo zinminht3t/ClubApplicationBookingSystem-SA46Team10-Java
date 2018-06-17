@@ -12,12 +12,7 @@
 	<link rel="stylesheet" type="text/css"
 		href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript"
 		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
 	
 	<script type="text/javascript">
 	        $(document).ready(function() {
@@ -42,10 +37,11 @@
 		</div>	
 		<hr>
 
-		<div class="container-fluid">
+			<div class="row ">
+				<div class="col-md-12 ">
 			<c:if test="${fn:length(userlist) gt 0}">
 				<table id="ulist" class="display" style="width: auto; padding-left:10px; padding-right:10px; font-size: 12px;">
-					<thead style="color:blue">			 
+					<thead class="text-info">			 
 						<tr>
 							<th><spring:message code="ID" /></th>
 							<th><spring:message code="Name" /></th>
@@ -84,7 +80,7 @@
 									</c:choose></td>
 								<td>
 									<a href="${pageContext.request.contextPath}/admin/user/UserFormEdit/${user.userId}">
-									<button type="button" class="btn btn-warning btn-xs">Edit</button></a>
+										<i class="fa fa-edit text-danger fa-2x"></i></a>
 								</td>
 							</tr>
 						</c:forEach>
@@ -92,7 +88,10 @@
 		
 				</table>
 			</c:if>
-		</div>
+		
+				</div>
+			</div>
+		
 	</div>
 </body>
 </html>

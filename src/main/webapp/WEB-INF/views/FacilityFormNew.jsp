@@ -14,20 +14,13 @@
 <spring:url value="/css/FacilityFormNew.css" var="FacilityFormNew" />
 <link rel="STYLESHEET" type="text/css" href="${FacilityFormNew}" />
 
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-<link rel='stylesheet prefetch'
-	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
 </head>
 
 <body>
 
 	<form:form method="POST" commandName="facility"
 		action="${pageContext.request.contextPath}/admin/facility/create.html">
-		<div class="container">
+		<div class="container" style="margin-top: 50px;">
 			<form>
 				<div class="row">
 

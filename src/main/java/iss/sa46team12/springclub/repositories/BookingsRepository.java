@@ -17,6 +17,6 @@ public interface BookingsRepository extends JpaRepository<Bookings, Integer> {
 	ArrayList<Bookings> findAllConfirmedBookings();
 
 	// for bookings in user profile
-	@Query("select b from Bookings b where b.users.userId = :uid")
+	@Query("select b from Bookings b where b.users.userId = :uid order by b.transactiontime DESC")
 	ArrayList<Bookings> findUserBookings(@Param("uid") int userid);
 }

@@ -7,11 +7,7 @@
 
 <head>
 	<title>Facility Booking</title>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dh-row-text-image-right.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -35,7 +31,7 @@
 			            <hr>
 			            <p>${facility.remark}</p>
 			            <div style="text-align:center">
-			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/${date}/${facility.facilityName}">
+			            <a href="${pageContext.request.contextPath}/facilities/confirm-booking/date/${date}/${facility.facilityName}">
 			            
 			            <button class="btn btn-light btn-lg" type="button">Book</button></a></div>
 			        </div>

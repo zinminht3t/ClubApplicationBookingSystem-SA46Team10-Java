@@ -232,6 +232,8 @@
 
 									<h4 class="text-secondary">
 										<strong id="${ubookings.bookingid}udate"></strong>
+
+
 									</h4>
 
 									<div id="${ubookings.bookingid}utimeslots"></div>
@@ -246,13 +248,18 @@
 									<c:forEach var="ubookingDetail"
 										items="${ubookings.getBookings()}">
 
+										<fmt:parseDate value="${ ubookingDetail.bookingdate }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="ubDateTime" type="both" />
+										<fmt:formatDate dateStyle="medium" timeStyle="medium"
+											value="${ ubDateTime }" var="ubdate" />
+
 										<script>
 											document
 													.getElementById("${ubookings.bookingid}uphoto").src = "${pageContext.request.contextPath}/image/${ubookingDetail.getFacility().getImagePath()}";
 											document
 													.getElementById("${ubookings.bookingid}uname").innerHTML = "${ubookingDetail.getFacility().getFacilityName()}";
 											document
-													.getElementById("${ubookings.bookingid}udate").innerHTML = "${ubookingDetail.bookingdate}";
+													.getElementById("${ubookings.bookingid}udate").innerHTML = "${ubdate}";
 											document
 													.getElementById("${ubookings.bookingid}utimeslots").innerHTML += "<span class=\"badge badge-info\">${ubookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
 										</script>
@@ -260,11 +267,17 @@
 								</div>
 
 								<div class="col-md-3">
-									<em><i class="fa fa-stopwatch"></i>
-										${ubookings.transactiontime} </em> <br /> <br /> <br />
+
+
+									<em><i class="fa fa-stopwatch"></i> <fmt:parseDate
+											value="${ ubookings.transactiontime }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="uDateTime" type="both" />
+										<fmt:formatDate dateStyle="medium" timeStyle="medium"
+											type="both" value="${ uDateTime }" /> </em> <br /> <br /> <br />
 									<c:choose>
 										<c:when test="${ubookings.status =='CONFIRMED'}">
-											<button id="${ubookings.bookingid}cancelbookingbtn" class="btn btn-outline-danger">
+											<button id="${ubookings.bookingid}cancelbookingbtn"
+												class="btn btn-outline-danger">
 												<i class="fa fa-ban"></i> Cancel Booking
 											</button>
 
@@ -330,6 +343,11 @@
 									<c:forEach var="bookingDetail"
 										items="${bookings.getBookings()}">
 
+										<fmt:parseDate value="${ bookingDetail.bookingdate }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="bDateTime" type="both" />
+										<fmt:formatDate dateStyle="medium" timeStyle="medium"
+											value="${ bDateTime }" var="bdate" />
+
 										<script>
 											document
 													.getElementById("${bookings.bookingid}photo").src = "${pageContext.request.contextPath}/image/${bookingDetail.getFacility().getImagePath()}";
@@ -337,7 +355,7 @@
 											document
 													.getElementById("${bookings.bookingid}name").innerHTML = "${bookingDetail.getFacility().getFacilityName()}";
 											document
-													.getElementById("${bookings.bookingid}date").innerHTML = "${bookingDetail.bookingdate}";
+													.getElementById("${bookings.bookingid}date").innerHTML = "${bdate}";
 											document
 													.getElementById("${bookings.bookingid}timeslots").innerHTML += "<span class=\"badge badge-info\">${bookingDetail.getTimeslot().getTime()}</span> &nbsp;&nbsp;"
 										</script>
@@ -347,7 +365,13 @@
 
 								<div class="col-md-3">
 
-									<em>${bookings.transactiontime} </em>
+
+
+									<em><i class="fa fa-stopwatch"></i> <fmt:parseDate
+											value="${ bookings.transactiontime }"
+											pattern="yyyy-MM-dd'T'HH:mm" var="DateTime" type="both" />
+										<fmt:formatDate dateStyle="medium" timeStyle="medium"
+											type="both" value="${ DateTime }" /> </em>
 
 								</div>
 							</div>
