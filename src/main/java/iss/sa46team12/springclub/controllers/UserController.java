@@ -207,10 +207,19 @@ public class UserController {
 		if (result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
-			redirectAttributes.addFlashAttribute("NotieMessage", "Your Password is Wrong. Please Try again !");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Passwords do not match. Please Try again !");
+			return new ModelAndView("redirect:/user/profile");
 		}
-
 		User u = uService.findUserById(userid);
+		
+		if(u.getPassword().equals(password.getPassword())) {
+			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
+			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Your Password is Wrong. Please Try again !");
+			return new ModelAndView("redirect:/user/profile");
+		}
+		
+		
 		u.setPassword(password.getNewpassword());
 
 		uService.editUser(u);

@@ -42,15 +42,6 @@ public class PasswordValidator implements Validator {
 		if (!(p.getNewpassword().equals(p.getConfirmpassword()))) {
 			errors.rejectValue("confirmpassword", "error.user.mismatchedpassword.empty");
 		}
-		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-		HttpSession session = attr.getRequest().getSession();
-		
-		int userid = (int) session.getAttribute("UserID"); 
-		User user = uService.findUserById(userid);
-
-		if (!(p.getPassword().equals(user.getPassword()))) {
-			errors.rejectValue("password", "error.user.mismatchedpassword.empty");
-		}
 
 	}
 

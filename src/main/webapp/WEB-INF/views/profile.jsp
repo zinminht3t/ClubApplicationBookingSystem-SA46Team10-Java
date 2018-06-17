@@ -186,7 +186,7 @@
 								</div>
 								<form:errors path="newpassword" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
-									<input type="password" path="confirmpassword"
+									<form:input type="password" path="confirmpassword"
 										placeholder="Confirm Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
