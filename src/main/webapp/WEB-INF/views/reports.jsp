@@ -92,7 +92,8 @@
 							                    beginAtZero: true,
 							                }
 							            }]
-							        }
+							        },
+									legend: {display: false,}
 						      	}});
 					</script>
 					<p>Number of bookings per facility</p>
