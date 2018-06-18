@@ -89,17 +89,21 @@
 						<thead>
 							<tr class="listHeading">
 
-								<th>Facility Id</th>
+								<th>Facility ID</th>
+								<th>Facility Name</th>
+								<th>Timeslot</th>
 								<th>Booked Date</th>
 								<th>Price ($)</th>
 
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="bookingDetail" items="${bookingDetailsList}">
+							<c:forEach var="bookingDetail" items="${booking.getBookings()}">
 
 								<tr class="bookingDetail">
-									<td>${bookingDetail.getFacilityid()}</td>
+									<td>${bookingDetail.getFacility().getFacilityID()}</td>
+									<td>${bookingDetail.getFacility().getFacilityName()}</td>
+									<td>${bookingDetail.getTimeslots().getTime()}</td>
 									<td>${bookingDetail.getBookingdate()}</td>
 									<td>${bookingDetail.getBookingprice()}</td>
 								</tr>
