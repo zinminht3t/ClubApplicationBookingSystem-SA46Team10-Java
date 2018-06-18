@@ -33,6 +33,7 @@
 
 		$("#datepicker").datepicker({
 			dateFormat : 'yy-mm-dd',
+			minDate: 0,
 			onSelect : function(select) {
 				updateAb(select);
 			}
@@ -118,7 +119,7 @@
 											<button type="button" class="btn" data-color="success"
 												style="margin: 5px;">${time.getTime()}</button> <input
 											type="checkbox" name="${court}" value="${time.getTime()}"
-											class="hidden" />
+											class="hidden" style="display: none;"/>
 										</span>
 									</div>
 								</c:forEach>
@@ -145,7 +146,7 @@
 												off : {
 													icon : 'glyphicon glyphicon-unchecked'
 												}
-											};
+											}; 
 
 											// Event Handlers
 											$button
