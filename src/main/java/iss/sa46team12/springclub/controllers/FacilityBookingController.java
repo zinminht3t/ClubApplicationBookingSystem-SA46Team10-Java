@@ -40,14 +40,14 @@ public class FacilityBookingController {
 	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView listAll(HttpSession session, @PathVariable("datepicker") String datepicker) {
 		ModelAndView mav = new ModelAndView("confirm-booking");
-		// Formatting Date to match with database to compare
-
-		String fn = (String) session.getAttribute("fn");
-		fn = fn.replaceAll("%20", "");
+		
+		//Formatting datetime
 		String str = datepicker + " 00:00";
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
+		String fn = (String) session.getAttribute("fn");
+		fn = fn.replaceAll("%20", "");
 		session.setAttribute("fn", fn);
 
 		// Get all the timeslots
@@ -57,17 +57,18 @@ public class FacilityBookingController {
 
 		// A hashMap for mapping courts with their booking details
 		LinkedHashMap<String, ArrayList<BookingDetails>> bookedCourtsTime = new LinkedHashMap<String, ArrayList<BookingDetails>>();
+		
 		for (Facility court : courts) {
 
-			// Get a list of all booking details which matches the booking id and the date
+			//Get a list of all booking details which matches the booking id and the date
 			ArrayList<BookingDetails> bookingDetailsList = bookingDetailsService
 					.findAllConfirmedBookingsByCourtAndDate(court.getFacilityID(), dateTime);
 			bookedCourtsTime.put(court.getCourt(), bookingDetailsList);
 
 		}
+		
 		// A hashMap of all courts and their available time
 		LinkedHashMap<String, ArrayList<Timeslots>> availableCourtsTime = new LinkedHashMap<String, ArrayList<Timeslots>>();
-		// Adding available dates into HashMap
 		for (Map.Entry<String, ArrayList<BookingDetails>> courtBooking : bookedCourtsTime.entrySet()) {
 			// For each court
 			ArrayList<BookingDetails> bookingdetails = courtBooking.getValue();
@@ -81,6 +82,7 @@ public class FacilityBookingController {
 				}
 
 			}
+		
 			availableCourtsTime.put(courtBooking.getKey(), tempTimeslots);
 		}
 

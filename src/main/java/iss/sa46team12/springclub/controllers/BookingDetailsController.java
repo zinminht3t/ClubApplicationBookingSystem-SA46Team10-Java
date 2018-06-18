@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.models.BookingDetailsForBookingProcess;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
@@ -60,13 +61,13 @@ public class BookingDetailsController {
 		for (Facility court : courts) {
 			ArrayList<String> eachCourt = new ArrayList<String>();
 
-			String[] key = request.getParameterValues(court.getCourt()); 	// Getting all values for a given key from
+			String[] key = request.getParameterValues(court.getCourt()); // Getting all values for a given key from
 																			// HttpServletRequest
 			if (key != null) {
 				for (String value : key) {
 					eachCourt.add(value);
-					bookingPrice = bookingPrice + court.getPrice(); 		// Calculating total booking price for each
-																		    // timeslots booked
+					bookingPrice = bookingPrice + court.getPrice(); // Calculating total booking price for each
+																	// timeslots booked
 				}
 				courtAndTimes.put(court, eachCourt);
 			}
@@ -90,6 +91,11 @@ public class BookingDetailsController {
 			}
 
 		}
+		
+		//Send a confirmation email after successfully placing a booking
+		SendEmail.sendEmail("spring12@gmail.com", user.getEmail(), "Spring Club - Booking Confirmation",
+				"Your booking has been placed successfully. Thank you!");
+		
 		mav.addObject("testSession", facilitycategory);
 		mav.addObject("booking", booking);
 		return mav;
