@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <spring:url value="/css/register.css" var="register" />
 <link rel="STYLESHEET" type="text/css" href="${register}" />
+<link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>
@@ -186,7 +187,7 @@
 								</div>
 								<form:errors path="newpassword" cssStyle="color: red;" />
 								<div class="input-group input-group-icon">
-									<input type="password" path="confirmpassword"
+									<form:input type="password" path="confirmpassword"
 										placeholder="Confirm Password" required="required" />
 									<div class="input-icon">
 										<i class="fa fa-key"></i>
@@ -208,7 +209,11 @@
 				</div>
 				<div class="tab-pane fade" id="pills-booking" role="tabpanel"
 					aria-labelledby="pills-booking-tab">
-
+					<h6 class="text-info">
+						<i class="fa fa-info"></i> Please note that we have 3 days
+						cancellation policy. So some bookings cannot be cancelled.
+					</h6>
+					<hr />
 
 					<c:if test="${fn:length(upcomingbookings) gt 0}">
 
@@ -217,6 +222,8 @@
 
 							<div class="row"
 								style="padding: 40px 0px; border-bottom: 1px solid #dddddd;">
+
+
 
 								<div class="col-md-4">
 									<img src="" id="${ubookings.bookingid}uphoto"
@@ -369,9 +376,9 @@
 
 									<em><i class="fa fa-stopwatch"></i> <fmt:parseDate
 											value="${ bookings.transactiontime }"
-											pattern="yyyy-MM-dd'T'HH:mm" var="DateTime" type="both" />
-										<fmt:formatDate dateStyle="medium" timeStyle="medium"
-											type="both" value="${ DateTime }" /> </em>
+											pattern="yyyy-MM-dd'T'HH:mm" var="DateTime" type="both" /> <fmt:formatDate
+											dateStyle="medium" timeStyle="medium" type="both"
+											value="${ DateTime }" /> </em>
 
 								</div>
 							</div>

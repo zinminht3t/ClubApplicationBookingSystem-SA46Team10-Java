@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.services.ReportService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -43,8 +45,12 @@ public class ReportController {
 	 */
 
 	@RequestMapping(value = "/reports", method = RequestMethod.GET)
-	public ModelAndView findMaleNumControl() {
+	public ModelAndView findMaleNumControl(HttpSession session) {
 		ModelAndView mav = new ModelAndView("reports");
+
+		if(!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		// gender report
 		int a = rService.findNumOfMales();
@@ -55,12 +61,14 @@ public class ReportController {
 		int d = rService.findNumOfBookingsFacil2();
 		int e = rService.findNumOfBookingsFacil3();
 		int f = rService.findNumOfBookingsFacil4();
+		int k = rService.findNumOfBookingsFacil5();
 
 		// facilities under active maintenance report
 		int g = rService.findNumActMainFacil1();
 		int h = rService.findNumActMainFacil2();
 		int i = rService.findNumActMainFacil3();
 		int j = rService.findNumActMainFacil4();
+		int l = rService.findNumActMainFacil5();
 
 		mav.addObject("maleNum", a);
 		mav.addObject("femaleNum", b);
@@ -69,11 +77,13 @@ public class ReportController {
 		mav.addObject("bookingsFacil2", d);
 		mav.addObject("bookingsFacil3", e);
 		mav.addObject("bookingsFacil4", f);
+		mav.addObject("bookingsFacil5", k);
 
 		mav.addObject("actMainFacil1", g);
 		mav.addObject("actMainFacil2", h);
 		mav.addObject("actMainFacil3", i);
 		mav.addObject("actMainFacil4", j);
+		mav.addObject("actMainFacil5", l);
 
 		return mav;
 	}

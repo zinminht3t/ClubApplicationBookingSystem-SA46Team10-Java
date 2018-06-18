@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.exceptions.SubscriptionNotFound;
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Password;
@@ -67,6 +68,11 @@ public class UserController {
 
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public ModelAndView editProfile(HttpSession session) {
+
+		if(!SecurityConfigurations.CheckUserAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
+		
 		int userid = 0;
 		try {
 			userid = (int) session.getAttribute("UserID");
@@ -160,6 +166,9 @@ public class UserController {
 	public ModelAndView editUser(@ModelAttribute @Valid User user, BindingResult result,
 			final RedirectAttributes redirectAttributes, HttpSession session) {
 
+		if(!SecurityConfigurations.CheckUserAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		int userid;
 		try {
 			userid = (int) session.getAttribute("UserID");
@@ -195,6 +204,9 @@ public class UserController {
 	public ModelAndView changePassword(@ModelAttribute @Valid Password password, BindingResult result,
 			final RedirectAttributes redirectAttributes, HttpSession session) {
 
+		if(!SecurityConfigurations.CheckUserAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav;
 		mav = new ModelAndView("redirect:/user/profile");
 
@@ -207,10 +219,18 @@ public class UserController {
 		if (result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Passwords do not match. Please Try again !");
+			return new ModelAndView("redirect:/user/profile");
+		}
+		User u = uService.findUserById(userid);
+
+		if (u.getPassword().equals(password.getPassword())) {
+			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
+			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
 			redirectAttributes.addFlashAttribute("NotieMessage", "Your Password is Wrong. Please Try again !");
+			return new ModelAndView("redirect:/user/profile");
 		}
 
-		User u = uService.findUserById(userid);
 		u.setPassword(password.getNewpassword());
 
 		uService.editUser(u);
@@ -225,7 +245,9 @@ public class UserController {
 	@RequestMapping(value = "/renewmembership/{selectedPackage}", method = RequestMethod.GET)
 	public ModelAndView logic(@PathVariable int selectedPackage, Model model,
 			final RedirectAttributes redirectAttributes, HttpSession session) {
-
+		if (!SecurityConfigurations.CheckUserAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		int userid;
 		try {
 			userid = (int) session.getAttribute("UserID");
@@ -282,7 +304,9 @@ public class UserController {
 	@RequestMapping(value = "/booking/cancel/{bookingid}", method = RequestMethod.GET)
 	public ModelAndView cancelBooking(@PathVariable int bookingid, Model model,
 			final RedirectAttributes redirectAttributes, HttpSession session) {
-
+		if (!SecurityConfigurations.CheckUserAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		int userid;
 		try {
 			userid = (int) session.getAttribute("UserID");
@@ -305,7 +329,7 @@ public class UserController {
 		if (userBooking.getUser().getUserId() != userid || todayplusthreedays.isAfter(userBD.getBookingdate())) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
-			redirectAttributes.addFlashAttribute("NotieMessage", "Something went wrong!");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Sorry, You can only cancel the booking 3 days before the booking date!");
 		} else {
 
 			User loginuser = uService.findUserById(userid);
