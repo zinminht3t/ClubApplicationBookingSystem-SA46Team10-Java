@@ -143,7 +143,7 @@ Access to database password should be configured under: application.properties
 
 ------------------
 
-4. Troubleshooting
+## 4. Troubleshooting
 
 
 When visiting the following website:
@@ -183,7 +183,7 @@ NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 ------------------
 
-5. System Requirements
+## 5. System Requirements
 
 
 Recommended Browser: 
@@ -198,7 +198,7 @@ Tomcat v8.5
 
 ------------------
 
-6. Android Configuration
+## 6. Android Configuration
 
 1.	Install XAMPP on: https://www.apachefriends.org/download.html
 2.	Add the PHP files' SpringClub folder to XAMPP htdocs folder
@@ -228,7 +228,7 @@ VALUES ('8', '1', '2018-06-18', '2018-06-18', '1', '2', '0');
 
 ------------------
 
-7. Test Case Scripts
+## 7. Test Case Scripts
 
 First visit this link fist - http://localhost:8080/springclub/
 Play the test cases in order as the following order
@@ -245,7 +245,7 @@ Play the test cases in order as the following order
 ------------------
 
 
-8. Authors
+## 8. Authors
 	
 GDIP SA 46 Team 12 (NUS ISS)
 CHIRAG SHETTY
