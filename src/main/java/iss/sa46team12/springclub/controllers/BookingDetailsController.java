@@ -48,7 +48,7 @@ public class BookingDetailsController {
 
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
 	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
-		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+		if (!SecurityConfigurations.CheckUserAuth(session)) {
 			return new ModelAndView("redirect:/logout");
 		}
 
