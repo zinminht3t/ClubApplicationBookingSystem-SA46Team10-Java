@@ -66,7 +66,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8fdefb83-a75e-46c0-b84a-c88a89120c8d"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Maintenance ID]]></text>
 			</staticText>
@@ -75,7 +75,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3cda49c6-479d-4025-aadb-61e21f94dbe3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Facility ID]]></text>
 			</staticText>
@@ -84,7 +84,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bba8477d-96a8-40a6-aefa-c640aff6f168"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Active]]></text>
 			</staticText>
@@ -93,7 +93,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1d5820aa-d290-44b6-ba58-97277efd171f"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Start Date]]></text>
 			</staticText>
@@ -102,7 +102,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b42c6ac-220c-451b-84e9-5f87b29588d1"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[End Date]]></text>
 			</staticText>
@@ -111,7 +111,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86ac7079-7492-4c34-b6b8-4fe5f3363ad3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="10" isBold="true"/>
+					<font fontName="SansSerif" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Facility Name]]></text>
 			</staticText>
@@ -127,7 +127,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8fdefb83-a75e-46c0-b84a-c88a89120c8d"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{maintenanceid}]]></textFieldExpression>
 			</textField>
@@ -136,7 +136,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3cda49c6-479d-4025-aadb-61e21f94dbe3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{facilityid}]]></textFieldExpression>
 			</textField>
@@ -145,7 +145,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bba8477d-96a8-40a6-aefa-c640aff6f168"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{active}>0? "Yes":"No"]]></textFieldExpression>
 			</textField>
@@ -154,7 +154,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1d5820aa-d290-44b6-ba58-97277efd171f"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{startdate}]]></textFieldExpression>
 			</textField>
@@ -163,7 +163,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7b42c6ac-220c-451b-84e9-5f87b29588d1"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{enddate}]]></textFieldExpression>
 			</textField>
@@ -172,7 +172,7 @@ order by m.maintenanceid]]>
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86ac7079-7492-4c34-b6b8-4fe5f3363ad3"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Lato" size="8"/>
+					<font fontName="SansSerif" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{facilityname}]]></textFieldExpression>
 			</textField>
@@ -184,7 +184,7 @@ order by m.maintenanceid]]>
 	<pageFooter>
 		<band height="17">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="21098d58-9b08-4711-bb21-d14ef6418f54"/>
+				<reportElement stretchType="ContainerHeight" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="21098d58-9b08-4711-bb21-d14ef6418f54"/>
 				<textElement textAlignment="Right">
 					<font size="6"/>
 				</textElement>
