@@ -1,8 +1,9 @@
+
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: team12cabproject
 -- ------------------------------------------------------
--- Server version	8.0.11
+-- Server version 8.0.11
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -141,7 +142,7 @@ CREATE TABLE `maintenances` (
 
 LOCK TABLES `maintenances` WRITE;
 /*!40000 ALTER TABLE `maintenances` DISABLE KEYS */;
-INSERT INTO `maintenances` VALUES (1,1,'2018-05-14','2018-05-15',1,12,1),(2,2,'2018-06-14','2018-06-14',1,12,1),(3,3,'2018-06-15','2018-06-15',1,12,1);
+INSERT INTO `maintenances` VALUES (1,1,'2018-05-14','2018-05-15',1,12,1),(2,2,'2018-06-14','2018-06-14',1,12,1),(3,3,'2018-06-15','2018-06-15',1,12,1),(4,4,'2018-06-15','2018-06-15',1,12,0),(5,5,'2018-06-15','2018-06-15',1,12,0);
 /*!40000 ALTER TABLE `maintenances` ENABLE KEYS */;
 UNLOCK TABLES;
 
