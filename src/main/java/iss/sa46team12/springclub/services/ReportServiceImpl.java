@@ -151,6 +151,11 @@ public class ReportServiceImpl implements ReportService {
 	public int findNumOfBookingsFacil4() {
 		return repoRepo.findNumOfBookingsFacil4();
 	}
+	
+	@Override
+	public int findNumOfBookingsFacil5() {
+		return repoRepo.findNumOfBookingsFacil5();
+	}
 
 	@Resource
 	ReportMaintenanceRepository repoMainRepo;
@@ -173,5 +178,10 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public int findNumActMainFacil4() {
 		return repoMainRepo.findActiveMaintainFacil4();
+	}
+	
+	@Override
+	public int findNumActMainFacil5() {
+		return repoMainRepo.findActiveMaintainFacil5();
 	}
 }

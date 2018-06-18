@@ -26,4 +26,7 @@ public interface ReportMaintenanceRepository extends JpaRepository<Maintenance, 
 
 	@Query("SELECT Count(m) from Maintenance m WHERE m.active = 1 and facilities = 4")
 	int findActiveMaintainFacil4();
+	
+	@Query("SELECT Count(m) from Maintenance m WHERE m.active = 1 and facilities = 5")
+	int findActiveMaintainFacil5();
 }
