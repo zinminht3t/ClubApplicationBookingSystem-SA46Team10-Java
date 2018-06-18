@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.UserService;
@@ -36,7 +35,6 @@ public class LoginController {
 			us.setUser(u);
 			// PUT CODE FOR SETTING SESSION ID
 			us.setSessionId(session.getId());
-			// session.setAttribute("returnpage", mav);
 
 			if (u.getRole().equals("admin") && u.isActive() == true) {
 				session.setAttribute("Role", "admin");
@@ -45,8 +43,6 @@ public class LoginController {
 			} else if (u.getRole().equals("member") && u.isActive() == true) {
 				session.setAttribute("Role", "member");
 				session.setAttribute("UserID", u.getUserId());
-				// mav = (ModelAndView) session.getAttribute("returnpage");
-				// session.getAttribute
 				return "redirect:/facilities";
 			} else {
 				model.addAttribute("errormsg", "Your Account Has Expired");
@@ -57,38 +53,6 @@ public class LoginController {
 			return "login";
 			
 		}
-
-		// ModelAndView mav = new ModelAndView("login");
-		// if(result.hasErrors()) {
-		// return mav;
-		// }
-
-		// UserSession us = new UserSession();
-		// String email = user.getEmail();
-		// String password = user.getPassword();
-		// System.out.println(email + " " + password);
-		// User u = usersvc.authenticate(user.getEmail(), user.getPassword());
-		// System.out.println(u.toString());
-		//
-		// return mav;
 	}
-	//
-	// @RequestMapping(value = "/login", method = RequestMethod.GET)
-	// public String home() {
-	// return "login";
-	// }
-	//
-	// @RequestMapping(value = "/login", method = RequestMethod.POST)
-	// public String handleloginrequest(@RequestParam String user, @RequestParam
-	// String password, ModelMap model) {
-	// User u = loginsvc.validateuser(user, password);
-	// if(u != null) {
-	// return "membership";
-	// }
-	// else {
-	// model.put("errormsg", "Invalid Credentials");
-	// return "login";
-	// }
-	// }
 
 }

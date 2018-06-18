@@ -40,7 +40,7 @@ public class FacilityBookingController {
 
 	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView listAll(HttpSession session, @PathVariable("datepicker") String datepicker) {
-		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+		if (!SecurityConfigurations.CheckUserAuth(session)) {
 			return new ModelAndView("redirect:/logout");
 		}
 		ModelAndView mav = new ModelAndView("confirm-booking");
