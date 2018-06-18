@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.models.Facility;
 import iss.sa46team12.springclub.services.FacilityService;
@@ -56,7 +57,13 @@ public class FacilityController {
 
 	@RequestMapping(value = "/confirm-booking/date/{fdate}/{fname}", method = RequestMethod.GET)
 	public ModelAndView facboooking(@PathVariable("fdate") String fdate, @PathVariable("fname") String facN,
-			HttpSession session) {
+			HttpSession session, final RedirectAttributes redirectAttributes) {
+		if (session.getAttribute("Role") == null) {
+			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
+			redirectAttributes.addFlashAttribute("NotieTitle", "Join Now");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Please Login or Join the Club First to Book the facility!");
+			return new ModelAndView("redirect:/login");
+		}
 		session.setAttribute("fn", facN);
 		ModelAndView mav = new ModelAndView("redirect:/facilities/confirm-booking/" + fdate);
 		// session.setAttribute("date", getA());

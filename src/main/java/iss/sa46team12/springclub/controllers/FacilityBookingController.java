@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.Facility;
 import iss.sa46team12.springclub.models.Timeslots;
@@ -39,6 +40,9 @@ public class FacilityBookingController {
 
 	@RequestMapping(value = "/confirm-booking/{datepicker}", method = RequestMethod.GET)
 	public @ResponseBody ModelAndView listAll(HttpSession session, @PathVariable("datepicker") String datepicker) {
+		if (!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 		ModelAndView mav = new ModelAndView("confirm-booking");
 		// Formatting Date to match with database to compare
 
