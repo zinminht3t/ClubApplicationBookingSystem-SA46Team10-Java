@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import iss.sa46team12.springclub.email.SendEmail;
 import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
+
 import iss.sa46team12.springclub.models.BookingDetailsForBookingProcess;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Facility;
@@ -48,6 +50,7 @@ public class BookingDetailsController {
 
 	@RequestMapping(value = "/booking-details", method = RequestMethod.POST)
 	public ModelAndView listAll(HttpServletRequest request, HttpSession session) {
+		
 		if (!SecurityConfigurations.CheckUserAuth(session)) {
 			return new ModelAndView("redirect:/logout");
 		}
@@ -64,13 +67,13 @@ public class BookingDetailsController {
 		for (Facility court : courts) {
 			ArrayList<String> eachCourt = new ArrayList<String>();
 
-			String[] key = request.getParameterValues(court.getCourt()); 	// Getting all values for a given key from
+			String[] key = request.getParameterValues(court.getCourt()); // Getting all values for a given key from
 																			// HttpServletRequest
 			if (key != null) {
 				for (String value : key) {
 					eachCourt.add(value);
-					bookingPrice = bookingPrice + court.getPrice(); 		// Calculating total booking price for each
-																		    // timeslots booked
+					bookingPrice = bookingPrice + court.getPrice(); // Calculating total booking price for each
+																	// timeslots booked
 				}
 				courtAndTimes.put(court, eachCourt);
 			}
@@ -81,6 +84,7 @@ public class BookingDetailsController {
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = createNewBooking(date, user, bookingPrice);
 
+		ArrayList<BookingDetailsForBookingProcess> bookingDetailsList = new ArrayList<BookingDetailsForBookingProcess>();
 		String bookingdate = request.getParameter("selecteddate") + " 00:00";
 		for (Map.Entry<Facility, ArrayList<String>> court : courtAndTimes.entrySet()) {
 
@@ -88,14 +92,24 @@ public class BookingDetailsController {
 			for (String times : court.getValue()) {
 
 				// for each timeslot in List of available times
-				createNewBookingDetails(booking.getBookingid(), bookingdate, court.getKey().getPrice(),
-						court.getKey().getFacilityID(), timeslotService.getOneTimeSlot(times).getTimeslotid());
+				bookingDetailsList.add(createNewBookingDetails(booking.getBookingid(), bookingdate, court.getKey().getPrice(),
+						court.getKey().getFacilityID(), timeslotService.getOneTimeSlot(times).getTimeslotid()));
 
 			}
 
 		}
+		
+		int bid = booking.getBookingid();
+		
+		Bookings b = bookingsService.findBooking(bid);
+		
+		//Send a confirmation email after successfully placing a booking
+		SendEmail.sendEmail("spring12@gmail.com", user.getEmail(), "Spring Club - Booking Confirmation",
+				"Your booking has been placed successfully. Thank you!");
+		
 		mav.addObject("testSession", facilitycategory);
-		mav.addObject("booking", booking);
+		mav.addObject("booking", b);
+		mav.addObject("bookingDetailsList", bookingDetailsList);
 		return mav;
 
 	}
@@ -114,7 +128,7 @@ public class BookingDetailsController {
 	}
 
 	// Method to create new booking detail
-	public void createNewBookingDetails(int bookingid, String bookingdate, double facilityprice, int facilityid,
+	public BookingDetailsForBookingProcess createNewBookingDetails(int bookingid, String bookingdate, double facilityprice, int facilityid,
 			int timeslotid) {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -127,6 +141,7 @@ public class BookingDetailsController {
 		bookingdetails.setFacilityid(facilityid);
 		bookingdetails.setTimeslotid(timeslotid);
 		bookingDetailsService.createBooking(bookingdetails);
+		return bookingdetails;
 	}
 
 }
