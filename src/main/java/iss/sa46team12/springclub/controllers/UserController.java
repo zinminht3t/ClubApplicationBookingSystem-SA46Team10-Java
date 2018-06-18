@@ -329,7 +329,7 @@ public class UserController {
 		if (userBooking.getUser().getUserId() != userid || todayplusthreedays.isAfter(userBD.getBookingdate())) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
-			redirectAttributes.addFlashAttribute("NotieMessage", "Something went wrong!");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Sorry, You can only cancel the booking 3 days before the booking date!");
 		} else {
 
 			User loginuser = uService.findUserById(userid);

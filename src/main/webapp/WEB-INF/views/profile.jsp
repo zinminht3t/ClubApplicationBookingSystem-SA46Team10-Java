@@ -208,7 +208,11 @@
 				</div>
 				<div class="tab-pane fade" id="pills-booking" role="tabpanel"
 					aria-labelledby="pills-booking-tab">
-
+					<h6 class="text-info">
+						<i class="fa fa-info"></i> Please note that we have 3 days
+						cancellation policy. So some bookings cannot be cancelled.
+					</h6>
+					<hr />
 
 					<c:if test="${fn:length(upcomingbookings) gt 0}">
 
