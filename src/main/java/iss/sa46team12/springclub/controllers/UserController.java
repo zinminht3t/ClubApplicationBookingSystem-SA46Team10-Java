@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import iss.sa46team12.springclub.email.SendEmail;
+import iss.sa46team12.springclub.exceptions.SubscriptionNotFound;
 import iss.sa46team12.springclub.models.BookingDetails;
 import iss.sa46team12.springclub.models.Bookings;
 import iss.sa46team12.springclub.models.Password;
@@ -70,12 +71,16 @@ public class UserController {
 		try {
 			userid = (int) session.getAttribute("UserID");
 		} catch (NullPointerException e) {
-			userid = 1;
+			return new ModelAndView("redirect:/logout");
 		}
 		ModelAndView mav = new ModelAndView("profile", "password", new Password());
 		User user = uService.findUserById(userid);
 		Subscription sub = new Subscription();
-		sub = sService.findActiveSubscription(userid);
+		try {
+			sub = sService.findActiveSubscription(userid);
+		} catch (SubscriptionNotFound e) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		SubscriptionPackage subpackage = spService.findPackage(sub.getPackageid());
 
@@ -202,10 +207,19 @@ public class UserController {
 		if (result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
 			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
-			redirectAttributes.addFlashAttribute("NotieMessage", "Your Password is Wrong. Please Try again !");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Passwords do not match. Please Try again !");
+			return new ModelAndView("redirect:/user/profile");
 		}
-
 		User u = uService.findUserById(userid);
+		
+		if(u.getPassword().equals(password.getPassword())) {
+			redirectAttributes.addFlashAttribute("showErrorNotification", "error");
+			redirectAttributes.addFlashAttribute("NotieTitle", "Error");
+			redirectAttributes.addFlashAttribute("NotieMessage", "Your Password is Wrong. Please Try again !");
+			return new ModelAndView("redirect:/user/profile");
+		}
+		
+		
 		u.setPassword(password.getNewpassword());
 
 		uService.editUser(u);
@@ -233,7 +247,11 @@ public class UserController {
 
 		Subscription sub = new Subscription();
 
-		sub = sService.findActiveSubscription(userid);
+		try {
+			sub = sService.findActiveSubscription(userid);
+		} catch (SubscriptionNotFound e) {
+			return new ModelAndView("redirect:/logout");
+		}
 		Calendar c = Calendar.getInstance();
 		c.setTime(sub.getExpirydate());
 		c.add(Calendar.DATE, 1);

@@ -8,22 +8,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Edit Facility Form</title>
-
-
-	<spring:url value="/css/FacilityFormNew.css" var="FacilityFormEdit" />
-
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-	<link rel='stylesheet prefetch'
-	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="fonts/font-awesome.min.css">
-	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="assets/css/Data-Table.css">
-	<link rel="stylesheet" href="assets/css/Data-Table2.css">
-	<link rel="stylesheet" href="assets/css/Dynamic-Table.css">
 </head>
 
 <body>
@@ -49,32 +33,32 @@
 				<tbody>		  
 					<tr>
 						<td><spring:message code="Maintenance ID" /></td>
-						<td><form:input path="maintenanceid" readonly="true"  /></td>
+						<td><form:input path="maintenanceid" readonly="true" disabled="true" /></td>
 					</tr> 
 					<tr>
 						<td><spring:message code="Facility ID" /></td>
-						<td><form:input path="facilities.facilityID" readonly="true" /></td>
+						<td><form:input path="facilities.facilityID" readonly="true"  disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="Start Date" /></td>
-						<td><form:input path="startdate" readonly="true" /></td>
+						<td><form:input path="startdate" readonly="true"  disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="Time Start ID" /></td>
-						<td><form:input path="timeslots_start.time" readonly="true" /></td>
+						<td><form:input path="timeslots_start.time" readonly="true"  disabled="true" /></td>
 					</tr>
 					<tr>
 						<td><spring:message code="End Date" /></td>
-						<td><form:input path="enddate" readonly="true" />
+						<td><form:input path="enddate" readonly="true"  disabled="true" />
 					</tr>						
 					<tr>
 						<td><spring:message code="Time End ID" /></td>
-						<td><form:input path="timeslots_end.time" readonly="true" /></td>
+						<td><form:input path="timeslots_end.time" readonly="true"  disabled="true" /></td>
 					</tr>
 								
 					<tr>
 						<td></td>
-						 <td><input type="submit" value="Cancel Maintenance"></td>
+						 <td><input  class ="btn btn-danger" type="submit" value="Cancel Maintenance"></td>
 					</tr>
 				</tbody>
 			</table>

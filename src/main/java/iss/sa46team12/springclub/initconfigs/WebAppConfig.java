@@ -9,8 +9,10 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.Ordered;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -24,8 +26,8 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -38,6 +40,7 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = "iss.sa46team12.springclub")
 @PropertySource({ "classpath:application.properties", "classpath:/i18n/messages.properties" })
 @EnableJpaRepositories("iss.sa46team12.springclub.repositories")
+//@Import({ SecurityConfig.class })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 	private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
@@ -125,6 +128,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/image/**").addResourceLocations("/image/");
 		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+		registry.addResourceHandler("/register/**").addResourceLocations("/register/");
+		registry.addResourceHandler("/admin/**").addResourceLocations("/admin/");
 	}
 
 	@Override
@@ -143,22 +148,28 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		return cookieLocaleResolver;
 	}
 
-	@Bean(name = "simpleMappingExceptionResolver")
-	public SimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
-		SimpleMappingExceptionResolver r = new SimpleMappingExceptionResolver();
-
-		Properties mappings = new Properties();
-		mappings.setProperty(NullPointerException.class.getName(), "error");
-		mappings.setProperty("DatabaseException", "databaseError");
-		mappings.setProperty("InvalidCreditCardException", "creditCardError");
-		r.setExceptionMappings(mappings); // None by default
-
-		r.addStatusCode("error", 404);
-		r.setDefaultErrorView("error"); // No default
-		r.setExceptionAttribute("null"); // Default is "exception"
-		r.setWarnLogCategory("example.MvcLogger"); // No default
-		r.setDefaultStatusCode(500);
-		return r;
-	}
+//	@Bean(name = "simpleMappingExceptionResolver")
+//	public SimpleMappingExceptionResolver createSimpleMappingExceptionResolver() {
+//		SimpleMappingExceptionResolver r = new SimpleMappingExceptionResolver();
+//
+//		Properties mappings = new Properties();
+//		mappings.setProperty(NullPointerException.class.getName(), "error");
+//		mappings.setProperty("DatabaseException", "databaseError");
+//		mappings.setProperty("InvalidCreditCardException", "creditCardError");
+//		r.setExceptionMappings(mappings); // None by default
+//
+//		r.addStatusCode("error", 404);
+//		r.setDefaultErrorView("error"); // No default
+//		r.setExceptionAttribute("null"); // Default is "exception"
+//		r.setWarnLogCategory("example.MvcLogger"); // No default
+//		r.setDefaultStatusCode(500);
+//		return r;
+//	}
+	
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        registry.addViewController("/login").setViewName("login");
+//        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//    }
 
 }

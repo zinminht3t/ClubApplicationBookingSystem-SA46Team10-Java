@@ -84,7 +84,6 @@ public class FacilityBookingController {
 			availableCourtsTime.put(courtBooking.getKey(), tempTimeslots);
 		}
 
-		mav.addObject("bookedCourtsTime", bookedCourtsTime);
 		mav.addObject("availableCourtsTime", availableCourtsTime);
 		mav.addObject("date", datepicker);
 		mav.addObject("facilityname", fn);

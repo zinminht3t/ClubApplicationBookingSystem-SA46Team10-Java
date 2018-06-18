@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import iss.sa46team12.springclub.exceptions.SubscriptionNotFound;
 import iss.sa46team12.springclub.models.Subscription;
 import iss.sa46team12.springclub.repositories.SubscriptionRepository;
 
@@ -19,8 +20,14 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 	@Override
 	@Transactional
-	public Subscription findActiveSubscription(int i) {
-		return srepo.findActiveSubscription(i);
+	public Subscription findActiveSubscription(int i) throws SubscriptionNotFound {
+
+		Subscription s = srepo.findActiveSubscription(i);
+		if (s == null) {
+			throw new SubscriptionNotFound();
+		}
+		;
+		return s;
 	}
 
 	@Override

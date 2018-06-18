@@ -16,9 +16,6 @@
 	
 	<link href="${pageContext.request.contextPath}/css/Calendar.css"
 		rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -101,7 +98,7 @@
 									test="${bookingDate==thisDate}">
 	
 						            <a href="${pageContext.request.contextPath}/admin/viewBookings/editBooking/${booking.getBookingid()}">
-									<button id="${booking.getBookingid()}" name="btnIDeditBooking" class="btn-booking-slot">${booking.getMinTime().substring(0, 4)}--${booking.getMaxTime().substring(booking.getMaxTime().length()-4)}</button></a>
+									<button id="${booking.getBookingid()}" name="btnIDeditBooking" class="btn-booking-slot">${booking.getMinTime().substring(0, 5)}-${booking.getMaxTime().substring(booking.getMaxTime().length()-5)}</button></a>
 								</c:if>
 							</c:forEach>
 							
@@ -110,19 +107,24 @@
 							<fmt:parseDate var="maintenanceStartDate" value="${maintenance.getStartdate()}" pattern="yyyy-MM-dd" />
 							<fmt:parseDate var="maintenanceEndDate" value="${maintenance.getEnddate()}" pattern="yyyy-MM-dd" />
 			
-								<c:if test="${maintenanceStartDate==thisDate || maintenanceEndDate==thisDate}">
+								<c:if test="${thisDate ge maintenanceStartDate && thisDate le maintenanceEndDate}">
 									 <a href="${pageContext.request.contextPath}/admin/viewMaintenances/MaintenanceFormEdit/${maintenance.getMaintenanceid()}">
 									<button id="${maintenance.getMaintenanceid()}" class="btn-maintenance-slot">
+									
+									<c:if test="${thisDate gt maintenanceStartDate && thisDate lt maintenanceEndDate}">
+										09:00-20:00
+									</c:if>
+									
 									<c:if test="${thisDate==maintenanceEndDate && maintenanceStartDate!=maintenanceEndDate}">
-										0000-${maintenance.getTimeslots_end().getTime().substring(0, 4)}
+										09:00-${maintenance.getTimeslots_end().getTime().substring(0, 5)}
 									</c:if>
 									
 									<c:if test="${thisDate==maintenanceEndDate && maintenanceStartDate==maintenanceEndDate}">
-										${maintenance.getTimeslots_start().getTime().substring(0, 4)}-${maintenance.getTimeslots_end().getTime().substring(0, 4)}
+										${maintenance.getTimeslots_start().getTime().substring(0, 5)}-${maintenance.getTimeslots_end().getTime().substring(0, 5)}
 									</c:if>
 									
-									<c:if test="${thisDate!=maintenanceEndDate}">
-										${maintenance.getTimeslots_start().getTime().substring(0, 4)}--*
+									<c:if test="${thisDate==maintenanceStartDate && thisDate!=maintenanceEndDate}">
+										${maintenance.getTimeslots_start().getTime().substring(0, 5)}-20:00
 									</c:if>
 									</button></a>
 								</c:if>
