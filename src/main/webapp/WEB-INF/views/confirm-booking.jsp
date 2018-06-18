@@ -33,7 +33,7 @@
 
 		$("#datepicker").datepicker({
 			dateFormat : 'yy-mm-dd',
-			minDate: 0,
+			minDate : 0,
 			onSelect : function(select) {
 				updateAb(select);
 			}
@@ -48,13 +48,11 @@
 </head>
 
 <body>
-	<a href="${pageContext.request.contextPath}/facilities/confirm-booking">Confirm
-		your Booking</a>
 
 	<br />
 	<br />
-	<br />
 
+	<br />
 	<div class="container text-center">
 
 		<div class="row">
@@ -119,7 +117,7 @@
 											<button type="button" class="btn" data-color="success"
 												style="margin: 5px;">${time.getTime()}</button> <input
 											type="checkbox" name="${court}" value="${time.getTime()}"
-											class="hidden" style="display: none;"/>
+											class="hidden" style="display: none;" />
 										</span>
 									</div>
 								</c:forEach>
@@ -146,7 +144,7 @@
 												off : {
 													icon : 'glyphicon glyphicon-unchecked'
 												}
-											}; 
+											};
 
 											// Event Handlers
 											$button
