@@ -16,6 +16,7 @@
 <body>
 <br/>
 <br/>
+<br/>
 	<form:form method="POST" commandName="user"
 		action="${pageContext.request.contextPath}/register/${selectedPackage}.html">
 		<div class="container">
@@ -93,8 +94,8 @@
 					<div class="col-half">
 						<h4>Gender</h4>
 						<div class="input-group">
-							<form:radiobutton path="gender" value="Male" label="Male" /> 							
-							<form:radiobutton path="gender" value="Female" label="Female"/>
+							<form:radiobutton path="gender" value="male" label="Male" /> 							
+							<form:radiobutton path="gender" value="female" label="Female"/>
 							<form:errors path="gender" cssStyle="color: red;" />
 						</div>
 					</div>

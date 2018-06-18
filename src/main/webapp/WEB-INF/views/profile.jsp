@@ -82,6 +82,7 @@
 								<div class="row">
 									<h4>Account</h4>
 									<div class="input-group input-group-icon">
+										<form:hidden path="userId"/>
 										<form:input path="fullname" type="text"
 											placeholder="Full Name" required="required" />
 										<div class="input-icon">

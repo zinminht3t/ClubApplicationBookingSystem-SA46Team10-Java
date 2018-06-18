@@ -2,11 +2,15 @@ package iss.sa46team12.springclub.validators;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import iss.sa46team12.springclub.models.User;
 import iss.sa46team12.springclub.services.UserService;
@@ -27,7 +31,7 @@ public class UserValidator implements Validator {
 		User u = (User) target;
 
 		ArrayList<User> listOfUsers = uService.findAllUsers();
-		int userid = 1; // TODO
+		int userid = u.getUserId(); // TODO
 		for (User user : listOfUsers) {
 			if (userid != user.getUserId() && u.getEmail().equals(user.getEmail())) { // u.getUserId() is for update
 																						// profile

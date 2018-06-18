@@ -33,6 +33,7 @@
 
 		$("#datepicker").datepicker({
 			dateFormat : 'yy-mm-dd',
+			minDate : 0,
 			onSelect : function(select) {
 				updateAb(select);
 			}
@@ -47,13 +48,11 @@
 </head>
 
 <body>
-	<a href="${pageContext.request.contextPath}/facilities/confirm-booking">Confirm
-		your Booking</a>
 
 	<br />
 	<br />
-	<br />
 
+	<br />
 	<div class="container text-center">
 
 		<div class="row">
