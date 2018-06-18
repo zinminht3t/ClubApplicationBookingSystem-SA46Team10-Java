@@ -24,7 +24,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <spring:url value="/js/confirm-booking.js" var="javascript" />
-<script src="${javascript}"></script>
+<script src="${javascript}" charset="UTF-8"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -118,7 +118,7 @@
 											<button type="button" class="btn" data-color="success"
 												style="margin: 5px;">${time.getTime()}</button> <input
 											type="checkbox" name="${court}" value="${time.getTime()}"
-											class="hidden" />
+											class="hidden" style="display: none;"/>
 										</span>
 									</div>
 								</c:forEach>
@@ -175,15 +175,6 @@
 														(isChecked) ? "on"
 																: "off");
 
-												// Set the button's icon
-												$button
-														.find('.state-icon')
-														.removeClass()
-														.addClass(
-																'state-icon '
-																		+ settings[$button
-																				.data('state')].icon);
-
 												// Update the button's color
 												if (isChecked) {
 													$button
@@ -209,14 +200,6 @@
 
 												updateDisplay();
 
-												// Inject the icon if applicable
-												if ($button.find('.state-icon').length == 0) {
-													$button
-															.prepend('<i class="state-icon '
-																	+ settings[$button
-																			.data('state')].icon
-																	+ '"></i>');
-												}
 											}
 											init();
 										});
