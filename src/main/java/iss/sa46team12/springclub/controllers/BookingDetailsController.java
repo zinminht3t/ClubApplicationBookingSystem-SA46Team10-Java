@@ -99,12 +99,16 @@ public class BookingDetailsController {
 
 		}
 		
+		int bid = booking.getBookingid();
+		
+		Bookings b = bookingsService.findBooking(bid);
+		
 		//Send a confirmation email after successfully placing a booking
 		SendEmail.sendEmail("spring12@gmail.com", user.getEmail(), "Spring Club - Booking Confirmation",
 				"Your booking has been placed successfully. Thank you!");
 		
 		mav.addObject("testSession", facilitycategory);
-		mav.addObject("booking", booking);
+		mav.addObject("booking", b);
 		mav.addObject("bookingDetailsList", bookingDetailsList);
 		return mav;
 

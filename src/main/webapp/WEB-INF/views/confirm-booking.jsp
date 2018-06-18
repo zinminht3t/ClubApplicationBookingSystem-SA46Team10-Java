@@ -33,6 +33,7 @@
 
 		$("#datepicker").datepicker({
 			dateFormat : 'yy-mm-dd',
+			minDate : 0,
 			onSelect : function(select) {
 				updateAb(select);
 			}
@@ -47,13 +48,11 @@
 </head>
 
 <body>
-	<a href="${pageContext.request.contextPath}/facilities/confirm-booking">Confirm
-		your Booking</a>
 
 	<br />
 	<br />
-	<br />
 
+	<br />
 	<div class="container text-center">
 
 		<div class="row">
@@ -112,16 +111,29 @@
 						<div class="mx-auto" style="width: 390px;">
 							<div class="row justify-content-center"
 								style="margin: 5px; background-color: #343A40; padding: 5px; margin: 8px; border-radius: 5px; min-height: 33px; opacity: 0.9;">
-								<c:forEach var="time" items="${availableCourtsTime[court]}">
-									<div style="margin: 5px; display: inline">
-										<span class="button-checkbox">
-											<button type="button" class="btn" data-color="success"
-												style="margin: 5px;">${time.getTime()}</button> <input
-											type="checkbox" name="${court}" value="${time.getTime()}"
-											class="hidden" style="display: none;"/>
-										</span>
-									</div>
-								</c:forEach>
+								<c:choose>
+									<c:when test="${empty availableCourtsTime[court]}">
+										<h6 style = "color: white;">All timeslots are booked</h6>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="time" items="${availableCourtsTime[court]}">
+											<div style="margin: 5px; display: inline">
+												<span class="button-checkbox">
+
+
+													<button type="button" class="btn" data-color="success"
+														style="margin: 5px;">${time.getTime()}</button> <input
+													type="checkbox" name="${court}" value="${time.getTime()}"
+													class="hidden" style="display: none;"
+													onchange="isChecked(this, 'button')" />
+
+
+												</span>
+											</div>
+
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 
@@ -209,9 +221,22 @@
 				<div class="mx-auto" style="width: 376px;">
 					<div class="form-group ">
 						<input type="submit" id="button"
-							class="btn btn-primary btn-lg btn-block login-button">
+							class="btn btn-primary btn-lg btn-block login-button"
+							disabled="disabled">
+
 					</div>
 				</div>
+				<script>
+					function isChecked(checkbox, button) {
+						var button = document.getElementById(button);
+
+						if (checkbox.checked === true) {
+							button.disabled = "";
+						} else {
+							button.disabled = "disabled";
+						}
+					}
+				</script>
 
 			</form:form>
 		</div>
