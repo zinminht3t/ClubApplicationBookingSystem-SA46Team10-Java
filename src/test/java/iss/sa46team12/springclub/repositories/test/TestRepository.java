@@ -1,3 +1,4 @@
+
 package iss.sa46team12.springclub.repositories.test;
 
 import static org.junit.Assert.assertEquals;

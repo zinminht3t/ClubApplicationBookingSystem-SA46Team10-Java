@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import iss.sa46team12.springclub.initconfigs.SecurityConfigurations;
 import iss.sa46team12.springclub.services.ReportService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -43,8 +45,12 @@ public class ReportController {
 	 */
 
 	@RequestMapping(value = "/reports", method = RequestMethod.GET)
-	public ModelAndView findMaleNumControl() {
+	public ModelAndView findMaleNumControl(HttpSession session) {
 		ModelAndView mav = new ModelAndView("reports");
+
+		if(!SecurityConfigurations.CheckAdminAuth(session)) {
+			return new ModelAndView("redirect:/logout");
+		}
 
 		// gender report
 		int a = rService.findNumOfMales();
