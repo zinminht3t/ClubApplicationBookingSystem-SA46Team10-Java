@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <spring:url value="/css/register.css" var="register" />
 <link rel="STYLESHEET" type="text/css" href="${register}" />
+<link rel="stylesheet" href="css/register.css">
 </head>
 
 <body>

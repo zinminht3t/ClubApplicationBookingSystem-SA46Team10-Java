@@ -46,6 +46,8 @@ public interface ReportService {
 	int findNumOfBookingsFacil3();
 
 	int findNumOfBookingsFacil4();
+	
+	int findNumOfBookingsFacil5();
 
 	int findNumActMainFacil1();
 
@@ -54,4 +56,6 @@ public interface ReportService {
 	int findNumActMainFacil3();
 
 	int findNumActMainFacil4();
+	
+	int findNumActMainFacil5();
 }

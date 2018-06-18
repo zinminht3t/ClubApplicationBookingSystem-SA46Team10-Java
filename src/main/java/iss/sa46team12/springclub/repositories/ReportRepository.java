@@ -19,4 +19,7 @@ public interface ReportRepository extends JpaRepository<BookingDetails, Integer>
 
 	@Query("SELECT Count(b) from BookingDetails b where facilityid = '4' ")
 	int findNumOfBookingsFacil4();
+	
+	@Query("SELECT Count(b) from BookingDetails b where facilityid = '5' ")
+	int findNumOfBookingsFacil5();
 }

@@ -61,12 +61,14 @@ public class ReportController {
 		int d = rService.findNumOfBookingsFacil2();
 		int e = rService.findNumOfBookingsFacil3();
 		int f = rService.findNumOfBookingsFacil4();
+		int k = rService.findNumOfBookingsFacil5();
 
 		// facilities under active maintenance report
 		int g = rService.findNumActMainFacil1();
 		int h = rService.findNumActMainFacil2();
 		int i = rService.findNumActMainFacil3();
 		int j = rService.findNumActMainFacil4();
+		int l = rService.findNumActMainFacil5();
 
 		mav.addObject("maleNum", a);
 		mav.addObject("femaleNum", b);
@@ -75,11 +77,13 @@ public class ReportController {
 		mav.addObject("bookingsFacil2", d);
 		mav.addObject("bookingsFacil3", e);
 		mav.addObject("bookingsFacil4", f);
+		mav.addObject("bookingsFacil5", k);
 
 		mav.addObject("actMainFacil1", g);
 		mav.addObject("actMainFacil2", h);
 		mav.addObject("actMainFacil3", i);
 		mav.addObject("actMainFacil4", j);
+		mav.addObject("actMainFacil5", l);
 
 		return mav;
 	}
