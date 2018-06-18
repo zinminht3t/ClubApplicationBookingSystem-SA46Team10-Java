@@ -80,30 +80,39 @@
 						</div>
 					</div>
 
-					<div class="col-md-offset-2 col-md-8">
-						<div class="panel-heading">
-
-
-							<input class="btn btn-danger" id="btnSubmit" type="submit"
-								value="OK" style="width: 150px;" />
-
-							<hr>
-
-						</div>
-
-
-
-
-					</div>
-
 				</div>
 
 				<!-- second column -->
+				<div class="col-md-6">
+					<table id="example" class="table table-striped table-bordered"
+						cellspacing="0" width="100%">
+						<thead>
+							<tr class="listHeading">
+
+								<th>Facility Id</th>
+								<th>Booked Date</th>
+								<th>Price ($)</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="bookingDetail" items="${bookingDetailsList}">
+
+								<tr class="bookingDetail">
+									<td>${bookingDetail.getFacilityid()}</td>
+									<td>${bookingDetail.getBookingdate()}</td>
+									<td>${bookingDetail.getBookingprice()}</td>
+								</tr>
+
+							</c:forEach>
+
+						</tbody>
+					</table>
+				</div>
+				
 			</div>
 		</div>
 	</form>
-
-
 
 
 </body>

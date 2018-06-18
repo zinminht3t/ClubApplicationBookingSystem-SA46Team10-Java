@@ -84,6 +84,7 @@ public class BookingDetailsController {
 		LocalDateTime date = LocalDateTime.now();
 		Bookings booking = createNewBooking(date, user, bookingPrice);
 
+		ArrayList<BookingDetailsForBookingProcess> bookingDetailsList = new ArrayList<BookingDetailsForBookingProcess>();
 		String bookingdate = request.getParameter("selecteddate") + " 00:00";
 		for (Map.Entry<Facility, ArrayList<String>> court : courtAndTimes.entrySet()) {
 
@@ -91,8 +92,8 @@ public class BookingDetailsController {
 			for (String times : court.getValue()) {
 
 				// for each timeslot in List of available times
-				createNewBookingDetails(booking.getBookingid(), bookingdate, court.getKey().getPrice(),
-						court.getKey().getFacilityID(), timeslotService.getOneTimeSlot(times).getTimeslotid());
+				bookingDetailsList.add(createNewBookingDetails(booking.getBookingid(), bookingdate, court.getKey().getPrice(),
+						court.getKey().getFacilityID(), timeslotService.getOneTimeSlot(times).getTimeslotid()));
 
 			}
 
@@ -104,6 +105,7 @@ public class BookingDetailsController {
 		
 		mav.addObject("testSession", facilitycategory);
 		mav.addObject("booking", booking);
+		mav.addObject("bookingDetailsList", bookingDetailsList);
 		return mav;
 
 	}
@@ -122,7 +124,7 @@ public class BookingDetailsController {
 	}
 
 	// Method to create new booking detail
-	public void createNewBookingDetails(int bookingid, String bookingdate, double facilityprice, int facilityid,
+	public BookingDetailsForBookingProcess createNewBookingDetails(int bookingid, String bookingdate, double facilityprice, int facilityid,
 			int timeslotid) {
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -135,6 +137,7 @@ public class BookingDetailsController {
 		bookingdetails.setFacilityid(facilityid);
 		bookingdetails.setTimeslotid(timeslotid);
 		bookingDetailsService.createBooking(bookingdetails);
+		return bookingdetails;
 	}
 
 }
