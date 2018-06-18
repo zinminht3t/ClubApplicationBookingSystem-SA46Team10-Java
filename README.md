@@ -4,78 +4,80 @@ SA46 Team 12 Java EE Spring MVC Project for CAB System
 This document provides supplementary information 
 about the software on the following items:
 
-## 1. Summary on Application
-## 2. Scope of Application
-## 3. User Login / Passwords
-## 4. Troubleshoot
-## 5. System Requirements
-## 6. Android Configurations
-## 7. Test Case Scripts
-## 8. Authors
+1. Summary on Application
+2. Scope of Application
+3. User Login / Passwords
+4. Troubleshoot
+5. System Requirements
+6. Android Configurations
+7. Test Case Scripts
+8. Authors
 
 ## 1. Summary on Application
-
 
 ### a. Members Access
-------------------
+
 Only members can access "My Accounts" and "Facilities Booking". Anonymous users do 
 not have the rights and will be prompted to login if attempting to access the page.
 
 ### b. Admin Access
-------------------
+
 Admin have a custom navigation bar that allows them see reports and manage the 
 business.
 
 ### c. Android 
-------------------
+
 Members can login and book facilities via the mobile application.
+
+------------------
+
 
 ## 2. Scope of Application
 
 
 ### a. Home page
-------------------
+
 > Contact us form
 > Information about Spring club
 
 ### b. Membership
-------------------
+
 > Selection of subscription
 > Registration of user
 
 ### c. Facilities
-------------------
+
 > Anonymous can see all facilities
 > Only members can book the facilities
 > Unavailable / maintenance slots will be shown
 
 ### d. My Account
-------------------
+
 > User can manage subscription
 > User can view all past and upcoming booking
 > User can delete upcoming booking
 > User can manage account information
 
 ### e. Reports
-------------------
+
 > Only admin can access
 > Dashboard / charts of vital information
 > Reports printable / viewable in PDF format
 
 ### f. Manage Facility
-------------------
+
 > Only admin can access
 > Toggle facilities between active / not active
 > Edit facilities information
 > Add new facilities
 
 ### g. Manage User
-------------------
+
 > Only admin can access
 > Edit user information
 
 ### h. Manage Booking
-------------------
+
 > Only admin can access
 > Toggle between calendar / list view
 > Book maintenance
@@ -83,13 +85,13 @@ Members can login and book facilities via the mobile application.
 > Delete booking
 
 ### i. Android
------------------
+
 > Only for members
 > Login access
 > Booking of facilities
 
 ### j. Others
------------------
+
 > JUnit
 	-> CRUD test on service classes
 	-> Rollback database after test is done
@@ -103,6 +105,9 @@ Members can login and book facilities via the mobile application.
 	-> Booking is cancelled
 	-> Account is expired
 	-> Account is renewed
+
+
+------------------
 
 
 ## 3. User Login / Passwords
@@ -125,6 +130,9 @@ Pass: wearesa46team12
 Emails are received from contact us form
 
 
+
+------------------
+
 3. Database setup
 
 
@@ -132,17 +140,20 @@ Database script is available in the folder: SQL Backup > team12cabproject.sql
 Access to database password should be configured under: application.properties
 
 
+
+------------------
+
 4. Troubleshooting
 
 
 When visiting the following website:
---------------------
+
 http://localhost:8080/springclub/facilities 
 http://localhost:8080/springclub/admin/calendar
 
 
 The following error might occur:
---------------------
+
 com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: 
 Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated 
 column 'team12cabproject.facility0_.facilityid' which is not functionally dependent 
@@ -154,7 +165,7 @@ Solution :
 	
 
 Solution
---------------------
+
 1. Run this query -> SELECT @@GLOBAL.sql_mode;
 	
 
@@ -169,17 +180,23 @@ Run this query => SET @@GLOBAL.sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,
 NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 
+
+------------------
+
 5. System Requirements
 
 
 Recommended Browser: 
---------------------
+
 Google Chrome
 
 Server:
---------------------
+
 Tomcat v8.5
 
+
+
+------------------
 
 6. Android Configuration
 
@@ -208,6 +225,9 @@ INSERT INTO `team12cabproject`.`maintenances` (`maintenanceid`, `facilityid`,
 VALUES ('8', '1', '2018-06-18', '2018-06-18', '1', '2', '0');
 
 
+
+------------------
+
 7. Test Case Scripts
 
 First visit this link fist - http://localhost:8080/springclub/
@@ -220,6 +240,9 @@ Play the test cases in order as the following order
 6. User Overall Test Case
 7. Admin Overall Test Case
 
+
+
+------------------
 
 
 8. Authors
